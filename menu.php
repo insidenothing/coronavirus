@@ -30,7 +30,7 @@
 global $send_message;
 global $core;
 
-include_once('../secure.php'); //outside webserver
+include_once('/var/www/secure.php'); //outside webserver
 
 function getPage($url){
     $curl = curl_init();
