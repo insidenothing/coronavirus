@@ -1,14 +1,18 @@
 <?PHP
 include_once('menu.php');
 $wiki = wikidata();
-echo '<div class="container">
-<div class="row">
-	<div class="col-sm-12">
-	<iframe id="ytplayer" type="text/html" width="1100" height="600"
-src="https://www.youtube.com/embed/RAmqmTTjB_U?autoplay=1"
-frameborder="1" allowfullscreen> </iframe>
-    		</div>
-</div>
+echo '<div class="container">';
+if(empty($_GET['novideo'])){
+	echo '
+	<div class="row">
+		<div class="col-sm-12">
+		<iframe id="ytplayer" type="text/html" width="1100" height="600"
+	src="https://www.youtube.com/embed/RAmqmTTjB_U?autoplay=1"
+	frameborder="1" allowfullscreen> </iframe>
+			</div>
+	</div>';
+}
+echo '
 <div class="row">';
 //<iframe width="1100" height="600" src="https://www.youtube.com/embed/videoseries?list=PLhAvAcGuQOsHsqKlOb2gpIgvAP7nFXyVS?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 global $send_message;
