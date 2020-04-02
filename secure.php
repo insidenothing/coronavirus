@@ -5,3 +5,4 @@ $user = '';
 $pass = '';
 $db_name = '';
 $core = mysqli_connect($host,$user,$pass,$db_name) or die("Error " . mysqli_error($core));
+$twillo_key = '';
