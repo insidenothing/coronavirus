@@ -1,4 +1,7 @@
 <?PHP
+if(isset($_GET['novideo'])){
+	$logo = 'off';
+}
 include_once('menu.php');
 $wiki = wikidata();
 echo '<div class="container">';
