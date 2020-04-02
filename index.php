@@ -5,12 +5,13 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 $wiki = wikidata();
 echo '<div class="container">';
+$video_of_the_day = 'xv-8i59AUFY';
 if(empty($_GET['novideo'])){
 	echo '
 	<div class="row">
 		<div class="col-sm-12">
 		<iframe id="ytplayer" type="text/html" width="1100" height="600"
-	src="https://www.youtube.com/embed/RAmqmTTjB_U?autoplay=1"
+	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
 	frameborder="1" allowfullscreen> </iframe>
 			</div>
 	</div>';
