@@ -45,31 +45,12 @@ function sms_one($to,$message){
 
 function sms($msg){
     	global $send_message;
-    	if ($send_message == 'on'){
-		global $core;
-		$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
-		while($d = mysqli_fetch_array($r)){
-			$sms = trim($d['sms_number']);
-			$url = "https://www.mdwestserve.com/sms/message_send/$sms/COVID19_".str_replace(' ','_',$msg);
-			//getPage($url);
-		}
-	}
+// nothing
     	echo '<p>'.$msg.'</p>';	
 }
 
 function message_send($to,$message){	
-	$message = str_replace('_', ' ', $message);	
-	$curl = curl_init();
-	curl_setopt ($curl, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/AC2708b19f42abb601cf49e9a235f3a99c/SMS/Messages.xml');
-	curl_setopt ($curl, CURLOPT_TIMEOUT, '5');
-	curl_setopt ($curl, CURLOPT_RETURNTRANSFER, '1');
-	$message = str_replace(' ','+',$message);
-	$postfields = "From=%2B14433932367&To=$to&Body=$message";
-	curl_setopt($curl, CURLOPT_USERPWD, "AC2708b19f42abb601cf49e9a235f3a99c:be2f0a72190fffe8009251109746216b"); 
-	curl_setopt ($curl, CURLOPT_POSTFIELDS, $postfields);
-	$buffer = htmlspecialchars($buffer);
-	curl_close ($curl);
-	return $buffer;
+	// nothing
 }
 
 ?>
