@@ -64,19 +64,24 @@ function sms($msg){
     	echo '<p>'.$msg.'</p>';	
 }
 
-function message_send($to,$message){	
-	$message = str_replace('_', ' ', $message);	
-	$curl = curl_init();
-	curl_setopt ($curl, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/AC2708b19f42abb601cf49e9a235f3a99c/SMS/Messages.xml');
-	curl_setopt ($curl, CURLOPT_TIMEOUT, '5');
-	curl_setopt ($curl, CURLOPT_RETURNTRANSFER, '1');
-	$message = str_replace(' ','+',$message);
-	$postfields = "From=%2B14433932367&To=$to&Body=$message";
-	curl_setopt($curl, CURLOPT_USERPWD, "AC2708b19f42abb601cf49e9a235f3a99c:be2f0a72190fffe8009251109746216b"); 
-	curl_setopt ($curl, CURLOPT_POSTFIELDS, $postfields);
-	$buffer = curl_exec ($curl);
-	$buffer = htmlspecialchars($buffer);
-	curl_close ($curl);
+function message_send($to,$master_message){	
+	// take full message, split and loop
+	$buffer='';
+	$messages = str_split(strip_tags($master_message), 150);
+	foreach ($messages as $message) {
+		$message = str_replace('_', ' ', $message);	
+		$curl = curl_init();
+		curl_setopt ($curl, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/AC2708b19f42abb601cf49e9a235f3a99c/SMS/Messages.xml');
+		curl_setopt ($curl, CURLOPT_TIMEOUT, '5');
+		curl_setopt ($curl, CURLOPT_RETURNTRANSFER, '1');
+		$message = str_replace(' ','+',$message);
+		$postfields = "From=%2B14433932367&To=$to&Body=$message";
+		curl_setopt($curl, CURLOPT_USERPWD, "AC2708b19f42abb601cf49e9a235f3a99c:be2f0a72190fffe8009251109746216b"); 
+		curl_setopt ($curl, CURLOPT_POSTFIELDS, $postfields);
+		$bufferX = curl_exec ($curl);
+		$buffer .= htmlspecialchars($bufferX);
+		curl_close ($curl);
+	}
 	return $buffer;
 }
 function wikidata(){
