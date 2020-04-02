@@ -644,17 +644,16 @@ echo $master_message;
 //echo $wiki['changes'];
 echo "</div>";
 
-$messages = str_split(strip_tags($master_message), 150);
-foreach ($messages as $msg) {
-   if ($send_message == 'on'){
-		global $core;
-		$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
-		while($d = mysqli_fetch_array($r)){
-			$sms = trim($d['sms_number']);
-			message_send($sms,$msg);
-		}
-	}  
-}
+
+if ($send_message == 'on' || isset($_GET['forcesms'])){
+	global $core;
+	$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
+	while($d = mysqli_fetch_array($r)){
+		$sms = trim($d['sms_number']);
+		message_send($sms,$master_message);
+	}
+}  
+
 
 echo "</div></div>";
 
