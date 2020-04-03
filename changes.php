@@ -123,6 +123,7 @@ $current_total_recovered2 = 0;
 function do_math_location($county){
 	global $maryland_history;
 	global $new_id;
+	global $core;
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
 	$yesterday = date('Y-m-d',strtotime($old_date));
