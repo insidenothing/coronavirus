@@ -27,9 +27,9 @@ if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid U
 }
 
 $array = json_decode($json, true);
-echo '<h1>Database</h1><pre>';
+echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
 print_r($array['fields']);
-echo '</pre>';
-echo '<h1>Data</h1><pre>';
+echo '</pre></td>';
+echo '<td valign="top"><h1>Data</h1><pre>';
 print_r($array['features']);
-echo '</pre>';
+echo '</pre></td></tr></table>';
