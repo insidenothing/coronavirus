@@ -40,6 +40,33 @@ $today = array();
 $normal = array();
 $peak = array();
 $peak_str = array();
+function county_aka($county){
+ 	if ($county == 'Allegany'){ return 'ALLE'; }
+        if ($county == 'AnneArundel'){ return 'ANNE'; }
+        if ($county == 'Baltimore'){ return 'BALT'; }
+        if ($county == 'BaltimoreCity'){ return 'BCITY'; }
+        if ($county == 'Calvert'){ return 'CALV'; }
+        if ($county == 'Caroline'){ return 'CARO'; }
+        if ($county == 'Carroll'){ return 'CARR'; }
+        if ($county == 'Cecil'){ return 'CECI'; }
+        if ($county == 'Charles'){ return 'CHAR'; }
+        if ($county == 'Dorchester'){ return 'DORC'; }
+        if ($county == 'Frederick'){ return 'FRED'; }
+        if ($county == 'Garrett'){ return 'GARR'; }
+        if ($county == 'Harford'){ return 'HARF'; }
+        if ($county == 'Howard'){ return 'HOWA'; }
+        if ($county == 'Kent'){ return 'KENT'; }
+        if ($county == 'Montgomery'){ return 'MONT'; }
+        if ($county == 'PrinceGeorges'){ return 'PRIN'; }
+        if ($county == 'QueenAnnes'){ return 'QUEE'; }
+        if ($county == 'Somerset'){ return 'SOME'; }
+        if ($county == 'StMarys'){ return 'STMA'; }
+        if ($county == 'Talbot'){ return 'TALB'; }
+        if ($county == 'Washington'){ return 'WASH'; }
+        if ($county == 'Wicomico'){ return 'WICO'; }
+        if ($county == 'Worcester'){ return 'WORC'; }
+	if ($county == 'Maryland'){ return 'TotalCases'; }
+}
 function make_maryland_array(){
 	$return = array();
 	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
@@ -98,11 +125,10 @@ global $debug_in;
 global $debug_out;
 
 function total_count($county){
-	global $core;
-	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
-	$d = mysqli_fetch_array($r);
-	return $d['number_of_people'];	
+	global $maryland_history;
+	$date = date('Y-m-d');
+	$aka = county_aka($county);
+	global intval($maryland_history[$date][$aka]);
 }
 function rate_of_infection($county){
 	global $core;
@@ -110,33 +136,6 @@ function rate_of_infection($county){
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['rate_of_infection'];	
-}
-function county_aka($county){
- 	if ($county == 'Allegany'){ return 'ALLE'; }
-        if ($county == 'AnneArundel'){ return 'ANNE'; }
-        if ($county == 'Baltimore'){ return 'BALT'; }
-        if ($county == 'BaltimoreCity'){ return 'BCITY'; }
-        if ($county == 'Calvert'){ return 'CALV'; }
-        if ($county == 'Caroline'){ return 'CARO'; }
-        if ($county == 'Carroll'){ return 'CARR'; }
-        if ($county == 'Cecil'){ return 'CECI'; }
-        if ($county == 'Charles'){ return 'CHAR'; }
-        if ($county == 'Dorchester'){ return 'DORC'; }
-        if ($county == 'Frederick'){ return 'FRED'; }
-        if ($county == 'Garrett'){ return 'GARR'; }
-        if ($county == 'Harford'){ return 'HARF'; }
-        if ($county == 'Howard'){ return 'HOWA'; }
-        if ($county == 'Kent'){ return 'KENT'; }
-        if ($county == 'Montgomery'){ return 'MONT'; }
-        if ($county == 'PrinceGeorges'){ return 'PRIN'; }
-        if ($county == 'QueenAnnes'){ return 'QUEE'; }
-        if ($county == 'Somerset'){ return 'SOME'; }
-        if ($county == 'StMarys'){ return 'STMA'; }
-        if ($county == 'Talbot'){ return 'TALB'; }
-        if ($county == 'Washington'){ return 'WASH'; }
-        if ($county == 'Wicomico'){ return 'WICO'; }
-        if ($county == 'Worcester'){ return 'WORC'; }
-	if ($county == 'Maryland'){ return 'TotalCases'; }
 }
 function show_on_graph($county){
 	global $show;
