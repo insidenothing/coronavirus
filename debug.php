@@ -26,6 +26,7 @@ if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid U
 	die('400');
 }
 
+ob_start();
 $array = json_decode($json, true);
 echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
 print_r($array['fields']);
@@ -39,3 +40,11 @@ foreach ($array['features'] as $key => $value){
 	echo "";
 }
 echo '</div></td></tr></table>';
+$debug = ob_get_clean();
+
+
+
+
+
+
+echo $debug;
