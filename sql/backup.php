@@ -1,6 +1,7 @@
 <?php
 
 include_once('/var/www/secure.php');
+$conn = $core;
 $conn->set_charset("utf8");
 
 
