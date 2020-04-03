@@ -594,6 +594,7 @@ function toggleDataSeries(e) {
 echo '<hr><pre>';
 print_r($maryland_history);
 echo '</pre>';
+	echo $debug_out;
 ?>
 	
 <?PHP include_once('footer.php'); ?>
