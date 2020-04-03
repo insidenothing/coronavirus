@@ -150,7 +150,7 @@ function show_on_graph($county){
 	global $maryland_history;
 	$date = date('Y-m-d');
 	$aka = county_aka($county);
-	$count = $maryland_history[$date][$aka];
+	$count = intval($maryland_history[$date][$aka]);
 	if ($show != ''){
 		if ($show == $county){
 			return 'true';	
@@ -186,7 +186,7 @@ function make_county($county){
 		//$d2 = mysqli_fetch_array($r2);
 		//$key = $county.'COVID19Cases';
 		$last_count = $count;
-		$count = $array[$aka];
+		$count = intval($array[$aka]);
 		//$count = $d2[$key]; 
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
 		$today[$county] = $count;
