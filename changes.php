@@ -2,10 +2,12 @@
 if(isset($_GET['novideo'])){
 	$logo = 'off';
 }else{
-	die('https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json');	
+	//die('https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json');	
 }
 include_once('menu.php');
-$wiki = wikidata();
+
+global $maryland_history;
+$maryland_history = make_maryland_array();
 echo '<div class="container">';
 $video_of_the_day = 'xv-8i59AUFY';
 if(empty($_GET['novideo'])){
@@ -57,30 +59,30 @@ $d = mysqli_fetch_array($r);
 $old = $d['html'];
 
 // Maryland
-$mainURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker';
-$url = $mainURL."/FeatureServer/0/query?where=1%3D1&outFields=COUNTY,COVID19Cases,COVID19Deaths,COVID19Recovered&returnGeometry=false&outSR=4326&f=json";
+//$mainURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker';
+//$url = $mainURL."/FeatureServer/0/query?where=1%3D1&outFields=COUNTY,COVID19Cases,COVID19Deaths,COVID19Recovered&returnGeometry=false&outSR=4326&f=json";
 
 
-$html = getPage($url);
-if ($html == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
-	die('504');	
-}
-if ($html == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
-	die('503');
-}
-if ($html == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
-	die('400');
-}
+//$html = getPage($url);
+//if ($html == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
+//	die('504');	
+//}
+//if ($html == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
+//	die('503');
+//}
+//if ($html == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
+//	die('400');
+//}
 //die($html);
 
-
-$new = $core->real_escape_string($html);
+$json = json_encode($maryland_history);
+$new = $core->real_escape_string($json);
 $test1 = $old;
 $test2 = $html;
 if ($test1 != $test2){
     // origional alert and insert
     $core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
-    $send_message = 'on';
+    //$send_message = 'on';
     //$url = "https://www.mdwestserve.com/sms/message_send/4433862584/Coronavirus_Update";
     //getPage($url);
 }
@@ -692,7 +694,6 @@ if ($WorcesterCOVID19Deaths != 0) { sms( "Worcester Deaths $WorcesterCOVID19Deat
 if ($WorcesterCOVID19Recovered != 0) { sms( "Worcester Recovered $WorcesterCOVID19Recovered1 to $WorcesterCOVID19Recovered2 "); } 
 $master_message = ob_get_clean();
 echo $master_message;
-//echo $wiki['changes'];
 echo "</div>";
 
 
@@ -708,15 +709,5 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 
 echo "</div></div>";
 
-
-?>
-
-
-<?PHP 
-//echo $wiki['graph'];
-?>
-
-
-<?PHP
 
 include_once('footer.php');
