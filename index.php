@@ -19,7 +19,7 @@ if(empty($_GET['novideo'])){
 
 function coronavirus_levels($new_id,$name,$state,$Cases,$Deaths,$Recovered){
 	global $core;
-	$core->query("insert into coronavirus_levels ( update_id, populations_name, pouplations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
+	$core->query("insert into coronavirus_levels ( update_id, populations_name, populations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
 	values ('$new_id', '$name', '$state', NOW(), NOW(), '$Cases', '$Deaths', '$Recovered' ) ");
 	global $current_total_cases2;
 	$current_total_cases2 = $current_total_cases2 + $Cases;
