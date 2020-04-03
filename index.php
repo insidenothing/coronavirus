@@ -27,10 +27,12 @@ $send_message = 'off';
 $r = $core->query("SELECT html, checked_datetime FROM coronavirus order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
-// Most Recent Version
+
+// Maryland
 $mainURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_COVID19_Case_Counts_by_County';
-// Data Set to Return
 $url = $mainURL."/FeatureServer/0/query?where=1%3D1&outFields=COUNTY,COVID19Cases,COVID19Deaths,COVID19Recovered&returnGeometry=false&outSR=4326&f=json";
+
+
 $html = getPage($url);
 if ($html == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
 	die('504');	
@@ -246,9 +248,9 @@ $current_total_recovered = $current_total_recovered + $WorcesterCOVID19Recovered
 // Back Date Hack
 $core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
 
-function coronavirus_levels($new_id,$name,$Cases,$Deaths,$Recovered){
+function coronavirus_levels($new_id,$name,$state,$Cases,$Deaths,$Recovered){
 	global $core;
-	$core->query("insert into coronavirus_levels ( update_id, populations_name, checked_datetime, just_date, Cases, Deaths, Recovered)
+	$core->query("insert into coronavirus_levels ( update_id, populations_name, pouplations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
 	values ('$new_id', '$name', now(), now(), '$Cases', '$Deaths', '$Recovered' ) ");
 	global $current_total_cases2;
 	$current_total_cases2 = $current_total_cases2 + $Cases;
@@ -279,7 +281,7 @@ global $current_total_cases2;
 global $current_total_deaths2;
 global $current_total_recovered2;
 
-coronavirus_levels($new_id,'Allegany',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
+coronavirus_levels($new_id,'Allegany','Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
 
 
 $AnneArundelCOVID19Cases2	    = $array2['features'][1]['attributes']['COVID19Cases'];
