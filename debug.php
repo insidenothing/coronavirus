@@ -33,7 +33,7 @@ echo '</pre></td>';
 echo '<td valign="top"><h1>Data</h1><div>';
 foreach ($array['features'] as $key => $value){
 	echo "<h3>UPDATE $key</h1>";
-	foreach ($value as $key2 => $value2){
+	foreach ($value['attributes'] as $key2 => $value2){
 		echo "<li>$key2 => $value2</li>";
 	}
 	echo "";
