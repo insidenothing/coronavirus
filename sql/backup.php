@@ -1,10 +1,7 @@
 <?php
-
 include_once('/var/www/secure.php');
 $conn = $core;
 $conn->set_charset("utf8");
-
-
 // Get All Table Names From the Database matching coronavirus
 $tables = array();
 $sql = "SHOW TABLES like '%coronavirus%'";
@@ -56,11 +53,14 @@ foreach ($tables as $table) {
 if(!empty($sqlScript))
 {
     // Save the SQL script to a backup file
-    $backup_file_name = $database_name . '_backup_' . time() . '.sql';
-    $fileHandler = fopen($backup_file_name, 'w+');
-    $number_of_lines = fwrite($fileHandler, $sqlScript);
-    fclose($fileHandler); 
+    $backup_file_name = time() . '.sql';
+    //$fileHandler = fopen($backup_file_name, 'w+');
+    //$number_of_lines = fwrite($fileHandler, $sqlScript);
+    //fclose($fileHandler); 
 
+    
+    echo $sqlScript;
+    /*
     // Download the SQL backup file to the browser
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
@@ -69,10 +69,11 @@ if(!empty($sqlScript))
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
-    header('Content-Length: ' . filesize($backup_file_name));
-    ob_clean();
-    flush();
-    readfile($backup_file_name);
-    exec('rm ' . $backup_file_name); 
+    //header('Content-Length: ' . filesize($backup_file_name));
+    //ob_clean();
+    //flush();
+    //readfile($backup_file_name);
+    //exec('rm ' . $backup_file_name); 
+    */
 }
 ?>
