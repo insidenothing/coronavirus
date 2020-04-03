@@ -67,6 +67,7 @@ if ($test1 != $test2){
 $r = $core->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $new_date = $d['checked_datetime'];
+global $new_id;
 $new_id = $d['id'];
 
 $y_time = strtotime($new_date) - 86400;
@@ -118,17 +119,28 @@ $current_total_cases2 = 0;
 $current_total_deaths2 = 0;
 $current_total_recovered2 = 0;
 
-ob_start();
 
-// Maryland
+function do_math_location($county){
+	global $maryland_history;
+	global $new_id;
+	$aka = county_aka($county);
+	$count_today = $maryland_history[$today][$aka];
+	$yesterday = date('Y-m-d',strtotime($old_date));
+	$count_yesterday = $maryland_history[$yesterday][$aka];
+	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
+	$count_delta = $count_today - $count_yesterday;
+	if ($count_delta != 0) { sms("$count_delta New $county $count_yesterday to $count_today");  } 
+}
+
+
+ob_start();
 $today = date('Y-m-d',strtotime($new_date));
-$aka = county_aka('Maryland');
-$maryland_today = $maryland_history[$today][$aka];
-$yesterday = date('Y-m-d',strtotime($old_date));
-$maryland_yesterday = $maryland_history[$yesterday][$aka];
-$core->query("update coronavirus set MarylandCOVID19Cases = '$maryland_today' where id = '$new_id' ");
-$maryland_delta = $maryland_today - $maryland_yesterday;
-if ($maryland_delta != 0) { sms("$maryland_delta New Total Cases $maryland_yesterday to $maryland_today");  } 
+// Maryland
+echo do_math_location('Maryland');
+
+
+
+
 
 
 $new_master_message = ob_get_clean();
