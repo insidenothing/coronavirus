@@ -78,7 +78,7 @@ $old = $d['html'];
 $json = json_encode($maryland_history);
 $new = $core->real_escape_string($json);
 $test1 = $old;
-$test2 = $html;
+$test2 = $json;
 if ($test1 != $test2){
     // origional alert and insert
     $core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
