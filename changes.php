@@ -308,7 +308,7 @@ $current_total_deaths = $current_total_deaths + $WorcesterCOVID19Deaths1;
 $WorcesterCOVID19Recovered1     = $array1['features'][23]['attributes']['COVID19Recovered']; 
 $current_total_recovered = $current_total_recovered + $WorcesterCOVID19Recovered1;
 // Back Date Hack
-$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
+//$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
 
 
 
@@ -526,7 +526,7 @@ $WorcesterCOVID19Recovered2     = $array2['features'][23]['attributes']['COVID19
 $current_total_recovered2 = $current_total_recovered2 + $WorcesterCOVID19Recovered2;
 $core->query("update coronavirus set WorcesterCOVID19Recovered = '$WorcesterCOVID19Recovered2' where id = '$new_id' ");
 // keep todays total up to date
-$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases2' where id = '$new_id' ");
+//$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases2' where id = '$new_id' ");
 
 $AlleganyCOVID19Cases           = $AlleganyCOVID19Cases2 - $AlleganyCOVID19Cases1;  
 $AlleganyCOVID19Deaths          = $AlleganyCOVID19Deaths2 - $AlleganyCOVID19Deaths1;        
