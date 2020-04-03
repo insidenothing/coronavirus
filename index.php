@@ -281,7 +281,7 @@ global $current_total_cases2;
 global $current_total_deaths2;
 global $current_total_recovered2;
 
-coronavirus_levels($new_id,'Allegany','Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
+coronavirus_levels($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
 
 
 $AnneArundelCOVID19Cases2	    = $array2['features'][1]['attributes']['COVID19Cases'];
