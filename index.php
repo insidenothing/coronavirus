@@ -55,7 +55,7 @@ $d = mysqli_fetch_array($r);
 $old = $d['html'];
 
 // Maryland
-$mainURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_COVID19_Case_Counts_by_County';
+$mainURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker';
 $url = $mainURL."/FeatureServer/0/query?where=1%3D1&outFields=COUNTY,COVID19Cases,COVID19Deaths,COVID19Recovered&returnGeometry=false&outSR=4326&f=json";
 
 
