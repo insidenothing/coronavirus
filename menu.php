@@ -65,6 +65,7 @@ function sms($msg){
 }
 
 function message_send($to,$master_message){	
+	die('offline');
 	// take full message, split and loop
 	$buffer='';
 	$messages = str_split(strip_tags($master_message), 150);
