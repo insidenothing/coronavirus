@@ -198,7 +198,7 @@ function make_county_prediction($county,$start,$count,$dt){
     $day_buffer = 0;
     foreach ($range as $date) {
 	$out = $date->format ('Y-m-d');
-        $debug_in .= "<li>$out N:$N</li>";
+        $debug_in .= "<li>$out N: $N Nold: $Nold Nmax:$Nmax a:$a</li>";
         $Nold=$N;
         $N=$N+$a*(1-$N/$Nmax)*$N*$dt;   
         $r=($N-$Nold)/$dt;
