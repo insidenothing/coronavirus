@@ -2,17 +2,20 @@
 $page_description = "Infection Levels as Percentages of Population";
 include_once('menu.php');
 global $state_level;
+global $maryland_history;
+$maryland_history = make_maryland_array();
 
 function case_count($county){
-	global $core;
-	$q = "SELECT * FROM coronavirus order by id desc limit 1";
-	$r = $core->query($q);
-	$d = mysqli_fetch_array($r);
-	$key = $county.'COVID19Cases';
-	$count = $d[$key];
+	// infected
+	global $maryland_history;
+	$date = date('Y-m-d');
+	$aka = county_aka($county);
+	$val = $maryland_history[$date][$aka];
+	$count = intval($val);
 	return $count;	
 }
 function total_count($county){
+	// pouplation
 	global $core;
 	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
 	$r = $core->query($q);
