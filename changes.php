@@ -124,6 +124,7 @@ function do_math_location($county){
 	global $maryland_history;
 	global $new_id;
 	global $core;
+	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
 	$yesterday = date('Y-m-d',strtotime($old_date));
@@ -135,7 +136,7 @@ function do_math_location($county){
 
 
 ob_start();
-$today = date('Y-m-d',strtotime($new_date));
+
 // Maryland
 echo do_math_location('Maryland');
 
