@@ -21,7 +21,7 @@ foreach ($tables as $table) {
     
     $sqlScript .= "\n\n" . $row[1] . ";\n\n";
     
-    
+    /*
     $query = "SELECT * FROM $table";
     $result = mysqli_query($conn, $query);
     
@@ -45,6 +45,7 @@ foreach ($tables as $table) {
             }
             $sqlScript .= ");\n";
         }
+        */
     }
     
     $sqlScript .= "\n"; 
