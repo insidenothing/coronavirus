@@ -125,10 +125,11 @@ global $debug_in;
 global $debug_out;
 
 function total_count($county){
-	global $maryland_history;
-	$date = date('Y-m-d');
-	$aka = county_aka($county);
-	global intval($maryland_history[$date][$aka]);
+	global $core;
+	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	return $d['number_of_people'];
 }
 function rate_of_infection($county){
 	global $core;
@@ -140,16 +141,11 @@ function rate_of_infection($county){
 function show_on_graph($county){
 	global $show;
 	// if has cases = true else false
-	global $core;
-	//$q = "SELECT * FROM `coronavirus` order by id desc limit 1";
-	//$r = $core->query($q);
-	//$d = mysqli_fetch_array($r);
-	//$key = $county.'COVID19Cases';
-	//$count = $d[$key];
 	global $maryland_history;
 	$date = date('Y-m-d');
 	$aka = county_aka($county);
-	$count = intval($maryland_history[$date][$aka]);
+	$val = $maryland_history[$date][$aka];
+	$count = intval($val);
 	if ($show != ''){
 		if ($show == $county){
 			return 'true';	
@@ -172,21 +168,11 @@ function make_county($county){
         // history
         global $maryland_history;
 	$aka = county_aka($county);
-	//$count = $maryland_history[$date][$aka];
-	//$q = "SELECT distinct just_date FROM `coronavirus` order by just_date asc";
-	//$r = $core->query($q);
 	$count=0;
 	global $today;
 	foreach ($maryland_history as $date => $array){
-	//while($d = mysqli_fetch_array($r)){
-		//$date = $d['just_date'];
-		//$q2 = "SELECT * FROM `coronavirus` where just_date = '$date' order by id desc";
-		//$r2 = $core->query($q2);
-		//$d2 = mysqli_fetch_array($r2);
-		//$key = $county.'COVID19Cases';
 		$last_count = $count;
 		$count = intval($array[$aka]);
-		//$count = $d2[$key]; 
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
 		$today[$county] = $count;
 	}
@@ -603,4 +589,11 @@ function toggleDataSeries(e) {
 	</div>
 	
 </div>
+	
+<?PHP	
+echo '<hr><pre>';
+print_r($maryland_history);
+echo '</pre>';
+?>
+	
 <?PHP include_once('footer.php'); ?>
