@@ -587,15 +587,15 @@ function toggleDataSeries(e) {
 			?>
 		</div>
 	</div>
-	
+	<div class="container">
+	<div class="row">
+		<div class='col-sm-6' style='background-color:orange;'>
+			<?PHP echo $debug_in; ?>
+		</div>
+		<div class='col-sm-6' style='background-color:blue;'>
+			<?PHP echo $debug_out; ?>
+		</div>
+	</div>
 </div>
-	
-<?PHP	
-echo '<hr><pre>';
-print_r($maryland_history);
-echo '</pre>';
-echo $debug_in;
-echo $debug_out;
-?>
 	
 <?PHP include_once('footer.php'); ?>
