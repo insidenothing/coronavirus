@@ -97,7 +97,7 @@ echo "<div class='col-sm-3'><h3>Date Range</h3>
 <p>$new_date</p>
 <h3>Select Different Date to Compare.</h3>";
 echo "$dropdown";
-echo "</div>";
+//echo "</div>";
 
 // Convert json objects to array
 $array1 = json_decode($old, true);
@@ -132,7 +132,11 @@ if ($current_total_casesX != 0) { sms("$maryland_delta New Total Cases $maryland
 
 
 $master_message = ob_get_clean();
-echo $master_message;
+echo "<h3>New Counts</h3>";
+echo "$master_message";
+echo "</div>";
+
+
 
 
  
