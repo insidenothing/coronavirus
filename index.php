@@ -1,6 +1,8 @@
 <?PHP
 if(isset($_GET['novideo'])){
 	$logo = 'off';
+}else{
+	die('https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json');	
 }
 include_once('menu.php');
 $wiki = wikidata();
