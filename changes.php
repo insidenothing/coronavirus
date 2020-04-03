@@ -141,9 +141,9 @@ function do_math_location($county){
 
 ob_start();
 
-// Maryland
+// V3
 echo do_math_location('Maryland');
-
+echo do_math_location('Allegany');
 
 
 
@@ -156,7 +156,7 @@ $new_master_message = ob_get_clean();
 
 
 
- 
+/* 
 $AlleganyX = coronavirus_level_get('Allegany','Maryland',date('Y-m-d',strtotime($old_date)));
 $AlleganyCOVID19Cases1          = $array1['features'][0]['attributes']['COVID19Cases']; 
 //$current_total_cases = $current_total_cases + $AlleganyCOVID19Cases1;
@@ -178,7 +178,7 @@ $core->query("update coronavirus set AlleganyCOVID19Recovered = '$AlleganyCOVID1
 
 // V2
 coronavirus_level_set($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
-
+*/
 
 
 
@@ -546,9 +546,9 @@ $core->query("update coronavirus set WorcesterCOVID19Recovered = '$WorcesterCOVI
 // keep todays total up to date
 //$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases2' where id = '$new_id' ");
 
-$AlleganyCOVID19Cases           = $AlleganyCOVID19Cases2 - $AlleganyCOVID19Cases1;  
-$AlleganyCOVID19Deaths          = $AlleganyCOVID19Deaths2 - $AlleganyCOVID19Deaths1;        
-$AlleganyCOVID19Recovered       = $AlleganyCOVID19Recovered2 - $AlleganyCOVID19Recovered1;      
+//$AlleganyCOVID19Cases           = $AlleganyCOVID19Cases2 - $AlleganyCOVID19Cases1;  
+//$AlleganyCOVID19Deaths          = $AlleganyCOVID19Deaths2 - $AlleganyCOVID19Deaths1;        
+//$AlleganyCOVID19Recovered       = $AlleganyCOVID19Recovered2 - $AlleganyCOVID19Recovered1;      
 $AnneArundelCOVID19Cases	    = $AnneArundelCOVID19Cases2 - $AnneArundelCOVID19Cases1;
 $AnneArundelCOVID19Deaths	    = $AnneArundelCOVID19Deaths2 - $AnneArundelCOVID19Deaths1;
 $AnneArundelCOVID19Recovered    = $AnneArundelCOVID19Recovered2 - $AnneArundelCOVID19Recovered1;  
@@ -637,9 +637,9 @@ ob_start();
 if ($current_total_deathsX != 0) { sms("Total Deaths $current_total_deaths to $current_total_deaths2");  } 
 if ($current_total_recoveredX != 0) { sms("Total Recovered $current_total_recovered to $current_total_recovered2");  } 
 
-if ($AlleganyCOVID19Cases != 0) { sms("Allegany Cases $AlleganyCOVID19Cases1 to $AlleganyCOVID19Cases2");  } 
-if ($AlleganyCOVID19Deaths != 0) { sms("Allegany Deaths $AlleganyCOVID19Deaths1 to $AlleganyCOVID19Deaths2"); } 
-if ($AlleganyCOVID19Recovered != 0) { sms("Allegany Recovered $AlleganyCOVID19Recovered1 to $AlleganyCOVID19Recovered2"); } 
+//if ($AlleganyCOVID19Cases != 0) { sms("Allegany Cases $AlleganyCOVID19Cases1 to $AlleganyCOVID19Cases2");  } 
+//if ($AlleganyCOVID19Deaths != 0) { sms("Allegany Deaths $AlleganyCOVID19Deaths1 to $AlleganyCOVID19Deaths2"); } 
+//if ($AlleganyCOVID19Recovered != 0) { sms("Allegany Recovered $AlleganyCOVID19Recovered1 to $AlleganyCOVID19Recovered2"); } 
 if ($AnneArundelCOVID19Cases != 0) { sms("Anne Arundel Cases $AnneArundelCOVID19Cases1 to $AnneArundelCOVID19Cases2 "); } 
 if ($AnneArundelCOVID19Deaths != 0) { sms("Anne Arundel Deaths $AnneArundelCOVID19Deaths1 to $AnneArundelCOVID19Deaths2 "); } 
 if ($AnneArundelCOVID19Recovered != 0) { sms("Anne Arundel Recovered $AnneArundelCOVID19Recovered1 to $AnneArundelCOVID19Recovered2 "); } 
