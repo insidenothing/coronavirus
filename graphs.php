@@ -40,6 +40,44 @@ $today = array();
 $normal = array();
 $peak = array();
 $peak_str = array();
+function make_maryland_array(){
+	$return = array();
+	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
+	$json = getPage($url);
+	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
+		die('504');	
+	}
+	if ($json == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
+		die('503');
+	}
+	if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
+		die('400');
+	}
+	ob_start();
+	$array = json_decode($json, true);
+	echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
+	print_r($array['fields']);
+	echo '</pre></td>';
+	echo '<td valign="top"><h1>Data</h1><div>';
+	foreach ($array['features'] as $key => $value){
+		$time = $value['attributes']['ReportDate'] / 1000;
+		$date = date('Y-m-d',$time);
+		$return[$date] = $value['attributes'];
+		echo "<h3>UPDATE $date</h1>";
+		foreach ($value['attributes'] as $key2 => $value2){
+			echo "<li>$key2 => $value2</li>";
+		}
+	}
+	echo '</div></td></tr></table>';
+	$debug = ob_get_clean();
+	//echo $debug;
+	return $return;
+}
+global $maryland_history;
+$maryland_history = make_maryland_array();
+
+
+
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
@@ -73,15 +111,46 @@ function rate_of_infection($county){
 	$d = mysqli_fetch_array($r);
 	return $d['rate_of_infection'];	
 }
+function county_aka($county){
+ 	if ($county == 'Allegany'){ return 'ALLE'; }
+        if ($county == 'AnneArundel'){ return 'ANNE'; }
+        if ($county == 'Baltimore'){ return 'BALT'; }
+        if ($county == 'BaltimoreCity'){ return 'BCITY'; }
+        if ($county == 'Calvert'){ return 'CALV'; }
+        if ($county == 'Caroline'){ return 'CARO'; }
+        if ($county == 'Carroll'){ return 'CARR'; }
+        if ($county == 'Cecil'){ return 'CECI'; }
+        if ($county == 'Charles'){ return 'CHAR'; }
+        if ($county == 'Dorchester'){ return 'DORC'; }
+        if ($county == 'Frederick'){ return 'FRED'; }
+        if ($county == 'Garrett'){ return 'GARR'; }
+        if ($county == 'Harford'){ return 'HARF'; }
+        if ($county == 'Howard'){ return 'HOWA'; }
+        if ($county == 'Kent'){ return 'KENT'; }
+        if ($county == 'Montgomery'){ return 'MONT'; }
+        if ($county == 'PrinceGeorges'){ return 'PRIN'; }
+        if ($county == 'QueenAnnes'){ return 'QUEE'; }
+        if ($county == 'Somerset'){ return 'SOME'; }
+        if ($county == 'StMarys'){ return 'STMA'; }
+        if ($county == 'Talbot'){ return 'TALB'; }
+        if ($county == 'Washington'){ return 'WASH'; }
+        if ($county == 'Wicomico'){ return 'WICO'; }
+        if ($county == 'Worcester'){ return 'WORC'; }
+	if ($county == 'Maryland'){ return 'TotalCases'; }
+}
 function show_on_graph($county){
 	global $show;
 	// if has cases = true else false
 	global $core;
-	$q = "SELECT * FROM `coronavirus` order by id desc limit 1";
-	$r = $core->query($q);
-	$d = mysqli_fetch_array($r);
-	$key = $county.'COVID19Cases';
-	$count = $d[$key];
+	//$q = "SELECT * FROM `coronavirus` order by id desc limit 1";
+	//$r = $core->query($q);
+	//$d = mysqli_fetch_array($r);
+	//$key = $county.'COVID19Cases';
+	//$count = $d[$key];
+	global $maryland_history;
+	$date = date('Y-m-d');
+	$aka = county_aka($county);
+	$count = $maryland_history[$date][$aka];
 	if ($show != ''){
 		if ($show == $county){
 			return 'true';	
@@ -102,18 +171,23 @@ function make_county($county){
         $t = '0'; // days
         $dt= '1'; // change in days
         // history
-        $q = "SELECT distinct just_date FROM `coronavirus` order by just_date asc";
-	$r = $core->query($q);
+        global $maryland_history;
+	$aka = county_aka($county);
+	//$count = $maryland_history[$date][$aka];
+	//$q = "SELECT distinct just_date FROM `coronavirus` order by just_date asc";
+	//$r = $core->query($q);
 	$count=0;
 	global $today;
-	while($d = mysqli_fetch_array($r)){
-		$date = $d['just_date'];
-		$q2 = "SELECT * FROM `coronavirus` where just_date = '$date' order by id desc";
-		$r2 = $core->query($q2);
-		$d2 = mysqli_fetch_array($r2);
-		$key = $county.'COVID19Cases';
+	foreach ($maryland_history as $date => $array){
+	//while($d = mysqli_fetch_array($r)){
+		//$date = $d['just_date'];
+		//$q2 = "SELECT * FROM `coronavirus` where just_date = '$date' order by id desc";
+		//$r2 = $core->query($q2);
+		//$d2 = mysqli_fetch_array($r2);
+		//$key = $county.'COVID19Cases';
 		$last_count = $count;
-		$count = $d2[$key]; 
+		$count = $array[$aka];
+		//$count = $d2[$key]; 
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
 		$today[$county] = $count;
 	}
