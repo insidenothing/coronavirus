@@ -34,8 +34,10 @@ function make_historic_array(){
 	echo '</pre></td>';
 	echo '<td valign="top"><h1>Data</h1><div>';
 	foreach ($array['features'] as $key => $value){
-		$return[] = $value['attributes'];
-		echo "<h3>UPDATE $key</h1>";
+		$time = $value['ReportDate'] / 1000;
+		$date = date('Y-m-d',$time);
+		$return[$date] = $value['attributes'];
+		echo "<h3>UPDATE $date</h1>";
 		foreach ($value['attributes'] as $key2 => $value2){
 			echo "<li>$key2 => $value2</li>";
 		}
