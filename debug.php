@@ -29,5 +29,5 @@ if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid U
 $array = json_decode($json, true);
 
 echo '<pre>';
-print_r($array);
+print_r($array['features']);
 echo '</pre>';
