@@ -246,20 +246,42 @@ $current_total_recovered = $current_total_recovered + $WorcesterCOVID19Recovered
 // Back Date Hack
 $core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
 
+function coronavirus_levels($new_id,$name,$Cases,$Deaths,$Recovered){
+	global $core;
+	$core->query("insert into coronavirus_levels ( update_id, populations_name, checked_datetime, just_date, Cases, Deaths, Recovered)
+	values ('$new_id', '$name', now(), now(), '$Cases', '$Deaths', '$Recovered' ) ");
+	global $current_total_cases2;
+	$current_total_cases2 = $current_total_cases2 + $Cases;
+	global $current_total_deaths2;
+	$current_total_deaths2 = $current_total_deaths2 + $Deaths;
+	global $current_total_recovered2;
+	$current_total_recovered2 = $current_total_recovered2 + $Recovered;
+}
 
 // These are Live Numbers
 $current_total_cases2 = 0;
 $current_total_deaths2 = 0;
 $current_total_recovered2 = 0;
+
+// V1
 $AlleganyCOVID19Cases2          = $array2['features'][0]['attributes']['COVID19Cases']; 
-$current_total_cases2 = $current_total_cases2 + $AlleganyCOVID19Cases2;
+//$current_total_cases2 = $current_total_cases2 + $AlleganyCOVID19Cases2;
 $core->query("update coronavirus set AlleganyCOVID19Cases = '$AlleganyCOVID19Cases2' where id = '$new_id' ");
 $AlleganyCOVID19Deaths2         = $array2['features'][0]['attributes']['COVID19Deaths'];
-$current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
+$//current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
 $core->query("update coronavirus set AlleganyCOVID19Deaths = '$AlleganyCOVID19Deaths2' where id = '$new_id' ");
 $AlleganyCOVID19Recovered2      = $array2['features'][0]['attributes']['COVID19Recovered'];  
-$current_total_recovered2 = $current_total_recovered2 + $AlleganyCOVID19Recovered2;
+//$current_total_recovered2 = $current_total_recovered2 + $AlleganyCOVID19Recovered2;
 $core->query("update coronavirus set AlleganyCOVID19Recovered = '$AlleganyCOVID19Recovered2' where id = '$new_id' ");
+
+// V2
+global $current_total_cases2;
+global $current_total_deaths2;
+global $current_total_recovered2;
+
+coronavirus_levels($new_id,'Allegany',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
+
+
 $AnneArundelCOVID19Cases2	    = $array2['features'][1]['attributes']['COVID19Cases'];
 $current_total_cases2 = $current_total_cases2 + $AnneArundelCOVID19Cases2;
 $core->query("update coronavirus set AnneArundelCOVID19Cases = '$AnneArundelCOVID19Cases2' where id = '$new_id' ");
