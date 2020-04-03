@@ -1,11 +1,8 @@
 <?PHP
 if(isset($_GET['novideo'])){
 	$logo = 'off';
-}else{
-	//die('https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json');	
 }
 include_once('menu.php');
-
 global $maryland_history;
 $maryland_history = make_maryland_array();
 echo '<div class="container">';
@@ -57,34 +54,13 @@ $send_message = 'off';
 $r = $core->query("SELECT html, checked_datetime FROM coronavirus order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
-
-// Maryland
-//$mainURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker';
-//$url = $mainURL."/FeatureServer/0/query?where=1%3D1&outFields=COUNTY,COVID19Cases,COVID19Deaths,COVID19Recovered&returnGeometry=false&outSR=4326&f=json";
-
-
-//$html = getPage($url);
-//if ($html == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
-//	die('504');	
-//}
-//if ($html == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
-//	die('503');
-//}
-//if ($html == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
-//	die('400');
-//}
-//die($html);
-
 $json = json_encode($maryland_history);
 $new = $core->real_escape_string($json);
 $test1 = $old;
 $test2 = $json;
 if ($test1 != $test2){
-    // origional alert and insert
     $core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
-    //$send_message = 'on';
-    //$url = "https://www.mdwestserve.com/sms/message_send/4433862584/Coronavirus_Update";
-    //getPage($url);
+    $send_message = 'on';
 }
 
 // Compare Most Recent to Last Change
@@ -134,16 +110,60 @@ global $current_total_recovered;
 $current_total_cases = 0;
 $current_total_deaths = 0;
 $current_total_recovered = 0;
+// These are Live Numbers
+global $current_total_cases2;
+global $current_total_deaths2;
+global $current_total_recovered2;
+$current_total_cases2 = 0;
+$current_total_deaths2 = 0;
+$current_total_recovered2 = 0;
+
+ob_start();
+
+// Maryland
+$today = date('Y-m-d',strtotime($new_date));
+$aka = county_aka('Maryland');
+$maryland_today = $maryland_history[$today][$aka];
+$yesterday = date('Y-m-d',strtotime($old_date));
+$maryland_yesterday = $maryland_history[$yesterday][$aka];
+$core->query("update coronavirus set MarylandCOVID19Cases = '$maryland_today' where id = '$new_id' ");
+$maryland_delta = $maryland_today - $maryland_yesterday;
+if ($current_total_casesX != 0) { sms("$maryland_delta New Total Cases $maryland_yesterday to $maryland_today");  } 
 
 
+$master_message = ob_get_clean();
+echo $master_message;
+
+
+ 
 $AlleganyX = coronavirus_level_get('Allegany','Maryland',date('Y-m-d',strtotime($old_date)));
-
 $AlleganyCOVID19Cases1          = $array1['features'][0]['attributes']['COVID19Cases']; 
 //$current_total_cases = $current_total_cases + $AlleganyCOVID19Cases1;
 $AlleganyCOVID19Deaths1         = $array1['features'][0]['attributes']['COVID19Deaths']; 
 //$current_total_deaths = $current_total_deaths + $AlleganyCOVID19Deaths1;	
 $AlleganyCOVID19Recovered1      = $array1['features'][0]['attributes']['COVID19Recovered']; 
 //$current_total_recovered = $current_total_recovered + $AlleganyCOVID19Recovered1;
+
+// V1
+$AlleganyCOVID19Cases2          = $array2['features'][0]['attributes']['COVID19Cases']; 
+//$current_total_cases2 = $current_total_cases2 + $AlleganyCOVID19Cases2;
+$core->query("update coronavirus set AlleganyCOVID19Cases = '$AlleganyCOVID19Cases2' where id = '$new_id' ");
+$AlleganyCOVID19Deaths2         = $array2['features'][0]['attributes']['COVID19Deaths'];
+//$current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
+$core->query("update coronavirus set AlleganyCOVID19Deaths = '$AlleganyCOVID19Deaths2' where id = '$new_id' ");
+$AlleganyCOVID19Recovered2      = $array2['features'][0]['attributes']['COVID19Recovered'];  
+//$current_total_recovered2 = $current_total_recovered2 + $AlleganyCOVID19Recovered2;
+$core->query("update coronavirus set AlleganyCOVID19Recovered = '$AlleganyCOVID19Recovered2' where id = '$new_id' ");
+
+// V2
+coronavirus_level_set($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
+
+
+
+
+
+
+
 
 
 $AnneArundelCOVID19Cases1	    = $array1['features'][1]['attributes']['COVID19Cases']; 
@@ -288,29 +308,6 @@ $current_total_recovered = $current_total_recovered + $WorcesterCOVID19Recovered
 $core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
 
 
-
-// These are Live Numbers
-$current_total_cases2 = 0;
-$current_total_deaths2 = 0;
-$current_total_recovered2 = 0;
-
-// V1
-$AlleganyCOVID19Cases2          = $array2['features'][0]['attributes']['COVID19Cases']; 
-//$current_total_cases2 = $current_total_cases2 + $AlleganyCOVID19Cases2;
-$core->query("update coronavirus set AlleganyCOVID19Cases = '$AlleganyCOVID19Cases2' where id = '$new_id' ");
-$AlleganyCOVID19Deaths2         = $array2['features'][0]['attributes']['COVID19Deaths'];
-//$current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
-$core->query("update coronavirus set AlleganyCOVID19Deaths = '$AlleganyCOVID19Deaths2' where id = '$new_id' ");
-$AlleganyCOVID19Recovered2      = $array2['features'][0]['attributes']['COVID19Recovered'];  
-//$current_total_recovered2 = $current_total_recovered2 + $AlleganyCOVID19Recovered2;
-$core->query("update coronavirus set AlleganyCOVID19Recovered = '$AlleganyCOVID19Recovered2' where id = '$new_id' ");
-
-// V2
-global $current_total_cases2;
-global $current_total_deaths2;
-global $current_total_recovered2;
-
-coronavirus_level_set($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
 
 
 $AnneArundelCOVID19Cases2	    = $array2['features'][1]['attributes']['COVID19Cases'];
