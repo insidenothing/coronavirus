@@ -31,5 +31,9 @@ echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
 print_r($array['fields']);
 echo '</pre></td>';
 echo '<td valign="top"><h1>Data</h1><pre>';
-print_r($array['features']);
+foreach ($array['features'] as $key => $value){
+	echo '<h3>ID $key</h1><pre>';
+	print_r($value);
+	echo '</pre>';
+}
 echo '</pre></td></tr></table>';
