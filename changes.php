@@ -97,7 +97,7 @@ echo "<div class='col-sm-3'><h3>Date Range</h3>
 <p>$new_date</p>
 <h3>Select Different Date to Compare.</h3>";
 echo "$dropdown";
-//echo "</div>";
+echo "</div>";
 
 // Convert json objects to array
 $array1 = json_decode($old, true);
@@ -131,10 +131,9 @@ $maryland_delta = $maryland_today - $maryland_yesterday;
 if ($maryland_delta != 0) { sms("$maryland_delta New Total Cases $maryland_yesterday to $maryland_today");  } 
 
 
-$master_message = ob_get_clean();
-echo "<h3>New Counts</h3>";
-echo "$master_message";
-echo "</div>";
+$new_master_message = ob_get_clean();
+
+
 
 
 
@@ -694,6 +693,8 @@ if ($WorcesterCOVID19Cases != 0) { sms( "Worcester Cases $WorcesterCOVID19Cases1
 if ($WorcesterCOVID19Deaths != 0) { sms( "Worcester Deaths $WorcesterCOVID19Deaths1 to $WorcesterCOVID19Deaths2 "); } 
 if ($WorcesterCOVID19Recovered != 0) { sms( "Worcester Recovered $WorcesterCOVID19Recovered1 to $WorcesterCOVID19Recovered2 "); } 
 $master_message = ob_get_clean();
+
+echo "$new_master_message";
 echo $master_message;
 echo "</div>";
 
