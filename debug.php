@@ -12,39 +12,41 @@ function getPage($url){
     return $www;
 }
 
-// Maryland
-$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
-$json = getPage($url);
+function make_historic_array(){
+	// Maryland
+	$return = array();
+	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
+	$json = getPage($url);
 
-if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
-	die('504');	
-}
-if ($json == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
-	die('503');
-}
-if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
-	die('400');
-}
-
-ob_start();
-$array = json_decode($json, true);
-echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
-print_r($array['fields']);
-echo '</pre></td>';
-echo '<td valign="top"><h1>Data</h1><div>';
-foreach ($array['features'] as $key => $value){
-	echo "<h3>UPDATE $key</h1>";
-	foreach ($value['attributes'] as $key2 => $value2){
-		echo "<li>$key2 => $value2</li>";
+	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
+		die('504');	
 	}
-	echo "";
+	if ($json == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
+		die('503');
+	}
+	if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
+		die('400');
+	}
+	ob_start();
+	$array = json_decode($json, true);
+	echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
+	print_r($array['fields']);
+	echo '</pre></td>';
+	echo '<td valign="top"><h1>Data</h1><div>';
+	foreach ($array['features'] as $key => $value){
+		$return[] = $value['attributes'];
+		echo "<h3>UPDATE $key</h1>";
+		foreach ($value['attributes'] as $key2 => $value2){
+			echo "<li>$key2 => $value2</li>";
+		}
+	}
+	echo '</div></td></tr></table>';
+	$debug = ob_get_clean();
+	//echo $debug;
+	return $return;
 }
-echo '</div></td></tr></table>';
-$debug = ob_get_clean();
 
-
-
-
-
-
-echo $debug;
+$history = make_historic_array();
+echo '<pre>';
+print_r($history);
+echo '</pre>';
