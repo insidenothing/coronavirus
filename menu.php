@@ -114,6 +114,7 @@ function message_send($to,$master_message){
         if ($county == 'Wicomico'){ return 'WICO'; }
         if ($county == 'Worcester'){ return 'WORC'; }
 	if ($county == 'Maryland'){ return 'TotalCases'; }
+	return $county;
 }
 function make_maryland_array(){
 	$return = array();
