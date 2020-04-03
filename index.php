@@ -273,7 +273,7 @@ $AlleganyCOVID19Cases2          = $array2['features'][0]['attributes']['COVID19C
 //$current_total_cases2 = $current_total_cases2 + $AlleganyCOVID19Cases2;
 $core->query("update coronavirus set AlleganyCOVID19Cases = '$AlleganyCOVID19Cases2' where id = '$new_id' ");
 $AlleganyCOVID19Deaths2         = $array2['features'][0]['attributes']['COVID19Deaths'];
-$//current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
+//$current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
 $core->query("update coronavirus set AlleganyCOVID19Deaths = '$AlleganyCOVID19Deaths2' where id = '$new_id' ");
 $AlleganyCOVID19Recovered2      = $array2['features'][0]['attributes']['COVID19Recovered'];  
 //$current_total_recovered2 = $current_total_recovered2 + $AlleganyCOVID19Recovered2;
