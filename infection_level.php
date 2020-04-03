@@ -35,7 +35,7 @@ function infection_levelMD($county){
 	$state_level = $d;
 	$e = number_format($d, 5, '.', '');
 	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
-	echo "<div class='col-sm-6' style='background-color:lightblue; height:150px;'><h3>$county</h3><p><b>Cases</b> $cases : $total <b>Population</b></p><p><b>Reduced</b> $a : $b</p><p><b>Infected Percent of the Population</b> $e%</p></div><div class='col-sm-6' style='background-color:lightblue; height:150px;'><p><img src='Infection_rate_formula.jpg' class='img-rounded'></p></div>";
+	echo "<div class='col-sm-6' style='background-color:lightblue; height:150px;'><h3>$county</h3><p><b>Cases</b> $cases : $total <b>Population</b></p><p><b>Reduced</b> $a : $b</p><p><b>Infected Percent of the Population</b> $e%</p></div><div class='col-sm-6' style='background-color:lightblue; height:150px;'><p><img src='img/Infection_rate_formula.jpg' class='img-rounded'></p></div>";
 }
 function infection_level($county){
 	global $core;
