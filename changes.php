@@ -128,7 +128,7 @@ $yesterday = date('Y-m-d',strtotime($old_date));
 $maryland_yesterday = $maryland_history[$yesterday][$aka];
 $core->query("update coronavirus set MarylandCOVID19Cases = '$maryland_today' where id = '$new_id' ");
 $maryland_delta = $maryland_today - $maryland_yesterday;
-if ($current_total_casesX != 0) { sms("$maryland_delta New Total Cases $maryland_yesterday to $maryland_today");  } 
+if ($maryland_delta != 0) { sms("$maryland_delta New Total Cases $maryland_yesterday to $maryland_today");  } 
 
 
 $master_message = ob_get_clean();
@@ -617,7 +617,7 @@ $current_total_recoveredX      = $current_total_recovered2 - $current_total_reco
 
 echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes</h3>";
 ob_start();
-if ($current_total_casesX != 0) { sms("Total Cases $current_total_cases to $current_total_cases2");  } 
+
 if ($current_total_deathsX != 0) { sms("Total Deaths $current_total_deaths to $current_total_deaths2");  } 
 if ($current_total_recoveredX != 0) { sms("Total Recovered $current_total_recovered to $current_total_recovered2");  } 
 
