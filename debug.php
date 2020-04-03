@@ -32,8 +32,8 @@ print_r($array['fields']);
 echo '</pre></td>';
 echo '<td valign="top"><h1>Data</h1><pre>';
 foreach ($array['features'] as $key => $value){
-	echo '<h3>ID $key</h1><pre>';
+	echo "<h3>ID $key</h1><pre>";
 	print_r($value);
-	echo '</pre>';
+	echo "</pre>";
 }
 echo '</pre></td></tr></table>';
