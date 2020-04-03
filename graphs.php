@@ -15,7 +15,7 @@ if(isset($_GET['days'])){
 	} 
 	// animaton
 	$days_to_predict = $_GET['days'];
-	$next_days = $days_to_predict + 1; 
+	$next_days = $days_to_predict + 7; 
 	if($next_days < 200){
 		// limit to 200 days
 		if($show != ''){
