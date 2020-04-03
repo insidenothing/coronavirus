@@ -89,6 +89,7 @@ if (isset($_POST['checked_datetime'])){
 }
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
+global $old_date;
 $old_date = $d['checked_datetime'];
 
 
@@ -102,7 +103,7 @@ echo "</div>";
 
 // Convert json objects to array
 $array1 = json_decode($old, true);
-$array2 = json_decode($html, true);
+$array2 = json_decode($json, true);
 
 // These are the Last Numbers
 global $current_total_cases;
@@ -123,6 +124,7 @@ $current_total_recovered2 = 0;
 function do_math_location($county){
 	global $maryland_history;
 	global $new_id;
+	global $old_date;
 	global $core;
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
