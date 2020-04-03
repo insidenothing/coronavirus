@@ -12,15 +12,15 @@
 		$page_description = 'Get SMS Updates';	
 	}
 	?>
-  <link rel="apple-touch-icon" sizes="180x180" href="/coronavirus/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/coronavirus/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/coronavirus/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/coronavirus/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/coronavirus/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/coronavirus/img/favicon-16x16.png">
   <link rel="manifest" href="/coronavirus/site.webmanifest">
   <meta property="og:url"           content="https://www.mdwestserve.com<?PHP echo $_SERVER['REQUEST_URI'];?>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Maryland COVID19 Digital Resources" />
   <meta property="og:description"   content="<?PHP echo $page_description;?>" />
-  <meta property="og:image"         content="https://www.mdwestserve.com/coronavirus/vrus.png" />
+  <meta property="og:image"         content="https://www.mdwestserve.com/coronavirus/img/vrus.png" />
   <?PHP if (empty($_GET['debug'])){ ?>	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -255,14 +255,14 @@ return $return;
 	}
 	?>
 <table><tr>
-	<td><a href='index.php'><img src='home.png'></a></td>
-	<td><a href='graphs.php'><img src='graphs.png'></a></td>
-	<td><a href='infection_level.php'><img src='infected.png'></a></td>
-	<td><a href='signup.php'><img src='signup.png'></a></td>
-	<td><a href='https://www.facebook.com/groups/231583938033989/'><img src='facebook.png'></a></td>
-	<td><a href='wiki.php'><img src='recovered.png'></a></td>
-	<td><a href='https://www.patrickmcguire.me/'><img src='blog.png'></a></td>
-	<td><a href='bright.php'><img src='bright.png'></a></td>
+	<td><a href='index.php'><img src='img/home.png'></a></td>
+	<td><a href='graphs.php'><img src='img/graphs.png'></a></td>
+	<td><a href='infection_level.php'><img src='img/infected.png'></a></td>
+	<td><a href='signup.php'><img src='img/signup.png'></a></td>
+	<td><a href='https://www.facebook.com/groups/231583938033989/'><img src='img/facebook.png'></a></td>
+	<td><a href='wiki.php'><img src='img/recovered.png'></a></td>
+	<td><a href='https://www.patrickmcguire.me/'><img src='img/blog.png'></a></td>
+	<td><a href='bright.php'><img src='img/bright.png'></a></td>
 	<td><div class="fb-share-button" data-href="https://www.mdwestserve.com<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></td>
 	
 	</tr></table>
