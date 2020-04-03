@@ -1,5 +1,5 @@
 <?PHP
-// break apare the API
+// break apart the API
 
 function getPage($url){
     $curl = curl_init();
@@ -12,12 +12,10 @@ function getPage($url){
     return $www;
 }
 
-function make_historic_array(){
-	// Maryland
+function make_maryland_array(){
 	$return = array();
 	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
 	$json = getPage($url);
-
 	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
 		die('504');	
 	}
@@ -34,7 +32,7 @@ function make_historic_array(){
 	echo '</pre></td>';
 	echo '<td valign="top"><h1>Data</h1><div>';
 	foreach ($array['features'] as $key => $value){
-		$time = $value['ReportDate'] / 1000;
+		$time = $value['attributes']['ReportDate'] / 1000;
 		$date = date('Y-m-d',$time);
 		$return[$date] = $value['attributes'];
 		echo "<h3>UPDATE $date</h1>";
@@ -48,7 +46,7 @@ function make_historic_array(){
 	return $return;
 }
 
-$history = make_historic_array();
+$history = make_maryland_array();
 echo '<pre>';
 print_r($history);
 echo '</pre>';
