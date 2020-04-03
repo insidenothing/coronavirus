@@ -143,6 +143,24 @@ ob_start();
 
 // V3
 echo do_math_location('Maryland');
+echo do_math_location('total_hospitalized');
+echo do_math_location('total_released');
+echo do_math_location('deaths');
+echo do_math_location('NegativeTests');
+
+echo do_math_location('case0to9');
+echo do_math_location('case10to19');
+echo do_math_location('case20to29');
+echo do_math_location('case30to39');
+echo do_math_location('case40to49');
+echo do_math_location('case50to59');
+echo do_math_location('case60to69');
+echo do_math_location('case70to79');
+echo do_math_location('case80plus');
+
+echo do_math_location('Male');
+echo do_math_location('Female');
+
 echo do_math_location('Allegany');
 
 
@@ -156,29 +174,7 @@ $new_master_message = ob_get_clean();
 
 
 
-/* 
-$AlleganyX = coronavirus_level_get('Allegany','Maryland',date('Y-m-d',strtotime($old_date)));
-$AlleganyCOVID19Cases1          = $array1['features'][0]['attributes']['COVID19Cases']; 
-//$current_total_cases = $current_total_cases + $AlleganyCOVID19Cases1;
-$AlleganyCOVID19Deaths1         = $array1['features'][0]['attributes']['COVID19Deaths']; 
-//$current_total_deaths = $current_total_deaths + $AlleganyCOVID19Deaths1;	
-$AlleganyCOVID19Recovered1      = $array1['features'][0]['attributes']['COVID19Recovered']; 
-//$current_total_recovered = $current_total_recovered + $AlleganyCOVID19Recovered1;
 
-// V1
-$AlleganyCOVID19Cases2          = $array2['features'][0]['attributes']['COVID19Cases']; 
-//$current_total_cases2 = $current_total_cases2 + $AlleganyCOVID19Cases2;
-$core->query("update coronavirus set AlleganyCOVID19Cases = '$AlleganyCOVID19Cases2' where id = '$new_id' ");
-$AlleganyCOVID19Deaths2         = $array2['features'][0]['attributes']['COVID19Deaths'];
-//$current_total_deaths2 = $current_total_deaths2 + $AlleganyCOVID19Deaths2;
-$core->query("update coronavirus set AlleganyCOVID19Deaths = '$AlleganyCOVID19Deaths2' where id = '$new_id' ");
-$AlleganyCOVID19Recovered2      = $array2['features'][0]['attributes']['COVID19Recovered'];  
-//$current_total_recovered2 = $current_total_recovered2 + $AlleganyCOVID19Recovered2;
-$core->query("update coronavirus set AlleganyCOVID19Recovered = '$AlleganyCOVID19Recovered2' where id = '$new_id' ");
-
-// V2
-coronavirus_level_set($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
-*/
 
 
 
@@ -325,9 +321,6 @@ $WorcesterCOVID19Deaths1	    = $array1['features'][23]['attributes']['COVID19Dea
 $current_total_deaths = $current_total_deaths + $WorcesterCOVID19Deaths1;
 $WorcesterCOVID19Recovered1     = $array1['features'][23]['attributes']['COVID19Recovered']; 
 $current_total_recovered = $current_total_recovered + $WorcesterCOVID19Recovered1;
-// Back Date Hack
-//$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
-
 
 
 
@@ -543,12 +536,7 @@ $core->query("update coronavirus set WorcesterCOVID19Deaths = '$WorcesterCOVID19
 $WorcesterCOVID19Recovered2     = $array2['features'][23]['attributes']['COVID19Recovered'];
 $current_total_recovered2 = $current_total_recovered2 + $WorcesterCOVID19Recovered2;
 $core->query("update coronavirus set WorcesterCOVID19Recovered = '$WorcesterCOVID19Recovered2' where id = '$new_id' ");
-// keep todays total up to date
-//$core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases2' where id = '$new_id' ");
-
-//$AlleganyCOVID19Cases           = $AlleganyCOVID19Cases2 - $AlleganyCOVID19Cases1;  
-//$AlleganyCOVID19Deaths          = $AlleganyCOVID19Deaths2 - $AlleganyCOVID19Deaths1;        
-//$AlleganyCOVID19Recovered       = $AlleganyCOVID19Recovered2 - $AlleganyCOVID19Recovered1;      
+     
 $AnneArundelCOVID19Cases	    = $AnneArundelCOVID19Cases2 - $AnneArundelCOVID19Cases1;
 $AnneArundelCOVID19Deaths	    = $AnneArundelCOVID19Deaths2 - $AnneArundelCOVID19Deaths1;
 $AnneArundelCOVID19Recovered    = $AnneArundelCOVID19Recovered2 - $AnneArundelCOVID19Recovered1;  
@@ -626,20 +614,14 @@ $dSMS = mysqli_fetch_array($rSMS);
 echo "<p>Registered Phones:  $dSMS[id]</p>";
 echo "</div>";
 
-$current_total_casesX      = $current_total_cases2 - $current_total_cases;
-$current_total_deathsX      = $current_total_deaths2 - $current_total_deaths;
-$current_total_recoveredX      = $current_total_recovered2 - $current_total_recovered;
+
 
 
 echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes</h3>";
 ob_start();
 
-if ($current_total_deathsX != 0) { sms("Total Deaths $current_total_deaths to $current_total_deaths2");  } 
-if ($current_total_recoveredX != 0) { sms("Total Recovered $current_total_recovered to $current_total_recovered2");  } 
 
-//if ($AlleganyCOVID19Cases != 0) { sms("Allegany Cases $AlleganyCOVID19Cases1 to $AlleganyCOVID19Cases2");  } 
-//if ($AlleganyCOVID19Deaths != 0) { sms("Allegany Deaths $AlleganyCOVID19Deaths1 to $AlleganyCOVID19Deaths2"); } 
-//if ($AlleganyCOVID19Recovered != 0) { sms("Allegany Recovered $AlleganyCOVID19Recovered1 to $AlleganyCOVID19Recovered2"); } 
+
 if ($AnneArundelCOVID19Cases != 0) { sms("Anne Arundel Cases $AnneArundelCOVID19Cases1 to $AnneArundelCOVID19Cases2 "); } 
 if ($AnneArundelCOVID19Deaths != 0) { sms("Anne Arundel Deaths $AnneArundelCOVID19Deaths1 to $AnneArundelCOVID19Deaths2 "); } 
 if ($AnneArundelCOVID19Recovered != 0) { sms("Anne Arundel Recovered $AnneArundelCOVID19Recovered1 to $AnneArundelCOVID19Recovered2 "); } 
