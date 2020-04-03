@@ -16,12 +16,12 @@ if(isset($_GET['days'])){
 	// animaton
 	$days_to_predict = $_GET['days'];
 	$next_days = $days_to_predict + 7; 
-	if($next_days < 200){
+	if($next_days < 90){
 		// limit to 200 days
 		if($show != ''){
-			echo "<meta http-equiv='refresh' content='2; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days&show=$show'>";
+			echo "<meta http-equiv='refresh' content='5; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days&show=$show'>";
 		}else{
-			echo "<meta http-equiv='refresh' content='2; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days'>";	
+			echo "<meta http-equiv='refresh' content='5; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days'>";	
 		}
 	}
 }
