@@ -16,6 +16,19 @@ if(empty($_GET['novideo'])){
 			</div>
 	</div>';
 }
+
+function coronavirus_levels($new_id,$name,$state,$Cases,$Deaths,$Recovered){
+	global $core;
+	$core->query("insert into coronavirus_levels ( update_id, populations_name, pouplations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
+	values ('$new_id', '$name', now(), now(), '$Cases', '$Deaths', '$Recovered' ) ");
+	global $current_total_cases2;
+	$current_total_cases2 = $current_total_cases2 + $Cases;
+	global $current_total_deaths2;
+	$current_total_deaths2 = $current_total_deaths2 + $Deaths;
+	global $current_total_recovered2;
+	$current_total_recovered2 = $current_total_recovered2 + $Recovered;
+}
+
 echo '
 <div class="row">';
 //<iframe width="1100" height="600" src="https://www.youtube.com/embed/videoseries?list=PLhAvAcGuQOsHsqKlOb2gpIgvAP7nFXyVS?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -248,17 +261,7 @@ $current_total_recovered = $current_total_recovered + $WorcesterCOVID19Recovered
 // Back Date Hack
 $core->query("update coronavirus set MarylandCOVID19Cases = '$current_total_cases' where id = '$d[id]' ");
 
-function coronavirus_levels($new_id,$name,$state,$Cases,$Deaths,$Recovered){
-	global $core;
-	$core->query("insert into coronavirus_levels ( update_id, populations_name, pouplations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
-	values ('$new_id', '$name', now(), now(), '$Cases', '$Deaths', '$Recovered' ) ");
-	global $current_total_cases2;
-	$current_total_cases2 = $current_total_cases2 + $Cases;
-	global $current_total_deaths2;
-	$current_total_deaths2 = $current_total_deaths2 + $Deaths;
-	global $current_total_recovered2;
-	$current_total_recovered2 = $current_total_recovered2 + $Recovered;
-}
+
 
 // These are Live Numbers
 $current_total_cases2 = 0;
