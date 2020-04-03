@@ -17,7 +17,7 @@ if(empty($_GET['novideo'])){
 	</div>';
 }
 
-function coronavirus_levels($new_id,$name,$state,$Cases,$Deaths,$Recovered){
+function coronavirus_level_set($new_id,$name,$state,$Cases,$Deaths,$Recovered){
 	global $core;
 	$core->query("insert into coronavirus_levels ( update_id, populations_name, populations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
 	values ('$new_id', '$name', '$state', NOW(), NOW(), '$Cases', '$Deaths', '$Recovered' ) ");
@@ -27,6 +27,19 @@ function coronavirus_levels($new_id,$name,$state,$Cases,$Deaths,$Recovered){
 	$current_total_deaths2 = $current_total_deaths2 + $Deaths;
 	global $current_total_recovered2;
 	$current_total_recovered2 = $current_total_recovered2 + $Recovered;
+}
+function coronavirus_level_get($name,$state,$date){
+	global $core;
+	// pull last update for date
+	$core->query("select * from coronavirus_levels where populations_name = '$name' and populations_state = '$state' and just_date = '$date' order by id desc ");
+	$d = mysqli_fetch_array($r); 
+	global $current_total_cases;
+	$current_total_cases = $current_total_cases + $d['Cases'];
+	global $current_total_deaths;
+	$current_total_deaths = $current_total_deaths + $d['Deaths'];
+	global $current_total_recovered;
+	$current_total_recovered = $current_total_recovered + $d['Recovered'];
+	return $d; // array	
 }
 
 echo '
@@ -111,15 +124,24 @@ $array1 = json_decode($old, true);
 $array2 = json_decode($html, true);
 
 // These are the Last Numbers
+global $current_total_cases;
+global $current_total_deaths;
+global $current_total_recovered;
 $current_total_cases = 0;
 $current_total_deaths = 0;
 $current_total_recovered = 0;
+
+
+$AlleganyX = coronavirus_level_get('Allegany','Maryland',date('Y-m-d',strtotime($old_date)));
+
 $AlleganyCOVID19Cases1          = $array1['features'][0]['attributes']['COVID19Cases']; 
-$current_total_cases = $current_total_cases + $AlleganyCOVID19Cases1;
+//$current_total_cases = $current_total_cases + $AlleganyCOVID19Cases1;
 $AlleganyCOVID19Deaths1         = $array1['features'][0]['attributes']['COVID19Deaths']; 
-$current_total_deaths = $current_total_deaths + $AlleganyCOVID19Deaths1;	
+//$current_total_deaths = $current_total_deaths + $AlleganyCOVID19Deaths1;	
 $AlleganyCOVID19Recovered1      = $array1['features'][0]['attributes']['COVID19Recovered']; 
-$current_total_recovered = $current_total_recovered + $AlleganyCOVID19Recovered1;
+//$current_total_recovered = $current_total_recovered + $AlleganyCOVID19Recovered1;
+
+
 $AnneArundelCOVID19Cases1	    = $array1['features'][1]['attributes']['COVID19Cases']; 
 $current_total_cases = $current_total_cases + $AnneArundelCOVID19Cases1;
 $AnneArundelCOVID19Deaths1	    = $array1['features'][1]['attributes']['COVID19Deaths']; 
@@ -284,7 +306,7 @@ global $current_total_cases2;
 global $current_total_deaths2;
 global $current_total_recovered2;
 
-coronavirus_levels($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
+coronavirus_level_set($new_id,$array2['features'][0]['attributes']['COUNTY'],'Maryland',$array2['features'][0]['attributes']['COVID19Cases'],$array2['features'][0]['attributes']['COVID19Deaths'],$array2['features'][0]['attributes']['COVID19Recovered']);
 
 
 $AnneArundelCOVID19Cases2	    = $array2['features'][1]['attributes']['COVID19Cases'];
