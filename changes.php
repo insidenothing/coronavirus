@@ -601,8 +601,7 @@ $WorcesterCOVID19Cases          = $WorcesterCOVID19Cases2 - $WorcesterCOVID19Cas
 $WorcesterCOVID19Deaths	        = $WorcesterCOVID19Deaths2 - $WorcesterCOVID19Deaths1;
 $WorcesterCOVID19Recovered      = $WorcesterCOVID19Recovered2 - $WorcesterCOVID19Recovered1;
 
-echo "<div class='col-sm-3' style='text-align:left;'><h3>State Total</h3>
-<p>CASES: $current_total_cases to $current_total_cases2</p>
+echo "<div class='col-sm-3' style='text-align:left;'>
 <h3>SMS Userlist</h3>";
 $rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
 $dSMS = mysqli_fetch_array($rSMS);
