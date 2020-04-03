@@ -88,7 +88,7 @@ function make_maryland_array(){
 	echo '<td valign="top"><h1>Data</h1><div>';
 	foreach ($array['features'] as $key => $value){
 		$time = $value['attributes']['ReportDate'] / 1000;
-		$date = date('Y-m-d',$time);
+		$date = date('Y-m-d',$time+14400);
 		$return[$date] = $value['attributes'];
 		echo "<h3>UPDATE $date</h1>";
 		foreach ($value['attributes'] as $key2 => $value2){
