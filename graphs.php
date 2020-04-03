@@ -206,7 +206,7 @@ function make_county_prediction($county,$start,$count,$dt){
 		// only set base once
 		global $buffer;
 		$base = ($N - $r)*$buffer;
-		$debug_out .= "<li><b>BASE: $base</b></li>";
+		$debug_out .= "<li><b>BASE: $base = ($N - $r) * $buffer</b></li>";
 	}
 	$r = $r + $base;
 	$debug_out .= "<li>$out N:$N r:$r</li>";
@@ -589,10 +589,10 @@ function toggleDataSeries(e) {
 	</div>
 	<div class="container">
 	<div class="row">
-		<div class='col-sm-6' style='background-color:orange;'>
+		<div class='col-sm-6' style='background-color:lightorange;'>
 			<?PHP echo $debug_in; ?>
 		</div>
-		<div class='col-sm-6' style='background-color:blue;'>
+		<div class='col-sm-6' style='background-color:lightblue;'>
 			<?PHP echo $debug_out; ?>
 		</div>
 	</div>
