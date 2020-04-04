@@ -327,7 +327,7 @@ return $return;
 	<td><a href='wiki.php'><img src='img/recovered.png'></a></td>
 	<td><a href='https://www.patrickmcguire.me/'><img src='img/blog.png'></a></td>
 	<td><a href='bright.php'><img src='img/bright.png'></a></td>
-	<td><div class="fb-share-button" data-href="https://www.mdwestserve.com<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></td>
+	<td><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></td>
 	
 	</tr></table>
 
