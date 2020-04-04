@@ -75,6 +75,15 @@ echo "<div class='col-sm-3'><h3>Date Range</h3>
 echo "$dropdown";
 echo "</div>";
 
+
+echo "<div class='col-sm-3' style='text-align:left;'>
+<h3>SMS Userlist</h3>";
+$rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
+$dSMS = mysqli_fetch_array($rSMS);
+echo "<p>Registered Phones:  $dSMS[id]</p>";
+echo "</div>";
+
+
 // Convert json objects to array
 $array1 = json_decode($old, true);
 $array2 = json_decode($json, true);
@@ -92,7 +101,7 @@ function do_math_location($county){
 	$count_yesterday = $maryland_history[$yesterday][$aka];
 	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
 	$count_delta = $count_today - $count_yesterday;
-	if ($count_delta != 0) { sms("$count_delta New $county $count_yesterday to $count_today");  } 
+	if ($count_delta != 0) { sms("$count_delta New $county $count_yesterday to $count_today ");  } 
 }
 
 ob_start();
@@ -140,14 +149,8 @@ echo do_math_location('StMarys');
 echo do_math_location('Talbot');
 echo do_math_location('Washington');
 echo do_math_location('Worcester');
-
 $new_master_message = ob_get_clean();
-echo "<div class='col-sm-3' style='text-align:left;'>
-<h3>SMS Userlist</h3>";
-$rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
-$dSMS = mysqli_fetch_array($rSMS);
-echo "<p>Registered Phones:  $dSMS[id]</p>";
-echo "</div>";
+
 echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes</h3>";
 echo "$new_master_message";
 echo "</div>";
