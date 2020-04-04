@@ -61,7 +61,7 @@ function sms($msg){
 			//getPage($url);
 		}
 	}
-    	echo '<div>'.$msg.'</div>';	
+    	echo '<div>'.$msg.' </div>';	
 }
 
 function message_send($to,$master_message){	
