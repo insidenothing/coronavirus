@@ -1,3 +1,4 @@
+<?PHP die ('maintenance mode'); ?>
 <html>
 <head>
 	<?PHP 
