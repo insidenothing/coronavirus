@@ -65,15 +65,15 @@ function sms($msg){
 }
 
 function message_send($to,$master_message){	
-	die('offline');
+	//die('offline');
 	// take full message, split and loop
 	$buffer='';
 	$messages = str_split(strip_tags($master_message), 150);
+	global $twillo_account;
+	global $twillo_key;
 	foreach ($messages as $message) {
 		$message = str_replace('_', ' ', $message);	
 		$curl = curl_init();
-		global $twillo_account;
-		global $twillo_key;
 		curl_setopt ($curl, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/'.$twillo_account.'/SMS/Messages.xml');
 		curl_setopt ($curl, CURLOPT_TIMEOUT, '5');
 		curl_setopt ($curl, CURLOPT_RETURNTRANSFER, '1');
@@ -88,7 +88,7 @@ function message_send($to,$master_message){
 	return $buffer;
 }
 	
-	function county_aka($county){
+function county_aka($county){
  	if ($county == 'Allegany'){ return 'ALLE'; }
         if ($county == 'AnneArundel'){ return 'ANNE'; }
         if ($county == 'Baltimore'){ return 'BALT'; }
