@@ -4,23 +4,23 @@
 	if(isset($page_description)){
 		echo "<title>$page_description</title>";
 	}elseif (isset($_POST['checked_datetime'])){ 
-		echo "<title>Maryland COVID19 Digital Resources - ".$_POST['checked_datetime']."</title>";
+		echo "<title>COVID19MATH.net Digital Resources - ".$_POST['checked_datetime']."</title>";
 	}else{
-		echo "<title>Maryland COVID19 Digital Resources</title>";
+		echo "<title>COVID19MATH.net Digital Resources</title>";
 	}
 	if (empty($page_description)){
 		$page_description = 'Get SMS Updates';	
 	}
 	?>
-  <link rel="apple-touch-icon" sizes="180x180" href="/coronavirus/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/coronavirus/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/coronavirus/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
   <link rel="manifest" href="/coronavirus/site.webmanifest">
-  <meta property="og:url"           content="https://www.mdwestserve.com<?PHP echo $_SERVER['REQUEST_URI'];?>" />
+  <meta property="og:url"           content="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" />
   <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Maryland COVID19 Digital Resources" />
+  <meta property="og:title"         content="COVID19MATH.net Digital Resources" />
   <meta property="og:description"   content="<?PHP echo $page_description;?>" />
-  <meta property="og:image"         content="https://www.mdwestserve.com/coronavirus/img/vrus.png" />
+  <meta property="og:image"         content="https://www.covid19math.net/img/vrus.png" />
   <?PHP if (empty($_GET['debug'])){ ?>	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,7 +35,7 @@ include_once('/var/www/secure.php'); //outside webserver
 function getPage($url){
     $curl = curl_init();
     curl_setopt ($curl, CURLOPT_URL, $url);
-    curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire coronavirus monitor /%d.0",rand(4,50)));
+    curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire Coronavirus Monitor covid19math.net /%d.0",rand(4,50)));
     curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, 0);
     $html = curl_exec ($curl);
