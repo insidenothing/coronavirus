@@ -18,37 +18,11 @@ if(empty($_GET['novideo'])){
 	</div>';
 }
 
-function coronavirus_level_set($new_id,$name,$state,$Cases,$Deaths,$Recovered){
-	global $core;
-	$core->query("insert into coronavirus_levels ( update_id, populations_name, populations_state, checked_datetime, just_date, Cases, Deaths, Recovered)
-	values ('$new_id', '$name', '$state', NOW(), NOW(), '$Cases', '$Deaths', '$Recovered' ) ");
-	global $current_total_cases2;
-	$current_total_cases2 = $current_total_cases2 + $Cases;
-	global $current_total_deaths2;
-	$current_total_deaths2 = $current_total_deaths2 + $Deaths;
-	global $current_total_recovered2;
-	$current_total_recovered2 = $current_total_recovered2 + $Recovered;
-}
-function coronavirus_level_get($name,$state,$date){
-	global $core;
-	// pull last update for date
-	$core->query("select * from coronavirus_levels where populations_name = '$name' and populations_state = '$state' and just_date = '$date' order by id desc ");
-	$d = mysqli_fetch_array($r); 
-	global $current_total_cases;
-	$current_total_cases = $current_total_cases + $d['Cases'];
-	global $current_total_deaths;
-	$current_total_deaths = $current_total_deaths + $d['Deaths'];
-	global $current_total_recovered;
-	$current_total_recovered = $current_total_recovered + $d['Recovered'];
-	return $d; // array	
-}
-
 echo '
 <div class="row">';
 //<iframe width="1100" height="600" src="https://www.youtube.com/embed/videoseries?list=PLhAvAcGuQOsHsqKlOb2gpIgvAP7nFXyVS?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 global $send_message;
 $send_message = 'off';
-
 
 // Last Version
 $r = $core->query("SELECT html, checked_datetime FROM coronavirus order by id DESC limit 0,1");
@@ -93,8 +67,6 @@ $old = $d['html'];
 global $old_date;
 $old_date = $d['checked_datetime'];
 
-
-
 echo "<div class='col-sm-3'><h3>Date Range</h3>
 <p>$old_date</p>
 <p>$new_date</p>
@@ -105,22 +77,6 @@ echo "</div>";
 // Convert json objects to array
 $array1 = json_decode($old, true);
 $array2 = json_decode($json, true);
-
-// These are the Last Numbers
-global $current_total_cases;
-global $current_total_deaths;
-global $current_total_recovered;
-$current_total_cases = 0;
-$current_total_deaths = 0;
-$current_total_recovered = 0;
-// These are Live Numbers
-global $current_total_cases2;
-global $current_total_deaths2;
-global $current_total_recovered2;
-$current_total_cases2 = 0;
-$current_total_deaths2 = 0;
-$current_total_recovered2 = 0;
-
 
 function do_math_location($county){
 	global $maryland_history;
@@ -137,7 +93,6 @@ function do_math_location($county){
 	$count_delta = $count_today - $count_yesterday;
 	if ($count_delta != 0) { sms("$count_delta New $county $count_yesterday to $count_today");  } 
 }
-
 
 ob_start();
 
@@ -185,29 +140,16 @@ echo do_math_location('Talbot');
 echo do_math_location('Washington');
 echo do_math_location('Worcester');
 
-
-
-
 $new_master_message = ob_get_clean();
-
-
-
-
 echo "<div class='col-sm-3' style='text-align:left;'>
 <h3>SMS Userlist</h3>";
 $rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
 $dSMS = mysqli_fetch_array($rSMS);
 echo "<p>Registered Phones:  $dSMS[id]</p>";
 echo "</div>";
-
-
-
-
 echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes</h3>";
 echo "$new_master_message";
 echo "</div>";
-
-
 if ($send_message == 'on' || isset($_GET['forcesms'])){
 	global $core;
 	$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
@@ -216,9 +158,5 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 		message_send($sms,$master_message);
 	}
 }  
-
-
 echo "</div></div>";
-
-
 include_once('footer.php');
