@@ -37,7 +37,7 @@ if(isset($_GET['phone'])){
       <p><form> <input name='phone'> <input type='submit' value='Sign Up'> </form></p>
     </div>
     <div class="col-sm-6"> 
-      <p><img src='phone.jpg'></p>
+      <p><img src='img/phone.jpg'></p>
     </div>
   </div>
 </div>
