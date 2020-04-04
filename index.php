@@ -160,7 +160,7 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 	$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
 	while($d = mysqli_fetch_array($r)){
 		$sms = trim($d['sms_number']);
-		//message_send($sms,$master_message);
+		message_send($sms,$new_master_message);
 	}
 }  
 echo "</div></div>";
