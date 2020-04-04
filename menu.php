@@ -315,7 +315,7 @@ return $return;
 	<?PHP
 	if (empty($logo)){
 		// set logo to anything to hide this
-		echo '<img src="header.PNG"  class="img-rounded" >';	
+		echo '<img src="img/header.PNG"  class="img-rounded" >';	
 	}
 	?>
 <table><tr>
