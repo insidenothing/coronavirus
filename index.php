@@ -152,7 +152,7 @@ echo do_math_location('Washington');
 echo do_math_location('Worcester');
 $new_master_message = ob_get_clean();
 
-echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes</h3>";
+echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes $send_message</h3>";
 echo "$new_master_message";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
