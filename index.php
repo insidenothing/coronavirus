@@ -11,9 +11,11 @@ if(empty($_GET['novideo'])){
 	echo '
 	<div class="row">
 		<div class="col-sm-12">
-		<iframe id="ytplayer" type="text/html" width="1100" height="600"
+		<div class="embed-responsive embed-responsive-16by9">
+		<iframe id="ytplayer" type="text/html" class="embed-responsive-item"
 	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
 	frameborder="1" allowfullscreen> </iframe>
+		</div>
 			</div>
 	</div>';
 }
