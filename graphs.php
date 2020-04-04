@@ -470,7 +470,7 @@ function toggleDataSeries(e) {
 				<p>2. Click to <input type='submit' value='Update Graph'></p>
 				<p><a href='?days=1&show=<?PHP echo $show; ?>'>Run Animation</a> | <a href='graphs.php'>Reset Animation</a></p>
 			</form>
-			<p>Open Source : <a target='_Blank' href='https://pastebin.com/8Cj0scii'>https://pastebin.com/8Cj0scii</a></p>
+			<p>Open Source : <a target='_Blank' href='https://github.com/insidenothing/coronavirus'>https://github.com/insidenothing/coronavirus</a></p>
 		</div>
 	</div>
 	<div class="row">
