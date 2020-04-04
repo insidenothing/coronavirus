@@ -83,7 +83,7 @@ function show_on_graph($county){
 	global $show;
 	// if has cases = true else false
 	global $maryland_history;
-	$date = date('Y-m-d');
+	$date = $maryland_history['date'];
 	$aka = county_aka($county);
 	$val = $maryland_history[$date][$aka];
 	$count = intval($val);
