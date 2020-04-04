@@ -139,6 +139,7 @@ function make_maryland_array(){
 		$time = $value['attributes']['ReportDate'] / 1000;
 		$date = date('Y-m-d',$time+14400);
 		$return[$date] = $value['attributes'];
+		$return['date'] = $date; // last date used in the array
 		echo "<h3>UPDATE $date</h1>";
 		foreach ($value['attributes'] as $key2 => $value2){
 			echo "<li>$key2 => $value2</li>";
