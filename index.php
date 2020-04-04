@@ -40,8 +40,9 @@ if ($test1 != $test2){
 // Compare Most Recent to Last Change
 $r = $core->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
-global $new_date;
-$new_date = $d['checked_datetime'];
+//global $new_date;
+//$new_date = $d['checked_datetime'];
+$new_date = $maryland_history['date'];
 global $new_id;
 $new_id = $d['id'];
 
