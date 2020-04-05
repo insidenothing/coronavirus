@@ -158,6 +158,7 @@ $new_master_message = ob_get_clean();
 
 echo "<div class='col-sm-6' style='text-align:left;'><h3>Changes $send_message</h3>";
 echo "$new_master_message";
+echo "<p>Update String Legenth: ".strlen($new_master_message)."</p>";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
 	global $core;
