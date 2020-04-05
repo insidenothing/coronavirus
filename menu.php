@@ -121,7 +121,7 @@ function county_aka($county){
 	if ($county == 'Maryland'){ return 'TotalCases'; }
 	return $county;
 }
-function make_maryland_array(){
+function make_maryland_array($json=''){
 	$return = array();
 	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
 	$json = getPage($url);
