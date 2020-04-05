@@ -70,10 +70,8 @@ if(empty($_GET['novideo'])){
 }
 
 
-echo "<h3>Date Range</h3>
-<p>$old_date</p>
-<p>$new_date</p>
-<h3>Compare Dates</h3>";
+echo "<h3>Compare Dates</h3>
+<p>$old_date to $new_date</p>";
 echo "$dropdown";
 
 
