@@ -303,13 +303,13 @@ return $return;
 
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133212884-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162868936-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-133212884-1');
+  gtag('config', 'UA-162868936-1');
 </script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
