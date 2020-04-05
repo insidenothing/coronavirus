@@ -32,7 +32,7 @@ if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
-$page_description = "Infection History by Age";
+$page_description = "Maryland Hospital Data";
 include_once('menu.php');
 
 global $today;
@@ -180,7 +180,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	theme:"light2",
 	animationEnabled: true,
 	title:{
-		text: "The Great State of Maryland - Infection History by Age"
+		text: "The Great State of Maryland - Hospital Data"
 	},
 	axisY :{
 		includeZero: false,
@@ -196,92 +196,32 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('case0to9'); ?>,
+		visible: <?PHP echo show_on_graph('total_hospitalized'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "age 0 to 9",
+		name: "Total Hospitalized",
 		dataPoints: [
-			<?PHP echo make_county('case0to9'); ?>
+			<?PHP echo make_county('total_hospitalized'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('case10to19'); ?>,
+		visible: <?PHP echo show_on_graph('total_released'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "age 10 to 19",
+		name: "Total Released",
 		dataPoints: [
-			<?PHP echo make_county('case10to19'); ?>
+			<?PHP echo make_county('total_released'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('case20to29'); ?>,
+		visible: <?PHP echo show_on_graph('deaths'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "age 20 to 29",
+		name: "Deaths",
 		dataPoints: [
-			<?PHP echo make_county('case20to29'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('case30to39'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "age 30 to 39",
-		dataPoints: [
-			<?PHP echo make_county('case30to39'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('case40to49'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "age 40 to 49",
-		dataPoints: [
-			<?PHP echo make_county('case40to49'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('case50to59'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "age 50 to 59",
-		dataPoints: [
-			<?PHP echo make_county('case50to59'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('case60to69'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "age 60 to 69",
-		dataPoints: [
-			<?PHP echo make_county('case60to69'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('case70to79'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "age 70 to 79",
-		dataPoints: [
-			<?PHP echo make_county('case70to79'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('case80plus'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "age 80 plus",
-		dataPoints: [
-			<?PHP echo make_county('case80plus'); ?>
+			<?PHP echo make_county('deaths'); ?>
 		]
 	}]
 }
