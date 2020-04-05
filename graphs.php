@@ -85,6 +85,7 @@ function show_on_graph($county){
 	global $maryland_history;
 	$date = $maryland_history['date'];
 	$aka = county_aka($county);
+	error_log("show_on_graph($county) $date $aka", 0);
 	$val = $maryland_history[$date][$aka];
 	$count = intval($val);
 	if ($show != ''){
