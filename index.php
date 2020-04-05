@@ -71,6 +71,55 @@ $old_date = $d['checked_datetime'];
 
 echo "<div class='col-sm-8'>";
 
+
+?>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", //"light1", "dark1", "dark2"
+	title:{
+		text: "Maryland COVID-19 Outbreak"
+	},
+	data: [{
+		type: "funnel",
+		indexLabelPlacement: "inside",
+		indexLabelFontColor: "white",
+		toolTipContent: "<b>{label}</b>: {y} <b>({percentage}%)</b>",
+		indexLabel: "{label} ({percentage}%)",
+		dataPoints: [
+			{ y: 1400, label: "Pouplation" },
+			{ y: 1212, label: "Infected" },
+			{ y: 1080, label: "Hospitalized" },
+			{ y: 665,  label: "Recovered" },
+			{ y: 578, label: "Deaths" }
+		]
+	}]
+});
+calculatePercentage();
+chart.render();
+
+function calculatePercentage() {
+	var dataPoint = chart.options.data[0].dataPoints;
+	var total = dataPoint[0].y;
+	for(var i = 0; i < dataPoint.length; i++) {
+		if(i == 0) {
+			chart.options.data[0].dataPoints[i].percentage = 100;
+		} else {
+			chart.options.data[0].dataPoints[i].percentage = ((dataPoint[i].y / total) * 100).toFixed(2);
+		}
+	}
+}
+
+}
+</script>
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+
+
+<?PHP
 $video_of_the_day = 'xv-8i59AUFY';
 if(empty($_GET['novideo'])){
 	echo '<div class="embed-responsive embed-responsive-16by9">
