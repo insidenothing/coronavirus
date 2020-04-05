@@ -313,11 +313,11 @@ return $return;
 		</style>
 <center><div style="background-color:white; width:1300;" id="rcorners2">
 	<?PHP
-	if (empty($logo)){
+	if ($logo == 'no'){
 		// set logo to anything to hide this
 		echo '<img src="img/header.PNG"  class="img-rounded" >';	
 	}else{
-		echo 'Welcome to https://www.covid19math.net on '.date('r');	
+		echo 'Welcome to https://www.covid19math.net on ' . date('r');	
 	}
 	?>
 <table><tr>
