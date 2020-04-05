@@ -533,15 +533,6 @@ function toggleDataSeries(e) {
 			?>
 		</div>
 	</div>
-	<div class="container">
-	<div class="row">
-		<div class='col-sm-6' style='background-color:lightorange;'>
-			<?PHP echo $debug_in; ?>
-		</div>
-		<div class='col-sm-6' style='background-color:lightblue;'>
-			<?PHP echo $debug_out; ?>
-		</div>
-	</div>
 </div>
 	
 <?PHP include_once('footer.php'); ?>
