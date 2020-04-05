@@ -109,7 +109,9 @@ function do_math_location($county){
 	if ( $count_today < $count_yesterday){
 		$dir = 'down';
 	}
-	if ($count_delta != 0) { sms("$dir $count_delta <b>$county</b> at $count_today. ");  } 
+	$human_count = number_format($count_today);
+	$human_delta = number_format($count_delta);
+	if ($count_delta != 0) { sms("$dir $human_delta <b>$county</b> at $human_count. ");  } 
 }
 
 ob_start();
