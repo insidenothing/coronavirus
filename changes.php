@@ -30,8 +30,8 @@ if ($test1 != $test2){
 	if ($d['last_sent_date'] == date('Y-m-d')){
 		$send_message = 'sent';
 	}else{
-		$send_message = 'on';
-		$r = $core->query("update coronavirus_populations set last_sent_date = '".date('Y-m-d')."' where name_of_location = 'Maryland'");
+		$send_message = 'off';
+		//$r = $core->query("update coronavirus_populations set last_sent_date = '".date('Y-m-d')."' where name_of_location = 'Maryland'");
 	}
 	
 }
@@ -60,7 +60,7 @@ if (isset($_POST['checked_datetime'])){
     $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime = '$date' ");
 }else{
     // first frport from yesterday to last report of this day
-    $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime like '$yesterday %' order by id ASC limit 1");  
+    $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus order by id DESC limit 1, 1");  
 }
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
