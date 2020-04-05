@@ -150,5 +150,5 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 	}
 }  
 echo "</div></div>";
-echo "<pre>".print_r($maryland_history_last)."</pre>";
+//echo "<pre>".print_r($maryland_history_last)."</pre>";
 include_once('footer.php');
