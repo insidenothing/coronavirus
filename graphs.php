@@ -28,7 +28,7 @@ if(isset($_GET['days'])){
 if(isset($_POST['days'])){
 	$days_to_predict = $_POST['days'];	
 }
-if(isset($_POST['day'])){
+if(isset($_GET['day'])){
 	$days_to_predict = $_POST['day'];	
 }
 $logo = 'off';
