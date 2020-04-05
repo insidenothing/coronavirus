@@ -58,13 +58,7 @@ $old = $d['html'];
 global $old_date;
 $old_date = $d['checked_datetime'];
 
-echo "<div class='col-sm-3'><h3>Date Range</h3>
-<p>$old_date</p>
-<p>$new_date</p>
-<h3>Compare Dates</h3>";
-echo "$dropdown";
-
-
+echo "<div class='col-sm-6'>";
 
 $video_of_the_day = 'xv-8i59AUFY';
 if(empty($_GET['novideo'])){
@@ -76,11 +70,18 @@ if(empty($_GET['novideo'])){
 }
 
 
-echo "</div>";
+echo "<h3>Date Range</h3>
+<p>$old_date</p>
+<p>$new_date</p>
+<h3>Compare Dates</h3>";
+echo "$dropdown";
 
 
-echo "<div class='col-sm-3' style='text-align:left;'>
-<h3>SMS Userlist</h3>";
+
+
+
+
+echo "<h3>SMS Userlist</h3>";
 $rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
 $dSMS = mysqli_fetch_array($rSMS);
 echo "<p>Registered Phones:  $dSMS[id]</p>";
