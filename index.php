@@ -113,6 +113,31 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer2", {
+	animationEnabled: true,
+	title: {
+		text: "Maryland Male/Female covid19math.net"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: <?PHP echo $maryland_history[$date]['Male'];?>, label: "Male"},
+			{y: <?PHP echo $maryland_history[$date]['Female'];?>, label: "Female"}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+
+<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
 
 <?PHP
 
