@@ -160,11 +160,11 @@ echo "</div>
 <div class='row'>
 	<div class='col-sm-6'>
 	<h3>maryland_history</h3>
-	<pre>".print_r($maryland_history)."</pre>
+	".print_r($maryland_history)."
 	</div>
 	<div class='col-sm-6'>
 	<h3>maryland_history_last</h3>
-	<pre>".print_r($maryland_history_last)."</pre>
+	".print_r($maryland_history_last)."
 	</div>
 </div>
 
