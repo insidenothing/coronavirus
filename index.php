@@ -113,17 +113,6 @@ chart.render();
 
 
 <?PHP
-$video_of_the_day = 'xv-8i59AUFY';
-if(empty($_GET['novideo'])){
-	echo '<div class="embed-responsive embed-responsive-16by9">
-		<iframe id="ytplayer" type="text/html" class="embed-responsive-item"
-	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
-	frameborder="1" allowfullscreen> </iframe>
-		</div>';
-}else{
-	echo "<img src='img/delta.jpg' class='img-responsive'>";
-}
-
 
 echo "<h3>Compare Dates</h3>
 <p>$old_date to $new_date</p>";
