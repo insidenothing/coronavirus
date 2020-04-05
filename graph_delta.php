@@ -180,7 +180,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	theme:"light2",
 	animationEnabled: true,
 	title:{
-		text: "The Great State of Maryland - Hospital Data"
+		text: "The Great State of Maryland - $page_description"
 	},
 	axisY :{
 		includeZero: false,
@@ -199,49 +199,49 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Total Hospitalized",
+		name: "Case Delta",
 		dataPoints: [
-			<?PHP echo make_county('total_hospitalized'); ?>
+			<?PHP echo make_county('CaseDelta'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('total_released'); ?>,
+		visible: <?PHP echo show_on_graph('NegDelta'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Total Released",
+		name: "Neg Delta",
 		dataPoints: [
-			<?PHP echo make_county('total_released'); ?>
+			<?PHP echo make_county('NegDelta'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('deaths'); ?>,
+		visible: <?PHP echo show_on_graph('hospitalizedDelta'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Deaths",
+		name: "Hospitalized Delta",
 		dataPoints: [
-			<?PHP echo make_county('deaths'); ?>
+			<?PHP echo make_county('hospitalizedDelta'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: false,
+		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Negative Tests",
+		name: "Released Delta",
 		dataPoints: [
-			<?PHP echo make_county('NegativeTests'); ?>
+			<?PHP echo make_county('releasedDelta'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: false,
+		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Total Cases",
+		name: "Deaths Delta",
 		dataPoints: [
-			<?PHP echo make_county('TotalCases'); ?>
+			<?PHP echo make_county('deathsDelta'); ?>
 		]
 	}]
 }
