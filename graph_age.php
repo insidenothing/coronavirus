@@ -29,7 +29,7 @@ if(isset($_POST['days'])){
 	$days_to_predict = $_POST['days'];	
 }
 if(isset($_GET['day'])){
-	$days_to_predict = $_POST['day'];	
+	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
 $page_description = "Animated Graph of $show Cases - $days_to_predict Day Prediction";
