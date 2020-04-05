@@ -94,8 +94,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		type: "funnel",
 		indexLabelPlacement: "inside",
 		indexLabelFontColor: "white",
-		toolTipContent: "<b>{label}</b>: {y} <b>({percentage}%)</b>",
-		indexLabel: "{label} ({percentage}%)",
+		toolTipContent: "<b>{label}</b>: {y}</b>",
+		indexLabel: "{label} {y}",
 		dataPoints: [
 			{ y: <?PHP echo total_count('Maryland');?>, label: "Maryland Pouplation" },
 			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Maryland Infected" },
@@ -105,21 +105,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	}]
 });
-calculatePercentage();
 chart.render();
-
-function calculatePercentage() {
-	var dataPoint = chart.options.data[0].dataPoints;
-	var total = dataPoint[0].y;
-	for(var i = 0; i < dataPoint.length; i++) {
-		if(i == 0) {
-			chart.options.data[0].dataPoints[i].percentage = 100;
-		} else {
-			chart.options.data[0].dataPoints[i].percentage = ((dataPoint[i].y / total) * 100).toFixed(2);
-		}
-	}
-}
-
 }
 </script>
 
