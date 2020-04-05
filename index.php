@@ -97,11 +97,10 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		toolTipContent: "<b>{label}</b>: {y}</b>",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{ y: <?PHP echo total_count('Maryland');?>, label: "Maryland Pouplation" },
-			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Maryland Infected" },
-			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Maryland Hospitalized" },
-			{ y: <?PHP echo $maryland_history[$date]['total_released'];?>,  label: "Maryland Recovered" },
-			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Maryland Deaths" }
+			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
+			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Hospitalized" },
+			{ y: <?PHP echo $maryland_history[$date]['total_released'];?>,  label: "Recovered" },
+			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Deaths" }
 		]
 	}]
 });
