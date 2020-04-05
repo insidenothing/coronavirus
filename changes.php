@@ -157,8 +157,8 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 }  
 echo "</div>
 <div class='row'>
-<div class='col-sm-6'><pre>".$maryland_history."</pre><div>
-<div class='col-sm-6'><pre>".$maryland_history_last."</pre><div>
+<div class='col-sm-6'><pre>".print_r($maryland_history)."</pre></div>
+<div class='col-sm-6'><pre>".print_r($maryland_history_last)."</pre></div>
 </div>
 </div>";
 include_once('footer.php');
