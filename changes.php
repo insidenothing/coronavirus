@@ -41,20 +41,9 @@ $new_id = $d['id'];
 $y_time = strtotime($new_date) - 86400;
 $yesterday = date('Y-m-d',$y_time);
 
-$dropdown = "<form method='POST'><select name='checked_datetime' class='form-control' id='sel1'>";
-$r = $core->query("SELECT checked_datetime FROM coronavirus order by id DESC");
-while($d = mysqli_fetch_array($r)){
-   $dropdown .= "<option>$d[checked_datetime]</option>"; 
-}
-$dropdown .= "</select><input value='Load Date' type='submit' class='btn btn-default'></form>";
 
-if (isset($_POST['checked_datetime'])){
-    $date = $_POST['checked_datetime'];
-    $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime = '$date' ");
-}else{
-    // first frport from yesterday to last report of this day
-    $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus order by id DESC limit 1, 1");  
-}
+
+$r = $core->query("SELECT id, html, checked_datetime FROM coronavirus order by id DESC limit 1, 1");  
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
 global $maryland_history_last;
@@ -62,7 +51,7 @@ $maryland_history_last = make_maryland_array($old);
 global $old_date;
 $old_date = $d['checked_datetime'];
 
-echo "<div class='col-sm-12'>";
+echo "<div class='col-sm-12'><p>$old_date to $new_date</p>";
 
 
 
