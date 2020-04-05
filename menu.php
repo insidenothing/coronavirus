@@ -316,6 +316,8 @@ return $return;
 	if (empty($logo)){
 		// set logo to anything to hide this
 		echo '<img src="img/header.PNG"  class="img-rounded" >';	
+	}else{
+		echo 'Welcome to https://www.covid19math.net on '.date('r');	
 	}
 	?>
 <table><tr>
