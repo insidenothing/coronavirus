@@ -89,8 +89,7 @@ function do_math_location($county){
 	$count_today = $maryland_history[$today][$aka];
 	if ($maryland_history[$today]['Filter'] != '' ){
 		// this says get todays latest version a,b,c ?
-		$yesterday = date('Y-m-d');
-		$count_yesterday = $maryland_history_last[$yesterday][$aka];	
+		$count_yesterday = $maryland_history_last[$today][$aka];	
 	}else{
 		// otherwise this is yesterdays update
 		$yesterday = date('Y-m-d',strtotime($old_date));
