@@ -155,18 +155,6 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 		message_send($sms,$new_master_message);
 	}
 }  
-echo "</div>
-
-<div class='row'>
-	<div class='col-sm-6'>
-	<h3>maryland_history</h3>
-	".print_r($maryland_history)."
-	</div>
-	<div class='col-sm-6'>
-	<h3>maryland_history_last</h3>
-	".print_r($maryland_history_last)."
-	</div>
-</div>
-
-</div>";
+echo "</div></div>";
+echo "<pre>".print_r($maryland_history_last)."</pre>";
 include_once('footer.php');
