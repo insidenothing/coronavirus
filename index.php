@@ -61,7 +61,7 @@ $old_date = $d['checked_datetime'];
 echo "<div class='col-sm-3'><h3>Date Range</h3>
 <p>$old_date</p>
 <p>$new_date</p>
-<h3>Select Different Date to Compare.</h3>";
+<h3>Compare Dates</h3>";
 echo "$dropdown";
 
 
