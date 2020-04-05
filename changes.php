@@ -9,9 +9,7 @@ $maryland_history = make_maryland_array();
 echo '<div class="container">';
 
 
-echo '
-<div class="row">';
-//<iframe width="1100" height="600" src="https://www.youtube.com/embed/videoseries?list=PLhAvAcGuQOsHsqKlOb2gpIgvAP7nFXyVS?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+echo '<div class="row">';
 global $send_message;
 $send_message = 'off';
 
@@ -50,7 +48,7 @@ global $maryland_history_last;
 $maryland_history_last = make_maryland_array($old);
 global $old_date;
 $old_date = $d['checked_datetime'];
-
+$old_date = date('Y-m-d',strtotime($old_date));
 echo "<div class='col-sm-12'><p>$old_date to $new_date</p>";
 
 
@@ -157,5 +155,10 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 		message_send($sms,$new_master_message);
 	}
 }  
-echo "</div></div>";
+echo "</div>
+<div class='row'>
+<div class='col-sm-6'><pre>".$maryland_history."</pre><div>
+<div class='col-sm-6'><pre>".$maryland_history_last."</pre><div>
+</div>
+</div>";
 include_once('footer.php');
