@@ -34,7 +34,7 @@ $d = mysqli_fetch_array($r);
 //global $new_date;
 //$new_date = $d['checked_datetime'];
 $new_date = $maryland_history['date'];
-$today = $new_date;
+$today = date('Y-m-d',strtotime($new_date));
 global $new_id;
 $new_id = $d['id'];
 
