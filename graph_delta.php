@@ -184,7 +184,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	axisY :{
 		includeZero: false,
-		title: "Number of Cases",
+		title: "Change in Cases",
 		suffix: ""
 	},
 	toolTip: {
