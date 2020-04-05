@@ -85,7 +85,7 @@ function do_math_location($county){
 ob_start();
 
 // V3
-echo '<div>Covid19math.net Update '.$maryland_history_last[$today]['Filter'].'/'.$maryland_history[$today]['Filter'].'</div>';
+echo '<div>Covid19math.net Update</div>';
 echo do_math_location('Maryland');
 echo do_math_location('total_hospitalized');
 echo do_math_location('total_released');
