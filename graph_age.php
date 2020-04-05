@@ -226,16 +226,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Baltimore'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Baltimore",
-		dataPoints: [
-			<?PHP echo make_county('Baltimore'); ?>
-		]
-	},
-	{
-		type: "spline",
 		visible: <?PHP echo show_on_graph('case30to39'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
