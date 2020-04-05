@@ -138,9 +138,10 @@ echo "<h3>SMS Userlist</h3>";
 $rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
 $dSMS = mysqli_fetch_array($rSMS);
 echo "<p>Registered Phones:  $dSMS[id]</p>";
+*/
 echo "</div>";
 
-*/
+
 // Convert json objects to array
 $array1 = json_decode($old, true);
 $array2 = json_decode($json, true);
