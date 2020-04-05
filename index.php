@@ -62,7 +62,7 @@ echo "<div class='col-sm-6'>";
 
 $video_of_the_day = 'xv-8i59AUFY';
 if(empty($_GET['novideo'])){
-	echo '<h3>Video Player</h3><div class="embed-responsive embed-responsive-16by9">
+	echo '<div class="embed-responsive embed-responsive-16by9">
 		<iframe id="ytplayer" type="text/html" class="embed-responsive-item"
 	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
 	frameborder="1" allowfullscreen> </iframe>
