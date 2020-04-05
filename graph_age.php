@@ -32,7 +32,7 @@ if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
-$page_description = "Animated Graph of $show Cases - $days_to_predict Day Prediction";
+$page_description = "Infection History by Age";
 include_once('menu.php');
 
 global $today;
@@ -48,7 +48,7 @@ global $maryland_history;
 $maryland_history = make_maryland_array();
 
 
-
+/*
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
@@ -57,7 +57,7 @@ while($d = mysqli_fetch_array($r)){
 	$normal[$d[name_of_location]] = ''; // string
 	$peak_str[$d[name_of_location]] = '<p>'.$d['name_of_location'].' peaked at 0<p>'; // string
 }
-
+*/
 
 
 global $buffer;
@@ -122,8 +122,8 @@ function make_county($county){
 		$today[$county] = $count;
 	}
         // predictive
-        $next = date('Y-m-d',strtotime($date)+86400);
-        $return .= make_county_prediction($county,$next,$count,$dt);
+        //$next = date('Y-m-d',strtotime($date)+86400);
+        //$return .= make_county_prediction($county,$next,$count,$dt);
     	$return = rtrim(trim($return), ",");
     return $return;
 }
@@ -180,7 +180,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	theme:"light2",
 	animationEnabled: true,
 	title:{
-		text: "The Great State of Maryland - <?PHP echo $days_to_predict;?> Day Prediction"
+		text: "The Great State of Maryland - Infection History by Age"
 	},
 	axisY :{
 		includeZero: false,
@@ -196,32 +196,32 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Maryland'); ?>,
+		visible: <?PHP echo show_on_graph('case0to9'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Maryland",
+		name: "age 0 to 9",
 		dataPoints: [
-			<?PHP echo make_county('Maryland'); ?>
+			<?PHP echo make_county('case0to9'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Allegany'); ?>,
+		visible: <?PHP echo show_on_graph('case10to19'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Allegany",
+		name: "age 10 to 19",
 		dataPoints: [
-			<?PHP echo make_county('Allegany'); ?>
+			<?PHP echo make_county('case10to19'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('AnneArundel'); ?>,
+		visible: <?PHP echo show_on_graph('case20to29'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Anne Arundel",
+		name: "age 20 to 29",
 		dataPoints: [
-			<?PHP echo make_county('AnneArundel'); ?>
+			<?PHP echo make_county('case20to29'); ?>
 		]
 	},
 	{
@@ -236,52 +236,52 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('BaltimoreCity'); ?>,
+		visible: <?PHP echo show_on_graph('case30to39'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Baltimore City",
+		name: "age 30 to 39",
 		dataPoints: [
-			<?PHP echo make_county('BaltimoreCity'); ?>
+			<?PHP echo make_county('case30to39'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Calvert'); ?>,
+		visible: <?PHP echo show_on_graph('case40to49'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Calvert",
+		name: "age 40 to 49",
 		dataPoints: [
-			<?PHP echo make_county('Calvert'); ?>
+			<?PHP echo make_county('case40to49'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Caroline'); ?>,
+		visible: <?PHP echo show_on_graph('case50to59'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Caroline",
+		name: "age 50 to 59",
 		dataPoints: [
-			<?PHP echo make_county('Caroline'); ?>
+			<?PHP echo make_county('case50to59'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Carroll'); ?>,
+		visible: <?PHP echo show_on_graph('case60to69'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Carroll",
+		name: "age 60 to 69",
 		dataPoints: [
-			<?PHP echo make_county('Carroll'); ?>
+			<?PHP echo make_county('case60to69'); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Cecil'); ?>,
+		visible: <?PHP echo show_on_graph('case70to79'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Cecil",
+		name: "age 70 to 79",
 		dataPoints: [
-			<?PHP echo make_county('Cecil'); ?>
+			<?PHP echo make_county('case70to79'); ?>
 		]
 	},
 	{
@@ -296,152 +296,12 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('Dorchester'); ?>,
+		visible: <?PHP echo show_on_graph('case80plus'); ?>,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Dorchester",
+		name: "age 80 plus",
 		dataPoints: [
-			<?PHP echo make_county('Dorchester'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Frederick'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Frederick",
-		dataPoints: [
-			<?PHP echo make_county('Frederick'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Garrett'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Garrett",
-		dataPoints: [
-			<?PHP echo make_county('Garrett'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Harford'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Harford",
-		dataPoints: [
-			<?PHP echo make_county('Harford'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Howard'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Howard",
-		dataPoints: [
-			<?PHP echo make_county('Howard'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Kent'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Kent",
-		dataPoints: [
-			<?PHP echo make_county('Kent'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Montgomery'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Montgomery",
-		dataPoints: [
-			<?PHP echo make_county('Montgomery'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('PrinceGeorges'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Prince Georges",
-		dataPoints: [
-			<?PHP echo make_county('PrinceGeorges'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('QueenAnnes'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Queen Annes",
-		dataPoints: [
-			<?PHP echo make_county('QueenAnnes'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Somerset'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Somerset",
-		dataPoints: [
-			<?PHP echo make_county('Somerset'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('StMarys'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "St Marys",
-		dataPoints: [
-			<?PHP echo make_county('StMarys'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Talbot'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Talbot",
-		dataPoints: [
-			<?PHP echo make_county('Talbot'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Washington'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Washington",
-		dataPoints: [
-			<?PHP echo make_county('Washington'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Wicomico'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Wicomico",
-		dataPoints: [
-			<?PHP echo make_county('Wicomico'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: <?PHP echo show_on_graph('Worcester'); ?>,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Worcester",
-		dataPoints: [
-			<?PHP echo make_county('Worcester'); ?>
+			<?PHP echo make_county('case80plus'); ?>
 		]
 	}]
 }
@@ -465,82 +325,5 @@ function toggleDataSeries(e) {
 <body>
 <div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 <script src="canvasjs.min.js"></script>
-<div class="container">
-	<div class="row">
-		<div class='col-sm-12' style='background-color:lightyellow;'>
-			<h3>Enter Days to Predict</h3>
-			<form method='POST'>
-				<p>1. Days to Predict <input name='days' value='<?PHP echo $days_to_predict; ?>'></p>
-				<p>2. Click to <input type='submit' value='Update Graph'></p>
-				<p><a href='?days=1&show=<?PHP echo $show; ?>'>Run Animation</a> | <a href='graphs.php'>Reset Animation</a></p>
-			</form>
-			<p>Open Source : <a target='_Blank' href='https://github.com/insidenothing/coronavirus'>https://github.com/insidenothing/coronavirus</a></p>
-		</div>
-	</div>
-	<div class="row">
-		<div class='col-sm-4' style='background-color:lightyellow; text-align:left;'>
-			<h3>Today ( Click to View )</h3>
-			<?PHP
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
-			$r = $core->query($q);
-			$d = mysqli_fetch_array($r);	
-			$r_int = number_format($today[$d[name_of_location]], 0, '.', ',');
-			echo "<p><a href='?show=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at $r_int</p>";
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' ";
-			$r = $core->query($q);
-			while($d = mysqli_fetch_array($r)){	
-				echo "<p><a href='?show=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at ".$today[$d[name_of_location]]."</p>";
-			}
-			?>		
-		</div>
-		<div class='col-sm-4' style='background-color:lightblue; text-align:left;'>
-			<h3>Peak Dates</h3>
-			<?PHP
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
-			$r = $core->query($q);
-			$d = mysqli_fetch_array($r);
-			echo $peak_str[$d[name_of_location]];
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland'  ";
-			$r = $core->query($q);
-			while($d = mysqli_fetch_array($r)){	
-				echo $peak_str[$d[name_of_location]];
-			}
-			?>
-		</div>
-		<div class='col-sm-4' style='background-color:lightgreen; text-align:left;'>
-			<h3>Recovery Dates</h3>
-			<?PHP
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations ";
-			$r = $core->query($q);
-			while($d = mysqli_fetch_array($r)){
-				if($today[$d[name_of_location]] < 20){
-					$normal[$d[name_of_location]] = '<p>Too few cases to predict (under 20) '.$d['name_of_location'].'.</p>'; // string
-				}
-				if($normal[$d[name_of_location]] == ''){
-					$normal[$d[name_of_location]] = '<p>Recovery not on graph for '.$d['name_of_location'].'.</p>'; // string
-				}
-			}
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
-			$r = $core->query($q);
-			$d = mysqli_fetch_array($r);
-			echo $normal[$d[name_of_location]];
-			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland'  ";
-			$r = $core->query($q);
-			while($d = mysqli_fetch_array($r)){	
-				echo $normal[$d[name_of_location]];
-			}
-			?>
-		</div>
-	</div>
-	<div class="container">
-	<div class="row">
-		<div class='col-sm-6' style='background-color:lightorange;'>
-			<?PHP echo $debug_in; ?>
-		</div>
-		<div class='col-sm-6' style='background-color:lightblue;'>
-			<?PHP echo $debug_out; ?>
-		</div>
-	</div>
-</div>
 	
 <?PHP include_once('footer.php'); ?>
