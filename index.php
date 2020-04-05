@@ -28,7 +28,7 @@ if ($test1 != $test2){
 	$r = $core->query("SELECT last_sent_date FROM coronavirus_populations where name_of_location = 'Maryland'");
 	$d = mysqli_fetch_array($r);
 	if ($d['last_sent_date'] == date('Y-m-d')){
-		$send_message = 'off';
+		$send_message = 'sent';
 	}else{
 		$send_message = 'on';
 		$r = $core->query("update coronavirus_populations set last_sent_date = '".date('Y-m-d')."' where name_of_location = 'Maryland'");
