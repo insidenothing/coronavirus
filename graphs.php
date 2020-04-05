@@ -181,7 +181,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "The Great State of Maryland - <?PHP echo $days_to_predict;?> Day Prediction"
+		text: "The Great State of Maryland - <?PHP echo $days_to_predict;?> Day Prediction covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
