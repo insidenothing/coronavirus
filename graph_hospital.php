@@ -223,6 +223,26 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		dataPoints: [
 			<?PHP echo make_county('deaths'); ?>
 		]
+	},
+	{
+		type: "spline",
+		visible: <?PHP echo show_on_graph('NegativeTests'); ?>,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Negative Tests",
+		dataPoints: [
+			<?PHP echo make_county('NegativeTests'); ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: <?PHP echo show_on_graph('TotalCases'); ?>,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Total Cases",
+		dataPoints: [
+			<?PHP echo make_county('TotalCases'); ?>
+		]
 	}]
 }
 			      
