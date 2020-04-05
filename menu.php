@@ -124,7 +124,10 @@ function county_aka($county){
 function make_maryland_array($json=''){
 	$return = array();
 	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
-	$json = getPage($url);
+	if ($json == ''){
+		// if we do not provide json fron the database use live
+		$json = getPage($url);
+	}
 	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
 		die('504');	
 	}
