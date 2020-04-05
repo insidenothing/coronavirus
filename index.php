@@ -67,6 +67,8 @@ if(empty($_GET['novideo'])){
 	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
 	frameborder="1" allowfullscreen> </iframe>
 		</div>';
+}else{
+	echo "<img src='img/delta.jpg' class='img-responsive'>";
 }
 
 
@@ -156,7 +158,7 @@ $new_master_message = ob_get_clean();
 
 echo "<div class='col-sm-4' style='text-align:left;'>";
 echo "$new_master_message";
-echo "<img src='img/delta.jpg' class='img-responsive'><p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
+echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
 	global $core;
