@@ -156,9 +156,9 @@ echo do_math_location('Washington');
 echo do_math_location('Worcester');
 $new_master_message = ob_get_clean();
 
-echo "<div class='col-sm-4' style='text-align:left;'><img src='img/delta.jpg' class='img-responsive'>";
+echo "<div class='col-sm-4' style='text-align:left;'>";
 echo "$new_master_message";
-echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
+echo "<img src='img/delta.jpg' class='img-responsive'><p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
 	global $core;
