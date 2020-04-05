@@ -76,7 +76,8 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
-	if ($maryland_history[$today]['Filter'] != '' ){
+	$update_version = $maryland_history[$today]['Filter'];
+	if ($update_version != '' ){
 		// this says get todays latest version a,b,c ?
 		$count_yesterday = $maryland_history_last[$today][$aka];	
 	}else{
@@ -93,7 +94,7 @@ function do_math_location($county){
 	}
 	$human_count = number_format($count_today);
 	$human_delta = number_format($count_delta);
-	if ($count_delta != 0) { sms("$dir $human_delta <b>$county</b> at $human_count. ");  } 
+	if ($count_delta != 0) { sms("$dir $human_delta <b>$county $update_version</b> at $human_count. ");  } 
 }
 
 ob_start();
