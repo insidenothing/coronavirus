@@ -98,7 +98,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		indexLabel: "{label} ({percentage}%)",
 		dataPoints: [
 			{ y: <?PHP echo total_count('Maryland');?>, label: "Maryland Pouplation" },
-			{ y: <?PHP echo $maryland_history[$date]['totalCases'];?>, label: "Maryland Infected" },
+			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Maryland Infected" },
 			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Maryland Hospitalized" },
 			{ y: <?PHP echo $maryland_history[$date]['total_released'];?>,  label: "Maryland Recovered" },
 			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Maryland Deaths" }
