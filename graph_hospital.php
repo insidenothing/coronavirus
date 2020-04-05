@@ -196,7 +196,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "spline",
-		visible: false,
+		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Total Hospitalized",
