@@ -5,6 +5,7 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 global $maryland_history;
 $maryland_history = make_maryland_array();
+
 echo '<div class="container">';
 
 
@@ -25,15 +26,6 @@ $test2 = $json;
 if ($test1 != $test2){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
     	global $core;
-	$r = $core->query("SELECT last_sent_date FROM coronavirus_populations where name_of_location = 'Maryland'");
-	$d = mysqli_fetch_array($r);
-	if ($d['last_sent_date'] == date('Y-m-d')){
-		$send_message = 'sent';
-	}else{
-		$send_message = 'off';
-		//$r = $core->query("update coronavirus_populations set last_sent_date = '".date('Y-m-d')."' where name_of_location = 'Maryland'");
-	}
-	
 }
 
 // Compare Most Recent to Last Change
@@ -64,6 +56,8 @@ if (isset($_POST['checked_datetime'])){
 }
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
+global $maryland_history_last;
+$maryland_history_last = make_maryland_array($old);
 global $old_date;
 $old_date = $d['checked_datetime'];
 
@@ -72,10 +66,6 @@ echo "<div class='col-sm-8'>";
 echo "<img src='img/delta.jpg' class='img-responsive'>";
 
 
-
-echo "<h3>Compare Dates</h3>
-<p>$old_date to $new_date</p>";
-echo "$dropdown";
 
 
 
@@ -88,6 +78,7 @@ $array2 = json_decode($json, true);
 
 function do_math_location($county){
 	global $maryland_history;
+	global $maryland_history_last;
 	global $new_id;
 	global $new_date;
 	global $old_date;
@@ -95,9 +86,15 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
+	
+	
+	// this is yesterdays update, we want the last
 	$yesterday = date('Y-m-d',strtotime($old_date));
-	$count_yesterday = $maryland_history[$yesterday][$aka];
-	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
+	$count_yesterday = $maryland_history_last[$yesterday][$aka];
+	
+	
+	$field = $county.'COVID19Cases';
+	$core->query("update coronavirus set $field = '$count_today' where id = '$new_id' ");
 	$count_delta = $count_today - $count_yesterday;
 	$dir = 'up';
 	if ( $count_today < $count_yesterday){
