@@ -89,7 +89,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	exportEnabled: true,
 	theme: "light2", //"light1", "dark1", "dark2"
 	title:{
-		text: "Maryland COVID-19 Outbreak"
+		text: "Maryland COVID-19 Outbreak covid19math.net"
 	},
 	data: [{
 		type: "funnel",
