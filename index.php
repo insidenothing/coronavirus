@@ -105,7 +105,7 @@ function do_math_location($county){
 	$count_yesterday = $maryland_history[$yesterday][$aka];
 	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
 	$count_delta = $count_today - $count_yesterday;
-	if ($count_delta != 0) { sms("$count_delta New $county $count_yesterday to $count_today. ");  } 
+	if ($count_delta != 0) { sms("+$count_delta $county at $count_today. ");  } 
 }
 
 ob_start();
