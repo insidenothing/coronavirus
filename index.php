@@ -71,7 +71,15 @@ $old_date = $d['checked_datetime'];
 
 echo "<div class='col-sm-8'>";
 
+function total_count($county){
+	global $core;
+	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	return $d['number_of_people'];
+}
 
+$graph_date = $date = $maryland_history['date'];
 ?>
 <script>
 window.onload = function () {
@@ -89,11 +97,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		toolTipContent: "<b>{label}</b>: {y} <b>({percentage}%)</b>",
 		indexLabel: "{label} ({percentage}%)",
 		dataPoints: [
-			{ y: 1400, label: "Pouplation" },
-			{ y: 1212, label: "Infected" },
-			{ y: 1080, label: "Hospitalized" },
-			{ y: 665,  label: "Recovered" },
-			{ y: 578, label: "Deaths" }
+			{ y: <?PHP echo total_count('Maryland');?>, label: "Maryland Pouplation" },
+			{ y: <?PHP echo $maryland_history[$date]['totalCases'];?>, label: "Maryland Infected" },
+			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Maryland Hospitalized" },
+			{ y: <?PHP echo $maryland_history[$date]['total_released'];?>,  label: "Maryland Recovered" },
+			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Maryland Deaths" }
 		]
 	}]
 });
@@ -116,7 +124,7 @@ function calculatePercentage() {
 </script>
 
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
 <?PHP
