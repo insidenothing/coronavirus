@@ -32,11 +32,20 @@ if(isset($_GET['phone'])){
 ?>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
+    <?PHP
+    echo "<h3>SMS Userlist</h3>";
+$rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
+$dSMS = mysqli_fetch_array($rSMS);
+echo "<p>Registered Phones:  $dSMS[id]</p>";
+echo "</div>";
+    ?>
+    </div>
+    <div class="col-sm-4">
       <h3>Enter Your Phone Number</h3>
       <p><form> <input name='phone'> <input type='submit' value='Sign Up'> </form></p>
     </div>
-    <div class="col-sm-6"> 
+    <div class="col-sm-4"> 
       <p><img src='img/phone.jpg'></p>
     </div>
   </div>
