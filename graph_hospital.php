@@ -181,7 +181,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "The Great State of Maryland - Hospital Data"
+		text: "The Great State of Maryland - Hospital Data covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
