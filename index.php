@@ -86,16 +86,18 @@ window.onload = function () {
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
+	exportEnabled: true,
 	theme: "light2", //"light1", "dark1", "dark2"
 	title:{
 		text: "Maryland COVID-19 Outbreak"
 	},
 	data: [{
 		type: "funnel",
-		indexLabelPlacement: "inside",
-		indexLabelFontColor: "white",
+		showInLegend: true,
+		legendText: "{label}",
+		indexLabel: "{label} - {y}",
 		toolTipContent: "<b>{label}</b>: {y}</b>",
-		indexLabel: "{label} {y}",
+		indexLabelFontColor: "black",
 		dataPoints: [
 			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
 			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Hospitalized" },
