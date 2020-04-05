@@ -22,21 +22,7 @@ $json = json_encode($maryland_history);
 $new = $core->real_escape_string($json);
 $test1 = $old;
 $test2 = $json;
-if ($test1 != $test2){
-	/*
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
-    	global $core;
-	$r = $core->query("SELECT last_sent_date FROM coronavirus_populations where name_of_location = 'Maryland'");
-	$d = mysqli_fetch_array($r);
-	if ($d['last_sent_date'] == date('Y-m-d')){
-		$send_message = 'sent';
-	}else{
-		$send_message = 'on';
-		$r = $core->query("update coronavirus_populations set last_sent_date = '".date('Y-m-d')."' where name_of_location = 'Maryland'");
-	}
-	*/
-	
-}
+
 
 // Compare Most Recent to Last Change
 $r = $core->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
@@ -117,7 +103,7 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	data: [{
 		type: "pie",
 		startAngle: 240,
-		yValueFormatString: "##0.00\"%\"",
+		yValueFormatString: "#####",
 		indexLabel: "{label} {y}",
 		dataPoints: [
 			{y: <?PHP echo $maryland_history[$date]['Male'];?>, label: "Male"},
