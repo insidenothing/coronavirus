@@ -39,8 +39,6 @@ $new_id = $d['id'];
 $y_time = strtotime($new_date) - 86400;
 $yesterday = date('Y-m-d',$y_time);
 
-
-
 $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus order by id DESC limit 1, 1");  
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
@@ -50,15 +48,6 @@ global $old_date;
 $old_date = $d['checked_datetime'];
 $old_date = date('Y-m-d',strtotime($old_date));
 echo "<div class='col-sm-12'><p>$old_date to $new_date</p>";
-
-
-
-
-
-
-
-
-
 
 // Convert json objects to array
 $array1 = json_decode($old, true);
@@ -74,14 +63,12 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
-	$update_version = $maryland_history[$today]['Filter'];
-	if ($update_version != '' ){
-		// this says get todays latest version a,b,c ?
-		$count_yesterday = $maryland_history_last[$today][$aka];	
+	$count_yesterdayA = $maryland_history_last[$today][$aka];	
+	$count_yesterdayB = $maryland_history_last[$yesterday][$aka];	
+	if ($count_yesterdayA > $count_yesterdayB){
+		$count_yesterday = $count_yesterdayA;
 	}else{
-		// otherwise this is yesterdays update
-		$yesterday = date('Y-m-d',strtotime($old_date));
-		$count_yesterday = $maryland_history_last[$yesterday][$aka];	
+		$count_yesterday = $count_yesterdayB;
 	}
 	$field = $county.'COVID19Cases';
 	$core->query("update coronavirus set $field = '$count_today' where id = '$new_id' ");
@@ -104,19 +91,6 @@ echo do_math_location('total_hospitalized');
 echo do_math_location('total_released');
 echo do_math_location('deaths');
 echo do_math_location('NegativeTests');
-
-echo do_math_location('case0to9');
-echo do_math_location('case10to19');
-echo do_math_location('case20to29');
-echo do_math_location('case30to39');
-echo do_math_location('case40to49');
-echo do_math_location('case50to59');
-echo do_math_location('case60to69');
-echo do_math_location('case70to79');
-echo do_math_location('case80plus');
-
-echo do_math_location('Male');
-echo do_math_location('Female');
 
 echo do_math_location('Allegany');
 echo do_math_location('AnneArundel');
@@ -141,6 +115,26 @@ echo do_math_location('StMarys');
 echo do_math_location('Talbot');
 echo do_math_location('Washington');
 echo do_math_location('Worcester');
+
+echo do_math_location('case0to9');
+echo do_math_location('case10to19');
+echo do_math_location('case20to29');
+echo do_math_location('case30to39');
+echo do_math_location('case40to49');
+echo do_math_location('case50to59');
+echo do_math_location('case60to69');
+echo do_math_location('case70to79');
+echo do_math_location('case80plus');
+
+echo do_math_location('Male');
+echo do_math_location('Female');
+
+echo do_math_location('CaseDelta');
+echo do_math_location('NegDelta');
+echo do_math_location('hospitalizedDelta');
+echo do_math_location('releasedDelta');
+echo do_math_location('deathsDelta');
+
 $new_master_message = ob_get_clean();
 
 
