@@ -112,17 +112,38 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	}]
 });
 chart2.render();
-	
+var chart3 = new CanvasJS.Chart("chartContainer3", {
+	exportEnabled: true,
+	animationEnabled: true,
+	title:{
+		text: "Maryland Pouplation covid19math.net"
+	},
+	legend:{
+		cursor: "pointer",
+		itemclick: explodePie
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}</strong>",
+		indexLabel: "{name} - {y}",
+	<?PHP $left = 6043000 - $maryland_history[$date]['NegativeTests'] - $maryland_history[$date]['TotalCases']; ?>	
+        dataPoints: [
+			{y: <?PHP echo $left;?>, label: "Population"},
+			{y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "NegativeTests"},
+	      		{y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "TotalCases"}
+		]
+      
+	}]
+});
+chart3.render();	
 }
 </script>
 
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-
-
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-
+<div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <?PHP
 /*
 echo "<h3>Compare Dates</h3>
