@@ -25,7 +25,7 @@ $test1 = $old;
 $test2 = $json;
 if ($test1 != $test2){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
-    	global $core;
+    	$send_message = 'update disabled';
 }
 
 // Compare Most Recent to Last Change
