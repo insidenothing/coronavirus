@@ -86,13 +86,15 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
-	
-	
-	// this is yesterdays update, we want the last
-	$yesterday = date('Y-m-d',strtotime($old_date));
-	$count_yesterday = $maryland_history_last[$yesterday][$aka];
-	
-	
+	if ($maryland_history[$today]['Filter'] != '' ){
+		// this says get todays latest version a,b,c ?
+		$yesterday = date('Y-m-d');
+		$count_yesterday = $maryland_history_last[$yesterday][$aka];	
+	}else{
+		// otherwise this is yesterdays update
+		$yesterday = date('Y-m-d',strtotime($old_date));
+		$count_yesterday = $maryland_history_last[$yesterday][$aka];	
+	}
 	$field = $county.'COVID19Cases';
 	$core->query("update coronavirus set $field = '$count_today' where id = '$new_id' ");
 	$count_delta = $count_today - $count_yesterday;
