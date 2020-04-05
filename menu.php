@@ -1,6 +1,11 @@
 <html>
 <head>
 	<?PHP 
+	if (empty($logo)){
+		$logo == 'on'
+	}
+	
+	
 	if(isset($page_description)){
 		echo "<title>$page_description</title>";
 	}elseif (isset($_POST['checked_datetime'])){ 
@@ -313,7 +318,7 @@ return $return;
 		</style>
 <center><div style="background-color:white; width:1300;" id="rcorners2">
 	<?PHP
-	if ($logo == 'no'){
+	if ($logo == 'on'){
 		// set logo to anything to hide this
 		echo '<img src="img/header.PNG"  class="img-rounded" >';	
 	}else{
