@@ -196,7 +196,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('total_hospitalized'); ?>,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Total Hospitalized",
@@ -226,7 +226,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('NegativeTests'); ?>,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Negative Tests",
@@ -236,7 +236,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: <?PHP echo show_on_graph('TotalCases'); ?>,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Total Cases",
