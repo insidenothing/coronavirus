@@ -2,7 +2,7 @@
 <head>
 	<?PHP 
 	if (empty($logo)){
-		$logo == 'on'
+		$logo == 'on';
 	}
 	
 	
