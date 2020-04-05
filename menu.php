@@ -330,6 +330,7 @@ return $return;
 	<td><a href='graphs.php'><img src='img/graph_county.png'></a></td>
 	<td><a href='graph_age.php'><img src='img/graph_age.png'></a></td>
 	<td><a href='graph_hospital.php'><img src='img/graph_hospital.png'></a></td>
+	<td><a href='graph_delta.php'><img src='img/graph_delta.png'></a></td>
 	<td><a href='infection_level.php'><img src='img/infected.png'></a></td>
 	<td><a href='signup.php'><img src='img/signup.png'></a></td>
 	<td><a href='https://www.facebook.com/groups/231583938033989/'><img src='img/facebook.png'></a></td>
