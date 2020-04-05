@@ -32,7 +32,7 @@ if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
-$page_description = "Maryland Deltas #math";
+$page_description = "Maryland Case Deltas";
 include_once('menu.php');
 
 global $today;
