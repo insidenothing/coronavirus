@@ -58,7 +58,7 @@ $old = $d['html'];
 global $old_date;
 $old_date = $d['checked_datetime'];
 
-echo "<div class='col-sm-6'>";
+echo "<div class='col-sm-8'>";
 
 $video_of_the_day = 'xv-8i59AUFY';
 if(empty($_GET['novideo'])){
@@ -156,7 +156,7 @@ echo do_math_location('Washington');
 echo do_math_location('Worcester');
 $new_master_message = ob_get_clean();
 
-echo "<div class='col-sm-6' style='text-align:left;'><img src='img/delta.jpg' class='img-responsive'>";
+echo "<div class='col-sm-4' style='text-align:left;'><img src='img/delta.jpg' class='img-responsive'>";
 echo "$new_master_message";
 echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
 echo "</div>";
