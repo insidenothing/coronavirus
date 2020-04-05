@@ -69,16 +69,8 @@ $old_date = $d['checked_datetime'];
 
 echo "<div class='col-sm-8'>";
 
-$video_of_the_day = 'xv-8i59AUFY';
-if(empty($_GET['novideo'])){
-	echo '<div class="embed-responsive embed-responsive-16by9">
-		<iframe id="ytplayer" type="text/html" class="embed-responsive-item"
-	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
-	frameborder="1" allowfullscreen> </iframe>
-		</div>';
-}else{
-	echo "<img src='img/delta.jpg' class='img-responsive'>";
-}
+echo "<img src='img/delta.jpg' class='img-responsive'>";
+
 
 
 echo "<h3>Compare Dates</h3>
@@ -88,13 +80,6 @@ echo "$dropdown";
 
 
 
-
-
-echo "<h3>SMS Userlist</h3>";
-$rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
-$dSMS = mysqli_fetch_array($rSMS);
-echo "<p>Registered Phones:  $dSMS[id]</p>";
-echo "</div>";
 
 
 // Convert json objects to array
