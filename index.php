@@ -124,7 +124,7 @@ chart2.render();
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
 
 <?PHP
-
+/*
 echo "<h3>Compare Dates</h3>
 <p>$old_date to $new_date</p>";
 echo "$dropdown";
@@ -140,7 +140,7 @@ $dSMS = mysqli_fetch_array($rSMS);
 echo "<p>Registered Phones:  $dSMS[id]</p>";
 echo "</div>";
 
-
+*/
 // Convert json objects to array
 $array1 = json_decode($old, true);
 $array2 = json_decode($json, true);
