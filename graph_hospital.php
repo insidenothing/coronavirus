@@ -179,6 +179,7 @@ window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
 	theme:"light2",
 	animationEnabled: true,
+	exportEnabled: true,
 	title:{
 		text: "The Great State of Maryland - Hospital Data"
 	},
