@@ -61,9 +61,9 @@ $maryland_history_last = make_maryland_array($old);
 global $old_date;
 $old_date = $d['checked_datetime'];
 
-echo "<div class='col-sm-8'>";
+echo "<div class='col-sm-12'>";
 
-echo "<img src='img/delta.jpg' class='img-responsive'>";
+
 
 
 
@@ -153,7 +153,7 @@ echo do_math_location('Washington');
 echo do_math_location('Worcester');
 $new_master_message = ob_get_clean();
 
-echo "<div class='col-sm-4' style='text-align:left;'>";
+
 echo "$new_master_message";
 echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
 echo "</div>";
