@@ -6,19 +6,7 @@ include_once('menu.php');
 global $maryland_history;
 $maryland_history = make_maryland_array();
 echo '<div class="container">';
-$video_of_the_day = 'xv-8i59AUFY';
-if(empty($_GET['novideo'])){
-	echo '
-	<div class="row">
-		<div class="col-sm-12">
-		<div class="embed-responsive embed-responsive-16by9">
-		<iframe id="ytplayer" type="text/html" class="embed-responsive-item"
-	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
-	frameborder="1" allowfullscreen> </iframe>
-		</div>
-			</div>
-	</div>';
-}
+
 
 echo '
 <div class="row">';
@@ -75,6 +63,19 @@ echo "<div class='col-sm-3'><h3>Date Range</h3>
 <p>$new_date</p>
 <h3>Select Different Date to Compare.</h3>";
 echo "$dropdown";
+
+
+
+$video_of_the_day = 'xv-8i59AUFY';
+if(empty($_GET['novideo'])){
+	echo '<h3>Video Player</h3><div class="embed-responsive embed-responsive-16by9">
+		<iframe id="ytplayer" type="text/html" class="embed-responsive-item"
+	src="https://www.youtube.com/embed/'.$video_of_the_day.'?autoplay=1"
+	frameborder="1" allowfullscreen> </iframe>
+		</div>';
+}
+
+
 echo "</div>";
 
 
