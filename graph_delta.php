@@ -180,7 +180,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	theme:"light2",
 	animationEnabled: true,
 	title:{
-		text: "The Great State of Maryland - $page_description"
+		text: "The Great State of Maryland - <?PHP echo $page_description; ?>"
 	},
 	axisY :{
 		includeZero: false,
