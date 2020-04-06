@@ -85,7 +85,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		indexLabelFontColor: "black",
 		dataPoints: [
 			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
-			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Hospitalized" },
+			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Hospital" },
 			{ y: <?PHP echo $maryland_history[$date]['total_released'];?>,  label: "Recovered" },
 			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Deaths" }
 		]
@@ -123,7 +123,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		type: "doughnut",
 		startAngle: 60,
 		//innerRadius: 60,
-		indexLabelFontSize: 17,
+		indexLabelFontSize: 12,
 		indexLabel: "{label} - #percent%",
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
