@@ -115,6 +115,7 @@ chart2.render();
 <?PHP $left = 6043000 - $maryland_history[$date]['NegativeTests'] - $maryland_history[$date]['TotalCases']; ?>	
 var chart3 = new CanvasJS.Chart("chartContainer3", {
 	animationEnabled: true,
+	exportEnabled: true,
 	title:{
 		text: "Maryland Population covid19math.net",
 		horizontalAlign: "left"
@@ -123,7 +124,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		type: "doughnut",
 		startAngle: 60,
 		//innerRadius: 60,
-		indexLabelFontSize: 12,
+		indexLabelFontSize: 14,
 		indexLabel: "{label} - #percent%",
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
