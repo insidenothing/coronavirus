@@ -10,7 +10,6 @@ echo '<div class="container">';
 
 echo '
 <div class="row">';
-//<iframe width="1100" height="600" src="https://www.youtube.com/embed/videoseries?list=PLhAvAcGuQOsHsqKlOb2gpIgvAP7nFXyVS?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 global $send_message;
 $send_message = 'off';
 
@@ -136,7 +135,19 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
       
 	}]
 });
-chart3.render();	
+chart3.render();
+	
+	
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+
+}
+	
 }
 </script>
 
