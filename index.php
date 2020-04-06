@@ -193,7 +193,7 @@ function do_math_location($county){
 ob_start();
 
 // V3
-echo '<div>Covid19math.net Update </div>';
+echo '<h3>Covid19math.net Update</h3>';
 echo do_math_location('Maryland');
 echo do_math_location('total_hospitalized');
 echo do_math_location('total_released');
@@ -236,6 +236,13 @@ echo do_math_location('StMarys');
 echo do_math_location('Talbot');
 echo do_math_location('Washington');
 echo do_math_location('Worcester');
+	
+echo do_math_location('CaseDelta');
+echo do_math_location('NegDelta');
+echo do_math_location('hospitalizedDelta');
+echo do_math_location('releasedDelta');
+echo do_math_location('deathsDelta');	
+	
 $new_master_message = ob_get_clean();
 
 echo "<div class='col-sm-4' style='text-align:left;'>";
