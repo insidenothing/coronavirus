@@ -54,7 +54,7 @@ $old = $d['html'];
 global $old_date;
 $old_date = $d['checked_datetime'];
 
-echo "<div class='col-sm-8'>";
+echo "<div class='col-sm-4'>";
 
 function total_count($county){
 	global $core;
@@ -151,7 +151,10 @@ function explodePie (e) {
 }
 </script>
 
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<div id="chartContainer" style="height: 740px; width: 100%;"></div>
+
+</div><div class='col-sm-4'>
+
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
 <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
