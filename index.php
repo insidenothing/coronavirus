@@ -123,14 +123,14 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	},
 	data: [{
 		type: "pie",
-		showInLegend: true,
+		showInLegend: false,
 		toolTipContent: "{label}: <strong>{y}</strong>",
 		indexLabel: "{label} - {y}",
 	<?PHP $left = 6043000 - $maryland_history[$date]['NegativeTests'] - $maryland_history[$date]['TotalCases']; ?>	
         dataPoints: [
 			{y: <?PHP echo $left;?>, label: "Population"},
-			{y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "NegativeTests"},
-	      		{y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "TotalCases"}
+			{y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "Negative"},
+	      		{y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Total"}
 		]
       
 	}]
