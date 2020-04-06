@@ -111,43 +111,30 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	}]
 });
 chart2.render();
+	
+<?PHP $left = 6043000 - $maryland_history[$date]['NegativeTests'] - $maryland_history[$date]['TotalCases']; ?>	
 var chart3 = new CanvasJS.Chart("chartContainer3", {
-	exportEnabled: true,
 	animationEnabled: true,
 	title:{
-		text: "Maryland Pouplation covid19math.net"
-	},
-	legend:{
-		cursor: "pointer",
-		itemclick: explodePie
+		text: "Maryland Population covid19math.net",
+		horizontalAlign: "left"
 	},
 	data: [{
-		type: "pie",
-		showInLegend: false,
-		toolTipContent: "{label}: <strong>{y}</strong>",
-		indexLabel: "{label} - {y}",
-	<?PHP $left = 6043000 - $maryland_history[$date]['NegativeTests'] - $maryland_history[$date]['TotalCases']; ?>	
-        dataPoints: [
-			{y: <?PHP echo $left;?>, label: "Population"},
-			{y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "Negative"},
-	      		{y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Total"}
+		type: "doughnut",
+		startAngle: 60,
+		//innerRadius: 60,
+		indexLabelFontSize: 17,
+		indexLabel: "{label} - #percent%",
+		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+		dataPoints: [
+			{ y: <?PHP echo $left;?>, label: "Population" },
+			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
+			{ y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "Negtive"}
 		]
-      
 	}]
 });
-chart3.render();
-	
-	
-function explodePie (e) {
-	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-	} else {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-	}
-	e.chart.render();
+chart3.render();	
 
-}
-	
 }
 </script>
 
