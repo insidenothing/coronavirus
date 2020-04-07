@@ -246,11 +246,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
-		type: "line",
+		type: "spline",
+		visible: true,
 		showInLegend: true,
+		yValueFormatString: "#####",
 		name: "Deaths Delta Low Trend",
-		axisYType: "secondary",
-		yValueFormatString: "######",
 		dataPoints: [
 			{ label: 2020-03-28, y: 0 },
 			{ label: 2020-03-31, y: 5 },
