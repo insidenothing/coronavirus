@@ -252,10 +252,10 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		yValueFormatString: "#####",
 		name: "Deaths Delta Low Trend",
 		dataPoints: [
-			{ label: 2020-03-28, y: 0 },
-			{ label: 2020-03-31, y: 5 },
-			{ label: 2020-04-03, y: 6 },
-			{ label: 2020-04-07, y: 12 }
+			{ label: "2020-03-28", y: '0' },
+			{ label: "2020-03-31", y: '5' },
+			{ label: "2020-04-03", y: '6' },
+			{ label: "2020-04-07", y: '12' }
 		]
 	}]
 }
