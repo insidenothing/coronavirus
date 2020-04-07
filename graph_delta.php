@@ -244,6 +244,19 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		dataPoints: [
 			<?PHP echo make_county('deathsDelta'); ?>
 		]
+	},
+	{
+		type: "line",
+		showInLegend: true,
+		name: "Deaths Delta Low Trend",
+		axisYType: "secondary",
+		yValueFormatString: "######",
+		dataPoints: [
+			{ x: 2020-03-28, y: 0 },
+			{ x: 2020-03-31, y: 5 },
+			{ x: 2020-04-03, y: 6 },
+			{ x: 2020-04-07, y: 12 }
+		]
 	}]
 }
 			      
