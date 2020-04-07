@@ -181,6 +181,13 @@ function make_county_prediction($county,$start,$count,$dt){
 $date = date('Y-m-d');
 $AKA = county_aka($county);
 $dAKA = county_daka($county);
+function total_count($county){
+	global $core;
+	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	return $d['number_of_people'];
+}
 ?>
 <script>
 window.onload = function () {
@@ -246,7 +253,7 @@ chart2.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "Maryland Population covid19math.net",
+		text: "<?PHP echo $county;?> Population covid19math.net",
 		horizontalAlign: "left"
 	},
 	data: [{
@@ -257,9 +264,9 @@ chart2.render();
 		indexLabel: "{label} - #percent%",
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
-			{ y: <?PHP echo $left;?>, label: "Population" },
-			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
-			{ y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "Negtive"}
+			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
+			{ y: <?PHP echo $maryland_history[$date][$AKA]; ?>, label: "Infected" },
+			{ y: <?PHP echo $maryland_history[$date][$dAKA]; ?>, label: "Deaths"}
 		]
 	}]
 });
