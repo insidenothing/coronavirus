@@ -63,8 +63,10 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
-	$count_yesterdayA = $maryland_history_last[$today][$aka];	
-	$count_yesterdayB = $maryland_history_last[$yesterday][$aka];	
+	$count_yesterdayA = $maryland_history_last[$today][$aka];
+	echo "<h1>$county count_yesterdayA $count_yesterdayA</h1>";
+	$count_yesterdayB = $maryland_history_last[$yesterday][$aka];
+	echo "<h1>$county count_yesterdayB $count_yesterdayB</h1>";
 	if ($count_yesterdayA > $count_yesterdayB){
 		$count_yesterday = $count_yesterdayA;
 	}else{
