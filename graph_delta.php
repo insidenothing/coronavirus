@@ -197,8 +197,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "spline",
-		visible: true,
-		showInLegend: false,
+		visible: false,
+		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Case Delta",
 		dataPoints: [
@@ -207,8 +207,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: true,
-		showInLegend: false,
+		visible: false,
+		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Neg Delta",
 		dataPoints: [
@@ -217,8 +217,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: true,
-		showInLegend: false,
+		visible: false,
+		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Hospitalized Delta",
 		dataPoints: [
@@ -227,8 +227,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: true,
-		showInLegend: false,
+		visible: false,
+		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Released Delta",
 		dataPoints: [
