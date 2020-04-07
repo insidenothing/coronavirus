@@ -104,7 +104,7 @@ function county_daka($county){
         if ($county == 'QueenAnnes'){ return 'dQUEE'; }
         if ($county == 'Somerset'){ return 'dSOME'; }
         if ($county == 'StMarys'){ return 'dSTMA'; }
-        if ($county == 'Talbot'){ return 'dTALB'; }
+        if ($county == 'Talbot'){ return 'dTALB_1'; }
         if ($county == 'Washington'){ return 'dWASH'; }
         if ($county == 'Wicomico'){ return 'dWICO'; }
         if ($county == 'Worcester'){ return 'dWORC'; }
