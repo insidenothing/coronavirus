@@ -143,6 +143,7 @@ $new_master_message = ob_get_clean();
 
 echo "$new_master_message";
 echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
+echo "<a href='?forcesms=1'><img class='img-responsive' src='img/send.jpg'></a>";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
 	global $core;
