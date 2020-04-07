@@ -178,6 +178,8 @@ function make_county_prediction($county,$start,$count,$dt){
     }
     return $return;
 }
+$AKA = county_aka($county);
+$dAKA = county_daka($county);
 ?>
 <script>
 window.onload = function () {
@@ -216,6 +218,28 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			      
 			      );
 chart.render();
+	
+	var chart2 = new CanvasJS.Chart("chartContainer2", {
+	animationEnabled: true,
+	exportEnabled: true,
+	theme: "light2", //"light1", "dark1", "dark2"
+	title:{
+		text: "<?PHP echo $county;?> COVID-19 Outbreak covid19math.net"
+	},
+	data: [{
+		type: "funnel",
+		showInLegend: true,
+		legendText: "{label}",
+		indexLabel: "{label} - {y}",
+		toolTipContent: "<b>{label}</b>: {y}</b>",
+		indexLabelFontColor: "black",
+		dataPoints: [
+			{ y: <?PHP echo $maryland_history[$date][$AKA];?>, label: "Infected" },
+			{ y: <?PHP echo $maryland_history[$date][$dAKA];?>, label: "Deaths" }
+		]
+	}]
+});
+chart2.render();
 
 function toggleDataSeries(e) {
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
