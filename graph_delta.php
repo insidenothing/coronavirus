@@ -246,7 +246,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
-		type: "spline",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
