@@ -61,6 +61,7 @@ function do_math_location($county){
 	global $old_date;
 	global $core;
 	$today = date('Y-m-d',strtotime($new_date));
+	$yesterday = date('Y-m-d',strtotime($old_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
 	$count_yesterdayA = $maryland_history_last[$today][$aka];
