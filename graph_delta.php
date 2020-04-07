@@ -281,7 +281,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			{ label: "2020-03-29", y: 0 },
 			{ label: "2020-03-30", y: 0 },
 			{ label: "2020-03-31", y: 3 },
-			{ label: "2020-04-01", y: 5 },
+			{ label: "2020-04-01", y: 4 },
 			{ label: "2020-04-02", y: 5 },
 			{ label: "2020-04-03", y: 6 },
 			{ label: "2020-04-04", y: 6 },
