@@ -242,6 +242,29 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 });
 chart2.render();
 
+	var chart3 = new CanvasJS.Chart("chartContainer3", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "Maryland Population covid19math.net",
+		horizontalAlign: "left"
+	},
+	data: [{
+		type: "doughnut",
+		startAngle: 60,
+		//innerRadius: 60,
+		indexLabelFontSize: 14,
+		indexLabel: "{label} - #percent%",
+		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+		dataPoints: [
+			{ y: <?PHP echo $left;?>, label: "Population" },
+			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
+			{ y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "Negtive"}
+		]
+	}]
+});
+chart3.render();	
+	
 function toggleDataSeries(e) {
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 		e.dataSeries.visible = false;
@@ -273,7 +296,7 @@ function toggleDataSeries(e) {
 			
 		</div>
 		<div class='col-sm-4' style='background-color:lightgreen; text-align:left;'>
-			<h3>4</h3>
+			<div id="chartContainer3" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
 			
 		</div>
 	</div>
