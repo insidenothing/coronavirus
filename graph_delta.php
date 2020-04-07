@@ -197,7 +197,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "spline",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Case Delta",
@@ -208,7 +208,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	{
 		type: "spline",
 		visible: <?PHP echo show_on_graph('NegDelta'); ?>,
-		showInLegend: true,
+		showInLegend: false,
 		yValueFormatString: "#####",
 		name: "Neg Delta",
 		dataPoints: [
@@ -218,7 +218,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	{
 		type: "spline",
 		visible: <?PHP echo show_on_graph('hospitalizedDelta'); ?>,
-		showInLegend: true,
+		showInLegend: false,
 		yValueFormatString: "#####",
 		name: "Hospitalized Delta",
 		dataPoints: [
@@ -227,7 +227,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	{
 		type: "spline",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "Released Delta",
@@ -279,11 +279,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			{ label: "2020-03-27", y: 0 },
 			{ label: "2020-03-28", y: 0 },
 			{ label: "2020-03-29", y: 0 },
-			{ label: "2020-03-30", y: 0 },
-			{ label: "2020-03-31", y: 3 },
-			{ label: "2020-04-01", y: 4 },
-			{ label: "2020-04-02", y: 5 },
-			{ label: "2020-04-03", y: 6 },
+			{ label: "2020-03-30", y: 1 },
+			{ label: "2020-03-31", y: 2 },
+			{ label: "2020-04-01", y: 3 },
+			{ label: "2020-04-02", y: 4 },
+			{ label: "2020-04-03", y: 5 },
 			{ label: "2020-04-04", y: 6 },
 			{ label: "2020-04-05", y: 8 },
 			{ label: "2020-04-06", y: 10 },
