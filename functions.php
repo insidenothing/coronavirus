@@ -83,6 +83,35 @@ function county_aka($county){
 	if ($county == 'Maryland'){ return 'TotalCases'; }
 	return $county;
 }
+function county_daka($county){
+ 	if ($county == 'Allegany'){ return 'dALLE'; }
+        if ($county == 'AnneArundel'){ return 'dANNE'; }
+        if ($county == 'Baltimore'){ return 'dBALT'; }
+        if ($county == 'BaltimoreCity'){ return 'dBCITY'; }
+        if ($county == 'Calvert'){ return 'dCALV'; }
+        if ($county == 'Caroline'){ return 'dCARO'; }
+        if ($county == 'Carroll'){ return 'dCARR'; }
+        if ($county == 'Cecil'){ return 'dCECI'; }
+        if ($county == 'Charles'){ return 'dCHAR'; }
+        if ($county == 'Dorchester'){ return 'dDORC'; }
+        if ($county == 'Frederick'){ return 'dFRED'; }
+        if ($county == 'Garrett'){ return 'dGARR'; }
+        if ($county == 'Harford'){ return 'dHARF'; }
+        if ($county == 'Howard'){ return 'dHOWA'; }
+        if ($county == 'Kent'){ return 'dKENT'; }
+        if ($county == 'Montgomery'){ return 'dMONT'; }
+        if ($county == 'PrinceGeorges'){ return 'dPRIN'; }
+        if ($county == 'QueenAnnes'){ return 'dQUEE'; }
+        if ($county == 'Somerset'){ return 'dSOME'; }
+        if ($county == 'StMarys'){ return 'dSTMA'; }
+        if ($county == 'Talbot'){ return 'dTALB'; }
+        if ($county == 'Washington'){ return 'dWASH'; }
+        if ($county == 'Wicomico'){ return 'dWICO'; }
+        if ($county == 'Worcester'){ return 'dWORC'; }
+	if ($county == 'Maryland'){ return 'deaths'; }
+	return $county;
+}
+
 function make_maryland_array($json=''){
 	$return = array();
 	if ($json != ''){
