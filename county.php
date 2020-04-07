@@ -288,14 +288,14 @@ function toggleDataSeries(e) {
 		</div>
 	</div>
 	<div class="row">
-		<div class='col-sm-4' style='background-color:lightyellow; text-align:left;'>
+		<div class='col-sm-4'>
 			<div id="chartContainer2" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
 		</div>
-		<div class='col-sm-4' style='background-color:lightblue; text-align:left;'>
+		<div class='col-sm-4'>
 			<h3>4</h3>
 			
 		</div>
-		<div class='col-sm-4' style='background-color:lightgreen; text-align:left;'>
+		<div class='col-sm-4'>
 			<div id="chartContainer3" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
 			
 		</div>
