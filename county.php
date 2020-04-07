@@ -219,7 +219,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			      );
 chart.render();
 	
-	var chart2 = new CanvasJS.Chart("chartContainer2", {
+var chart2 = new CanvasJS.Chart("chartContainer2", {
 	animationEnabled: true,
 	exportEnabled: true,
 	theme: "light2", //"light1", "dark1", "dark2"
@@ -265,8 +265,7 @@ function toggleDataSeries(e) {
 	</div>
 	<div class="row">
 		<div class='col-sm-4' style='background-color:lightyellow; text-align:left;'>
-			<h3>4</h3>
-			
+			<div id="chartContainer2" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
 		</div>
 		<div class='col-sm-4' style='background-color:lightblue; text-align:left;'>
 			<h3>4</h3>
