@@ -178,7 +178,7 @@ function make_county_prediction($county,$start,$count,$dt){
 		$peak[$county] = $r;
 		$peak_str[$county] = "<p>On $out $county peaked at $r_int<p>";
         }
-	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $normal[$county] == '' && $day_buffer > 14){
+	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $normal[$county] == ''){
 		$normal[$county] = "<p style='background-color:pink; '>On $out $county went under ".$today[$county]." to $r_int</p>";    
 	}
 	$day_buffer++;
