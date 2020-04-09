@@ -59,8 +59,6 @@ $normal = array();
 $peak = array();
 $peak_str = array();
 
-global $maryland_history;
-$maryland_history = make_maryland_array();
 
 
 
