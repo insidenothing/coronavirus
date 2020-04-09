@@ -137,7 +137,8 @@ function make_maryland_array($json=''){
 	print_r($array['fields']);
 	echo '</pre></td>';
 	echo '<td valign="top"><h1>Data</h1><div>';
-	foreach ($array['features'] as $key => $value){
+	 
+	/*foreach ($array['features'] as $key => $value){
 		$time = $value['attributes']['ReportDate'] / 1000;
 		$date = date('Y-m-d',$time+14400);
 		$return[$date] = $value['attributes'];
@@ -146,11 +147,11 @@ function make_maryland_array($json=''){
 		foreach ($value['attributes'] as $key2 => $value2){
 			echo "<li>$key2 => $value2</li>";
 		}
-	}
+	}*/
 	echo '</div></td></tr></table>';
 	$debug = ob_get_clean();
 	//echo $debug;
-	return $return;
+	return $array['features'];
 }
 	
 function wikidata(){
