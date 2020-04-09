@@ -65,9 +65,10 @@ $links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
-	$today[$d[name_of_location]] = 0; // count
-	$peak[$d[name_of_location]] = 0; // count
-	$normal[$d[name_of_location]] = ''; // string
+	$today[$d[name_of_location]] = 0; 	// count
+	$peak[$d[name_of_location]] = 0; 	// count
+	$peakDeaths[$d[name_of_location]] = 0;  // count
+	$normal[$d[name_of_location]] = ''; 	// string
 	$peak_str[$d[name_of_location]] = '<p>'.$d['name_of_location'].' peaked at 0<p>'; // string
 	$links .= "<a href='?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
 }
@@ -267,10 +268,7 @@ chart2.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $county;?> Population covid19math.net",
-		horizontalAlign: "left"
-	},
-	data: [{
+		text: "<?PHP echo $county;?> Peak Outbreak",
 		type: "doughnut",
 		startAngle: 60,
 		//innerRadius: 60,
@@ -279,8 +277,8 @@ chart2.render();
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
 			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
-			{ y: <?PHP echo $maryland_history[$date][$AKA]; ?>, label: "Infected" },
-			{ y: <?PHP echo $maryland_history[$date][$dAKA]; ?>, label: "Deaths"}
+			{ y: <?PHP echo $peak[$county]; ?>, label: "Peak Infected" },
+			{ y: <?PHP echo $peakDeaths[$county]; ?>, label: "Deaths"}
 		]
 	}]
 });
