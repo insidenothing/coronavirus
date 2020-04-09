@@ -118,8 +118,50 @@ function make_maryland_array($json=''){
 		$array = json_decode($json, true);
 		return $array;
 	}
-	// old https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json
+	// old https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json
 	// https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_TotalsTracker/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json
+	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
+	$json = getPage($url);
+	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
+		die('504');	
+	}
+	if ($json == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
+		die('503');
+	}
+	if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
+		die('400');
+	}
+	ob_start();
+	$array = json_decode($json, true);
+	echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
+	print_r($array['fields']);
+	echo '</pre></td>';
+	echo '<td valign="top"><h1>Data</h1><div>';
+	 
+	foreach ($array['features'] as $key => $value){
+		$time = $value['attributes']['ReportDate'] / 1000;
+		$date = date('Y-m-d',$time+14400);
+		$return[$date] = $value['attributes'];
+		$return['date'] = $date; // last date used in the array
+		echo "<h3>UPDATE $date</h1>";
+		foreach ($value['attributes'] as $key2 => $value2){
+			echo "<li>$key2 => $value2</li>";
+		}
+	}
+	echo '</div></td></tr></table>';
+	$debug = ob_get_clean();
+	//echo $debug;
+	return $return;
+}
+
+function make_maryland_array2($json=''){
+	$return = array();
+	if ($json != ''){
+		$array = json_decode($json, true);
+		return $array;
+	}
+	// old https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json
+	// 
 	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_TotalsTracker/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
 	$json = getPage($url);
 	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
@@ -138,7 +180,7 @@ function make_maryland_array($json=''){
 	echo '</pre></td>';
 	echo '<td valign="top"><h1>Data</h1><div>';
 	 
-	/*foreach ($array['features'] as $key => $value){
+	foreach ($array['features'] as $key => $value){
 		$time = $value['attributes']['ReportDate'] / 1000;
 		$date = date('Y-m-d',$time+14400);
 		$return[$date] = $value['attributes'];
@@ -147,11 +189,11 @@ function make_maryland_array($json=''){
 		foreach ($value['attributes'] as $key2 => $value2){
 			echo "<li>$key2 => $value2</li>";
 		}
-	}*/
+	}
 	echo '</div></td></tr></table>';
 	$debug = ob_get_clean();
 	//echo $debug;
-	return $array['features'];
+	return $return;
 }
 	
 function wikidata(){
