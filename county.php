@@ -303,17 +303,11 @@ function toggleDataSeries(e) {
 <script src="canvasjs.min.js"></script>
 <div class="container">
 	<div class="row">
-		<div class='col-sm-12''>
-			<h3><?PHP echo $county;?></h3>
-  
-		</div>
-	</div>
-	<div class="row">
 		<div class='col-sm-4'>
 			<div id="chartContainer2" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
 		</div>
 		<div class='col-sm-4'>
-			<h3>Data</h3>
+			<h3><?PHP echo $county;?> Data</h3>
 			<?PHP echo $peak_str[$county];?>
 			<?PHP echo $normal[$county];?>
 			<h3>Other Counties</h3>
