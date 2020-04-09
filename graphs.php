@@ -497,7 +497,7 @@ function toggleDataSeries(e) {
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' ";
 			$r = $core->query($q);
 			while($d = mysqli_fetch_array($r)){	
-				echo "<p><a href='?show=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at ".$today[$d[name_of_location]]."</p>";
+				echo "<p><a href='county.php?county=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at ".$today[$d[name_of_location]]."</p>";
 			}
 			?>		
 		</div>
