@@ -118,7 +118,7 @@ function make_county($county){
 	foreach ($maryland_history as $date => $array){
 		$last_count = $count;
 		$count = intval($array[$aka]);
-		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+		$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
 		$today[$county] = $count;
 	}
         // predictive
@@ -155,7 +155,7 @@ function make_county_prediction($county,$start,$count,$dt){
 	}
 	$r = $r + $base;
 	$debug_out .= "<li>$out N:$N r:$r</li>";
-        $return .= '{ label: "'.$out.'", y: '.$r.' }, ';
+        $return .= '{ label: "'.$out.'", y: '.intval($r).' }, ';
 	global $today;
 	global $normal;
 	global $peak;
