@@ -84,30 +84,30 @@ function county_aka($county){
 	return $county;
 }
 function county_daka($county){
- 	if ($county == 'Allegany'){ return 'dALLE'; }
-        if ($county == 'AnneArundel'){ return 'dANNE'; }
-        if ($county == 'Baltimore'){ return 'dBALT'; }
-        if ($county == 'BaltimoreCity'){ return 'dBCITY'; }
-        if ($county == 'Calvert'){ return 'dCALV'; }
-        if ($county == 'Caroline'){ return 'dCARO'; }
-        if ($county == 'Carroll'){ return 'dCARR'; }
-        if ($county == 'Cecil'){ return 'dCECI'; }
-        if ($county == 'Charles'){ return 'dCHAR'; }
-        if ($county == 'Dorchester'){ return 'dDORC'; }
-        if ($county == 'Frederick'){ return 'dFRED'; }
-        if ($county == 'Garrett'){ return 'dGARR'; }
-        if ($county == 'Harford'){ return 'dHARF'; }
-        if ($county == 'Howard'){ return 'dHOWA'; }
-        if ($county == 'Kent'){ return 'dKENT'; }
-        if ($county == 'Montgomery'){ return 'dMONT'; }
-        if ($county == 'PrinceGeorges'){ return 'dPRIN'; }
-        if ($county == 'QueenAnnes'){ return 'dQUEE'; }
-        if ($county == 'Somerset'){ return 'dSOME'; }
-        if ($county == 'StMarys'){ return 'dSTMA'; }
-        if ($county == 'Talbot'){ return 'dTALB_1'; }
-        if ($county == 'Washington'){ return 'dWASH'; }
-        if ($county == 'Wicomico'){ return 'dWICO'; }
-        if ($county == 'Worcester'){ return 'dWORC'; }
+ 	if ($county == 'Allegany'){ return 'deathALLE'; }
+        if ($county == 'AnneArundel'){ return 'deathANNE'; }
+        if ($county == 'Baltimore'){ return 'deathBALT'; }
+        if ($county == 'BaltimoreCity'){ return 'deathBCITY'; }
+        if ($county == 'Calvert'){ return 'deathCALV'; }
+        if ($county == 'Caroline'){ return 'deathCARO'; }
+        if ($county == 'Carroll'){ return 'deathCARR'; }
+        if ($county == 'Cecil'){ return 'deathCECI'; }
+        if ($county == 'Charles'){ return 'deathCHAR'; }
+        if ($county == 'Dorchester'){ return 'deathDORC'; }
+        if ($county == 'Frederick'){ return 'deathFRED'; }
+        if ($county == 'Garrett'){ return 'deathGARR'; }
+        if ($county == 'Harford'){ return 'deathHARF'; }
+        if ($county == 'Howard'){ return 'deathHOWA'; }
+        if ($county == 'Kent'){ return 'deathKENT'; }
+        if ($county == 'Montgomery'){ return 'deathMONT'; }
+        if ($county == 'PrinceGeorges'){ return 'deathPRIN'; }
+        if ($county == 'QueenAnnes'){ return 'deathQUEE'; }
+        if ($county == 'Somerset'){ return 'deathSOME'; }
+        if ($county == 'StMarys'){ return 'deathSTMA'; }
+        if ($county == 'Talbot'){ return 'deathTALB'; }
+        if ($county == 'Washington'){ return 'deathWASH'; }
+        if ($county == 'Wicomico'){ return 'deathWICO'; }
+        if ($county == 'Worcester'){ return 'deathWORC'; }
 	if ($county == 'Maryland'){ return 'deaths'; }
 	return $county;
 }
