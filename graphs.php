@@ -158,6 +158,9 @@ function make_county_prediction($county,$start,$count,$dt){
 	$r_graph = 0;
 	if($r > $r_graph){
 		$r_graph = $r;
+	}else{
+		// test stopping the infection
+		$a = 0;	
 	}
         $return .= '{ label: "'.$out.'", y: '.intval($r_graph).' }, ';
 	global $today;
