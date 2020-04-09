@@ -39,9 +39,13 @@ if(isset($_GET['county'])){
 }
 $logo = 'off';
 
+include_once('functions.php');
+
 global $maryland_history;
 $maryland_history = make_maryland_array();
+
 $date = $maryland_history['date'];
+
 $page_description = "$date $county - $days_to_predict Day Prediction";
 
 include_once('menu.php');
@@ -55,7 +59,8 @@ $normal = array();
 $peak = array();
 $peak_str = array();
 
-
+global $maryland_history;
+$maryland_history = make_maryland_array();
 
 
 
