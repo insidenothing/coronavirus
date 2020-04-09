@@ -321,7 +321,7 @@ function toggleDataSeries(e) {
 			
 		</div>
 	</div>
-	<div class="row">
+	<div class="row d-none">
 		<div class='col-sm-6'>
 			<?PHP echo $debug_in;?>	
 		</div>
