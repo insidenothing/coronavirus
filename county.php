@@ -5,7 +5,7 @@ if(isset($_GET['show'])){
 	$show = $_GET['show'];
 }
 global $days_to_predict;
-$days_to_predict = '30';
+$days_to_predict = '45';
 if(isset($_GET['days'])){
 	// stop bot from running animation
 	$ua = $_SERVER['HTTP_USER_AGENT'];
