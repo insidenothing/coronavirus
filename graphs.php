@@ -484,13 +484,13 @@ function toggleDataSeries(e) {
 	</div>
 	<div class="row">
 		<div class='col-sm-4' style='background-color:lightyellow; text-align:left;'>
-			<h3>Today ( Click to View )</h3>
+			<h3>Today ( Click to View Details )</h3>
 			<?PHP
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
 			$r = $core->query($q);
 			$d = mysqli_fetch_array($r);	
 			$r_int = number_format($today[$d[name_of_location]], 0, '.', ',');
-			echo "<p><a href='?show=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at $r_int</p>";
+			echo "<p><a href='county.php?county=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at $r_int</p>";
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' ";
 			$r = $core->query($q);
 			while($d = mysqli_fetch_array($r)){	
