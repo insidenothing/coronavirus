@@ -178,7 +178,7 @@ function make_county_prediction($county,$start,$count,$dt){
     }
     return $return;
 }
-$date = date('Y-m-d');
+$date = $maryland_history['date'];
 $AKA = county_aka($county);
 $dAKA = county_daka($county);
 
