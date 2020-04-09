@@ -300,11 +300,21 @@ function toggleDataSeries(e) {
 			<div id="chartContainer2" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
 		</div>
 		<div class='col-sm-4'>
-			<h3>4</h3>
-			
+			<h3>Data</h3>
+			<?PHP echo $peak[$county];?>
+			<?PHP echo $normal[$county];?>
 		</div>
 		<div class='col-sm-4'>
 			<div id="chartContainer3" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class='col-sm-6'>
+			<?PHP echo $debug_in;?>	
+		</div>
+		<div class='col-sm-6'>
+			<?PHP echo $debug_out;?>	
 			
 		</div>
 	</div>
