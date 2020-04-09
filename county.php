@@ -61,7 +61,7 @@ $peak_str = array();
 
 
 
-
+$links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
@@ -69,6 +69,7 @@ while($d = mysqli_fetch_array($r)){
 	$peak[$d[name_of_location]] = 0; // count
 	$normal[$d[name_of_location]] = ''; // string
 	$peak_str[$d[name_of_location]] = '<p>'.$d['name_of_location'].' peaked at 0<p>'; // string
+	$links .= "<a href='?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
 }
 
 
@@ -315,6 +316,8 @@ function toggleDataSeries(e) {
 			<h3>Data</h3>
 			<?PHP echo $peak_str[$county];?>
 			<?PHP echo $normal[$county];?>
+			<h3>Other Counties</h3>
+			<?PHP echo $links; ?>
 		</div>
 		<div class='col-sm-4'>
 			<div id="chartContainer3" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
