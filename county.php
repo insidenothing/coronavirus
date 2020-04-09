@@ -176,10 +176,18 @@ function make_county_prediction($county,$start,$count,$dt){
 	$r_int = number_format($r, 0, '.', ',');
         if($r > $peak[$county]){
 		$peak[$county] = $r;
-		$peak_str[$county] = "<p>On $out $county peaked at $r_int<p>";
+		$datetime1 = new DateTime($out);
+		$datetime2 = new DateTime("now");
+		$interval = $datetime1->diff($datetime2);
+		$from_now = $interval->format('%R%a days');
+		$peak_str[$county] = "<p>On $out in $from_now $county peaked at $r_int<p>";
         }
 	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $normal[$county] == ''){
-		$normal[$county] = "<p style='background-color:pink; '>On $out $county went under ".$today[$county]." to $r_int</p>";    
+		$datetime1 = new DateTime($out);
+		$datetime2 = new DateTime("now");
+		$interval = $datetime1->diff($datetime2);
+		$from_now = $interval->format('%R%a days');
+		$normal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county went under ".$today[$county]." to $r_int</p>";    
 	}
 	$day_buffer++;
     }
