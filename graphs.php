@@ -160,7 +160,8 @@ function make_county_prediction($county,$start,$count,$dt){
 		$r_graph = $r;
 	}else{
 		// test stopping the infection
-		$a = 0;	
+		$a = 0;
+		$base = 0;
 	}
         $return .= '{ label: "'.$out.'", y: '.intval($r_graph).' }, ';
 	global $today;
