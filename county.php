@@ -168,7 +168,7 @@ function make_county_prediction($county,$start,$count,$dt){
 	}
 	$r = $r + $base;
 	$debug_out .= "<li>$out N:$N r:$r</li>";
-        $return .= '{ label: "'.$out.'", y: '.$r.' }, ';
+        $return .= '{ label: "'.$out.'", y: '.intval($r).' }, ';
 	global $today;
 	global $normal;
 	global $peak;
