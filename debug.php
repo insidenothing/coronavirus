@@ -10,6 +10,6 @@ echo '</pre>';
 
 
 $history = make_maryland_array2();
-echo '<p>make_maryland_array()</p><pre>';
+echo '<p>make_maryland_array2()</p><pre>';
 print_r($history);
 echo '</pre>';
