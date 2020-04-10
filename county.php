@@ -412,7 +412,9 @@ function toggleDataSeries(e) {
 		<div class='col-sm-4'>
 			<h3><?PHP echo $county;?> Data</h3>
 			<?PHP echo $peak_str[$county];?>
+			<?PHP echo $dpeak_str[$county];?>
 			<?PHP echo $normal[$county];?>
+			<?PHP echo $dnormal[$county];?>
 			<h3>Other Counties</h3>
 			<?PHP echo $links; ?>
 		</div>
