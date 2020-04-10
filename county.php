@@ -266,6 +266,7 @@ chart2.render();
 var chart3 = new CanvasJS.Chart("chartContainer3", {
 	animationEnabled: true,
 	exportEnabled: true,
+	theme: "light2", //"light1", "dark1", "dark2"
 	title:{
 		text: "<?PHP echo $county;?> Peak Outbreak covid19math.net",
 		horizontalAlign: "left"
@@ -274,7 +275,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		type: "pie",
 		//startAngle: 60,
 		//innerRadius: 60,
-		indexLabelFontSize: 14,
+		indexLabelFontSize: 11,
 		indexLabel: "{label} - #percent%",
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
