@@ -5,8 +5,7 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 global $maryland_history;
 $maryland_history = make_maryland_array();
-global $maryland_history2;
-$maryland_history2 = make_maryland_array2();
+
 
 echo '<div class="container">';
 
@@ -32,6 +31,8 @@ if ($test1 != $test2){
 
 
 // Last Version 2 ( extra data )
+global $maryland_history2;
+$maryland_history2 = make_maryland_array2();
 $url_pulled2 = $maryland_history2['url_pulled'];
 $r2 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
 $d2 = mysqli_fetch_array($r2);
