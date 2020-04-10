@@ -217,14 +217,14 @@ function make_county_prediction($county,$start,$count,$dt){
 		$datetime2 = new DateTime("now");
 		$interval = $datetime1->diff($datetime2);
 		$from_now = $interval->format('%R%a days');
-		$peak_str[$county] = "<p>On $out in $from_now $county peaked at $r_int<p>";
+		$peak_str[$county] = "<p>On $out in $from_now $county infection peaked at $r_int<p>";
         }
 	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $normal[$county] == ''){
 		$datetime1 = new DateTime($out);
 		$datetime2 = new DateTime("now");
 		$interval = $datetime1->diff($datetime2);
 		$from_now = $interval->format('%R%a days');
-		$normal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county went under ".$today[$county]." to $r_int</p>";    
+		$normal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county infections went under ".$today[$county]." to $r_int</p>";    
 	}
 	$day_buffer++;
     }
@@ -267,6 +267,9 @@ function make_dcounty_prediction($county,$start,$count,$dt){
 	global $normal;
 	global $peak;
 	global $peak_str;
+	global $dnormal;
+	global $dpeak;
+	global $dpeak_str;
 	$r_int = number_format($r, 0, '.', ',');
         if($r > $dpeak[$county]){
 		$dpeak[$county] = $r;
@@ -274,14 +277,14 @@ function make_dcounty_prediction($county,$start,$count,$dt){
 		$datetime2 = new DateTime("now");
 		$interval = $datetime1->diff($datetime2);
 		$from_now = $interval->format('%R%a days');
-		$dpeak_str[$county] = "<p>On $out in $from_now $county peaked at $r_int<p>";
+		$dpeak_str[$county] = "<p>On $out in $from_now $county deaths peaked at $r_int<p>";
         }
 	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $dnormal[$county] == ''){
 		$datetime1 = new DateTime($out);
 		$datetime2 = new DateTime("now");
 		$interval = $datetime1->diff($datetime2);
 		$from_now = $interval->format('%R%a days');
-		$dnormal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county went under ".$today[$county]." to $r_int</p>";    
+		$dnormal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county deaths went under ".$today[$county]." to $r_int</p>";    
 	}
 	$day_buffer++;
     }
