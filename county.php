@@ -326,7 +326,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Infected",
+		name: "<?PHP echo $county; ?> Infected @ <?PHP echo rate_of_infection($county);?>",
 		dataPoints: [
 			<?PHP echo make_county($county); ?>
 		]
@@ -336,7 +336,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Dead",
+		name: "<?PHP echo $county; ?> Dead @ <?PHP echo rate_of_death($county);?>",
 		dataPoints: [
 			<?PHP echo make_dcounty($county); ?>
 		]
