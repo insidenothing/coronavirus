@@ -51,11 +51,11 @@ function infection_level($county){
 	$d = $c * 1000;
 	$e = number_format($d, 5, '.', '');
 	if($cases == 0){
-		echo "<div class='col-sm-2' style='background-color:lightgreen;'><h4>$county</h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
+		echo "<div class='col-sm-2' style='background-color:lightgreen;'><h4>COLD <a href='county.php?county=$county'>$county</a></h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
 	}elseif($state_level > $d){
-		echo "<div class='col-sm-2' style='background-color:lightyellow;'><h4>$county</h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";
+		echo "<div class='col-sm-2' style='background-color:lightyellow;'><h4><a href='county.php?county=$county'>$county</a></h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";
 	}else{
-		echo "<div class='col-sm-2' style='background-color:#ffbaba;'><h4>$county</h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
+		echo "<div class='col-sm-2' style='background-color:#ffbaba;'><h4>HOT <a href='county.php?county=$county'>$county</a></h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
 	}
 	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
 }
