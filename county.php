@@ -308,7 +308,7 @@ function toggleDataSeries(e) {
 <div class="container">
 	<div class="row">
 		<div class='col-sm-4'>
-			<div id="chartContainer2" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
+			<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
 		</div>
 		<div class='col-sm-4'>
 			<h3><?PHP echo $county;?> Data</h3>
@@ -318,7 +318,7 @@ function toggleDataSeries(e) {
 			<?PHP echo $links; ?>
 		</div>
 		<div class='col-sm-4'>
-			<div id="chartContainer3" style="height: 600px; max-width: 400px; margin: 0px auto;"></div>	
+			<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
 			
 		</div>
 	</div>
