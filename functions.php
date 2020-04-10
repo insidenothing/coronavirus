@@ -196,6 +196,8 @@ function make_maryland_array2($json=''){
 	echo '</div></td></tr></table>';
 	$debug = ob_get_clean();
 	//echo $debug;
+	
+	$array['features']['url_pulled'] = $url;
 	return $array['features'];
 }
 	
