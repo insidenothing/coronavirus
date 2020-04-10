@@ -112,29 +112,59 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 });
 chart2.render();
 	
-<?PHP $left = 6043000 - $maryland_history[$date]['NegativeTests'] - $maryland_history[$date]['TotalCases']; ?>	
-var chart3 = new CanvasJS.Chart("chartContainer3", {
+var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 	animationEnabled: true,
-	exportEnabled: true,
-	title:{
-		text: "Maryland Population covid19math.net",
-		horizontalAlign: "left"
+	theme: "light2",
+	title: {
+		text: "Cases and Deaths by Race"
 	},
-	data: [{
-		type: "doughnut",
-		startAngle: 60,
-		//innerRadius: 60,
-		indexLabelFontSize: 14,
-		indexLabel: "{label} - #percent%",
-		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [
+	{
+		type: "column",
+		name: "Infections",
+		showInLegend: true,
 		dataPoints: [
-			{ y: <?PHP echo $left;?>, label: "Population" },
-			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
-			{ y: <?PHP echo $maryland_history[$date]['NegativeTests'];?>, label: "Negtive"}
+			{ label: 'African-American', y: 2304 },
+			{ label: 'Asian', y: 136 },
+			{ label: 'White', y: 1694 },
+			{ label: 'Other', y: 544 },
+			{ label: 'Data not available', y: 1507 }
+		]
+	},
+	{
+		type: "area",
+		name: "Deaths",
+		markerBorderColor: "white",
+		markerBorderThickness: 2,
+		showInLegend: true,
+		dataPoints: [
+			{ label: 'African-American', y: 61 },
+			{ label: 'Asian', y: 6 },
+			{ label: 'White', y: 45},
+			{ label: 'Other', y: 5 },
+			{ label: 'Data not available', y: 21 }
 		]
 	}]
 });
-chart3.render();	
+chartCnD.render();
+
+
+function toggleDataSeries(e) {
+	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	e.chart.render();
+}
+	
 
 }
 </script>
@@ -144,7 +174,7 @@ chart3.render();
 </div><div class='col-sm-4'>
 
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+<div id="chartContainerCnD" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <?PHP
 /*
