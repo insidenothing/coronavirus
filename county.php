@@ -277,7 +277,7 @@ chart2.render();
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
 			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
-			{ y: <?PHP echo $peak[$county]; ?>, label: "Peak Infected" }
+			{ y: <?PHP echo intval($peak[$county]); ?>, label: "Peak Infected" }
 		]
 	}]
 });
