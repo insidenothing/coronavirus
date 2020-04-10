@@ -263,12 +263,14 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	}]
 });
 chart2.render();
-
-	var chart3 = new CanvasJS.Chart("chartContainer3", {
+var chart3 = new CanvasJS.Chart("chartContainer3", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $county;?> Peak Outbreak",
+		text: "<?PHP echo $county;?> Peak Outbreak covid19math.net",
+		horizontalAlign: "left"
+	},
+	data: [{
 		type: "doughnut",
 		startAngle: 60,
 		//innerRadius: 60,
@@ -277,11 +279,16 @@ chart2.render();
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
 			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
-			{ y: <?PHP echo intval($peak[$county]); ?>, label: "Peak Infected" }
+			{ y: <?PHP echo intval($peak[$county]); ?>, label: "Infected" }
 		]
 	}]
 });
 chart3.render();	
+
+
+
+	
+	
 	
 function toggleDataSeries(e) {
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
