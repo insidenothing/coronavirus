@@ -5,6 +5,8 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 global $maryland_history;
 $maryland_history = make_maryland_array();
+global $maryland_history2;
+$maryland_history2 = make_maryland_array2();
 
 echo '<div class="container">';
 
@@ -26,6 +28,25 @@ if ($test1 != $test2){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new','$url_pulled')");
     	//$send_message = 'on';
 }
+
+
+
+// Last Version 2 ( extra data )
+$url_pulled2 = $maryland_history2['url_pulled'];
+$r2 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
+$d2 = mysqli_fetch_array($r2);
+$old2 = $d2['html'];
+$json2 = json_encode($maryland_history2);
+$new2 = $core->real_escape_string($json2);
+$test12 = $old2;
+$test22 = $json2;
+if ($test12 != $test22){
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new2','$url_pulled2')");
+    	//$send_message = 'on';
+}
+
+
+
 
 // Compare Most Recent to Last Change
 $r = $core->query("SELECT id, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
