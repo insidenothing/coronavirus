@@ -173,9 +173,10 @@ function toggleDataSeries(e) {
 <div id="chartContainer" style="height: 740px; width: 100%;"></div>
 
 </div><div class='col-sm-4'>
-
-<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+	
 <div id="chartContainerCnD" style="height: 370px; width: 100%;"></div>
+<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+	
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <?PHP
 /*
