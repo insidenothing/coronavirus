@@ -115,6 +115,7 @@ chart2.render();
 var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 	animationEnabled: true,
 	theme: "light2",
+	exportEnabled: true,
 	title: {
 		text: "Cases and Deaths by Race"
 	},
