@@ -271,8 +271,8 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		horizontalAlign: "left"
 	},
 	data: [{
-		type: "doughnut",
-		startAngle: 60,
+		type: "pie",
+		//startAngle: 60,
 		//innerRadius: 60,
 		indexLabelFontSize: 14,
 		indexLabel: "{label} - #percent%",
