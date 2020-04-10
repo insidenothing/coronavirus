@@ -134,10 +134,10 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		dataPoints: [
 			{ label: 'Asian', y: 136 },
-			{ label: 'African-American', y: 2304 },
-			{ label: 'White', y: 1694 },
 			{ label: 'Other', y: 544 },
-			{ label: 'Data not available', y: 1507 }
+			{ label: 'Data not available', y: 1507 },
+			{ label: 'White', y: 1694 },
+			{ label: 'African-American', y: 2304 }	
 		]
 	},
 	{
@@ -149,10 +149,10 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		dataPoints: [
 			{ label: 'Asian', y: 6 },
-			{ label: 'African-American', y: 61 },
-			{ label: 'White', y: 45},
 			{ label: 'Other', y: 5 },
-			{ label: 'Data not available', y: 21 }
+			{ label: 'Data not available', y: 21 },
+			{ label: 'White', y: 45},
+			{ label: 'African-American', y: 61 }	
 		]
 	}]
 });
