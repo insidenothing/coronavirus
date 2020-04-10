@@ -11,7 +11,7 @@ function case_count($county){
 	// infected
 	global $maryland_history;
 	$date = $maryland_history['date'];
-	$aka = county_aka($county);
+	$aka = county_daka($county);
 	$val = $maryland_history[$date][$aka];
 	$count = intval($val);
 	return $count;	
@@ -36,8 +36,8 @@ function infection_levelMD($county){
 	$d = $c * 1000;
 	$state_level = $d;
 	$e = number_format($d, 5, '.', '');
-	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
-	echo "<div class='col-sm-6' style='background-color:lightblue; height:150px;'><h3>$county</h3><p><b>Cases</b> $cases : $total <b>Population</b></p><p><b>Reduced</b> $a : $b</p><p><b>Infected Percent of the Population</b> $e%</p></div><div class='col-sm-6' style='background-color:lightblue; height:150px;'><p><img src='img/Infection_rate_formula.jpg' class='img-rounded'></p></div>";
+	$core->query("update coronavirus_populations set rate_of_death = '$e' where name_of_location = '$county' ");
+	echo "<div class='col-sm-6' style='background-color:lightblue; height:150px;'><h3>$county</h3><p><b>Deaths</b> $cases : $total <b>Population</b></p><p><b>Reduced</b> $a : $b</p><p><b>Dead Percent of the Population</b> $e%</p></div><div class='col-sm-6' style='background-color:lightblue; height:150px;'><p><img src='img/Infection_rate_formula.jpg' class='img-rounded'></p></div>";
 }
 function infection_level($county){
 	global $core;
@@ -57,7 +57,7 @@ function infection_level($county){
 	}else{
 		echo "<div class='col-sm-2' style='background-color:#ffbaba;'><h4>$county</h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
 	}
-	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
+	$core->query("update coronavirus_populations set rate_of_death = '$e' where name_of_location = '$county' ");
 }
 ?>
 
