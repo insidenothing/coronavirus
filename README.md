@@ -1,7 +1,5 @@
-# SMS Alert System
-* In case you need to go off the grid - get updates on the go
-* Cloud Based
-* MDH API Data
+# COVID-19 Data 
+* Maryland
 
-## ToDo
-* Pull deaths and recovered from wikipedia
+# ToDo
+* Florida
