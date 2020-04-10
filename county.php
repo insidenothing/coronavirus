@@ -104,7 +104,7 @@ function rate_of_death($county){
 	$q = "SELECT rate_of_death FROM coronavirus_populations where name_of_location = '$county' ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
-	return $d['rate_of_infection'];	
+	return $d['rate_of_death'];	
 }
 function show_on_graph($county){
 	global $show;
