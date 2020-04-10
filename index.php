@@ -131,6 +131,7 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		type: "column",
 		name: "Infections",
 		showInLegend: true,
+		indexLabelFontSize: 10,
 		dataPoints: [
 			{ label: 'African-American', y: 2304 },
 			{ label: 'Asian', y: 136 },
@@ -145,6 +146,7 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		markerBorderColor: "white",
 		markerBorderThickness: 2,
 		showInLegend: true,
+		indexLabelFontSize: 10,
 		dataPoints: [
 			{ label: 'African-American', y: 61 },
 			{ label: 'Asian', y: 6 },
