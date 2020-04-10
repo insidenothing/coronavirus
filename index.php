@@ -117,7 +117,7 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 	theme: "light2",
 	exportEnabled: true,
 	title: {
-		text: "Cases and Deaths by Race"
+		text: "Data by Race"
 	},
 	toolTip: {
 		shared: true
