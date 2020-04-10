@@ -14,7 +14,8 @@ global $send_message;
 $send_message = 'off';
 
 // Last Version
-$r = $core->query("SELECT html, checked_datetime FROM coronavirus order by id DESC limit 0,1");
+$url_pulled = $maryland_history['url_pulled'];
+$r = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
 $json = json_encode($maryland_history);
@@ -22,12 +23,12 @@ $new = $core->real_escape_string($json);
 $test1 = $old;
 $test2 = $json;
 if ($test1 != $test2){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html) values (NOW(),NOW(), '$new')");
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new','$url_pulled')");
     	//$send_message = 'on';
 }
 
 // Compare Most Recent to Last Change
-$r = $core->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
+$r = $core->query("SELECT id, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 //global $new_date;
 //$new_date = $d['checked_datetime'];
@@ -39,7 +40,7 @@ $new_id = $d['id'];
 $y_time = strtotime($new_date) - 86400;
 $yesterday = date('Y-m-d',$y_time);
 
-$r = $core->query("SELECT id, html, checked_datetime FROM coronavirus order by id DESC limit 1, 1");  
+$r = $core->query("SELECT id, html, checked_datetime FROM coronavirus url_pulled = '$url_pulled' order by id DESC limit 1, 1");  
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
 global $maryland_history_last;
