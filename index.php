@@ -147,6 +147,7 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		markerBorderThickness: 2,
 		showInLegend: true,
 		indexLabelFontSize: 10,
+		axisYType: "secondary",
 		dataPoints: [
 			{ label: 'Asian', y: 6 },
 			{ label: 'Other', y: 5 },
