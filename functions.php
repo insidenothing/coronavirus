@@ -10,6 +10,13 @@ function getPage($url){
     return $html;
 }
 
+function clean_up_county($str){
+	$str = str_replace("'",'',$str); // remove single quotes
+	$str = str_replace(' ','',$str); // remove spaces
+	$str = str_replace('.','',$str); // remove .
+	return $str;
+}
+
 function sms_one($to,$message){
     //global $send_message;
     //$url = "https://www.mdwestserve.com/sms/message_send/$to/".str_replace(' ','_',$msg);
@@ -200,7 +207,7 @@ function make_maryland_array2($json=''){
 	//$array['features']['url_pulled'] = $url;
 	
 	foreach ($array['features'] as $key => $value){
-		$dem = $value['attributes']['Demographic'];
+		$dem = clean_up_county($value['attributes']['Demographic']);
 		$return[$dem]['CaseCount'] = $value['attributes']['CaseCount'];
 		$return[$dem]['DeathCount'] = $value['attributes']['DeathCount'];	
 	}
