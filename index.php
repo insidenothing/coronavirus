@@ -224,16 +224,19 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
+	
+	$yesterday = date('Y-m-d',strtotime($old_date));
+	$count_yesterday = $maryland_history[$yesterday][$aka];
+	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
+	
 	if ($count_today == 0){
 		// failure detected
 		// check attributes
 		$count_fix = attribute_aka($county);
-		echo "<h1>FIX $count_today to $count_fix for $county</h1>";
+		echo "<p>PATCH $count_today to $count_fix for $county ($count_yesterday)</p>";
 		$count_today = $count_fix;
 	}
-	$yesterday = date('Y-m-d',strtotime($old_date));
-	$count_yesterday = $maryland_history[$yesterday][$aka];
-	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
+	
 	$count_delta = $count_today - $count_yesterday;
 	$dir = 'up';
 	if ( $count_today < $count_yesterday){
