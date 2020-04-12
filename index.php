@@ -5,6 +5,10 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 global $maryland_history;
 $maryland_history = make_maryland_array();
+
+global $attributes;
+$attributes = make_maryland_array2();
+
 echo '<div class="container">';
 
 
