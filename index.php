@@ -208,7 +208,14 @@ echo "</div>";
 $array1 = json_decode($old, true);
 $array2 = json_decode($json, true);
 
+function attribute_aka($county){
+	global $attributes;
+	if ($county == 'caseAfrAmer'){ return $attributes['raceAfrAmer']['CaseCount']; }
+	if ($county == 'deathAfrAmer'){ return $attributes['raceAfrAmer']['DeathCount']; }
+}
+	
 function do_math_location($county){
+	
 	global $maryland_history;
 	global $new_id;
 	global $new_date;
@@ -217,6 +224,11 @@ function do_math_location($county){
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
+	if ($count_today == 0){
+		// failure detected
+		// check attributes
+		$count_today = attribute_aka($county);
+	}
 	$yesterday = date('Y-m-d',strtotime($old_date));
 	$count_yesterday = $maryland_history[$yesterday][$aka];
 	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
