@@ -14,6 +14,7 @@ function clean_up_county($str){
 	$str = str_replace("'",'',$str); // remove single quotes
 	$str = str_replace(' ','',$str); // remove spaces
 	$str = str_replace('.','',$str); // remove .
+	$str = str_replace('-','',$str); // remove -
 	return $str;
 }
 
