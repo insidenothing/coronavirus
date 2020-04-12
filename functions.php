@@ -182,7 +182,7 @@ function make_maryland_array2($json=''){
 	echo '</pre></td>';
 	echo '<td valign="top"><h1>Data</h1><div>';
 	/* 
-	foreach ($array['features'] as $key => $value){
+	
 		$time = $value['attributes']['ReportDate'] / 1000;
 		$date = date('Y-m-d',$time+14400);
 		$return[$date] = $value['attributes'];
@@ -197,8 +197,15 @@ function make_maryland_array2($json=''){
 	$debug = ob_get_clean();
 	//echo $debug;
 	
-	$array['features']['url_pulled'] = $url;
-	return $array['features'];
+	//$array['features']['url_pulled'] = $url;
+	
+	foreach ($array['features'] as $key => $value){
+		$dem = $value['attributes']['Demographic'];
+		$return[$dem]['CaseCount'] = $value['attributes']['CaseCount'];
+		$return[$dem]['DeathCount'] = $value['attributes']['DeathCount'];	
+	}
+	
+	return $return;
 }
 	
 function wikidata(){
