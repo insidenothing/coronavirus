@@ -212,6 +212,18 @@ function attribute_aka($county){
 	global $attributes;
 	if ($county == 'caseAfrAmer'){ return $attributes['raceAfrAmer']['CaseCount']; }
 	if ($county == 'deathAfrAmer'){ return $attributes['raceAfrAmer']['DeathCount']; }
+	
+	if ($county == 'caseWhite'){ return $attributes['raceWhite']['CaseCount']; }
+	if ($county == 'deathWhite'){ return $attributes['raceWhite']['DeathCount']; }
+	
+	if ($county == 'caseAsian'){ return $attributes['raceAsian']['CaseCount']; }
+	if ($county == 'deathAsian'){ return $attributes['raceAsian']['DeathCount']; }
+	
+	if ($county == 'caseOther'){ return $attributes['raceOther']['CaseCount']; }
+	if ($county == 'deathOther'){ return $attributes['raceOther']['DeathCount']; }
+	
+	if ($county == 'caseNotAVail'){ return $attributes['raceNotAvail']['CaseCount']; }
+	if ($county == 'deathNotAvail'){ return $attributes['raceNotAvail']['DeathCount']; }
 }
 	
 function do_math_location($county){
@@ -233,7 +245,7 @@ function do_math_location($county){
 		// failure detected
 		// check attributes
 		$count_fix = attribute_aka($county);
-		echo "<p>PATCH $count_today to $count_fix for $county ($count_yesterday)</p>";
+		//echo "<p>PATCH $count_today to $count_fix for $county ($count_yesterday)</p>";
 		$count_today = $count_fix;
 	}
 	
