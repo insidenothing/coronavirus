@@ -137,11 +137,11 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		showInLegend: true,
 		indexLabelFontSize: 10,
 		dataPoints: [
-			{ label: 'Asian', y: 136 },
-			{ label: 'Other', y: 544 },
-			{ label: 'Data not available', y: 1507 },
-			{ label: 'White', y: 1694 },
-			{ label: 'African-American', y: 2304 }	
+			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['CaseCount']; ?> },
+			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['CaseCount']; ?> },
+			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['CaseCount']; ?> },
+			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['CaseCount']; ?> },
+			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['CaseCount']; ?> }	
 		]
 	},
 	{
@@ -153,11 +153,11 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		axisYType: "secondary",
 		dataPoints: [
-			{ label: 'Asian', y: 6 },
-			{ label: 'Other', y: 5 },
-			{ label: 'Data not available', y: 21 },
-			{ label: 'White', y: 45},
-			{ label: 'African-American', y: 61 }	
+			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['DeathCount']; ?> },
+			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['DeathCount']; ?> },
+			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['DeathCount']; ?> },
+			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['DeathCount']; ?>},
+			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['DeathCount']; ?> }	
 		]
 	}]
 });
@@ -235,23 +235,12 @@ ob_start();
 // V3
 echo '<h3>Covid19math.net Update</h3>';
 echo do_math_location('Maryland');
+echo do_math_location('deaths');
 echo do_math_location('total_hospitalized');
 echo do_math_location('total_released');
-echo do_math_location('deaths');
+
 echo do_math_location('NegativeTests');
 
-echo do_math_location('case0to9');
-echo do_math_location('case10to19');
-echo do_math_location('case20to29');
-echo do_math_location('case30to39');
-echo do_math_location('case40to49');
-echo do_math_location('case50to59');
-echo do_math_location('case60to69');
-echo do_math_location('case70to79');
-echo do_math_location('case80plus');
-
-echo do_math_location('Male');
-echo do_math_location('Female');
 
 echo do_math_location('Allegany');
 echo do_math_location('AnneArundel');
@@ -276,12 +265,44 @@ echo do_math_location('StMarys');
 echo do_math_location('Talbot');
 echo do_math_location('Washington');
 echo do_math_location('Worcester');
+
+echo do_math_location('case0to9');
+echo do_math_location('case10to19');
+echo do_math_location('case20to29');
+echo do_math_location('case30to39');
+echo do_math_location('case40to49');
+echo do_math_location('case50to59');
+echo do_math_location('case60to69');
+echo do_math_location('case70to79');
+echo do_math_location('case80plus');
+
+echo do_math_location('Male');
+echo do_math_location('Female');
 	
 echo do_math_location('CaseDelta');
 echo do_math_location('NegDelta');
 echo do_math_location('hospitalizedDelta');
 echo do_math_location('releasedDelta');
 echo do_math_location('deathsDelta');	
+
+	
+	echo do_math_location('caseAfrAmer');	
+	echo do_math_location('caseWhite');
+	echo do_math_location('caseAsian');
+	echo do_math_location('caseOther');
+	echo do_math_location('caseNotAVail');
+	
+	echo do_math_location('deathAfrAmer');	
+	echo do_math_location('deathWhite');
+	echo do_math_location('deathAsian');
+	echo do_math_location('deathOther');
+	echo do_math_location('deathNotAvail');
+	
+	
+	
+	
+	
+	
 	
 $new_master_message = ob_get_clean();
 
