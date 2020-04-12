@@ -227,7 +227,9 @@ function do_math_location($county){
 	if ($count_today == 0){
 		// failure detected
 		// check attributes
-		$count_today = attribute_aka($county);
+		$count_fix = attribute_aka($county);
+		echo "<h1>FIX $count_today to $count_fix for $county</h1>";
+		$count_today = $count_fix;
 	}
 	$yesterday = date('Y-m-d',strtotime($old_date));
 	$count_yesterday = $maryland_history[$yesterday][$aka];
