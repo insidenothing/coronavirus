@@ -32,7 +32,7 @@ if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
-$page_description = "Maryland Case Deltas";
+$page_description = "Maryland Cases by Zip Code ";
 include_once('menu.php');
 
 global $today;
@@ -45,19 +45,11 @@ $peak = array();
 $peak_str = array();
 
 global $maryland_history;
-$maryland_history = make_maryland_array();
+$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
+$maryland_history = make_maryland_array3($url,'');
 
 
-/*
-$q = "SELECT distinct name_of_location FROM coronavirus_populations ";
-$r = $core->query($q);
-while($d = mysqli_fetch_array($r)){	
-	$today[$d[name_of_location]] = 0; // count
-	$peak[$d[name_of_location]] = 0; // count
-	$normal[$d[name_of_location]] = ''; // string
-	$peak_str[$d[name_of_location]] = '<p>'.$d['name_of_location'].' peaked at 0<p>'; // string
-}
-*/
+
 
 
 global $buffer;
@@ -86,7 +78,8 @@ function show_on_graph($county){
 	global $show;
 	// if has cases = true else false
 	global $maryland_history;
-	$date = $maryland_history['date'];
+	//$date = $maryland_history['date'];
+	$date = '';
 	$aka = county_aka($county);
 	error_log("show_on_graph($county) $date $aka", 0);
 	$val = $maryland_history[$date][$aka];
@@ -172,6 +165,24 @@ function make_county_prediction($county,$start,$count,$dt){
     }
     return $return;
 }
+
+
+function make_graph_block($county){
+	
+	echo '{
+		type: "spline",
+		visible: false,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$county.'",
+		dataPoints: [';
+			echo make_county($county);
+	echo '	]
+	},';
+	
+	
+}
+
 ?>
 <script>
 window.onload = function () {
@@ -185,7 +196,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	axisY :{
 		includeZero: false,
-		title: "Change in Cases",
+		title: "COVID-19 Cases",
 		suffix: ""
 	},
 	toolTip: {
@@ -195,26 +206,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		cursor:"pointer",
 		itemclick : toggleDataSeries
 	},
-	data: [{
-		type: "spline",
-		visible: false,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Case Delta",
-		dataPoints: [
-			<?PHP echo make_county('CaseDelta'); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: false,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Neg Delta",
-		dataPoints: [
-			<?PHP echo make_county('NegDelta'); ?>
-		]
-	},
+	data: [
+		<?PHP echo make_graph_block('21093');?>,
 	{
 		type: "spline",
 		visible: false,
@@ -243,57 +236,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		name: "Deaths Delta",
 		dataPoints: [
 			<?PHP echo make_county('deathsDelta'); ?>
-		]
-	},
-	{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Deaths Delta Low Trend",
-		dataPoints: [
-			{ label: "2020-03-03", y: 0 },
-			{ label: "2020-03-04", y: 0 },
-			{ label: "2020-03-05", y: 0 },
-			{ label: "2020-03-06", y: 0 },
-			{ label: "2020-03-07", y: 0 },
-			{ label: "2020-03-08", y: 0 },
-			{ label: "2020-03-09", y: 0 },
-			{ label: "2020-03-10", y: 0 },
-			{ label: "2020-03-11", y: 0 },
-			{ label: "2020-03-12", y: 0 },
-			{ label: "2020-03-13", y: 0 },
-			{ label: "2020-03-14", y: 0 },
-			{ label: "2020-03-15", y: 0 },
-			{ label: "2020-03-16", y: 0 },
-			{ label: "2020-03-17", y: 0 },
-			{ label: "2020-03-18", y: 0 },
-			{ label: "2020-03-19", y: 0 },
-			{ label: "2020-03-20", y: 0 },
-			{ label: "2020-03-21", y: 0 },
-			{ label: "2020-03-22", y: 0 },
-			{ label: "2020-03-23", y: 0 },
-			{ label: "2020-03-24", y: 0 },
-			{ label: "2020-03-25", y: 0 },
-			{ label: "2020-03-26", y: 0 },
-			{ label: "2020-03-27", y: 0 },
-			{ label: "2020-03-28", y: 0 },
-			{ label: "2020-03-29", y: 0 },
-			{ label: "2020-03-30", y: 1 },
-			{ label: "2020-03-31", y: 2 },
-			{ label: "2020-04-01", y: 3 },
-			{ label: "2020-04-02", y: 4 },
-			{ label: "2020-04-03", y: 5 },
-			{ label: "2020-04-04", y: 6 },
-			{ label: "2020-04-05", y: 8 },
-			{ label: "2020-04-06", y: 10 },
-			{ label: "2020-04-07", y: 11 },
-			{ label: "2020-04-08", y: 13 },
-			{ label: "2020-04-09", y: 14 },
-			{ label: "2020-04-10", y: 16 },
-			{ label: "2020-04-11", y: 17 },
-			{ label: "2020-04-12", y: 19 },
-			{ label: "2020-04-13", y: 21 }
 		]
 	}]
 }
