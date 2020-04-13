@@ -78,7 +78,6 @@ function make_datapoints(){
 	global $zipData;
 	$return = '';
 	foreach ($zipData as $zip => $data){
-		$name = $data['ZIPName'];
 		$count = intval($data['ProtectedCount']);
 		if ($count > 100){
 			$return .= "{ y: $count, label: '$zip' },";
