@@ -14,14 +14,16 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 function make_datapoints(){
 	global $zipData;
 	global $nocases;
+	global $zip2name;
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		if($zip != 'url_pulled' && $zip != 'date'){	
 			$count = intval($data['ProtectedCount']);
+			$name = $zip2name[$zip];
 			if ($count > 0){
-				$return .= "{ y: $count, label: '$zip' },";
+				$return .= "{ y: $count, label: '$name' },";
 			}else{
-				$nocases .= "<div>$zip</div>";	
+				$nocases .= "<div>$zip $name</div>";	
 			}
 		}
 	}
