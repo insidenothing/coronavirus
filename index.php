@@ -198,6 +198,7 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 		name: "zip",
 		axisYType: "secondary",
 		color: "#014D65",
+		indexLabelFontSize: 6,
 		dataPoints: [
 			<?PHP echo make_datapoints(); ?>
 		]
@@ -390,7 +391,7 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 }  
 echo "</div>";
 	
-echo '<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 1000px; width: 100%;"></div></div></div>';
+echo '<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 3000px; width: 100%;"></div></div></div>';
 	
 	
 echo "</div>";
