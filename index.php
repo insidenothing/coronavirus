@@ -181,9 +181,9 @@ chartCnD.render();
 
 var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 	animationEnabled: true,
-	
+	exportEnabled: true,
 	title:{
-		text:"State of Maryland"
+		text:"Maryland COVID-19 Outbreak by Zip Code covid19math.net"
 	},
 	axisX:{
 		interval: 1
