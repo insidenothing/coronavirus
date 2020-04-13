@@ -80,7 +80,9 @@ function make_datapoints(){
 	foreach ($zipData as $zip => $data){
 		$name = $data['ZIPName'];
 		$count = intval($data['ProtectedCount']);
-		$return .= "{ y: $count, label: '$zip $name' },";	
+		if ($count > 0){
+			$return .= "{ y: $count, label: '$zip $name' },";
+		}
 	}
 	$return = rtrim(trim($return), ",");
 	return $return;
