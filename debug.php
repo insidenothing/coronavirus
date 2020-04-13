@@ -1,6 +1,6 @@
 <?PHP
 // break apart the API
-include_once('functions.php');
+include_once('menu.php');
 
 echo "<li>Known URLs</li>";
 $r = $core->query("select distinct url_pulled from coronavirus");
