@@ -8,7 +8,8 @@ $r = $core->query("select distinct url_pulled from coronavirus where url_pulled 
 while ($d = mysqli_fetch_array($r)){
   $r2 = $core->query("select * from coronavirus where url_pulled = '$d[url_pulled]' order by id desc");
   $d2 = mysqli_fetch_array($r2);
-  echo "<p>$d2[checked_datetime] $d[url_pulled]</p>";
+  $row_cnt = mysqli_num_rows($r2);
+  echo "<p>$d2[checked_datetime] ($row_cnt updates) $d[url_pulled]</p>";
 }
 
 
