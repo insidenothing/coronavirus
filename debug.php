@@ -5,7 +5,9 @@ include_once('functions.php');
 echo "<li>Known URLs</li>";
 $r = $core->query("select distinct url_pulled from coronavirus");
 while ($d = mysqli_fetch_array($r)){
-  echo "<li>$d[url_pulled]</li>";
+  $r2 = $core->query("select * from coronavirus where url_pulled = '$d[url_pulled]' order by id desc");
+  $d2 = mysqli_fetch_array($r2);
+  echo "<li>$d2[checked_datetime] $d[url_pulled]</li>";
 }
 
 echo "<table><tr><td valign='top'>";
