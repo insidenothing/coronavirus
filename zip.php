@@ -34,22 +34,25 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
+		fontSize: 14,
 		text:"Maryland COVID-19 Outbreak by Zip Code covid19math.net"
 	},
 	axisX:{
 		interval: 1
 	},
 	axisY2:{
+		fontSize: 14,
 		interlacedColor: "rgba(1,77,101,.2)",
 		gridColor: "rgba(1,77,101,.1)",
 		title: "Number of Infections"
 	},
 	data: [{
+		fontSize: 10,
 		type: "bar",
 		name: "zip",
 		axisYType: "secondary",
 		color: "#014D65",
-		indexLabelFontSize: 6,
+		indexLabelFontSize: 10,
 		dataPoints: [
 			<?PHP echo make_datapoints(); ?>
 		]
