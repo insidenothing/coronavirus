@@ -4,9 +4,9 @@ include_once('menu.php');
 
 
 echo "<div style='text-align:left;'><h1>Known URLs</h1>";
-$r = $core->query("select distinct url_pulled from coronavirus");
+$r = $core->query("select distinct url_pulled from coronavirus where url_pulled <> ''");
 while ($d = mysqli_fetch_array($r)){
-  $r2 = $core->query("select * from coronavirus where url_pulled = '$d[url_pulled]' where url_pulled <> '' order by id desc");
+  $r2 = $core->query("select * from coronavirus where url_pulled = '$d[url_pulled]' order by id desc");
   $d2 = mysqli_fetch_array($r2);
   echo "<p>$d2[checked_datetime] $d[url_pulled]</p>";
 }
