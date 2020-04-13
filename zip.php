@@ -16,12 +16,14 @@ function make_datapoints(){
 	global $nocases;
 	$return = '';
 	foreach ($zipData as $zip => $data){
-		$name = $data['ZIPName'];
-		$count = intval($data['ProtectedCount']);
-		if ($count > 0){
-			$return .= "{ y: $count, label: '$zip' },";
-		}else{
-			$nocases .= "$zip $name, ";	
+		if($zip != 'url_pulled' && $zip != 'date'){	
+			$name = $data['ZIPName'];
+			$count = intval($data['ProtectedCount']);
+			if ($count > 0){
+				$return .= "{ y: $count, label: '$zip' },";
+			}else{
+				$nocases .= "<div>$zip $name</div>";	
+			}
 		}
 	}
 	$return = rtrim(trim($return), ",");
@@ -79,7 +81,7 @@ function toggleDataSeries(e) {
 
 
 
-<div class="row"><div class="col-sm-2"><h3>NO CASES</h3><p><?PHP echo $nocases;?></p></div><div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div></div></div>
+<div class="row"><div class="col-sm-2"><h3>NO CASES</h3><?PHP echo $nocases;?></div><div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div></div></div>
 	
 <?PHP	
 echo "</div>";
