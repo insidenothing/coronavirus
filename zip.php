@@ -30,13 +30,14 @@ function make_datapoints(){
 		if($zip != 'url_pulled' && $zip != 'date'){	
 			$count = intval($data['ProtectedCount']);
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
-			if ($count > 0){
-				$return .= "{ y: $count, label: '$total $name' },";
-				$total = $total - 1;
-				$cases .= "<span>$zip $name $count, </span>";
-			}else{
-				$nocases .= "<div>$zip $name</div>";	
-			}
+if ($count > 0){
+$return .= "{ y: $count, label: '$total $name' },
+";
+$total = $total - 1;
+$cases .= "<span>$zip $name $count, </span>";
+}else{
+$nocases .= "<div>$zip $name</div>";	
+}
 		}
 	}
 	$return = rtrim(trim($return), ",");
