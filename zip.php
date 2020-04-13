@@ -3,7 +3,9 @@ if(isset($_GET['novideo'])){
 	$logo = 'off';
 }
 include_once('menu.php');
+
 global $nocases;
+
 global $zipData;
 $url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
 $zipData = make_maryland_array3($url,'');
@@ -77,12 +79,8 @@ function toggleDataSeries(e) {
 
 
 
-
-
-
-global $nocases;
-echo '<div class="row"><div class="col-sm-2"><h3>NO CASES</h3><p><?PHP echo $nocases;?></p></div><div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div></div></div>';
+<div class="row"><div class="col-sm-2"><h3>NO CASES</h3><p><?PHP echo $nocases;?></p></div><div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div></div></div>
 	
-	
+<?PHP	
 echo "</div>";
 include_once('footer.php');
