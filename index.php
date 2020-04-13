@@ -81,7 +81,7 @@ function make_datapoints(){
 		$name = $data['ZIPName'];
 		$count = intval($data['ProtectedCount']);
 		if ($count > 50){
-			$return .= "{ y: $count, label: '$name' },";
+			$return .= "{ y: $count, label: '$zip' },";
 		}
 	}
 	$return = rtrim(trim($return), ",");
