@@ -216,7 +216,9 @@ function make_maryland_array2($json=''){
 	return $return;
 }
 
+global $zip2name;
 function make_maryland_array3($url='',$json=''){
+	global $zip2name;
 	$return = array();
 	if ($json != ''){
 		$array = json_decode($json, true);
@@ -263,7 +265,8 @@ function make_maryland_array3($url='',$json=''){
 	
 	foreach ($array['features'] as $key => $value){
 		$zip = $value['attributes']['ZIPCODE1'];
-		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];	
+		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
+		$zip2name[$zip] = $value['attributes']['ZIPName'] ;
 	}
 	
 	return $return;
