@@ -34,7 +34,7 @@ if ($test1 != $test2){
 global $maryland_history2;
 $maryland_history2 = make_maryland_array2();
 $url_pulled2 = $maryland_history2['url_pulled'];
-$r2 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
+$r2 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled2' order by id DESC limit 0,1");
 $d2 = mysqli_fetch_array($r2);
 $old2 = $d2['html'];
 $json2 = json_encode($maryland_history2);
@@ -45,6 +45,24 @@ if ($test12 != $test22){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new2','$url_pulled2')");
     	//$send_message = 'on';
 }
+
+
+$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
+global $maryland_history3;
+$maryland_history3 = make_maryland_array3($url,'');
+$url_pulled3 = $maryland_history3['url_pulled'];
+$r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
+$d3 = mysqli_fetch_array($r3);
+$old3 = $d3['html'];
+$json3 = json_encode($maryland_history3);
+$new3 = $core->real_escape_string($json3);
+$test13 = $old3;
+$test23 = $json3;
+if ($test13 != $test23){
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new3','$url_pulled3')");
+    	//$send_message = 'on';
+}
+
 
 
 
