@@ -2,7 +2,8 @@
 // break apart the API
 include_once('menu.php');
 
-echo "<h1>Known URLs</h1>";
+
+echo "<div style='text-align:left;'><h1>Known URLs</h1>";
 $r = $core->query("select distinct url_pulled from coronavirus");
 while ($d = mysqli_fetch_array($r)){
   $r2 = $core->query("select * from coronavirus where url_pulled = '$d[url_pulled]' where url_pulled <> '' order by id desc");
@@ -31,6 +32,6 @@ $url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_Z
 $history = make_maryland_array3($url,'');
 echo '<h1>Zipcode Data</h1><p>make_maryland_array3()</p><pre>';
 print_r($history);
-echo '</pre>';
+echo '</pre></div>';
 
 include_once('footer.php');
