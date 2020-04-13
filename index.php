@@ -9,6 +9,10 @@ $maryland_history = make_maryland_array();
 global $attributes;
 $attributes = make_maryland_array2();
 
+global $zipData;
+$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
+$zipData = make_maryland_array3($url,'');
+
 echo '<div class="container">';
 
 
@@ -69,6 +73,18 @@ function total_count($county){
 }
 
 $graph_date = $date = $maryland_history['date'];
+
+function make_datapoints(){
+	global $zipData;
+	$return = '';
+	foreach ($zipData as $zip => $data){
+		$name = $data['ZIPName'];
+		$count = intval($data['ProtectedCount']);
+		$return .= '{ y: $count, label: "$zip $name" },';	
+	}
+	$return = rtrim(trim($return), ",");
+	return $return;
+}
 ?>
 <script>
 window.onload = function () {
@@ -183,24 +199,7 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 		axisYType: "secondary",
 		color: "#014D65",
 		dataPoints: [
-			{ y: 3, label: "Sweden" },
-			{ y: 7, label: "Taiwan" },
-			{ y: 5, label: "Russia" },
-			{ y: 9, label: "Spain" },
-			{ y: 7, label: "Brazil" },
-			{ y: 7, label: "India" },
-			{ y: 9, label: "Italy" },
-			{ y: 8, label: "Australia" },
-			{ y: 11, label: "Canada" },
-			{ y: 15, label: "South Korea" },
-			{ y: 12, label: "Netherlands" },
-			{ y: 15, label: "Switzerland" },
-			{ y: 25, label: "Britain" },
-			{ y: 28, label: "Germany" },
-			{ y: 29, label: "France" },
-			{ y: 52, label: "Japan" },
-			{ y: 103, label: "China" },
-			{ y: 134, label: "US" }
+			<?PHP echo make_datapoints(); ?>
 		]
 	}]
 });
