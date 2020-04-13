@@ -262,9 +262,9 @@ function make_maryland_array3($url='',$json=''){
 	//$array['features']['url_pulled'] = $url;
 	
 	foreach ($array['features'] as $key => $value){
-		$dem = clean_up_county($value['attributes']['Demographic']);
-		$return[$dem]['CaseCount'] = $value['attributes']['CaseCount'];
-		$return[$dem]['DeathCount'] = $value['attributes']['DeathCount'];	
+		$zip = $value['attributes']['ZIPCODE1'];
+		$return[$zip]['ZIPName'] = $value['attributes']['ZIPName'];
+		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];	
 	}
 	
 	return $return;
