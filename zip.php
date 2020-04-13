@@ -99,11 +99,11 @@ function toggleDataSeries(e) {
 		
 	</div>
 	<div class="row">
-		<div class="col-sm-12" style='margin: 20px; padding: 20px;'><p>ctrl-f support</p><?PHP echo $cases;?></div>
+		<div class="col-sm-12" style='padding: 40px;'><p>ctrl-f support</p><?PHP echo $cases;?></div>
 		
 		
 	</div>
-</div>
+
 	
 <?PHP	
 echo "</div>";
