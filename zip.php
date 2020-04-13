@@ -17,12 +17,11 @@ function make_datapoints(){
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		if($zip != 'url_pulled' && $zip != 'date'){	
-			$name = $data['ZIPName'];
 			$count = intval($data['ProtectedCount']);
 			if ($count > 0){
 				$return .= "{ y: $count, label: '$zip' },";
 			}else{
-				$nocases .= "<div>$zip $name</div>";	
+				$nocases .= "<div>$zip</div>";	
 			}
 		}
 	}
