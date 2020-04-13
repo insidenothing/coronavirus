@@ -12,6 +12,7 @@ $attributes = make_maryland_array2();
 global $zipData;
 $url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
 $zipData = make_maryland_array3($url,'');
+asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 echo '<div class="container">';
 
