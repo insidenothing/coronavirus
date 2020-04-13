@@ -77,11 +77,13 @@ $graph_date = $date = $maryland_history['date'];
 
 function make_datapoints(){
 	global $zipData;
+	global $zip2name;
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		$count = intval($data['ProtectedCount']);
 		if ($count > 100){
-			$return .= "{ y: $count, label: '$zip' },";
+			$name = $zip2name[$zip];
+			$return .= "{ y: $count, label: '$name' },";
 		}
 	}
 	$return = rtrim(trim($return), ",");
