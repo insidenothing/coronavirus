@@ -15,13 +15,15 @@ function make_datapoints(){
 	global $zipData;
 	global $nocases;
 	global $zip2name;
+	$order = 1;
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		if($zip != 'url_pulled' && $zip != 'date'){	
 			$count = intval($data['ProtectedCount']);
 			$name = $zip2name[$zip];
 			if ($count > 0){
-				$return .= "{ y: $count, label: '$name' },";
+				$return .= "{ y: $count, label: '$order. $name' },";
+				$order++;
 			}else{
 				$nocases .= "<div>$zip $name</div>";	
 			}
