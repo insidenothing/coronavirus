@@ -19,6 +19,7 @@ function make_datapoints(){
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		if($zip != 'url_pulled' && $zip != 'date'){	
+			$count = intval($data['ProtectedCount']);
 			if ($count > 0){
 				$total++;
 			}
@@ -30,7 +31,7 @@ function make_datapoints(){
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
 			if ($count > 0){
 				$return .= "{ y: $count, label: '$total $name' },";
-				//$total = $total - 1;
+				$total = $total - 1;
 			}else{
 				$nocases .= "<div>$zip $name</div>";	
 			}
