@@ -94,13 +94,12 @@ function toggleDataSeries(e) {
 
 
 
-	<div class="row">
 		<div class="col-sm-2"><h3>NO CASES</h3><?PHP echo $nocases;?></div>
 		<div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div>
 		
 	</div>
 	<div class="row">
-		<div class="col-sm-12" style='margin: 20px;'><p>ctrl-f support</p><?PHP echo $cases;?></div>
+		<div class="col-sm-12" style='margin: 20px; padding: 20px;'><p>ctrl-f support</p><?PHP echo $cases;?></div>
 		
 		
 	</div>
