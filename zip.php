@@ -78,7 +78,7 @@ function toggleDataSeries(e) {
 
 
 global $nocases;
-echo '<div class="row"><div class="col-sm-2"><h3>NO CASES</h3><p><?PHP echo nocases;?></p></div><div class="col-sm-10"><div id="chartContainerZIP" style="height: 5000px; width: 100%;"></div></div></div>';
+echo '<div class="row"><div class="col-sm-2"><h3>NO CASES</h3><p><?PHP echo $nocases;?></p></div><div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div></div></div>';
 	
 	
 echo "</div>";
