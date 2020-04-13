@@ -17,7 +17,7 @@ function make_datapoints(){
 		$name = $data['ZIPName'];
 		$count = intval($data['ProtectedCount']);
 		if ($count > 0){
-			$return .= "{ y: $count, label: '$zip $name' },";
+			$return .= "{ y: $count, label: '$zip' },";
 		}else{
 			$nocases .= "$zip $name, ";	
 		}
