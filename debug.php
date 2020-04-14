@@ -29,8 +29,7 @@ echo '</pre>';
 
 
 
-$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
-$history = make_maryland_array3($url,'');
+$history = make_maryland_array3('','');
 echo '<h1>Zipcode Data</h1><p>make_maryland_array3()</p><pre>';
 print_r($history);
 echo '</pre></div>';
