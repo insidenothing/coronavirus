@@ -230,7 +230,7 @@ function make_maryland_array3($url='',$json=''){
 	}
 	$return['url_pulled'] = $url;
 	global $core;
-	$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
+	$q = "select html from coronavirus where url_pulled = '$url' order by id asc";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	$json = $d['html'];
