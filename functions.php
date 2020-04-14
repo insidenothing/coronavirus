@@ -223,8 +223,9 @@ function make_maryland_array2($json=''){
 }
 
 global $zip2name;
-function make_maryland_array3($url='',$json=''){
+function make_maryland_array3($url='',$json='',$force=''){
 	global $zip2name;
+	global $arcgis_key;
 	$return = array();
 	if ($json != ''){
 		$array = json_decode($json, true);
@@ -237,11 +238,14 @@ function make_maryland_array3($url='',$json=''){
 	$return['url_pulled'] = $url;
 	global $core;
 	global $debug;
-	$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
-	$r = $core->query($q);
-	$d = mysqli_fetch_array($r);
-	$json = $d['html'];
-	//$json = getPage($url);
+	if($force == ''){
+		$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
+		$r = $core->query($q);
+		$d = mysqli_fetch_array($r);
+		$json = $d['html'];
+	}else{
+		$json = getPage($url);
+	}
 	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
 		die('499');	
 	}
@@ -278,13 +282,16 @@ function make_maryland_array3($url='',$json=''){
 	
 	//$array['features']['url_pulled'] = $url;
 	
-	/*foreach ($array['features'] as $key => $value){
-		$zip = $value['attributes']['ZIPCODE1'];
-		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
-		$zip2name[$zip] = $value['attributes']['ZIPName'] ;
-	}*/
-	
-	return $array;
+	if($force == ''){
+		foreach ($array['features'] as $key => $value){
+			$zip = $value['attributes']['ZIPCODE1'];
+			$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
+			$zip2name[$zip] = $value['attributes']['ZIPName'] ;
+		}
+		return $return;
+	}else{
+		return $array;
+	}
 }
 function wikidata(){
   global $core;
