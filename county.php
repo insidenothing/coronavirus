@@ -44,6 +44,28 @@ include_once('functions.php');
 global $maryland_history;
 $maryland_history = make_maryland_array();
 
+
+global $zipData;
+$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
+$zipData = make_maryland_array3($url,'');
+asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+function make_datapoints(){
+	global $zipData;
+	global $zip2name;
+	global $county;
+	$return = '';
+	foreach ($zipData as $zip => $data){
+		$count = intval($data['ProtectedCount']);
+		if ($count > 100){
+			$name = $zip2name[$zip];
+			$return .= "{ y: $count, label: '$name' },";
+		}
+	}
+	$return = rtrim(trim($return), ",");
+	return $return;
+}
+
+
 $date = $maryland_history['date'];
 
 $page_description = "$date $county - $days_to_predict Day Prediction";
@@ -392,7 +414,34 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 chart3.render();	
 
 
-
+var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		fontSize: 14,
+		text:"<?PHP echo $county;?> COVID-19 Outbreak by Zip Code covid19math.net"
+	},
+	axisX:{
+		interval: 1
+	},
+	axisY2:{
+		fontSize: 14,
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "ZIP CODES w/ Cases over 7"
+	},
+	data: [{
+		type: "bar",
+		name: "zip",
+		axisYType: "secondary",
+		color: "#014D65",
+		indexLabelFontSize: 6,
+		dataPoints: [
+			<?PHP echo make_datapoints(); ?>
+		]
+	}]
+});
+chartZIP.render();
 	
 	
 	
@@ -409,9 +458,11 @@ function toggleDataSeries(e) {
 </script>
 </head>
 <body>
-<div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
+
 <script src="canvasjs.min.js"></script>
 <div class="container">
+	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 600px; width: 100%;"></div></div></div>
+	<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
 	<div class="row">
 		<div class='col-sm-4'>
 			<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
