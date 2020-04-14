@@ -264,7 +264,7 @@ function make_maryland_array3($url='',$json='',$force=''){
 	echo '<pre>';
 	print_r($array);
 	echo '</pre>';
-	$debug = ob_get_clean();
+	$debug .= ob_get_clean();
 	if($force == ''){
 		$debug .= "<p>RETURN JUST ARRAY</p>";
 		return $array;
