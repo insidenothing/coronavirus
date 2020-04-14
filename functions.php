@@ -242,14 +242,12 @@ function make_maryland_array3($url='',$json='',$force=''){
 	}
 	$return['url_pulled'] = $url;
 	if($force == ''){
-		
 		$q = "select raw_response coronavirus where url_pulled = '$url' order by id desc";
 		$debug .= "<p>USING SAVED VERSION</p>";
 		$r = $core->query($q);
 		$d = mysqli_fetch_array($r);
-		$json = $d['html'];
+		$json = $d['raw_response'];
 	}else{
-		$debug .= "<p>USING LIVE VERSION - SETTING RAW</p>";
 		$json = getPage($url);
 		global $raw;
 		$raw = $json;
@@ -271,8 +269,7 @@ function make_maryland_array3($url='',$json='',$force=''){
 	echo '<pre>';
 	print_r($array);
 	echo '</pre>';
-	$debug .= ob_get_clean();
-	$debug .= "<p>BUILD RETURN ARRAY</p>";
+	$debug = ob_get_clean();
 	foreach ($array['features'] as $key => $value){
 		$zip = $value['attributes']['ZIPCODE1'];
 		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
