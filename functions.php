@@ -238,8 +238,9 @@ function make_maryland_array3($url='',$json='',$force=''){
 	}
 	$return['url_pulled'] = $url;
 	if($force == ''){
-		$debug .= "<p>USING SAVED VERSION</p>";
+		
 		$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
+		$debug .= "<p>USING SAVED VERSION: $q</p>";
 		$r = $core->query($q);
 		$d = mysqli_fetch_array($r);
 		$json = $d['html'];
