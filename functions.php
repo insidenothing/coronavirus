@@ -284,14 +284,14 @@ function make_maryland_array3($url='',$json='',$force=''){
 	//$array['features']['url_pulled'] = $url;
 	
 	if($force == ''){
+		return $array;
+	}else{
 		foreach ($array['features'] as $key => $value){
 			$zip = $value['attributes']['ZIPCODE1'];
 			$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
 			$zip2name[$zip] = $value['attributes']['ZIPName'] ;
 		}
 		return $return;
-	}else{
-		return $array;
 	}
 }
 function wikidata(){
