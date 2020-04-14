@@ -67,7 +67,7 @@ function make_datapoints(){
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 ) {
 			$name = $zip2name[$zip];
-			$return .= "{ y: $count, label: '$zip $name' },";
+			$return .= "{ y: $count, label: '$zip' },";
 		}
 	}
 	$return = rtrim(trim($return), ",");
