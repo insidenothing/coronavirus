@@ -21,10 +21,12 @@ $d = mysqli_fetch_array($r);
 $old = $d['html'];
 $json = json_encode($maryland_history);
 $new = $core->real_escape_string($json);
+global $raw;
+$raw_response = $core->real_escape_string($raw);
 $test1 = $old;
 $test2 = $json;
 if ($test1 != $test2){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new','$url_pulled')");
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new','$url_pulled','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"daily update");
 }
@@ -40,10 +42,12 @@ $d2 = mysqli_fetch_array($r2);
 $old2 = $d2['html'];
 $json2 = json_encode($maryland_history2);
 $new2 = $core->real_escape_string($json2);
+global $raw;
+$raw_response = $core->real_escape_string($raw);
 $test12 = $old2;
 $test22 = $json2;
 if ($test12 != $test22){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new2','$url_pulled2')");
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new2','$url_pulled2','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"attributes updated");
 }
@@ -57,10 +61,12 @@ $d3 = mysqli_fetch_array($r3);
 $old3 = $d3['html'];
 $json3 = json_encode($maryland_history3);
 $new3 = $core->real_escape_string($json3);
+global $raw;
+$raw_response = $core->real_escape_string($raw);
 $test13 = $old3;
 $test23 = $json3;
 if ($test13 != $test23){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new3','$url_pulled3')");
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"zip codes updated");
 }
