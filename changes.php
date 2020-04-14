@@ -49,9 +49,8 @@ if ($test12 != $test22){
 }
 
 
-$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
 global $maryland_history3;
-$maryland_history3 = make_maryland_array3($url,'','force');
+$maryland_history3 = make_maryland_array3('','','force');
 $url_pulled3 = $maryland_history3['url_pulled'];
 $r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
 $d3 = mysqli_fetch_array($r3);
