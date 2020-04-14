@@ -269,7 +269,7 @@ function make_maryland_array3($url='',$json=''){
 	
 	//$array['features']['url_pulled'] = $url;
 	
-	foreach ($array['features'] as $key => $value){
+	foreach ($array as $key => $value){
 		$zip = $value['attributes']['ZIPCODE1'];
 		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
 		$zip2name[$zip] = $value['attributes']['ZIPName'] ;
