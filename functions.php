@@ -229,7 +229,12 @@ function make_maryland_array3($url='',$json=''){
 		$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_TotalsTracker/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
 	}
 	$return['url_pulled'] = $url;
-	$json = getPage($url);
+	global $core;
+	$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$json = $d['html'];
+	//$json = getPage($url);
 	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
 		die('504');	
 	}
