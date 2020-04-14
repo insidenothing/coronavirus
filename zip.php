@@ -31,7 +31,7 @@ function make_datapoints(){
 			$count = intval($data['ProtectedCount']);
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
 if ($count > 0){
-$return .= "{ y: $count, label: '$total $name' },
+$return .= "{ y: $count, label: '#$total $zip' },
 ";
 $total = $total - 1;
 $cases .= "<span>$zip $name $count, </span>";
