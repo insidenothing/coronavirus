@@ -482,6 +482,8 @@ function toggleDataSeries(e) {
 			<?PHP echo $dpeak_str[$county];?>
 			<?PHP echo $normal[$county];?>
 			<?PHP echo $dnormal[$county];?>
+			<h3>ZIP Codes</h3>
+			<?PHP echo  $county_zip_codes[$county]; ?>
 			<h3>Other Counties</h3>
 			<?PHP echo $links; ?>
 		</div>
