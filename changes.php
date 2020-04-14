@@ -26,6 +26,7 @@ $test2 = $json;
 if ($test1 != $test2){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new','$url_pulled')");
     	//$send_message = 'on';
+	message_send('4433862584',"daily update");
 }
 
 
@@ -44,6 +45,7 @@ $test22 = $json2;
 if ($test12 != $test22){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new2','$url_pulled2')");
     	//$send_message = 'on';
+	message_send('4433862584',"attributes updated");
 }
 
 
@@ -61,6 +63,7 @@ $test23 = $json3;
 if ($test13 != $test23){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled) values (NOW(),NOW(), '$new3','$url_pulled3')");
     	//$send_message = 'on';
+	message_send('4433862584',"zip codes updated");
 }
 
 
