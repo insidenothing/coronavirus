@@ -7,10 +7,10 @@ $county_zip_codes['Allegany'] 		= explode(',',"21502,21505,21521,21528,21524,215
 $county_zip_codes['AnneArundel']	= explode(',',"20701,20711,20714,20724,20733,21012,20751,20754,20755,21032,20758,21035,21037,20765,20764,21401,21403,21402,21405,20776,20779,21056,20778,21409,21054,21060,21062,21061,21077,21076,20794,21090,21108,21106,21113,21114,21122,21123,21144,21140,21146");
 $county_zip_codes['Baltimore'] 		= explode(',',"21207,21206,21209,21208,21210,21212,21219,21221,21220,21222,21224,21227,21229,21228,21234,21236,21235,21239,21237,21241,21250,21013,21244,21252,21022,21020,21027,21023,21031,21030,21282,21286,21051,21053,21052,21057,21071,21074,21082,21087,21092,21093,21102,21105,21104,21111,21117,21120,21128,21131,21133,21139,21136,21153,21152,21155,21156,21162,21161,21163,21204");
 $county_zip_codes['BaltimoreCity']	= explode(',',"21211,21213,21215,21214,21217,21216,21218,21223,21225,21226,21231,21230,21251,21263,21287,21201,21202,21205");
-$county_zip_codes['Calvert']		= explode(',',"");
-$county_zip_codes['Caroline']		= explode(',',"");
-$county_zip_codes['Carroll']		= explode(',',"");
-$county_zip_codes['Cecil']		= explode(',',"");
+$county_zip_codes['Calvert']		= explode(',',"20657,20676,20678,20629,20685,20688,20732,20689,20639,20736");
+$county_zip_codes['Caroline']		= explode(',',"21609,21655,21660,21629,21632,21636,21639,21641");
+$county_zip_codes['Carroll']		= explode(',',"21157,21158,21048");
+$county_zip_codes['Cecil']		= explode(',',"21915,21914,21917,21916,21919,21918,21921,21920,21930,21922,21901,21903,21911,21904,21913,21912");
 $county_zip_codes['Charles']		= explode(',',"");
 $county_zip_codes['Dorchester']		= explode(',',"");
 $county_zip_codes['Frederick']		= explode(',',"");
@@ -91,7 +91,7 @@ function make_datapoints(){
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 ) {
 			$name = $zip2name[$zip];
-			$return .= "{ y: $count, label: '$name' },";
+			$return .= "{ y: $count, label: '$name $zip' },";
 			$global_graph_height = $global_graph_height + 25; // px per line in graph
 		}
 	}
