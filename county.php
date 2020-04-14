@@ -1,6 +1,6 @@
 <?PHP
-
-
+global $global_graph_height;
+$global_graph_height = 0;
 global $county_zip_codes;
 $county_zip_codes = array();
 $county_zip_codes['Baltimore'] 	= explode(',',"21207,21206,21209,21208,21210,21212,21219,21221,21220,21222,21224,21227,21229,21228,21234,21236,21235,21239,21237,21241,21250,21013,21244,21252,21022,21020,21027,21023,21031,21030,21282,21286,21051,21053,21052,21057,21071,21074,21082,21087,21092,21093,21102,21105,21104,21111,21117,21120,21128,21131,21133,21139,21136,21153,21152,21155,21156,21162,21161,21163,21204");
@@ -60,6 +60,7 @@ function make_datapoints(){
 	global $zip2name;
 	global $county;
 	global $county_zip_codes;
+	global $global_graph_height;
 	$match_array = $county_zip_codes[$county];
 	$return = '';
 	foreach ($zipData as $zip => $data){
@@ -68,6 +69,7 @@ function make_datapoints(){
 		if ( $key > 0 ) {
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$zip' },";
+			$global_graph_height = $global_graph_height + 15; // px per line in graph
 		}
 	}
 	$return = rtrim(trim($return), ",");
@@ -470,7 +472,7 @@ function toggleDataSeries(e) {
 
 <script src="canvasjs.min.js"></script>
 <div class="container">
-	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 600px; width: 100%;"></div></div></div>
+	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: <?PHP echo $global_graph_height;?>px; width: 100%;"></div></div></div>
 	<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
 	<div class="row">
 		<div class='col-sm-4'>
