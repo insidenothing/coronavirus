@@ -3,8 +3,31 @@ global $global_graph_height;
 $global_graph_height = 0;
 global $county_zip_codes;
 $county_zip_codes = array();
-$county_zip_codes['Baltimore'] 	= explode(',',"21207,21206,21209,21208,21210,21212,21219,21221,21220,21222,21224,21227,21229,21228,21234,21236,21235,21239,21237,21241,21250,21013,21244,21252,21022,21020,21027,21023,21031,21030,21282,21286,21051,21053,21052,21057,21071,21074,21082,21087,21092,21093,21102,21105,21104,21111,21117,21120,21128,21131,21133,21139,21136,21153,21152,21155,21156,21162,21161,21163,21204");
-$county_zip_codes['Harford']  	= explode(',',"21078,21085,21084,21005,21001,21009,21015,21014,21018,21130,21017,21132,21028,21034,21154,21040,21160,21047,21050");	
+$county_zip_codes['Allegany'] 		= explode(',',"21502,21505,21521,21528,21524,21530,21529,21532,21766,21540,21539,21542,21545,21543,21555,21557,21556,21560,21562");
+$county_zip_codes['AnneArundel']	= explode(',',"20701,20711,20714,20724,20733,21012,20751,20754,20755,21032,20758,21035,21037,20765,20764,21401,21403,21402,21405,20776,20779,21056,20778,21409,21054,21060,21062,21061,21077,21076,20794,21090,21108,21106,21113,21114,21122,21123,21144,21140,21146");
+$county_zip_codes['Baltimore'] 		= explode(',',"21207,21206,21209,21208,21210,21212,21219,21221,21220,21222,21224,21227,21229,21228,21234,21236,21235,21239,21237,21241,21250,21013,21244,21252,21022,21020,21027,21023,21031,21030,21282,21286,21051,21053,21052,21057,21071,21074,21082,21087,21092,21093,21102,21105,21104,21111,21117,21120,21128,21131,21133,21139,21136,21153,21152,21155,21156,21162,21161,21163,21204");
+$county_zip_codes['BaltimoreCity']	= explode(',',"");
+$county_zip_codes['Calvert']		= explode(',',"");
+$county_zip_codes['Caroline']		= explode(',',"");
+$county_zip_codes['Carroll']		= explode(',',"");
+$county_zip_codes['Cecil']		= explode(',',"");
+$county_zip_codes['Charles']		= explode(',',"");
+$county_zip_codes['Dorchester']		= explode(',',"");
+$county_zip_codes['Frederick']		= explode(',',"");
+$county_zip_codes['Garrett']		= explode(',',"");
+$county_zip_codes['Harford']  		= explode(',',"21078,21085,21084,21005,21001,21009,21015,21014,21018,21130,21017,21132,21028,21034,21154,21040,21160,21047,21050");	
+$county_zip_codes['Howard']		= explode(',',"");
+$county_zip_codes['Kent']		= explode(',',"");
+$county_zip_codes['Montgomery']		= explode(',',"");
+$county_zip_codes['PrinceGeorges']	= explode(',',"");
+$county_zip_codes['QueenAnnes']		= explode(',',"");
+$county_zip_codes['Somerset']		= explode(',',"");
+$county_zip_codes['StMarys']		= explode(',',"");
+$county_zip_codes['Talbot']		= explode(',',"");
+$county_zip_codes['Washington']		= explode(',',"");
+$county_zip_codes['Wicomico']		= explode(',',"");
+$county_zip_codes['Worcester']		= explode(',',"");
+
 global $show;
 $show = '';
 if(isset($_GET['show'])){
@@ -68,7 +91,7 @@ function make_datapoints(){
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 ) {
 			$name = $zip2name[$zip];
-			$return .= "{ y: $count, label: '$zip' },";
+			$return .= "{ y: $count, label: '$name' },";
 			$global_graph_height = $global_graph_height + 20; // px per line in graph
 		}
 	}
