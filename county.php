@@ -86,13 +86,25 @@ function make_datapoints(){
 	global $global_graph_height;
 	$match_array = $county_zip_codes[$county];
 	$return = '';
+	$total=0;
+	foreach ($zipData as $zip => $data){
+		$count = intval($data['ProtectedCount']);
+		$key = array_search($zip, $match_array);
+		if ( $key > 0 ) {
+			//$name = $zip2name[$zip];
+			//$return .= "{ y: $count, label: '$name $zip' },";
+			//$global_graph_height = $global_graph_height + 25; // px per line in graph
+			$total++;
+		}
+	}
 	foreach ($zipData as $zip => $data){
 		$count = intval($data['ProtectedCount']);
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 ) {
 			$name = $zip2name[$zip];
-			$return .= "{ y: $count, label: '$name $zip' },";
+			$return .= "{ y: $count, label: '$total $name $zip' },";
 			$global_graph_height = $global_graph_height + 25; // px per line in graph
+			$total = $total - 1;
 		}
 	}
 	$return = rtrim(trim($return), ",");
