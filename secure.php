@@ -9,3 +9,5 @@ global $twillo_account;
 global $twillo_key;
 $twillo_key = '';
 $twillo_account = '';
+global $arcgis_key;
+$arcgis_key = '';
