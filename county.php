@@ -44,7 +44,7 @@ if(isset($_GET['county'])){
   $county = 'Maryland';	
 }
 $logo = 'off';
-
+include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php');
 
 global $maryland_history;
