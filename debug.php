@@ -35,4 +35,11 @@ echo '<h1>Zipcode Data</h1><p>make_maryland_array3()</p><pre>';
 print_r($history);
 echo '</pre></div>';
 
+echo '<h1>DEBUG</h1>';
+global $debug;
+echo $debug;
+echo '</div>';
+
+
+
 include_once('footer.php');
