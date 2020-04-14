@@ -7,8 +7,7 @@ include_once('menu.php');
 global $nocases;
 global $cases;
 global $zipData;
-$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
-$zipData = make_maryland_array3($url,'');
+$zipData = make_maryland_array3('','');
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
 function make_datapoints(){
