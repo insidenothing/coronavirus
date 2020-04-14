@@ -243,8 +243,8 @@ function make_maryland_array3($url='',$json='',$force=''){
 	$return['url_pulled'] = $url;
 	if($force == ''){
 		
-		$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
-		$debug .= "<p>USING SAVED VERSION: $q</p>";
+		$q = "select raw_response coronavirus where url_pulled = '$url' order by id desc";
+		$debug .= "<p>USING SAVED VERSION</p>";
 		$r = $core->query($q);
 		$d = mysqli_fetch_array($r);
 		$json = $d['html'];
@@ -272,18 +272,13 @@ function make_maryland_array3($url='',$json='',$force=''){
 	print_r($array);
 	echo '</pre>';
 	$debug .= ob_get_clean();
-	if($force == ''){
-		$debug .= "<p>RETURN JUST ARRAY</p>";
-		return $array;
-	}else{
-		$debug .= "<p>BUILD RETURN ARRAY</p>";
-		foreach ($array['features'] as $key => $value){
-			$zip = $value['attributes']['ZIPCODE1'];
-			$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
-			$zip2name[$zip] = $value['attributes']['ZIPName'] ;
-		}
-		return $return;
+	$debug .= "<p>BUILD RETURN ARRAY</p>";
+	foreach ($array['features'] as $key => $value){
+		$zip = $value['attributes']['ZIPCODE1'];
+		$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
+		$zip2name[$zip] = $value['attributes']['ZIPName'] ;
 	}
+	return $return;
 }
 function wikidata(){
   global $core;
