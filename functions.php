@@ -247,8 +247,8 @@ function make_maryland_array3($url='',$json=''){
 	}
 	ob_start();
 	$array = json_decode($json, true);
-	echo '<table><tr><td valign="top"><h1>Database</h1><pre>';
-	print_r($array['fields']);
+	echo '<table><tr><td valign="top"><h1>Array</h1><pre>';
+	print_r($array);
 	echo '</pre></td>';
 	echo '<td valign="top"><h1>Data</h1><div>';
 	/* 
