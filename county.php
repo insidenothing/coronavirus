@@ -69,7 +69,7 @@ function make_datapoints(){
 		if ( $key > 0 ) {
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$zip' },";
-			$global_graph_height = $global_graph_height + 15; // px per line in graph
+			$global_graph_height = $global_graph_height + 20; // px per line in graph
 		}
 	}
 	$return = rtrim(trim($return), ",");
