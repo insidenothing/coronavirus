@@ -66,8 +66,10 @@ function make_datapoints(){
 		$count = intval($data['ProtectedCount']);
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 ) {
-		     	$name = $zip2name[$zip];
-			$return .= "{ y: $count, label: '$zip $name' },";
+			if ($count > 0){
+				$name = $zip2name[$zip];
+				$return .= "{ y: $count, label: '$zip $name' },";
+			}
 		}
 	}
 	$return = rtrim(trim($return), ",");
