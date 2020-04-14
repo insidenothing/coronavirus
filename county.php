@@ -1,4 +1,13 @@
 <?PHP
+
+
+global $county_zip_codes;
+$county_zip_codes = array();
+$county_zip_codes['Baltimore'] = "21207,21206,21209,21208,21210,21212,21219,21221,21220,21222,21224,21227,21229,21228,
+21234,21236,21235,21239,21237,21241,21250,21013,21244,21252,21022,21020,21027,21023,21031,21030,21282,
+21286,21051,21053,21052,21057,21071,21074,21082,21087,21092,21093,21102,21105,21104,21111,21117,21120,21128,21131,
+21133,21139,21136,21153,21152,21155,21156,21162,21161,21163,21204";
+	
 global $show;
 $show = '';
 if(isset($_GET['show'])){
@@ -53,11 +62,14 @@ function make_datapoints(){
 	global $zipData;
 	global $zip2name;
 	global $county;
+	global $county_zip_codes;
+	$match = $county_zip_codes[$county];
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		$count = intval($data['ProtectedCount']);
-		if ($count > 100){
-			$name = $zip2name[$zip];
+		$pos = strpos($match, $zip); // is ZIP in the county?
+		if ($pos !== false) {
+		     	$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$name' },";
 		}
 	}
