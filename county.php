@@ -508,7 +508,11 @@ function toggleDataSeries(e) {
 			<?PHP echo $normal[$county];?>
 			<?PHP echo $dnormal[$county];?>
 			<h3>ZIP Codes</h3>
-			<?PHP echo  $county_zip_codes[$county]; ?>
+			<ol>
+			<?PHP  foreach ($county_zip_codes[$county] as $zip => $data){
+			echo "<li>$zip => $data</li>";
+			}?>
+			</ol>
 			<h3>Other Counties</h3>
 			<?PHP echo $links; ?>
 		</div>
