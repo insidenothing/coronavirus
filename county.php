@@ -430,8 +430,8 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		fontSize: 14,
-		text:"<?PHP echo $county;?> COVID-19 Outbreak by Zip Code covid19math.net"
+		fontSize: 18,
+		text:"COVID-19 Outbreak by Zip Code covid19math.net"
 	},
 	axisX:{
 		interval: 1
@@ -440,7 +440,7 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 		fontSize: 14,
 		interlacedColor: "rgba(1,77,101,.2)",
 		gridColor: "rgba(1,77,101,.1)",
-		title: "ZIP CODES w/ Cases over 7"
+		title: "<?PHP echo $county;?> ZIP CODES w/ Cases over 7"
 	},
 	data: [{
 		type: "bar",
