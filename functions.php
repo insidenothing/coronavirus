@@ -225,26 +225,26 @@ function make_maryland_array2($json=''){
 global $zip2name;
 function make_maryland_array3($url='',$json='',$force=''){
 	global $zip2name;
+	global $debug;
 	global $arcgis_key;
+	global $core;
 	$return = array();
 	if ($json != ''){
 		$array = json_decode($json, true);
 		return $array;
 	}
-	// old https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json
 	if ($url == ''){
-		// old $url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_TotalsTracker/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
 		$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/ZIPCodes_MD_1/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=';
 	}
 	$return['url_pulled'] = $url;
-	global $core;
-	global $debug;
 	if($force == ''){
+		$debug .= "<p>USING SAVED VERSION</p>";
 		$q = "select html from coronavirus where url_pulled = '$url' order by id desc";
 		$r = $core->query($q);
 		$d = mysqli_fetch_array($r);
 		$json = $d['html'];
 	}else{
+		$debug .= "<p>USING LIVE VERSION</p>";
 		$json = getPage($url);
 	}
 	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
@@ -261,31 +261,15 @@ function make_maryland_array3($url='',$json='',$force=''){
 	}
 	ob_start();
 	$array = json_decode($json, true);
-	echo '<table><tr><td valign="top"><h1>Array</h1><pre>';
+	echo '<pre>';
 	print_r($array);
-	echo '</pre></td>';
-	echo '<td valign="top"><h1>Data</h1><div>';
-	/* 
-	
-		$time = $value['attributes']['ReportDate'] / 1000;
-		$date = date('Y-m-d',$time+14400);
-		$return[$date] = $value['attributes'];
-		$return['date'] = $date; // last date used in the array
-		echo "<h3>UPDATE $date</h1>";
-		foreach ($value['attributes'] as $key2 => $value2){
-			echo "<li>$key2 => $value2</li>";
-		}
-	}
-	*/
-	echo '</div></td></tr></table>';
+	echo '</pre>';
 	$debug = ob_get_clean();
-	//echo $debug;
-	
-	//$array['features']['url_pulled'] = $url;
-	
 	if($force == ''){
+		$debug .= "<p>RETURN JUST ARRAY</p>";
 		return $array;
 	}else{
+		$debug .= "<p>BUILD RETURN ARRAY</p>";
 		foreach ($array['features'] as $key => $value){
 			$zip = $value['attributes']['ZIPCODE1'];
 			$return[$zip]['ProtectedCount'] = $value['attributes']['ProtectedCount'];
