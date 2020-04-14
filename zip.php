@@ -95,7 +95,7 @@ function toggleDataSeries(e) {
 
 
 
-		<div class="col-sm-2"><h3>NO CASES</h3><?PHP echo $nocases;?></div>
+		<div class="col-sm-2"><h3>&lt; 7 CASES</h3><?PHP echo $nocases;?></div>
 		<div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div>
 		
 	</div>
