@@ -104,9 +104,9 @@ function make_datapoints(){
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$total $name $zip' },";
 			$total = $total - 1;
-			$zip_debug .= '<span style="background-color:red;">$zip</span>';
+			$zip_debug .= '<span style="background-color:red;">$zip </span> ';
 		}elseif( $key > 0  ){
-			$zip_debug .= '<span style="background-color:green;">$zip</span>';
+			$zip_debug .= '<span style="background-color:green;">$zip </span> ';
 		}
 	}
 	$return = rtrim(trim($return), ",");
