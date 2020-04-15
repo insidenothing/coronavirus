@@ -70,9 +70,18 @@ $links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
-	$links .= "<a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
+	//$links .= "<a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
+	$links .= "<li role='presentation'><a href="county.php?county=$d[name_of_location]">$d[name_of_location]</a></li>";
+	//<li role="presentation" class="active"><a href="#">Home</a></li>
 }
 	?>
+	
+	<ul class="nav nav-tabs">
+		<?PHP echo "<div>$links</div>"; ?>
+  
+
+</ul>
+	
 <table><tr>
 	<td><a href='index.php'><img class="img-responsive" src='img/home.png'></a></td>
 	<td><a href='zip.php'><img class="img-responsive" src='img/zip.png'></a></td>
@@ -87,9 +96,6 @@ while($d = mysqli_fetch_array($r)){
 	<td><a href='https://www.facebook.com/groups/231583938033989/'><img class="img-responsive" src='img/facebook.png'></a></td>
 	<td><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></td>
 	<td></td>
-	</tr>
-	<tr>
-		<td colspan="6"><?PHP echo "<div>$links</div>"; ?></td>
 	</tr>
 	</table>
 	
