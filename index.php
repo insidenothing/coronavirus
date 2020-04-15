@@ -14,7 +14,7 @@ $url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_Z
 $zipData = make_maryland_array3($url,'');
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
-echo '<div class="container">';
+
 
 
 echo '
