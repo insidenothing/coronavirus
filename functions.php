@@ -262,6 +262,18 @@ function make_maryland_array3($url='',$json='',$force=''){
 	if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
 		die('400');
 	}
+	if ($json == '{
+  "error" : 
+  {
+    "code" : 400, 
+    "message" : "Cannot perform query. Invalid query parameters.", 
+    "details" : [
+      "Unable to perform query. Please check your parameters."
+    ]
+  }
+}'){
+	die('400');	
+	}
 	ob_start();
 	$array = json_decode($json, true);
 	echo '<pre>';
