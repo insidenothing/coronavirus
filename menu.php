@@ -91,28 +91,16 @@ while($d = mysqli_fetch_array($r)){
 	<div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 	<ul class="nav nav-tabs">
 		<?PHP echo "$links"; ?>
-		<li role="presentation" class="dropdown">
-		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-		      Main Menu <span class="caret"></span>
-		    </a>
-		    <ul class="dropdown-menu">
-		       <li><a href="index.php">Home Page</a></li>
-            		<li><a href="zip.php">Zip Code Report</a></li>
-            		<li><a href="graphs.php">Main 45 Day Predictions</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="graph_age.php">Graph - Ages</a></li>
-	    <li><a href="graph_hospital.php">Graph - Hospital Data</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="graph_delta.php">Graph - Deltas over Time</a></li>
-	    <li role="separator" class="divider"></li>
-			    <li><a href="infection_level.php">Current Infection Rate</a></li>
-			    <li><a href="death_level.php">Current Death Rate</a></li>
-			    <li role="separator" class="divider"></li>
-			    <li><a href="signup.php">SMS Signup</a></li>
-			     <li role="separator" class="divider"></li>
-			    <li><a href="https://www.facebook.com/groups/covid19md/">Facebook Group - Feedback</a></li>
-		    </ul>
-		 </li>
+		<li role='presentation'><a href="index.php">Home Page</a></li>
+		<li role='presentation'><a href="zip.php">Zip Code Report</a></li>
+		<li role='presentation'><a href="graphs.php">Main 45 Day Predictions</a></li>
+		<li role='presentation'><a href="graph_age.php">Graph - Ages</a></li>
+		<li role='presentation'><a href="graph_hospital.php">Graph - Hospital Data</a></li>
+		<li role='presentation'><a href="graph_delta.php">Graph - Deltas over Time</a></li>
+		<li role='presentation'><a href="infection_level.php">Current Infection Rate</a></li>
+		<li role='presentation'><a href="death_level.php">Current Death Rate</a></li>
+		<li role='presentation'><a href="signup.php">SMS Signup</a></li>
+		<li role='presentation'><a href="https://www.facebook.com/groups/covid19md/">Facebook Group - Feedback</a></li>
 	</ul>
 	
 
