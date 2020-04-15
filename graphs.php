@@ -478,11 +478,10 @@ function toggleDataSeries(e) {
 
 }
 </script>
-</head>
-<body>
+
 <div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 <script src="canvasjs.min.js"></script>
-<div class="container">
+
 	<div class="row">
 		<div class='col-sm-12' style='background-color:lightyellow;'>
 			<h3>Enter Days to Predict</h3>
