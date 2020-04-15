@@ -100,7 +100,7 @@ function make_datapoints(){
 	foreach ($zipData as $zip => $data){
 		$count = intval($data['ProtectedCount']);
 		$key = array_search($zip, $match_array);
-		if ( $key > 0 ) {
+		if ( $key > 0  && $count > 0) {
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$total $name $zip' },";
 			$global_graph_height = $global_graph_height + 25; // px per line in graph
