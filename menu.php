@@ -81,4 +81,12 @@ include_once('functions.php'); //outside webserver
 	<td><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></td>
 	<td></td>
 	</tr></table>
-
+	<?PHP
+$links;
+$q = "SELECT distinct name_of_location FROM coronavirus_populations ";
+$r = $core->query($q);
+while($d = mysqli_fetch_array($r)){	
+	$links .= "<a href='?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
+}
+	echo "<div>$links</div>";
+?>
