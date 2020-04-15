@@ -519,7 +519,7 @@ function toggleDataSeries(e) {
 			<h3>ZIP Codes</h3>
 			<ol>
 			<?PHP  foreach ($county_zip_codes[$county] as $zip => $data){
-			echo "<li>$zip => $data</li>";
+			echo "<span>$data </span>";
 			}?>
 			</ol>
 			<h3>Other Counties</h3>
