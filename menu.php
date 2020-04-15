@@ -20,7 +20,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-  <link rel="manifest" href="/coronavirus/site.webmanifest">
+  <link rel="manifest" href="/site.webmanifest">
   <meta property="og:url"           content="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="COVID19MATH.net Digital Resources" />
@@ -28,9 +28,6 @@
   <meta property="og:image"         content="https://www.covid19math.net/img/vrus.png" />
   <?PHP if (empty($_GET['debug'])){ ?>	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <?PHP } ?>
