@@ -70,7 +70,7 @@ $links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
-	$links .= "<a href='?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
+	$links .= "<a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
 }
 	?>
 <table><tr>
