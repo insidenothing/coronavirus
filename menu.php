@@ -72,10 +72,18 @@ include_once('functions.php'); //outside webserver
 $links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
+	$loc_test='';
+	if (isset($_GET['county'])){
+		$loc_test = $_GET['county'];
+	}
 while($d = mysqli_fetch_array($r)){	
-	//$links .= "<a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
-	$links .= "<li role='presentation'><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
-	//<li role="presentation" class="active"><a href="#">Home</a></li>
+	if ($d['name_of_location'] == $loc_test){
+		$links .= "<li role='presentation' class='active'><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";	
+	}else{
+		$links .= "<li role='presentation'><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
+	}
+	
+	//<li role="presentation"><a href="#">Home</a></li>
 }
 	?>
 	
