@@ -76,6 +76,8 @@ while($d = mysqli_fetch_array($r)){
 }
 	?>
 	
+<div class="container">
+	
 	<ul class="nav nav-tabs">
 		<?PHP echo "<div>$links</div>"; ?>
 	</ul>
