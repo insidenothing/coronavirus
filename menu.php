@@ -73,18 +73,23 @@ while($d = mysqli_fetch_array($r)){
 	$links .= "<a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
 }
 	?>
-<div>
-	<a href='index.php'><img class="img-responsive" src='img/home.png'></a>
-	<a href='zip.php'><img class="img-responsive" src='img/zip.png'></a>
-	<a href='graphs.php'><img class="img-responsive" src='img/graph_county.png'></a>
-	<a href='graph_age.php'><img class="img-responsive" src='img/graph_age.png'></a>
-	<a href='infection_level.php'><img class="img-responsive" src='img/infected.png'></a>
-	<a href='death_level.php'><img class="img-responsive" src='img/death_rates.png'></a>
-	<a href='signup.php'><img class="img-responsive" src='img/signup.png'></a></td>
-	<a href='graph_hospital.php'><img class="img-responsive" src='img/graph_hospital.png'></a>
-	<a href='graph_delta.php'><img class="img-responsive" src='img/graph_delta.png'></a>
-	<a href='https://www.facebook.com/groups/231583938033989/'><img class="img-responsive" src='img/facebook.png'></a>
-	<div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-</div>
-<?PHP echo "<div>$links</div>"; ?>
+<table><tr>
+	<td><a href='index.php'><img class="img-responsive" src='img/home.png'></a></td>
+	<td><a href='zip.php'><img class="img-responsive" src='img/zip.png'></a></td>
+	<td><a href='graphs.php'><img class="img-responsive" src='img/graph_county.png'></a></td>
+	<td><a href='graph_age.php'><img class="img-responsive" src='img/graph_age.png'></a></td>
+	<td><a href='graph_hospital.php'><img class="img-responsive" src='img/graph_hospital.png'></a></td>
+	<td><a href='graph_delta.php'><img class="img-responsive" src='img/graph_delta.png'></a></td>
+	</tr><tr>
+	<td><a href='infection_level.php'><img class="img-responsive" src='img/infected.png'></a></td>
+	<td><a href='death_level.php'><img class="img-responsive" src='img/death_rates.png'></a></td>
+	<td><a href='signup.php'><img class="img-responsive" src='img/signup.png'></a></td>
+	<td><a href='https://www.facebook.com/groups/231583938033989/'><img class="img-responsive" src='img/facebook.png'></a></td>
+	<td><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></td>
+	<td></td>
+	</tr>
+	<tr>
+		<td colspan="6"><?PHP echo "<div>$links</div>"; ?></td>
+	</tr>
+	</table>
 	
