@@ -521,7 +521,7 @@ function toggleDataSeries(e) {
 			<?PHP echo $dpeak_str[$county];?>
 			<?PHP echo $normal[$county];?>
 			<?PHP echo $dnormal[$county];?>
-			<h3>ZIP Codes</h3>
+			<h3>ZIP Codes used by Maryland Dept. Health</h3>
 			<?PHP echo $zip_debug;?>
 			<h3>Other Counties</h3>
 			<?PHP echo $links; ?>
