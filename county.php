@@ -78,12 +78,14 @@ global $zipData;
 $url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
 $zipData = make_maryland_array3($url,'');
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+global $zip_debug;
 function make_datapoints(){
 	global $zipData;
 	global $zip2name;
 	global $county;
 	global $county_zip_codes;
 	global $global_graph_height;
+	global $zip_debug;
 	$match_array = $county_zip_codes[$county];
 	$return = '';
 	$total=0;
@@ -102,6 +104,9 @@ function make_datapoints(){
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$total $name $zip' },";
 			$total = $total - 1;
+			$zip_debug .= '<span style="background-color:red;">$zip</span>';
+		}elseif( $key > 0  ){
+			$zip_debug .= '<span style="background-color:green;">$zip</span>';
 		}
 	}
 	$return = rtrim(trim($return), ",");
@@ -517,11 +522,7 @@ function toggleDataSeries(e) {
 			<?PHP echo $normal[$county];?>
 			<?PHP echo $dnormal[$county];?>
 			<h3>ZIP Codes</h3>
-			<ol>
-			<?PHP  foreach ($county_zip_codes[$county] as $zip => $data){
-			echo "<span>$data </span>";
-			}?>
-			</ol>
+			<?PHP echo $zip_debug;?>
 			<h3>Other Counties</h3>
 			<?PHP echo $links; ?>
 		</div>
