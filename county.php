@@ -93,8 +93,10 @@ function make_datapoints(){
 		$count = intval($data['ProtectedCount']);
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 && $count > 0 ) {
-			$global_graph_height = $global_graph_height + 30; // px per line in graph
+			$global_graph_height = $global_graph_height + 25; // px per line in graph
 			$total++;
+		}elseif( $key > 0 ){
+			$global_graph_height = $global_graph_height + 25; // px per line in graph
 		}
 	}
 	foreach ($zipData as $zip => $data){
