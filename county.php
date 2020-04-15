@@ -91,9 +91,7 @@ function make_datapoints(){
 		$count = intval($data['ProtectedCount']);
 		$key = array_search($zip, $match_array);
 		if ( $key > 0 && $count > 0 ) {
-			//$name = $zip2name[$zip];
-			//$return .= "{ y: $count, label: '$name $zip' },";
-			//$global_graph_height = $global_graph_height + 25; // px per line in graph
+			$global_graph_height = $global_graph_height + 30; // px per line in graph
 			$total++;
 		}
 	}
@@ -103,7 +101,6 @@ function make_datapoints(){
 		if ( $key > 0  && $count > 0 ) {
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$total $name $zip' },";
-			$global_graph_height = $global_graph_height + 25; // px per line in graph
 			$total = $total - 1;
 		}
 	}
