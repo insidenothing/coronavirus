@@ -85,7 +85,7 @@ while($d = mysqli_fetch_array($r)){
 	?>
 	
 <div class="container">
-	<div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mdwestserve.com%2Fcoronavirus%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+	<div style='location:absolute; top:0px, left:0px;' class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 	<ul class="nav nav-pills">
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/zip.php'){ echo "class='active'"; } ?> ><a href="zip.php">Zip Codes</a></li>
