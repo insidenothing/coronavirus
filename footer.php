@@ -19,7 +19,7 @@
         <a target='_Blank' href='debug.php'>Developer View</a>
       </div>
     <div class='col-sm-3'>
-        <a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master/<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a>
+        <a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a>
       </div>
   </div>
 
