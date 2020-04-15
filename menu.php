@@ -97,7 +97,7 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/infection_level.php'){ echo "class='active'"; } ?> ><a href="infection_level.php">Infection Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/death_level.php'){ echo "class='active'"; } ?> ><a href="death_level.php">Death Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
-		<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">Facebook Group</a></li>
+		<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">Feedback</a></li>
 	</ul>
 	<ul class="nav nav-tabs">
 		<?PHP echo "$links"; ?>
