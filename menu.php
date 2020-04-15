@@ -71,16 +71,14 @@ $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
 	//$links .= "<a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
-	$links .= "<li role='presentation'><a href="county.php?county=$d[name_of_location]">$d[name_of_location]</a></li>";
+	$links .= "<li role='presentation'><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
 	//<li role="presentation" class="active"><a href="#">Home</a></li>
 }
 	?>
 	
 	<ul class="nav nav-tabs">
 		<?PHP echo "<div>$links</div>"; ?>
-  
-
-</ul>
+	</ul>
 	
 <table><tr>
 	<td><a href='index.php'><img class="img-responsive" src='img/home.png'></a></td>
