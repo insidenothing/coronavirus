@@ -118,7 +118,9 @@ function make_county($county){
 	foreach ($maryland_history as $date => $array){
 		$last_count = $count;
 		$count = intval($array[$aka]);
-		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+		if ($count > 0){ 
+			$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+		}
 		$today[$county] = $count;
 	}
         // predictive
