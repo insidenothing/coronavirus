@@ -118,7 +118,7 @@ function make_datapoints(){
 
 $date = $maryland_history['date'];
 
-$page_description = "$date $county - $days_to_predict Day Prediction";
+$page_description = "$date $county - ZIP Codes + $days_to_predict Day Prediction";
 
 include_once('menu.php');
 
