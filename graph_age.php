@@ -155,7 +155,9 @@ function make_county_prediction($county,$start,$count,$dt){
 	}
 	$r = $r + $base;
 	$debug_out .= "<li>$out N:$N r:$r</li>";
-        $return .= '{ label: "'.$out.'", y: '.$r.' }, ';
+	    if ($out > 0){ // drop days without
+       		 $return .= '{ label: "'.$out.'", y: '.$r.' }, ';
+	    }
 	global $today;
 	global $normal;
 	global $peak;
