@@ -550,7 +550,7 @@ var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
 	},
 	legend:{
 		cursor:"pointer",
-		itemclick : toggleDataSeries
+		itemclick : toggleDataSeries2
 	},
 	data: [
 		
@@ -570,6 +570,15 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 
+function toggleDataSeries2(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}	
+	
 }
 </script>
 </head>
