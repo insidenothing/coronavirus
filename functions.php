@@ -53,7 +53,7 @@ function message_send($to,$master_message,$media=''){
 	foreach ($messages as $message) {
 		$message = str_replace('_', ' ', $message);	
 		$curl = curl_init();
-		curl_setopt ($curl, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/'.$twillo_account.'/SMS/Messages.xml');
+		curl_setopt ($curl, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/'.$twillo_account.'/Messages.json');
 		curl_setopt ($curl, CURLOPT_TIMEOUT, '5');
 		curl_setopt ($curl, CURLOPT_RETURNTRANSFER, '1');
 		$message = str_replace(' ','+',$message);
