@@ -58,7 +58,7 @@ include_once('functions.php'); //outside webserver
 			  border-radius: 25px;
 			}
 		</style>
-<center><div style="background-color:white; width:1300;" id="rcorners2">
+<center><div style="background-color:white;" id="rcorners2">
 	<?PHP
 	if ($logo == 'on'){
 		// set logo to anything to hide this
