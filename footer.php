@@ -1,6 +1,6 @@
 
 <!--- Footer Menu -->
-<ul class="nav nav-pills">
+<ul class="nav nav-pills" style="text-align:center;">
 		<li role='presentation'><a target='_Blank' href="https://www.patrickmcguire.me/">&copy 2020 Patricks McGuire</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/debug.php'){ echo "class='active'"; } ?> ><a href="debug.php">Raw Data</a></li>
 		<li role='presentation'><a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a></li>
