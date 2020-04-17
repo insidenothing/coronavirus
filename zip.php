@@ -20,7 +20,14 @@ function coronavirus_zip($zip,$date,$count,$town){
 global $nocases;
 global $cases;
 global $zipData;
-$zipData = make_maryland_array3('','');
+if(isset($_GET['date'])){
+	$date = $_GET['date'];
+	$r = $core->query("select html from coronavirus where url_pulled like '%ZIPCodes_MD_1%' and just_date = '$date' order by id desc");
+	$d = mysqli_fetch_array($r);
+	$zipData = make_maryland_array3('',$d['html'],'');
+}else{
+	$zipData = make_maryland_array3('','');
+}
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
 function make_datapoints(){
