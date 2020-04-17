@@ -63,7 +63,7 @@ $title = 'Covid19math.net Update';
 // https://www.php.net/manual/en/function.imagettftext.php
 $font_size_title = '25';
 $font_size_text = '20';
-$x = '11';
+$x = '16';
 $y = '21';
 imagettftext($im, $font_size_title, 0, $x, $y, $grey, $BoldItalic, $title);
 imagettftext($im, $font_size_title, 0, $x-1, $y-1, $black, $BoldItalic, $title);
