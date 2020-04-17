@@ -62,12 +62,14 @@ $BoldItalic = 'fonts/OpenSans-BoldItalic.ttf';
 $title = 'Covid19math.net Update';
 // https://www.php.net/manual/en/function.imagettftext.php
 $font_size_title = '25';
-$font_size_text = '20';
-$x = '16';
-$y = '21';
+$x = '11';
+$y = '25';
 imagettftext($im, $font_size_title, 0, $x, $y, $grey, $BoldItalic, $title);
 imagettftext($im, $font_size_title, 0, $x-1, $y-1, $black, $BoldItalic, $title);
-imagettftext($im, $font_size_text, 0, $x+$font_size_title, $y, $grey, $Regular, $text);
+$x = 11 + $font_size_title;
+$y = 21 + $font_size_title - 1;
+$font_size_text = '20';
+imagettftext($im, $font_size_text, 0, $x, $y, $grey, $Regular, $text);
 imagettftext($im, $font_size_text, 0, $x+$font_size_title-1, $y-1, $black, $Regular, $text);
 imagepng($im);
 imagedestroy($im);
