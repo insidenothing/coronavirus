@@ -95,7 +95,7 @@ function make_datapoints2(){
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		$count = intval($data['ProtectedCount']);
-		if ($count < 10){
+		if ($count < 10 && $count > 0){
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$name $zip' },";
 		}
