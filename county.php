@@ -396,6 +396,7 @@ $AKA = county_aka($county);
 $dAKA = county_daka($county);
 
 function makeZIPpoints(){
+	global $core;
 	$return = '';
 	$q = "select distinct zip_code from coronavirus_zip where report_count > '0' order by zip_code ";
 	$r = $core->query($q);
