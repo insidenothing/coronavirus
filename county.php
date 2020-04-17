@@ -390,13 +390,10 @@ $dAKA = county_daka($county);
 function makeZIPpoints(){
 	global $core;
 	global $showzip;
+	global $zip2name;
 	$return = '';
-	//$q = "select distinct zip_code from coronavirus_zip where report_count > '0' order by zip_code ";
-	//$r = $core->query($q);
-	//while ($d = mysqli_fetch_array($r)){
 	foreach ($showzip as $zip) {
 		$name = $zip2name[$zip];
-		//$zip = $d['zip_code'];
 		$return .= '{	
 		type: "spline",
 		visible: true,
@@ -551,11 +548,11 @@ var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
 	},
 	legend:{
 		cursor:"pointer",
-		itemclick : toggleDataSeries2
+		itemclick : toggleDataSeries
 	},
 	data: [
-		
-		<?PHP echo makeZIPpoints(); ?>]
+		<?PHP echo makeZIPpoints(); ?>
+	]
 }
 			      
 			      
@@ -571,14 +568,7 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 
-function toggleDataSeries2(e) {
-	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
-		e.dataSeries.visible = false;
-	} else {
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}	
+
 	
 }
 </script>
