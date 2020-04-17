@@ -41,7 +41,7 @@ function sms($msg){
 
 function message_send($to,$master_message,$media=''){	
 	if ($media != ''){
-		$media= '&MediaUrl='.urlencode($media);
+		$media= '&MediaUrl=["'.$media.'"]';
 	}
 	//die('offline');
 	// take full message, split and loop
