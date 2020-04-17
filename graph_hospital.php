@@ -116,10 +116,12 @@ function make_county($county){
 	$count=0;
 	global $today;
 	foreach ($maryland_history as $date => $array){
-		$last_count = $count;
-		$count = intval($array[$aka]);
-		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
-		$today[$county] = $count;
+		if($count > 0 && $count != 'url_pulled'){
+			$last_count = $count;
+			$count = intval($array[$aka]);
+			$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+			$today[$county] = $count;
+		}
 	}
         // predictive
         //$next = date('Y-m-d',strtotime($date)+86400);
