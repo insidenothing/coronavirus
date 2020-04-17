@@ -20,7 +20,6 @@ function coronavirus_zip($zip,$date,$count,$town){
 global $nocases;
 global $cases;
 global $zipData;
-global $zipData2;
 global $date;
 if(isset($_GET['date'])){
 	$date = $_GET['date'];
@@ -40,7 +39,6 @@ function make_datapoints(){
 	global $cases;
 	global $zip2name;
 	global $date;
-	global $zipData2
 	$total = 0;
 	$return = '';
 	foreach ($zipData as $zip => $data){
