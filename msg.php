@@ -58,7 +58,7 @@ $height_rec = $height - 1;
 imagefilledrectangle($im, 0, 0, $width_rec, $height_rec, $white);
 $text = $msg;
 $Regular = 'fonts/OpenSans-Regular.ttf';
-$BoldItalic = 'OpenSans-BoldItalic.ttf';
+$BoldItalic = 'fonts/OpenSans-BoldItalic.ttf';
 $title = 'Covid19math.net Update';
 // https://www.php.net/manual/en/function.imagettftext.php
 $font_size_title = '25';
