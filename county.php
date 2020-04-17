@@ -395,13 +395,14 @@ function makeZIPpoints(){
 	//$r = $core->query($q);
 	//while ($d = mysqli_fetch_array($r)){
 	foreach ($showzip as $zip) {
+		$name = $zip2name[$zip];
 		//$zip = $d['zip_code'];
 		$return .= '{	
 		type: "spline",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "'.$zip.'",
+		name: "'.$name.'",
 		dataPoints: [
 			'.make_zip($zip).'
 		]},';
