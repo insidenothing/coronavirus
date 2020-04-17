@@ -19,6 +19,10 @@ if ($_POST['send'] == 'confirm')){
 <form method='POST'> 
 <input type='password' name='send'><input type='submit' value='Send'>
 </form>
+
+<h3>Current Message</h3>
+<img src='msg.php'>
+
 <?PHP
 include_once('footer.php');
 ?>
