@@ -6,6 +6,7 @@
 		<li role='presentation'><a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a></li>
 		<li role='presentation'><a target='_Blank' href="https://coronavirus.maryland.gov/">Official Data</a></li>
 		<li role='presentation'><span id="siteseal"><script async type="text/javascript" src="https://seal.starfieldtech.com/getSeal?sealID=JF3ETwtNbyZ345vnJlsp4zh2fEEasPM3vcpVLuhjNIi6TCtnnRaJxL5WiQ5T"></script></span></li>
+		<li role='presentation'><a target='_Blank' href="http://www.ciclt.net/sn/clt/capitolimpact/gw_countymap.aspx?State=md&StFIPS=&StName=Maryland">ZIP Data</a></li>
 </ul>
 
 
