@@ -83,7 +83,21 @@ function make_datapoints(){
 		$count = intval($data['ProtectedCount']);
 		if ($count > 100){
 			$name = $zip2name[$zip];
-			$return .= "{ y: $count, label: '$name' },";
+			$return .= "{ y: $count, label: '$name $zip' },";
+		}
+	}
+	$return = rtrim(trim($return), ",");
+	return $return;
+}
+function make_datapoints2(){
+	global $zipData;
+	global $zip2name;
+	$return = '';
+	foreach ($zipData as $zip => $data){
+		$count = intval($data['ProtectedCount']);
+		if ($count < 10){
+			$name = $zip2name[$zip];
+			$return .= "{ y: $count, label: '$name $zip' },";
 		}
 	}
 	$return = rtrim(trim($return), ",");
@@ -212,6 +226,35 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 });
 chartZIP.render();
 
+var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		fontSize: 14,
+		text:"Maryland COVID-19 Outbreak by Zip Code covid19math.net"
+	},
+	axisX:{
+		interval: 1
+	},
+	axisY2:{
+		fontSize: 14,
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "ZIPs w/ Cases under 10"
+	},
+	data: [{
+		type: "bar",
+		name: "zip",
+		axisYType: "secondary",
+		color: "#014D65",
+		indexLabelFontSize: 6,
+		dataPoints: [
+			<?PHP echo make_datapoints2(); ?>
+		]
+	}]
+});
+chartZIP2.render();	
+	
 function toggleDataSeries(e) {
 	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
 		e.dataSeries.visible = false;
@@ -380,7 +423,7 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 echo "</div>";
 	
 echo '<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 600px; width: 100%;"></div></div></div>';
-	
+echo '<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 600px; width: 100%;"></div></div></div>';	
 	
 echo "</div>";
 include_once('footer.php');
