@@ -39,6 +39,7 @@ function make_datapoints(){
 	global $cases;
 	global $zip2name;
 	global $date;
+	global $showzip;
 	$total = 0;
 	$return = '';
 	foreach ($zipData as $zip => $data){
@@ -55,6 +56,7 @@ function make_datapoints(){
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
 			coronavirus_zip($zip,$date,$count,$zip2name[$zip]);
 if ($count > 0){
+$showzip[] = $zip;	
 $return .= "{ y: $count, label: '#$total $name' },
 ";
 $total = $total - 1;
@@ -67,6 +69,46 @@ $nocases .= "<div>$zip $name</div>";
 	$return = rtrim(trim($return), ",");
 	return $return;
 }
+
+
+function make_zip($zip){
+        global $core;
+        $return = '';
+	$count=0;
+	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
+	$r = $core->query($q);
+	while ($d = mysqli_fetch_array($r)){
+		$count 	= $d['report_count'];
+		$date 	= $d['report_date'];
+		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+	}
+    	$return = rtrim(trim($return), ",");
+    return $return;
+}
+
+
+function makeZIPpoints(){
+	global $core;
+	global $showzip;
+	global $zip2name;
+	$return = '';
+	foreach ($showzip as $zip) {
+		$name = $zip2name[$zip];
+		$return .= '{	
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$name.'",
+		dataPoints: [
+			'.make_zip($zip).'
+		]},';
+	}
+	$return = rtrim(trim($return), ",");
+	return $return;	
+}
+
+
 ?>
 <script>
 window.onload = function () {
@@ -110,14 +152,41 @@ function toggleDataSeries(e) {
 	}
 	e.chart.render();
 }
-	
+
+	var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "Maryland ZIPs over TIME covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "Number of Cases",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [
+		<?PHP echo makeZIPpoints(); ?>
+	]
+}
+			      
+			      
+			      );
+chartZIP2.render();	
 
 }
 </script>
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-
+	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 1000px; width: 100%;"></div></div></div>
 
 		<div class="col-sm-2"><h3>&lt; 7 CASES</h3><?PHP echo $nocases;?></div>
 		<div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div>
