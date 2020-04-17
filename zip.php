@@ -92,6 +92,7 @@ function makeZIPpoints(){
 	global $showzip;
 	global $zip2name;
 	$return = '';
+	$showzip = array_reverse($showzip,true);
 	foreach ($showzip as $zip) {
 		$name = $zip2name[$zip];
 		$return .= '{	
