@@ -66,11 +66,11 @@ $x = '11';
 $y = '25';
 imagettftext($im, $font_size_title, 0, $x, $y, $grey, $BoldItalic, $title);
 imagettftext($im, $font_size_title, 0, $x-1, $y-1, $black, $BoldItalic, $title);
-$x = 11 + $font_size_title;
-$y = 21 + $font_size_title - 1;
+$x = 36;
+$y = 25;
 $font_size_text = '20';
 imagettftext($im, $font_size_text, 0, $x, $y, $grey, $Regular, $text);
-imagettftext($im, $font_size_text, 0, $x+$font_size_title-1, $y-1, $black, $Regular, $text);
+imagettftext($im, $font_size_text, 0, $x-1, $y-1, $black, $Regular, $text);
 imagepng($im);
 imagedestroy($im);
 ?>
