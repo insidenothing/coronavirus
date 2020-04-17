@@ -5,7 +5,7 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 
 function coronavirus_zip($zip,$date,$count){
-	$core;
+	global $core;
 	$q = "select * from coronavirus_zip where zip_code = '$date' and report_date = '$count'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
