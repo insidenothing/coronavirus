@@ -48,7 +48,7 @@ down -4 deathsDelta at 43.";
 header('Content-Type: image/png');
 
 // Create the image
-$im = imagecreatetruecolor(400, 30);
+$im = imagecreatetruecolor(400, strlen($msg));
 
 // Create some colors
 $white = imagecolorallocate($im, 255, 255, 255);
