@@ -1,4 +1,4 @@
-Covid19math.net Update
+<?PHP $msg="Covid19math.net Update
 up 752 Maryland at 10,784.
 up 43 deaths at 392.
 up 220 total_hospitalized at 2,451.
@@ -42,4 +42,33 @@ up 192 CaseDelta at 752.
 up 858 NegDelta at 2,328.
 up 111 hospitalizedDelta at 220.
 up 129 releasedDelta at 129.
-down -4 deathsDelta at 43.
+down -4 deathsDelta at 43.";
+
+// Set the content-type
+header('Content-Type: image/png');
+
+// Create the image
+$im = imagecreatetruecolor(400, 30);
+
+// Create some colors
+$white = imagecolorallocate($im, 255, 255, 255);
+$grey = imagecolorallocate($im, 128, 128, 128);
+$black = imagecolorallocate($im, 0, 0, 0);
+imagefilledrectangle($im, 0, 0, 399, 29, $white);
+
+// The text to draw
+$text = 'Testing...';
+// Replace path by your own font path
+$font = 'fonts/OpenSans-Regular.ttf';
+
+// Add some shadow to the text
+imagettftext($im, 20, 0, 11, 21, $grey, $font, $text);
+
+// Add the text
+imagettftext($im, 20, 0, 10, 20, $black, $font, $text);
+
+// Using imagepng() results in clearer text compared with imagejpeg()
+imagepng($im);
+imagedestroy($im);
+?>
+
