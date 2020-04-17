@@ -48,13 +48,17 @@ down -4 deathsDelta at 43.";
 header('Content-Type: image/png');
 
 // Create the image
-$im = imagecreatetruecolor(400, strlen($msg));
+$height = strlen($msg) * 1.5;
+$width = '400';
+$im = imagecreatetruecolor(400, $height);
 
 // Create some colors
 $white = imagecolorallocate($im, 255, 255, 255);
 $grey = imagecolorallocate($im, 128, 128, 128);
 $black = imagecolorallocate($im, 0, 0, 0);
-imagefilledrectangle($im, 0, 0, 399, 29, $white);
+$width_rec = $width - 1;
+$height_rec = $height - 1;
+imagefilledrectangle($im, 0, 0, $width_rec, $height_rec, $white);
 
 // The text to draw
 $text = strlen($msg).':'.$msg;
