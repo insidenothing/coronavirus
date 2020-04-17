@@ -44,35 +44,21 @@ up 111 hospitalizedDelta at 220.
 up 129 releasedDelta at 129.
 down -4 deathsDelta at 43.";
 
-// Set the content-type
+// GD Code Here
 header('Content-Type: image/png');
-
-// Create the image
-$height = strlen($msg) * 1.5;
-$width = '400';
-$im = imagecreatetruecolor(400, $height);
-
-// Create some colors
+$height = strlen($msg) * 1.25;
+$width = '450';
+$im = imagecreatetruecolor($width, $height);
 $white = imagecolorallocate($im, 255, 255, 255);
 $grey = imagecolorallocate($im, 128, 128, 128);
 $black = imagecolorallocate($im, 0, 0, 0);
 $width_rec = $width - 1;
 $height_rec = $height - 1;
 imagefilledrectangle($im, 0, 0, $width_rec, $height_rec, $white);
-
-// The text to draw
-$text = strlen($msg).':'.$msg;
-// Replace path by your own font path
-$font = 'fonts/OpenSans-Regular.ttf';
-
-// Add some shadow to the text
-imagettftext($im, 20, 0, 11, 21, $grey, $font, $text);
-
-// Add the text
-imagettftext($im, 20, 0, 10, 20, $black, $font, $text);
-
-// Using imagepng() results in clearer text compared with imagejpeg()
+$text = $msg;
+$Regular = 'fonts/OpenSans-Regular.ttf';
+imagettftext($im, 20, 0, 11, 21, $grey, $Regular, $text);
+imagettftext($im, 20, 0, 10, 20, $black, $Regular, $text);
 imagepng($im);
 imagedestroy($im);
 ?>
-
