@@ -42,7 +42,8 @@ up 192 CaseDelta at 752.
 up 858 NegDelta at 2,328.
 up 111 hospitalizedDelta at 220.
 up 129 releasedDelta at 129.
-down -4 deathsDelta at 43.";
+down -4 deathsDelta at 43.
+".date('r');
 
 // GD Code Here
 header('Content-Type: image/png');
