@@ -213,7 +213,7 @@ function make_zip($zip){
 	//global $today;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
 	$r = $core->query($q);
-	while ($d = mysqli_fetch_array($r){
+	while ($d = mysqli_fetch_array($r)){
 		$last_count = $count;
 		$count = intval($array[$aka]);
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
