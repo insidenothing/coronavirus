@@ -86,6 +86,7 @@ function make_datapoints(){
 	global $county_zip_codes;
 	global $global_graph_height;
 	global $zip_debug;
+	global $showzip;
 	$match_array = $county_zip_codes[$county];
 	$return = '';
 	$total=0;
@@ -107,6 +108,7 @@ function make_datapoints(){
 			$return .= "{ y: $count, label: '$total $name $zip' },";
 			$total = $total - 1;
 			$zip_debug .= '<span style="background-color:red;">'.$zip.' </span> ';
+			$showzip[] = $zip;
 		}elseif( $key > 0  ){
 			$zip_debug .= '<span style="background-color:green;">'.$zip.' </span> ';
 		}
@@ -397,11 +399,13 @@ $dAKA = county_daka($county);
 
 function makeZIPpoints(){
 	global $core;
+	global $showzip;
 	$return = '';
-	$q = "select distinct zip_code from coronavirus_zip where report_count > '0' order by zip_code ";
-	$r = $core->query($q);
-	while ($d = mysqli_fetch_array($r)){
-		$zip = $d['zip_code'];
+	//$q = "select distinct zip_code from coronavirus_zip where report_count > '0' order by zip_code ";
+	//$r = $core->query($q);
+	//while ($d = mysqli_fetch_array($r)){
+	foreach ($showzip as $zip) {
+		//$zip = $d['zip_code'];
 		$return .= '{	
 		type: "spline",
 		visible: true,
