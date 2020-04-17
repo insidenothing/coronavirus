@@ -95,7 +95,7 @@ function make_datapoints2(){
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		$count = intval($data['ProtectedCount']);
-		if ($count < 10 && $count > 0){
+		if ($count < 20 && $count > 0){
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$name $zip' },";
 		}
@@ -240,7 +240,7 @@ var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
 		fontSize: 14,
 		interlacedColor: "rgba(1,77,101,.2)",
 		gridColor: "rgba(1,77,101,.1)",
-		title: "ZIPs w/ Cases under 10"
+		title: "ZIPs w/ Cases under 20"
 	},
 	data: [{
 		type: "bar",
