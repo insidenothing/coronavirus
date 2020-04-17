@@ -14,7 +14,7 @@
 		echo "<title>COVID19MATH.net Digital Resources</title>";
 	}
 	if (empty($page_description)){
-		$page_description = 'Get SMS Updates';	
+		$page_description = 'COVID19MATH.net Digital Resources';	
 	}
 	?>
   <script data-ad-client="ca-pub-2410355655106377" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>	
@@ -52,20 +52,15 @@ include_once('functions.php'); //outside webserver
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 	</head>
-	<body style="background-color:black">
+	<body style="background-color:grey">
 		<style>
 			#rcorners2 {
 			  border-radius: 25px;
 			}
 		</style>
-<center><div style="background-color:white;" id="rcorners2">
+
 	<?PHP
-	if ($logo == 'on'){
-		// set logo to anything to hide this
-		echo '<img src="img/header.PNG"  class="img-rounded" >';	
-	}else{
-		echo 'Welcome to https://www.covid19math.net on ' . date('r');	
-	}
+	
 	
 $links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
@@ -85,8 +80,9 @@ while($d = mysqli_fetch_array($r)){
 }
 	?>
 	
-<div class="container">
-	<div style='location:absolute; top:0px, left:0px;' class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+<div class="container"><!--- Open Container -->
+	
+	
 	<ul class="nav nav-pills">
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/zip.php'){ echo "class='active'"; } ?> ><a href="zip.php">Zip Codes</a></li>
@@ -98,6 +94,7 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/death_level.php'){ echo "class='active'"; } ?> ><a href="death_level.php">Death Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">Feedback</a></li>
+		<li role='presentation'><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
 	</ul>
 	<ul class="nav nav-tabs">
 		<?PHP echo "$links"; ?>
