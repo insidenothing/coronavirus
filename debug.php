@@ -9,8 +9,10 @@ while ($d = mysqli_fetch_array($r)){
   $r2 = $core->query("select * from coronavirus where url_pulled = '$d[url_pulled]' order by id desc");
   $d2 = mysqli_fetch_array($r2);
   $row_cnt = mysqli_num_rows($r2);
-  echo "<p><b>$d2[checked_datetime] ($row_cnt updates)</b> $d[url_pulled]</p>
-  <div>$d2[raw_response]</div>";
+  if(substr($d2['checked_datetime'],0,10) == date('Y-m-d')){
+  echo "<p><b>$d2[checked_datetime] ($row_cnt updates)</b> <small>$d[url_pulled]</small></p>
+  <div style='border:ridge 5px blue;'>$d2[raw_response]</div>";
+  }
 }
 
 
