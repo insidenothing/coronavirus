@@ -97,7 +97,7 @@ function makeZIPpoints(){
 		$return .= '{	
 		type: "spline",
 		visible: true,
-		showInLegend: true,
+		showInLegend: false,
 		yValueFormatString: "#####",
 		name: "'.$name.'",
 		dataPoints: [
