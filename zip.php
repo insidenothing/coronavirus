@@ -4,6 +4,20 @@ if(isset($_GET['novideo'])){
 }
 include_once('menu.php');
 
+function coronavirus_zip($zip,$date,$count){
+	$core;
+	$q = "select * from coronavirus_zip where zip_code = '$date' and report_date = '$count'";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	if ($d['id'] == ''){
+		// no id, good to insert
+		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count) values ('$zip','$date','$count') ");
+	}
+	
+	
+}
+
+
 global $nocases;
 global $cases;
 global $zipData;
@@ -26,8 +40,9 @@ function make_datapoints(){
 		}
 	}	
 	foreach ($zipData as $zip => $data){
-		if($zip != 'url_pulled' && $zip != 'date'){	
+		if($zip != 'url_pulled' && $zip != 'date'){
 			$count = intval($data['ProtectedCount']);
+			coronavirus_zip($zip,date('Y-m-d'),$count);
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
 if ($count > 0){
 $return .= "{ y: $count, label: '#$total $name' },
