@@ -52,13 +52,13 @@ include_once('functions.php'); //outside webserver
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 	</head>
-	<body style="background-color:black">
+	<body style="background-color:grey">
 		<style>
 			#rcorners2 {
 			  border-radius: 25px;
 			}
 		</style>
-<center><div style="background-color:white;" id="rcorners2">
+
 	<?PHP
 	if ($logo == 'on'){
 		// set logo to anything to hide this
