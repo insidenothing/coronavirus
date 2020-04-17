@@ -66,8 +66,8 @@ $x = '11';
 $y = '25';
 imagettftext($im, $font_size_title, 0, $x, $y, $grey, $BoldItalic, $title);
 imagettftext($im, $font_size_title, 0, $x-1, $y-1, $black, $BoldItalic, $title);
-$x = 36;
-$y = 15;
+$x = 20; // how far from the left
+$y = 25; // how far down from the top
 $font_size_text = '20';
 imagettftext($im, $font_size_text, 0, $x, $y, $grey, $Regular, $text);
 imagettftext($im, $font_size_text, 0, $x-1, $y-1, $black, $Regular, $text);
