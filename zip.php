@@ -4,17 +4,16 @@ if(isset($_GET['novideo'])){
 }
 include_once('menu.php');
 
-function coronavirus_zip($zip,$date,$count){
+function coronavirus_zip($zip,$date,$count,$town){
 	global $core;
-	$q = "select * from coronavirus_zip where zip_code = '$date' and report_date = '$count'";
+	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	if ($d['id'] == ''){
-		// no id, good to insert
-		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count) values ('$zip','$date','$count') ");
+		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count,town_name) values ('$zip','$date','$count','$town') ");
+	}else{
+		$core->query("update coronavirus_zip set report_count = '$count' where zip_code = '$zip' and report_date = '$date' ");	
 	}
-	
-	
 }
 
 
