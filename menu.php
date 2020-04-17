@@ -14,7 +14,7 @@
 		echo "<title>COVID19MATH.net Digital Resources</title>";
 	}
 	if (empty($page_description)){
-		$page_description = 'Get SMS Updates';	
+		$page_description = 'COVID19MATH.net Digital Resources';	
 	}
 	?>
   <script data-ad-client="ca-pub-2410355655106377" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>	
@@ -60,12 +60,7 @@ include_once('functions.php'); //outside webserver
 		</style>
 
 	<?PHP
-	if ($logo == 'on'){
-		// set logo to anything to hide this
-		echo '<img src="img/header.PNG"  class="img-rounded" >';	
-	}else{
-		echo 'Welcome to https://www.covid19math.net on ' . date('r');	
-	}
+	
 	
 $links;
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
