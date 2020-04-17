@@ -399,7 +399,7 @@ function makeZIPpoints(){
 	$return = '';
 	$q = "select distinct zip_code from coronavirus_zip where report_count > '0' order by zip_code ";
 	$r = $core->query($q);
-	while ($d = mysqli_fetch_array($r){
+	while ($d = mysqli_fetch_array($r)){
 		$zip = $d['zip_code'];
 		$return .= '{	
 		type: "spline",
