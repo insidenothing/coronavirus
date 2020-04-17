@@ -1,4 +1,4 @@
-<?PHP $msg="Covid19math.net Update
+<?PHP $msg="
 up 752 Maryland at 10,784.
 up 43 deaths at 392.
 up 220 total_hospitalized at 2,451.
@@ -58,8 +58,17 @@ $height_rec = $height - 1;
 imagefilledrectangle($im, 0, 0, $width_rec, $height_rec, $white);
 $text = $msg;
 $Regular = 'fonts/OpenSans-Regular.ttf';
-imagettftext($im, 20, 0, 11, 21, $grey, $Regular, $text);
-imagettftext($im, 20, 0, 10, 20, $black, $Regular, $text);
+$BoldItalic = 'OpenSans-BoldItalic.ttf';
+$title = 'Covid19math.net Update';
+// https://www.php.net/manual/en/function.imagettftext.php
+$font_size_title = '25';
+$font_size_text = '20';
+$x = '11';
+$y = '21';
+imagettftext($im, $font_size_title, 0, $x, $y, $grey, $BoldItalic, $title);
+imagettftext($im, $font_size_title, 0, $x-1, $y-1, $black, $BoldItalic, $title);
+imagettftext($im, $font_size_text, 0, $x+$font_size_title, $y, $grey, $Regular, $text);
+imagettftext($im, $font_size_text, 0, $x+$font_size_title-1, $y-1, $black, $Regular, $text);
 imagepng($im);
 imagedestroy($im);
 ?>
