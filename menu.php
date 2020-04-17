@@ -52,7 +52,7 @@ include_once('functions.php'); //outside webserver
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 	</head>
-	<body style="background-color:grey">
+	<body style="background-color:white">
 		<style>
 			#rcorners2 {
 			  border-radius: 25px;
