@@ -57,7 +57,7 @@ $black = imagecolorallocate($im, 0, 0, 0);
 imagefilledrectangle($im, 0, 0, 399, 29, $white);
 
 // The text to draw
-$text = 'Testing...';
+$text = strlen($msg).':'.$msg;
 // Replace path by your own font path
 $font = 'fonts/OpenSans-Regular.ttf';
 
