@@ -20,12 +20,14 @@ function coronavirus_zip($zip,$date,$count,$town){
 global $nocases;
 global $cases;
 global $zipData;
+global $date;
 if(isset($_GET['date'])){
 	$date = $_GET['date'];
 	$r = $core->query("select html from coronavirus where url_pulled like '%ZIPCodes_MD_1%' and just_date = '$date' order by id desc");
 	$d = mysqli_fetch_array($r);
 	$zipData = make_maryland_array3('',$d['html'],'');
 }else{
+	$date = date('Y-m-d');
 	$zipData = make_maryland_array3('','');
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
@@ -35,6 +37,7 @@ function make_datapoints(){
 	global $nocases;
 	global $cases;
 	global $zip2name;
+	global $date;
 	$total = 0;
 	$return = '';
 	foreach ($zipData as $zip => $data){
@@ -49,7 +52,7 @@ function make_datapoints(){
 		if($zip != 'url_pulled' && $zip != 'date'){
 			$count = intval($data['ProtectedCount']);
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
-			coronavirus_zip($zip,date('Y-m-d'),$count,$zip2name[$zip]);
+			coronavirus_zip($zip,$date,$count,$zip2name[$zip]);
 if ($count > 0){
 $return .= "{ y: $count, label: '#$total $name' },
 ";
