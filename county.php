@@ -525,7 +525,8 @@ function toggleDataSeries(e) {
 			<?PHP echo $dnormal[$county];?>
 			<h3>ZIP Codes used by Maryland Dept. Health</h3>
 			<?PHP echo $zip_debug;?>
-			
+			<h3>ZIP Code Array</h3>
+			<?PHP print_r($county_zip_codes[$county]); ?>
 		</div>
 		<div class='col-sm-4'>
 			<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
@@ -535,4 +536,4 @@ function toggleDataSeries(e) {
 </div>
 	
 <?PHP include_once('footer.php'); ?>
-http://www.ciclt.net/sn/clt/capitolimpact/gw_countymap.aspx?State=md&StFIPS=&StName=Maryland	
+	
