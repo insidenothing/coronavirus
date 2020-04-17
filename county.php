@@ -206,24 +206,14 @@ function show_on_graph($county){
 function make_zip($zip){
         global $core;
         $return = '';
-        //$t = '0'; // days
-        //$dt= '1'; // change in days
-        // history
-        //global $maryland_history;
-	//$aka = county_aka($county);
 	$count=0;
-	//global $today;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		$last_count = $count;
-		$count = intval($array[$aka]);
+		$count 	= $d['report_count'];
+		$date 	= $d['report_date'];
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
-		//$today[$county] = $count;
 	}
-        // predictive
-        //$next = date('Y-m-d',strtotime($date)+86400);
-        //$return .= make_county_prediction($county,$next,$count,$dt);
     	$return = rtrim(trim($return), ",");
     return $return;
 }
