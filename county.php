@@ -201,6 +201,31 @@ function show_on_graph($county){
 	}
 	
 }
+function make_zip($zip){
+        global $core;
+        $return = '';
+        //$t = '0'; // days
+        //$dt= '1'; // change in days
+        // history
+        //global $maryland_history;
+	//$aka = county_aka($county);
+	$count=0;
+	//global $today;
+	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
+	$r = $core->query($q);
+	while ($d = mysqli_fetch_array($r){
+		$last_count = $count;
+		$count = intval($array[$aka]);
+		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+		//$today[$county] = $count;
+	}
+        // predictive
+        //$next = date('Y-m-d',strtotime($date)+86400);
+        //$return .= make_county_prediction($county,$next,$count,$dt);
+    	$return = rtrim(trim($return), ",");
+    return $return;
+}
+
 function make_county($county){
         global $core;
         $return = '';
@@ -370,6 +395,26 @@ $date = $maryland_history['date'];
 $AKA = county_aka($county);
 $dAKA = county_daka($county);
 
+function makeZIPpoints(){
+	$return = '';
+	$q = "select distinct zip_code from coronavirus_zip where report_count > '0' order by zip_code ";
+	$r = $core->query($q);
+	while ($d = mysqli_fetch_array($r){
+		$zip = $d['zip_code'];
+		$return .= '{	
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$zip.'",
+		dataPoints: [
+			'.make_zip($zip).'
+		]},';
+	}
+	$return = rtrim(trim($return), ",");
+	return $return;	
+}
+	       
 ?>
 <script>
 window.onload = function () {
@@ -493,7 +538,33 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 });
 chartZIP.render();
 	
-	
+var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $county;?> - ZIPs over TIME covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "Number of Cases",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [
+		
+		<?PHP echo makeZIPpoints(); ?>]
+}
+			      
+			      
+			      );
+chartZIP2.render();	
 	
 function toggleDataSeries(e) {
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
@@ -511,6 +582,7 @@ function toggleDataSeries(e) {
 
 <script src="canvasjs.min.js"></script>
 <div class="container">
+	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: <?PHP echo $global_graph_height;?>px; width: 100%;"></div></div></div>
 	<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
 	<div class="row">
