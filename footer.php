@@ -1,12 +1,3 @@
-  <div class="row">
-      <div class='col-sm-6'>
-        <img src='img/flag.jpg'>
-      </div>
-    <div class='col-sm-6'>
-        <img src='img/predict.png'>
-      </div>
-  </div>
-
 
   <div class="row">
       <div class='col-sm-3'>
