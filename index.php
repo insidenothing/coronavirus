@@ -143,8 +143,8 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 		yValueFormatString: "#####",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{y: <?PHP echo $maryland_history[$date]['Male'];?>, label: "Male"},
-			{y: <?PHP echo $maryland_history[$date]['Female'];?>, label: "Female"}
+			{y: <?PHP echo intval($maryland_history[$date]['Male']);?>, label: "Male"},
+			{y: <?PHP echo intval($maryland_history[$date]['Female']);?>, label: "Female"}
 		]
 	}]
 });
