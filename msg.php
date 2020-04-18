@@ -1,47 +1,45 @@
 <?PHP $msg="
-up 788 Maryland at 11,572.
-up 33 deaths at 425.
-up 161 total_hospitalized at 2,612.
-up 2,378 NegativeTests at 50,437.
+up 736 Maryland at 12,308.
+up 38 deaths at 463.
+up 145 total_hospitalized at 2,757.
+up 35 total_released at 771.
+up 2,625 NegativeTests at 53,062.
 County by County
-up 6 Allegany at 26.
-up 70 AnneArundel at 966.
-up 53 Baltimore at 1,569.
-up 113 BaltimoreCity at 1,273.
-up 6 Calvert at 109.
-up 5 Caroline at 28.
-up 5 Carroll at 288.
-up 26 Cecil at 127.
-up 10 Charles at 337.
-up 2 Dorchester at 20.
-up 28 Frederick at 525.
-up 15 Harford at 176.
-up 24 Howard at 475.
-up 3 Kent at 14.
-up 147 Montgomery at 2,280.
-up 244 PrinceGeorges at 2,966.
-up 3 Somerset at 9.
-up 2 StMarys at 100.
-up 7 Washington at 116.
-up 3 Worcester at 28.
+up 7 Allegany at 33.
+up 39 AnneArundel at 1,005.
+up 95 Baltimore at 1,664.
+up 105 BaltimoreCity at 1,378.
+up 5 Caroline at 33.
+up 20 Carroll at 308.
+up 4 Cecil at 131.
+up 10 Charles at 347.
+up 32 Frederick at 557.
+up 19 Harford at 195.
+up 33 Howard at 508.
+up 2 Kent at 16.
+up 124 Montgomery at 2,404.
+up 194 PrinceGeorges at 3,160.
+up 5 QueenAnnes at 24.
+up 1 Somerset at 10.
+up 1 StMarys at 101.
+up 2 Talbot at 16.
+up 3 Worcester at 31.
 Age Groups
-up 11 case10to19 at 242.
-up 65 case20to29 at 1,227.
-up 98 case30to39 at 1,882.
-up 137 case40to49 at 2,088.
-up 149 case50to59 at 2,287.
-up 108 case60to69 at 1,710.
-up 106 case70to79 at 1,171.
-up 114 case80plus at 879.
-Gender
-up 356 Male at 5,323.
-up 432 Female at 6,249.
+up 3 case0to9 at 89.
+up 12 case10to19 at 254.
+up 84 case20to29 at 1,311.
+up 128 case30to39 at 2,010.
+up 127 case40to49 at 2,215.
+up 112 case50to59 at 2,399.
+up 121 case60to69 at 1,831.
+up 82 case70to79 at 1,253.
+up 67 case80plus at 946.
 Deltas
-up 36 CaseDelta at 788.
-up 50 NegDelta at 2,378.
-down -59 hospitalizedDelta at 161.
-down -129 releasedDelta at 0.
-down -10 deathsDelta at 33.
+down -52 CaseDelta at 736.
+up 247 NegDelta at 2,625.
+down -16 hospitalizedDelta at 145.
+up 35 releasedDelta at 35.
+up 5 deathsDelta at 38.
 ".date('r');
 
 // GD Code Here
