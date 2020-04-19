@@ -417,7 +417,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $county;?> - <?PHP echo $days_to_predict;?> Day Prediction covid19math.net"
+		text: "<?PHP echo $county;?> covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
