@@ -5,14 +5,38 @@ if(isset($_GET['novideo'])){
 include_once('menu.php');
 
 function coronavirus_zip($zip,$date,$count,$town){
+	// the order we call the function will matter...
 	global $core;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
-	if ($d['id'] == ''){
-		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count,town_name) values ('$zip','$date','$count','$town') ");
+	// look for yesterday
+	$date2 = date('Y-m-d',strtotime($date)-86400);
+	$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
+	$r2 = $core->query($q2);
+	$d2 = mysqli_fetch_array($r2);
+	if ($d2['id'] == ''){
+		// Let's Process Trend Data
+		$last_trend_direction = $d2['trend_direction'];
+		$last_trend_duration = $d2['trend_duration'];
+		$last_report_count = $d2['report_count'];
+		if ($count > $last_report_count){
+			$current_trend = 'UP';	
+		}else{
+			$current_trend = 'DOWN';
+		}
+		if ($last_trend_direction == $current_trend){
+			$current_duration = $last_trend_duration + 1;
+		}else{
+			$current_duration = 0;
+		}
 	}else{
-		$core->query("update coronavirus_zip set report_count = '$count' where zip_code = '$zip' and report_date = '$date' ");	
+		// we reached the start of data collection.	
+	}
+	if ($d['id'] == ''){
+		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count,town_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','$current_trend','$current_duration') ");
+	}else{
+		$core->query("update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date' ");	
 	}
 }
 
