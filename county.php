@@ -446,7 +446,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Dead @ <?PHP echo rate_of_death($county);?>",
+		name: "<?PHP echo $county; ?> Fatal @ <?PHP echo rate_of_death($county);?>",
 		dataPoints: [
 			<?PHP echo make_dcounty($county); ?>
 		]
@@ -483,7 +483,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	exportEnabled: true,
 	theme: "light2", //"light1", "dark1", "dark2"
 	title:{
-		text: "<?PHP echo $county;?> Peak Outbreak covid19math.net",
+		text: "<?PHP echo $county;?> Outbreak covid19math.net",
 		horizontalAlign: "left"
 	},
 	data: [{
@@ -495,7 +495,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
 			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
-			{ y: <?PHP echo intval($peak[$county]); ?>, label: "Infected" }
+			{ y: <?PHP echo intval($maryland_history[$date][$AKA]); ?>, label: "Infected" }
 		]
 	}]
 });
