@@ -20,7 +20,9 @@ function coronavirus_zip($zip,$date,$count,$town){
 		$last_trend_direction = $d2['trend_direction'];
 		$last_trend_duration = $d2['trend_duration'];
 		$last_report_count = $d2['report_count'];
-		if ($count > $last_report_count){
+		if ($count == $last_report_count){
+			$current_trend = 'FLAT';	
+		}elseif ($count > $last_report_count){
 			$current_trend = 'UP';	
 		}else{
 			$current_trend = 'DOWN';
