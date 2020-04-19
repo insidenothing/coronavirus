@@ -23,6 +23,9 @@ ob_start();
 $total_up=0;
 $total_flat=0;
 $total_down=0;
+$new_up=0;
+$new_flat=0;
+$new_down=0;
 ?>
 
 <div class="row">
@@ -77,7 +80,7 @@ $total_down=0;
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
-        $total_up++;
+        $new_up++;
     }
     ?>
     </ol>
@@ -90,7 +93,7 @@ $total_down=0;
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
-       $total_flat++;
+       $new_flat++;
     }
     ?>
     </ol>
@@ -103,7 +106,7 @@ $total_down=0;
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
-       $total_down++;
+       $new_down++;
     }
     ?>
     </ol>
@@ -115,7 +118,7 @@ $buffer = ob_get_clean();
 ?>
 
 <script>
-var chart2 = new CanvasJS.Chart("chartContainer2", {
+var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
@@ -133,6 +136,26 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 		]
 	}]
 });
+chart.render();
+
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title: {
+		text: "Maryland Zipcode New Curve Position covid19math.net"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "#####",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: <?PHP echo intval($new_up);?>, label: "UP"},
+			{y: <?PHP echo intval($new_flat);?>, label: "FLAT"},
+      {y: <?PHP echo intval($new_down);?>, label: "DOWN"}
+		]
+	}]
+});
 chart2.render();
 
   	
@@ -147,8 +170,14 @@ function toggleDataSeries(e) {
 </script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
-
+<div class="row">
+ 	<div class="col-sm-6">
+		<div id="chartContainer" style="height: 400px; width: 100%;"></div>
+	</div>
+ 	<div class="col-sm-6">
+		<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
+	</div>
+</div>
 
 
 <?PHP 
