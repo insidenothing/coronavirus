@@ -34,7 +34,7 @@ $date = date('Y-m-d');
     <h3>Flat Trend</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
