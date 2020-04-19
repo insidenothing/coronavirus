@@ -8,7 +8,7 @@ include_once('menu.php');
   <h3>Goals</h3>
     We are setting up this page to track zipcodes across the curve. As they trend higher we count the days, 
     as they flatten off we count the days, as they drop we count the days. Every time the trend changes the
-    duration resets. If you 
+    duration resets. Phase One <b>Starts</b> afer 14 days of Down Trend. 
   </div>
 </div>
 
