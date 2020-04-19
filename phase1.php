@@ -119,6 +119,7 @@ $buffer = ob_get_clean();
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <script>
+	window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
@@ -168,6 +169,7 @@ function toggleDataSeries(e) {
 	}
 	e.chart.render();
 }
+	}
 </script>
 
 <div class="row">
