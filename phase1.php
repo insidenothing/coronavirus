@@ -116,6 +116,7 @@ $new_down=0;
 <?PHP 
 $buffer = ob_get_clean();
 ?>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <script>
 var chart = new CanvasJS.Chart("chartContainer", {
@@ -168,7 +169,6 @@ function toggleDataSeries(e) {
 	e.chart.render();
 }
 </script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <div class="row">
  	<div class="col-sm-6">
