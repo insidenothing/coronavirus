@@ -18,7 +18,12 @@ $date = date('Y-m-d');
 ?>
 
 
-
+<?PHP 
+ob_start();
+$total_up=0;
+$total_flat=0;
+$total_down=0;
+?>
 
 <div class="row">
   <div class="col-sm-4">
@@ -29,6 +34,7 @@ $date = date('Y-m-d');
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+        $total_up++;
     }
     ?>
     </ol>
@@ -41,6 +47,7 @@ $date = date('Y-m-d');
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+      $total_flat++;
     }
     ?>
     </ol>
@@ -53,6 +60,7 @@ $date = date('Y-m-d');
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+      $total_down++;
     }
     ?>
     </ol>
@@ -69,6 +77,7 @@ $date = date('Y-m-d');
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+        $total_up++;
     }
     ?>
     </ol>
@@ -81,6 +90,7 @@ $date = date('Y-m-d');
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+       $total_flat++;
     }
     ?>
     </ol>
@@ -93,12 +103,56 @@ $date = date('Y-m-d');
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+       $total_down++;
     }
     ?>
     </ol>
   </div>
 </div>
 
+<?PHP 
+$buffer = ob_get_clean();
+?>
 
+<script>
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title: {
+		text: "Maryland Zipcode Curve Position covid19math.net"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "#####",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: <?PHP echo intval($total_up);?>, label: "UP"},
+			{y: <?PHP echo intval($total_flat);?>, label: "FLAT"},
+      {y: <?PHP echo intval($total_down);?>, label: "DOWN"}
+		]
+	}]
+});
+chart2.render();
+
+  	
+function toggleDataSeries(e) {
+	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	e.chart.render();
+}
+</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
+
+
+
+<?PHP 
+echo $buffer;
+?>
 
 <?PHP include_once('footer.php'); ?>
