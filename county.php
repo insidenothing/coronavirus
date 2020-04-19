@@ -120,7 +120,7 @@ function make_datapoints(){
 
 $date = $maryland_history['date'];
 
-$page_description = "$date $county - ZIP Codes + $days_to_predict Day Prediction";
+$page_description = "$date $county - ZIP Codes";
 
 include_once('menu.php');
 
@@ -237,8 +237,8 @@ function make_county($county){
 		}
 	}
         // predictive
-        $next = date('Y-m-d',strtotime($date)+86400);
-        $return .= make_county_prediction($county,$next,$count,$dt);
+       // $next = date('Y-m-d',strtotime($date)+86400);
+       // $return .= make_county_prediction($county,$next,$count,$dt);
     	$return = rtrim(trim($return), ",");
     return $return;
 }
@@ -261,8 +261,8 @@ function make_dcounty($county){
 		}
 	}
         // predictive
-        $next = date('Y-m-d',strtotime($date)+86400);
-        $return .= make_dcounty_prediction($county,$next,$count,$dt);
+       // $next = date('Y-m-d',strtotime($date)+86400);
+       // $return .= make_dcounty_prediction($county,$next,$count,$dt);
     	$return = rtrim(trim($return), ",");
     return $return;
 }
