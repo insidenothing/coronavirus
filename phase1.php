@@ -1,5 +1,6 @@
 <?PHP
-$page_description = "Maryland Reopen - Phase One  - Status";
+// preprocess data using zip.php (reviews all zip codes over known time)
+$page_description = "Reopen Maryland - Phase One  - Status";
 include_once('menu.php');
 ?>
 <div class="row">
