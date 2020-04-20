@@ -6,7 +6,7 @@ function get_hits(){
 	$q = "select * from coronavirus_stats where REQUEST_URI = '$page' ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
-	$stat = "$page $d[hit_counter] hits since $d[started_on]";
+	$stat = "$page received $d[hit_counter] hits since $d[started_on].";
 	return $stat;
 }
 
