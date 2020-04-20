@@ -8,7 +8,7 @@ $d = mysqli_fetch_array($r);
 $date = $d['msg_made_datetime'];
 
 $str = str_replace('<h3>Covid19math.net Update</h3>','',$d['msg']); // remove web title
-$str = str_replace('</h3>','
+$str = str_replace('</h4>','
 ',$str); // line break after sub title
 $str = str_replace('</div>','
 ',$str);
