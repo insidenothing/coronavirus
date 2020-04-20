@@ -394,9 +394,6 @@ echo do_math_location('case50to59');
 echo do_math_location('case60to69');
 echo do_math_location('case70to79');
 echo do_math_location('case80plus');
-echo '<h4>Gender</h4>';
-echo do_math_location('Male');
-echo do_math_location('Female');
 echo '<h4>Deltas</h4>';	
 echo do_math_location('CaseDelta');
 echo do_math_location('NegDelta');
@@ -414,11 +411,12 @@ echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)<
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
 	global $core;
-	$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
-	while($d = mysqli_fetch_array($r)){
-		$sms = trim($d['sms_number']);
-		message_send($sms,$new_master_message);
-	}
+	//$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
+	//while($d = mysqli_fetch_array($r)){
+		//$sms = trim($d['sms_number']);
+		//message_send($sms,$new_master_message);
+	//}
+	$core->query("insert into coronavirus_msg (msg,msg_made_datetime) values ('$new_master_message',NOW() ) ");
 }  
 echo "</div>";
 	
