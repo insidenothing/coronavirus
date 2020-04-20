@@ -2,7 +2,28 @@
 // preprocess data using zip.php (reviews all zip codes over known time)
 $page_description = "Reopen Maryland - Phase One  - Status";
 include_once('menu.php');
+$q = "SELECT distinct zip_code FROM coronavirus_zip";
+$r = $core->query($q);
+$total_zip = $r->num_rows;
+$flat = 23;
+$down = 0;
 ?>
+
+<div class="row">
+  <div class="col-sm-6">
+  <h3>Flattening Status</h3>	
+	 <span style='font-size:25px;'><?PHP echo $total_zip / $flat; ?></span> 
+  </div>
+  <div class="col-sm-6">
+  <h3>Reopen Status</h3>
+	  
+	  <span style='font-size:25px;'>0%</span>  
+  </div>
+</div>
+
+
+
+
 <div class="row">
   <div class="col-sm-12">
   <h3>Goals</h3>
