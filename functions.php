@@ -2,12 +2,17 @@
 
 function get_hits(){
 	global $core;
-	$page = $_SERVER['REQUEST_URI'];
+	$page = $_SERVER['SCRIPT_NAME'];
+	$q = "select * from coronavirus_stats where REQUEST_URI = '$page' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$stat = "$page $d[hit_counter] hits since $d[started_on]";
+	return $stat;
 }
 
 function set_hits(){
 	global $core;
-	$page = $_SERVER['REQUEST_URI'];
+	$page = $_SERVER['SCRIPT_NAME'];
 	$q = "select * from coronavirus_stats where REQUEST_URI = '$page' ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
