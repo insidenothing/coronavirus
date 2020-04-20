@@ -6,7 +6,13 @@ $q = "select * from coronavirus_msg order by id desc limit 1";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r);
 $date = $d['msg_made_datetime'];
-$clean = strip_tags($d['msg']);
+
+$str = str_replace('</h3>','
+',$d['msg']);
+$str = str_replace('</div>','
+',$str);
+
+$clean = strip_tags($str);
 
 $msg="
 $clean
