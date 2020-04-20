@@ -108,9 +108,9 @@ echo do_math_location('hospitalizedDelta');
 echo do_math_location('releasedDelta');
 echo do_math_location('deathsDelta');	
 $new_master_message = ob_get_clean();
-
+$clean = strip_tags($new_master_message);
 $msg="
-$new_master_message
+$clean
 ".date('r');
 
 // GD Code Here
