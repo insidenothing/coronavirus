@@ -16,8 +16,7 @@ $str = str_replace('</div>','
 $clean = strip_tags($str);
 
 $msg="
-$clean
-".$date;
+$clean".$date;
 
 
 // GD Code Here
