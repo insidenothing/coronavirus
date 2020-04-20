@@ -422,8 +422,8 @@ if ($send_message == 'on' || isset($_GET['forcesms'])){
 }  
 echo "</div>";
 	
-echo '<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 600px; width: 100%;"></div></div></div>';
-echo '<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 600px; width: 100%;"></div></div></div>';	
+echo '<div class="row"><div class="col-sm-6"><div id="chartContainerZIP" style="height: 1200px; width: 100%;"></div></div>';
+echo '<div class="col-sm-6"><div id="chartContainerZIP2" style="height: 1200px; width: 100%;"></div></div></div>';	
 	
 echo "</div>";
 include_once('footer.php');
