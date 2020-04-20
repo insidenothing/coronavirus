@@ -1,48 +1,116 @@
-<?PHP $msg="
-up 854 Maryland at 13,684.
-up 30 deaths at 516.
-up 128 total_hospitalized at 3,014.
-up 3 total_released at 917.
-up 2,652 NegativeTests at 57,713.
-County by County
-down -1 Allegany at 32.
-up 51 AnneArundel at 1,098.
-up 142 Baltimore at 1,875.
-up 119 BaltimoreCity at 1,511.
-up 1 Calvert at 114.
-up 6 Caroline at 39.
-up 22 Carroll at 335.
-up 3 Cecil at 134.
-up 22 Charles at 392.
-up 2 Dorchester at 23.
-up 25 Frederick at 616.
-up 16 Harford at 226.
-up 23 Howard at 538.
-up 10 Kent at 28.
-up 140 Montgomery at 2,647.
-up 238 PrinceGeorges at 3,583.
-up 1 QueenAnnes at 26.
-up 1 Somerset at 11.
-up 2 StMarys at 107.
-up 3 Talbot at 22.
-up 6 Washington at 123.
-up 1 Worcester at 34.
-Age Groups
-up 15 case0to9 at 108.
-up 23 case10to19 at 300.
-up 97 case20to29 at 1,488.
-up 145 case30to39 at 2,245.
-up 130 case40to49 at 2,442.
-up 140 case50to59 at 2,632.
-up 117 case60to69 at 2,015.
-up 99 case70to79 at 1,385.
-up 88 case80plus at 1,069.
-Deltas
-up 332 CaseDelta at 854.
-up 653 NegDelta at 2,652.
-down -1 hospitalizedDelta at 128.
-down -140 releasedDelta at 3.
-up 7 deathsDelta at 30.
+<?PHP 
+include_once('/var/www/secure.php'); //outside webserver
+include_once('functions.php'); //outside webserver
+global $attributes;
+global $maryland_history;
+global $new_id;
+global $new_date;
+global $old_date;
+global $core;
+$maryland_history = make_maryland_array();
+
+function attribute_aka($county){
+	global $attributes;
+	if ($county == 'caseAfrAmer'){ return $attributes['raceAfrAmer']['CaseCount']; }
+	if ($county == 'deathAfrAmer'){ return $attributes['raceAfrAmer']['DeathCount']; }
+	
+	if ($county == 'caseWhite'){ return $attributes['raceWhite']['CaseCount']; }
+	if ($county == 'deathWhite'){ return $attributes['raceWhite']['DeathCount']; }
+	
+	if ($county == 'caseAsian'){ return $attributes['raceAsian']['CaseCount']; }
+	if ($county == 'deathAsian'){ return $attributes['raceAsian']['DeathCount']; }
+	
+	if ($county == 'caseOther'){ return $attributes['raceOther']['CaseCount']; }
+	if ($county == 'deathOther'){ return $attributes['raceOther']['DeathCount']; }
+	
+	if ($county == 'caseNotAVail'){ return $attributes['raceNotAvail']['CaseCount']; }
+	if ($county == 'deathNotAvail'){ return $attributes['raceNotAvail']['DeathCount']; }
+}
+
+function do_math_location($county){
+	
+	global $maryland_history;
+	global $new_id;
+	global $new_date;
+	global $old_date;
+	global $core;
+	$today = date('Y-m-d',strtotime($new_date));
+	$aka = county_aka($county);
+	$count_today = $maryland_history[$today][$aka];
+	
+	$yesterday = date('Y-m-d',strtotime($old_date));
+	$count_yesterday = $maryland_history[$yesterday][$aka];
+	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
+	
+	if ($count_today == 0){
+		// failure detected
+		// check attributes
+		$count_fix = attribute_aka($county);
+		//echo "<p>PATCH $count_today to $count_fix for $county ($count_yesterday)</p>";
+		$count_today = $count_fix;
+	}
+	
+	$count_delta = $count_today - $count_yesterday;
+	$dir = 'up';
+	if ( $count_today < $count_yesterday){
+		$dir = 'down';
+	}
+	$human_count = number_format($count_today);
+	$human_delta = number_format($count_delta);
+	if ($count_delta != 0) { sms("$dir $human_delta <b>$county</b> at $human_count. ");  } 
+}
+
+ob_start();
+// V3
+echo do_math_location('Maryland');
+echo do_math_location('deaths');
+echo do_math_location('total_hospitalized');
+echo do_math_location('total_released');
+echo do_math_location('NegativeTests');
+echo '<h4>County by County</h4>';
+echo do_math_location('Allegany');
+echo do_math_location('AnneArundel');
+echo do_math_location('Baltimore');
+echo do_math_location('BaltimoreCity');
+echo do_math_location('Calvert');
+echo do_math_location('Caroline');
+echo do_math_location('Carroll');
+echo do_math_location('Cecil');
+echo do_math_location('Charles');
+echo do_math_location('Dorchester');
+echo do_math_location('Frederick');
+echo do_math_location('Garrett');
+echo do_math_location('Harford');
+echo do_math_location('Howard');
+echo do_math_location('Kent');
+echo do_math_location('Montgomery');
+echo do_math_location('PrinceGeorges');
+echo do_math_location('QueenAnnes');
+echo do_math_location('Somerset');
+echo do_math_location('StMarys');
+echo do_math_location('Talbot');
+echo do_math_location('Washington');
+echo do_math_location('Worcester');
+echo '<h4>Age Groups</h4>';
+echo do_math_location('case0to9');
+echo do_math_location('case10to19');
+echo do_math_location('case20to29');
+echo do_math_location('case30to39');
+echo do_math_location('case40to49');
+echo do_math_location('case50to59');
+echo do_math_location('case60to69');
+echo do_math_location('case70to79');
+echo do_math_location('case80plus');
+echo '<h4>Deltas</h4>';	
+echo do_math_location('CaseDelta');
+echo do_math_location('NegDelta');
+echo do_math_location('hospitalizedDelta');
+echo do_math_location('releasedDelta');
+echo do_math_location('deathsDelta');	
+$new_master_message = ob_get_clean();
+
+$msg="
+$new_master_message
 ".date('r');
 
 // GD Code Here
