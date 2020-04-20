@@ -38,7 +38,7 @@ global $core;
 
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
-
+set_hits(); // internal page counter
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162868936-1"></script>
