@@ -12,7 +12,7 @@ $down = 0;
 <div class="row">
   <div class="col-sm-6">
   <h3>Flattening Status</h3>	
-	 <span style='font-size:25px;'><?PHP echo $total_zip / $flat; ?></span> 
+	 <span style='font-size:25px;'><?PHP echo $flat / $total_zip; ?></span> 
   </div>
   <div class="col-sm-6">
   <h3>Reopen Status</h3>
