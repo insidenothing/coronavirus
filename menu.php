@@ -63,7 +63,7 @@ include_once('functions.php'); //outside webserver
 	
 	
 $links;
-$q = "SELECT distinct name_of_location FROM coronavirus_populations ";
+$q = "SELECT distinct name_of_location FROM coronavirus_populations where county <> 'Maryland'";
 $r = $core->query($q);
 	$loc_test='';
 	if (isset($_GET['county'])){
