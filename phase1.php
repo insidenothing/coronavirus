@@ -10,12 +10,12 @@ $down = 0;
 ?>
 
 <div class="row">
-  <div class="col-sm-6">
-  <h3>Flattening Status</h3>	
+  <div class="col-sm-6" style='text-align:center;'>
+  <h4>Flattening Status</h4>	
 	 <span style='font-size:25px;'><?PHP $a = $flat / $total_zip; $b = $a * 100; echo round($b); ?>%</span> 
   </div>
-  <div class="col-sm-6">
-  <h3>Reopen Status</h3>
+  <div class="col-sm-6" style='text-align:center;'>
+  <h4>Reopen Status</h4>
 	  <span style='font-size:25px;'>0%</span>  
   </div>
 </div>
