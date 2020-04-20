@@ -1,4 +1,24 @@
 <?PHP
+
+function get_hits(){
+	global $core;
+	$page = $_SERVER['REQUEST_URI'];
+}
+
+function set_hits(){
+	global $core;
+	$page = $_SERVER['REQUEST_URI'];
+	$q = "select * from coronavirus_stats where REQUEST_URI = '$page' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	if ($d['id'] > 0){
+		$up = $d['hit_counter'] + 1;
+		$core->query("update coronavirus_stats set hit_counter = '$up', last_hit = NOW() where REQUEST_URI = '$page' ");
+	}else{
+		$core->query("insert into coronavirus_stats ( hit_counter, REQUEST_URI, started_on  ) values ( '1', '$page', NOW() ) ");
+	}
+	
+}
 function getPage($url){
     $curl = curl_init();
     curl_setopt ($curl, CURLOPT_URL, $url);
