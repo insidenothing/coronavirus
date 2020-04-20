@@ -14,7 +14,10 @@ include_once('menu.php');
 
 <?PHP
 // pull date from last update, not assume today.
-$date = date('Y-m-d');
+$q = "select just_date from coronavirus order by id desc limit 1";
+$r = $core->query($q);
+$d = mysqli_fetch_array($r);
+$date = $d['just_date'];
 ?>
 
 
