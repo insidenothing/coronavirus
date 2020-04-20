@@ -3,7 +3,7 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 $q = "select * from coronavirus_msg order by id desc limit 1";
-$r = $core->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
+$r = $core->query($q);
 $d = mysqli_fetch_array($r);
 $date = $d['msg_made_datetime'];
 $clean = strip_tags($d['msg']);
