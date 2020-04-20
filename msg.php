@@ -22,7 +22,7 @@ $clean
 
 // GD Code Here
 header('Content-Type: image/png');
-$height = strlen($msg) * 1.20;
+$height = strlen($msg) * 1.10;
 $width = '450';
 $im = imagecreatetruecolor($width, $height);
 $white = imagecolorallocate($im, 255, 255, 255);
