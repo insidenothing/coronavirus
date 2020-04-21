@@ -4,16 +4,16 @@ include_once('functions.php'); //outside webserver
 
 $select = "SELECT * FROM coronavirus_zip ORDER BY report_date, zip_code"
 
-$export = $core->query ( $select );
+$r = $core->query($q);
 
-$fields = mysqli_num_fields ( $export );
+$fields = mysqli_num_fields ( $r );
 
 for ( $i = 0; $i < $fields; $i++ )
 {
-    $header .= mysqli_field_name( $export , $i ) . "\t";
+    $header .= mysqli_field_name( $r , $i ) . "\t";
 }
 
-while( $row = mysqli_fetch_row( $export ) )
+while( $row = mysqli_fetch_row( $r ) )
 {
     $line = '';
     foreach( $row as $value )
