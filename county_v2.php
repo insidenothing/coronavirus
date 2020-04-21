@@ -441,7 +441,7 @@ $new_down=0;
     <ol>
     <?PHP
     $zip_like=' and ( ';
-    foreach ($county_zip_codes[$county] as $zip){
+    foreach ($county_zip_codes[$county] as $zip => $data){
       $zip_like .= " zip_code = '$zip' or ";
     }
     $zip_like .= ' zip_code = '99999' )';
