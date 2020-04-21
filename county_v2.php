@@ -412,17 +412,17 @@ $new_up=0;
 $new_flat=0;
 $new_down=0;
 ?>
-<div class="row">
-  <div class="col-sm-12">
+<!--<div class="row">
+  <div class="col-sm-12">-->
 	  <?PHP
 	$zip_like=' and ( ';
     foreach ($county_zip_codes[$county] as $zip => $data){
       $zip_like .= " zip_code = '$data' or ";
     }
     $zip_like .= " zip_code = '99999' )";  
-	echo  "<p>$zip_like</p>"; ?>
-  </div>
-</div>
+	//echo  "<p>$zip_like</p>"; ?>
+ <!-- </div>
+</div>-->
 <div class="row">
   <div class="col-sm-4">
     <h3>Up Trend</h3>
