@@ -33,8 +33,7 @@ function infection_levelMD($county){
 	$a = $cases / $gcd;
 	$b = $total / $gcd;
 	$c =  $cases / $total;
-	$d = $c;
-	//$d = $c * 1000;
+	$d = $c * 100;
 	$state_level = $d;
 	$e = number_format($d, 5, '.', '');
 	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
@@ -49,8 +48,7 @@ function infection_level($county){
 	$a = $cases / $gcd;
 	$b = $total / $gcd;
 	$c =  $cases / $total;
-	$d = $c;
-	//$d = $c * 1000;
+	$d = $c * 100;
 	$e = number_format($d, 5, '.', '');
 	if($cases == 0){
 		echo "<div class='col-sm-2' style='background-color:lightgreen;'><h4>COLD <a href='county.php?county=$county'>$county</a></h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
