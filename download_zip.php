@@ -2,7 +2,7 @@
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
-$select = "SELECT * FROM coronavirus_zip ORDER BY report_date, zip_code"
+$select = "SELECT * FROM coronavirus_zip ORDER BY report_date, zip_code";
 
 $r = $core->query($q);
 
