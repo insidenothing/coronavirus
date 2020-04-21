@@ -98,7 +98,7 @@ function show_on_graph($county){
 			return 'false';	
 		}	
 	}
-	if ($count == 0){
+	if ($count < 1000){
 		return 'false';
 	}else{
 		return 'true';	
