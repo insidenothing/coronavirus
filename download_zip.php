@@ -1,4 +1,5 @@
 <?PHP 
+//https://stackoverflow.com/questions/125113/php-code-to-convert-a-mysql-query-to-csv
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
@@ -10,7 +11,7 @@ function mysqli_field_name($result, $field_offset)
 }
 
 
-$select = "SELECT * FROM coronavirus_zip ORDER BY report_date, zip_code";
+$q = "SELECT * FROM coronavirus_zip ORDER BY report_date, zip_code";
 
 $r = $core->query($q);
 
