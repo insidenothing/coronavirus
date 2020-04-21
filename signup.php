@@ -22,7 +22,7 @@ if(isset($_GET['phone'])){
   $sms = str_replace(')','',$sms);
   $sms = str_replace('(','',$sms);
   $sms = str_replace('-','',$sms);
-  $sms_validate = "Click to Confirm https://www.mdwestserve.com/coronavirus/signup.php?validate=$sms";
+  $sms_validate = "Click to Confirm https://www.covid19math.net/signup.php?validate=$sms";
   $core->query("insert into coronavirus_sms ( sms_number ) values ('$sms') ");
   sms_one($sms,$sms_validate);
   sms_one('4433862584',"NEW USER - $sms");
