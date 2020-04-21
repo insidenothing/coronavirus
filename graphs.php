@@ -486,7 +486,7 @@ function toggleDataSeries(e) {
 		<div class='col-sm-12' style='background-color:lightyellow;'>
 			<h3>Enter Days to Predict</h3>
 			<form method='POST'>
-				<p>1. Days to Predict <input name='days' value='<?PHP echo $days_to_predict; ?>'></p>
+				<p>1. Days to Predict  (no social distancing) <input name='days' value='<?PHP echo $days_to_predict; ?>'></p>
 				<p>2. Click to <input type='submit' value='Update Graph'></p>
 				<p><a href='?days=1&show=<?PHP echo $show; ?>'>Run Animation</a> | <a href='graphs.php'>Reset Animation</a></p>
 			</form>
