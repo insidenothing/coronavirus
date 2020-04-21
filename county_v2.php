@@ -1,4 +1,7 @@
 <?PHP
+global $output_buffer;
+$output_buffer = '';
+
 global $global_graph_height;
 $global_graph_height = 0;
 global $county_zip_codes;
@@ -389,36 +392,9 @@ function makeZIPpoints(){
 	$return = rtrim(trim($return), ",");
 	return $return;	
 }
-	       
-?>
-
-
-
-
-
-<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
-
-<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 500px; width: 100%;"></div></div></div>
-
-<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
-
-<div class="row">
-	<div class='col-sm-4'>
-		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-	</div>
-	<div class='col-sm-4'>
-		<h3><?PHP echo $county;?> ZIP Codes used by Maryland Dept. Health</h3>
-		<?PHP echo $zip_debug;?>
-	</div>
-	<div class='col-sm-4'>
-		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-
-	</div>
-</div>
 
 	
-	
-<?PHP
+
 // pull date from last update, not assume today.
 $q = "select just_date from coronavirus order by id desc limit 1";
 $r = $core->query($q);
@@ -436,7 +412,6 @@ $new_up=0;
 $new_flat=0;
 $new_down=0;
 ?>
-
 <div class="row">
   <div class="col-sm-4">
     <h3>Up Trend</h3>
@@ -758,6 +733,34 @@ function toggleDataSeries(e) {
 }
 </script>
 
+<?PHP
+ob_start();	       
+?>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 500px; width: 100%;"></div></div></div>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
+
+<div class="row">
+	<div class='col-sm-4'>
+		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
+	</div>
+	<div class='col-sm-4'>
+		<h3><?PHP echo $county;?> ZIP Codes used by Maryland Dept. Health</h3>
+		<?PHP echo $zip_debug;?>
+	</div>
+	<div class='col-sm-4'>
+		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
+
+	</div>
+</div>
+<?PHP $output_buffer .= ob_get_clean();	?>
+
+
+
+<?PHP echo $output_buffer;?>
 	
 <?PHP include_once('footer.php'); ?>
 	
