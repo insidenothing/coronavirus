@@ -15,13 +15,13 @@ if(isset($_GET['days'])){
 	} 
 	// animaton
 	$days_to_predict = $_GET['days'];
-	$next_days = $days_to_predict + 7; 
+	$next_days = $days_to_predict + 2; 
 	if($next_days < 90){
 		// limit to 200 days
 		if($show != ''){
-			echo "<meta http-equiv='refresh' content='5; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days&show=$show'>";
+			echo "<meta http-equiv='refresh' content='5; url=https://www.covid19math.net/graphs.php?days=$next_days&show=$show'>";
 		}else{
-			echo "<meta http-equiv='refresh' content='5; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days'>";	
+			echo "<meta http-equiv='refresh' content='5; url=https://www.covid19math.net/graphs.php?days=$next_days'>";	
 		}
 	}
 }
@@ -32,7 +32,7 @@ if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
-$page_description = "Animated Graph of $show Cases - $days_to_predict Day Prediction (no social distancing)";
+$page_description = "Animated Graph of $show Cases $days_to_predict Day Prediction (no social distancing)";
 include_once('menu.php');
 
 global $today;
