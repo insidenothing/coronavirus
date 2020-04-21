@@ -5,7 +5,7 @@ if(isset($_GET['show'])){
 	$show = $_GET['show'];
 }
 global $days_to_predict;
-$days_to_predict = '-1';
+$days_to_predict = '14';
 if(isset($_GET['days'])){
 	// stop bot from running animation
 	$ua = $_SERVER['HTTP_USER_AGENT'];
@@ -505,7 +505,7 @@ function toggleDataSeries(e) {
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' ";
 			$r = $core->query($q);
 			while($d = mysqli_fetch_array($r)){	
-				echo "<p><a href='county.php?county=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at ".$today[$d[name_of_location]]."</p>";
+				echo "<p><a href='graphs.php?show=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at ".$today[$d[name_of_location]]."</p>";
 			}
 			?>		
 		</div>
