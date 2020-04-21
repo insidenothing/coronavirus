@@ -5,7 +5,7 @@ if(isset($_GET['show'])){
 	$show = $_GET['show'];
 }
 global $days_to_predict;
-$days_to_predict = '45';
+$days_to_predict = '7';
 if(isset($_GET['days'])){
 	// stop bot from running animation
 	$ua = $_SERVER['HTTP_USER_AGENT'];
@@ -32,7 +32,7 @@ if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
 $logo = 'off';
-$page_description = "Animated Graph of $show Cases - $days_to_predict Day Prediction";
+$page_description = "Animated Graph of $show Cases - $days_to_predict Day Prediction (no social distancing)";
 include_once('menu.php');
 
 global $today;
