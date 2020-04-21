@@ -396,23 +396,25 @@ function makeZIPpoints(){
 
 
 
-	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
-	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: <?PHP echo $global_graph_height;?>px; width: 100%;"></div></div></div>
-	<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
-	<div class="row">
-		<div class='col-sm-4'>
-			<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-		</div>
-		<div class='col-sm-4'>
-			<h3><?PHP echo $county;?> Data</h3>
-			<h3>ZIP Codes used by Maryland Dept. Health</h3>
-			<?PHP echo $zip_debug;?>
-		</div>
-		<div class='col-sm-4'>
-			<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-			
-		</div>
+<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 500px; width: 100%;"></div></div></div>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
+
+<div class="row">
+	<div class='col-sm-4'>
+		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
 	</div>
+	<div class='col-sm-4'>
+		<h3><?PHP echo $county;?> ZIP Codes used by Maryland Dept. Health</h3>
+		<?PHP echo $zip_debug;?>
+	</div>
+	<div class='col-sm-4'>
+		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
+
+	</div>
+</div>
 
 	
 	
