@@ -2,7 +2,7 @@
 //https://stackoverflow.com/questions/125113/php-code-to-convert-a-mysql-query-to-csv
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
-
+set_hits(); // internal page counter
 //https://stackoverflow.com/questions/14629636/mysql-field-name-to-the-new-mysqli
 function mysqli_field_name($result, $field_offset)
 {
