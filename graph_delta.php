@@ -6,25 +6,7 @@ if(isset($_GET['show'])){
 }
 global $days_to_predict;
 $days_to_predict = '1';
-if(isset($_GET['days'])){
-	// stop bot from running animation
-	$ua = $_SERVER['HTTP_USER_AGENT'];
-	if (preg_match('/facebookexternalhit/si',$ua)) { 
-		header('Location: graphs.php?show='.$show); 
-		die(); 
-	} 
-	// animaton
-	$days_to_predict = $_GET['days'];
-	$next_days = $days_to_predict + 7; 
-	if($next_days < 90){
-		// limit to 200 days
-		if($show != ''){
-			echo "<meta http-equiv='refresh' content='5; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days&show=$show'>";
-		}else{
-			echo "<meta http-equiv='refresh' content='5; url=https://www.mdwestserve.com/coronavirus/graphs.php?days=$next_days'>";	
-		}
-	}
-}
+
 if(isset($_POST['days'])){
 	$days_to_predict = $_POST['days'];	
 }
