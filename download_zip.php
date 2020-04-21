@@ -20,8 +20,8 @@ for ( $i = 0; $i < $fields; $i++ )
 {
     $header .= mysqli_field_name( $r , $i ) . "\t";
 }
-
-while( $row = mysqli_fetch_row( $r ) )
+// https://www.php.net/manual/en/mysqli-result.fetch-row.php
+while( $row = $r->fetch_row() )
 {
     $line = '';
     foreach( $row as $value )
@@ -46,8 +46,8 @@ if ( $data == "" )
     $data = "\n(0) Records Found!\n";                        
 }
 
-header("Content-type: application/octet-stream");
-header("Content-Disposition: attachment; filename=covid19math.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+//header("Content-type: application/octet-stream");
+//header("Content-Disposition: attachment; filename=covid19math.xls");
+//header("Pragma: no-cache");
+//header("Expires: 0");
 print "$header\n$data";
