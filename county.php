@@ -1,4 +1,7 @@
 <?PHP
+global $output_buffer;
+$output_buffer = '';
+
 global $global_graph_height;
 $global_graph_height = 0;
 global $county_zip_codes;
@@ -389,8 +392,148 @@ function makeZIPpoints(){
 	$return = rtrim(trim($return), ",");
 	return $return;	
 }
-	       
+
+	
+
+// pull date from last update, not assume today.
+$q = "select just_date from coronavirus order by id desc limit 1";
+$r = $core->query($q);
+$d = mysqli_fetch_array($r);
+$date = $d['just_date'];
 ?>
+
+
+<?PHP 
+ob_start();
+$total_up=0;
+$total_flat=0;
+$total_down=0;
+$new_up=0;
+$new_flat=0;
+$new_down=0;
+?>
+<!--<div class="row">
+  <div class="col-sm-12">-->
+	  <?PHP
+	$zip_like=' and ( ';
+    foreach ($county_zip_codes[$county] as $zip => $data){
+      $zip_like .= " zip_code = '$data' or ";
+    }
+    $zip_like .= " zip_code = '99999' )";  
+	//echo  "<p>$zip_like</p>"; ?>
+ <!-- </div>
+</div>-->
+<div class="row">
+  <div class="col-sm-4">
+    <h3>Up Trend</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' $zip_like order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+        $total_up++;
+    }
+    ?>
+    </ol>
+  </div>
+  <div class="col-sm-4">
+    <h3>Flat Trend</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> '0' and trend_duration <> 0 $zip_like order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+      $total_flat++;
+    }
+    ?>
+    </ol>
+  </div>
+  <div class="col-sm-4">
+  <h3>Down Trend</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration <> '0' $zip_like order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+      $total_down++;
+    }
+    ?>
+    </ol>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <h3>New Direction Up</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration = '0' $zip_like order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+        $new_up++;
+    }
+    ?>
+    </ol>
+  </div>
+  <div class="col-sm-4">
+    <h3>New Direction Flat</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 and trend_duration = '0' $zip_like order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+       $new_flat++;
+    }
+    ?>
+    </ol>
+  </div>
+  <div class="col-sm-4">
+  <h3>New Direction Down</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration = '0' $zip_like order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+       $new_down++;
+    }
+    ?>
+    </ol>
+  </div>
+</div>
+
+<?PHP 
+$buffer = ob_get_clean();
+?>
+
+
+
+
+  	
+
+
+<div class="row">
+ 	<div class="col-sm-6">
+		<div id="chartContainer99" style="height: 400px; width: 100%;"></div>
+	</div>
+ 	<div class="col-sm-6">
+		<div id="chartContainer88" style="height: 400px; width: 100%;"></div>
+	</div>
+</div>
+
+
+<?PHP 
+echo $buffer;
+?>	
+
+
+<script src="canvasjs.min.js"></script>
 <script>
 window.onload = function () {
 
@@ -541,6 +684,46 @@ var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
 			      );
 chartZIP2.render();	
 	
+var chart99 = new CanvasJS.Chart("chartContainer99", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title: {
+		text: "<?PHP echo $county;?> Zipcode Curve Position covid19math.net"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "#####",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: <?PHP echo intval($total_up);?>, label: "UP"},
+			{y: <?PHP echo intval($total_flat);?>, label: "FLAT"},
+      {y: <?PHP echo intval($total_down);?>, label: "DOWN"}
+		]
+	}]
+});
+chart99.render();
+
+var chart88 = new CanvasJS.Chart("chartContainer88", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title: {
+		text: "<?PHP echo $county;?> Zipcode New Curve Position covid19math.net"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "#####",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: <?PHP echo intval($new_up);?>, label: "UP"},
+			{y: <?PHP echo intval($new_flat);?>, label: "FLAT"},
+      {y: <?PHP echo intval($new_down);?>, label: "DOWN"}
+		]
+	}]
+});
+chart88.render();
+	
 function toggleDataSeries(e) {
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 		e.dataSeries.visible = false;
@@ -554,33 +737,35 @@ function toggleDataSeries(e) {
 	
 }
 </script>
-</head>
-<body>
 
-<script src="canvasjs.min.js"></script>
-<div class="container">
-	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
-	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: <?PHP echo $global_graph_height;?>px; width: 100%;"></div></div></div>
-	<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
-	<div class="row">
-		<div class='col-sm-4'>
-			<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-		</div>
-		<div class='col-sm-4'>
-			<h3><?PHP echo $county;?> Data</h3>
-			<?PHP echo $peak_str[$county];?>
-			<?PHP echo $dpeak_str[$county];?>
-			<?PHP echo $normal[$county];?>
-			<?PHP echo $dnormal[$county];?>
-			<h3>ZIP Codes used by Maryland Dept. Health</h3>
-			<?PHP echo $zip_debug;?>
-		</div>
-		<div class='col-sm-4'>
-			<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-			
-		</div>
+<?PHP
+ob_start();	       
+?>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 500px; width: 100%;"></div></div></div>
+
+<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
+
+<div class="row">
+	<div class='col-sm-4'>
+		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
+	</div>
+	<div class='col-sm-4'>
+		<h3><?PHP echo $county;?> ZIP Codes used by Maryland Dept. Health</h3>
+		<?PHP echo $zip_debug;?>
+	</div>
+	<div class='col-sm-4'>
+		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
+
 	</div>
 </div>
+<?PHP $output_buffer .= ob_get_clean();	?>
+
+
+
+<?PHP echo $output_buffer;?>
 	
 <?PHP include_once('footer.php'); ?>
 	
