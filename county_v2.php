@@ -413,16 +413,21 @@ $new_flat=0;
 $new_down=0;
 ?>
 <div class="row">
+  <div class="col-sm-12">
+	  <?PHP
+	$zip_like=' and ( ';
+    foreach ($county_zip_codes[$county] as $zip => $data){
+      $zip_like .= " zip_code = '$zip' or ";
+    }
+    $zip_like .= " zip_code = '99999' )";  
+	echo  "<p>$zip_like</p>"; ?>
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-4">
     <h3>Up Trend</h3>
     <ol>
     <?PHP
-    $zip_like=' and ( ';
-    foreach ($county_zip_codes[$county] as $zip => $data){
-      $zip_like .= " zip_code = '$zip' or ";
-    }
-    $zip_like .= " zip_code = '99999' )";
-    
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
