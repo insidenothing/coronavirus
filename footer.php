@@ -1,6 +1,7 @@
 
 <!--- Footer Menu -->
 <ul class="nav nav-pills" style="text-align:center;">
+	<li role='presentation'><a target='_Blank' href="https://datastudio.google.com/u/0/reporting/f4919f28-eb01-47d1-8c49-51c343e55f20/page/tBINB">Google Analytics Report</a></li>
 	<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">Facebook Group</a></li>
 	<li role='presentation'><a target='_Blank' href="https://www.patrickmcguire.me/">&copy 2020 Patricks McGuire</a></li>
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/debug.php'){ echo "class='active'"; } ?> ><a href="debug.php">Raw Data</a></li>
