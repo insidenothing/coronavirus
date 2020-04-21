@@ -444,7 +444,7 @@ $new_down=0;
     foreach ($county_zip_codes[$county] as $zip => $data){
       $zip_like .= " zip_code = '$zip' or ";
     }
-    $zip_like .= ' zip_code = '99999' )';
+    $zip_like .= " zip_code = '99999' )";
     
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
