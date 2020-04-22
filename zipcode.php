@@ -38,7 +38,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name;?> over TIME covid19math.net"
+			text: "<?PHP echo $name;?> Cases over Time covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
