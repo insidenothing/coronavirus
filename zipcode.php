@@ -60,7 +60,7 @@ include_once('menu.php');
 
 
 
-?><div class="row"><div class="col-sm-12"><h3>$zip History</h3><?PHP
+?><div class="row"><div class="col-sm-12"><h3><?PHP echo $zip;?> History</h3><?PHP
 
 $q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
 $r = $core->query($q);
@@ -340,123 +340,11 @@ function makeZIPpoints(){
 ?>
 
 
-<?PHP 
-
-$total_up=0;
-$total_flat=0;
-$total_down=0;
-$new_up=0;
-$new_flat=0;
-$new_down=0;
-?>
-<!--<div class="row">
-  <div class="col-sm-12">-->
-	  <?PHP
-	$zip_like=" and ( zip_code = '$zip' )";  
-	//echo  "<p>$zip_like</p>"; ?>
- <!-- </div>
-</div>-->
-<div class="row">
-  <div class="col-sm-4">
-    <h3>Up Trend</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' $zip_like order by trend_duration DESC";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
-        $total_up++;
-    }
-    ?>
-    </ol>
-  </div>
-  <div class="col-sm-4">
-    <h3>Flat Trend</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> '0' and trend_duration <> 0 $zip_like order by trend_duration DESC";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
-      $total_flat++;
-    }
-    ?>
-    </ol>
-  </div>
-  <div class="col-sm-4">
-  <h3>Down Trend</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration <> '0' $zip_like order by trend_duration DESC";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
-      $total_down++;
-    }
-    ?>
-    </ol>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-sm-4">
-    <h3>New Direction Up</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration = '0' $zip_like order by trend_duration DESC";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
-        $new_up++;
-    }
-    ?>
-    </ol>
-  </div>
-  <div class="col-sm-4">
-    <h3>New Direction Flat</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 and trend_duration = '0' $zip_like order by trend_duration DESC";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
-       $new_flat++;
-    }
-    ?>
-    </ol>
-  </div>
-  <div class="col-sm-4">
-  <h3>New Direction Down</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration = '0' $zip_like order by trend_duration DESC";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
-       $new_down++;
-    }
-    ?>
-    </ol>
-  </div>
-</div>
-
 
 
 
 
   	
-
-
-<div class="row">
- 	<div class="col-sm-6">
-		<div id="chartContainer99" style="height: 400px; width: 100%;"></div>
-	</div>
- 	<div class="col-sm-6">
-		<div id="chartContainer88" style="height: 400px; width: 100%;"></div>
-	</div>
-</div>
-
 
 
 
@@ -666,7 +554,14 @@ function toggleDataSeries(e) {
 }
 </script>
 
-
+<div class="row">
+ 	<div class="col-sm-6">
+		<div id="chartContainer99" style="height: 400px; width: 100%;"></div>
+	</div>
+ 	<div class="col-sm-6">
+		<div id="chartContainer88" style="height: 400px; width: 100%;"></div>
+	</div>
+</div>
 
 <div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
@@ -687,7 +582,6 @@ function toggleDataSeries(e) {
 
 	</div>
 </div>
-
 	
 <?PHP include_once('footer.php'); ?>
 	
