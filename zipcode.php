@@ -12,6 +12,11 @@ $logo = 'off';
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php');
 
+$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
+$r = $core->query($q);
+while ($d = mysqli_fetch_array($r)){
+	echo "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
+}
 
 global $zip_debug;
 function make_datapoints(){
@@ -330,7 +335,7 @@ function makeZIPpoints(){
 
 
 <?PHP 
-ob_start();
+
 $total_up=0;
 $total_flat=0;
 $total_down=0;
@@ -430,9 +435,6 @@ $new_down=0;
   </div>
 </div>
 
-<?PHP 
-$buffer = ob_get_clean();
-?>
 
 
 
@@ -450,9 +452,7 @@ $buffer = ob_get_clean();
 </div>
 
 
-<?PHP 
-echo $buffer;
-?>	
+
 
 
 <script src="canvasjs.min.js"></script>
@@ -660,9 +660,7 @@ function toggleDataSeries(e) {
 }
 </script>
 
-<?PHP
-ob_start();	       
-?>
+
 
 <div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
@@ -683,11 +681,7 @@ ob_start();
 
 	</div>
 </div>
-<?PHP $output_buffer .= ob_get_clean();	?>
 
-
-
-<?PHP echo $output_buffer;?>
 	
 <?PHP include_once('footer.php'); ?>
 	
