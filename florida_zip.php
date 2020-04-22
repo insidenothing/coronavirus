@@ -236,7 +236,7 @@ chartZIP2.render();
 		
 	</div>
 	<div class="row">
-		<div class="col-sm-12" style='padding: 40px;'><p>debug_florida</p><?PHP echo $debug_florida;?></div>
+		<div class="col-sm-12" style='padding: 40px;'><p>debug_florida</p><?PHP echo $debug_florida; print_r($zipData); ?></div>
 		
 		
 	</div>
