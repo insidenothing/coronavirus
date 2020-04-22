@@ -3,10 +3,13 @@ if(isset($_GET['novideo'])){
 	$logo = 'off';
 }
 include_once('menu.php');
+global $debug;
 
 function coronavirus_zip($zip,$date,$count,$town){
 	// the order we call the function will matter...
 	global $core;
+	global $debug;
+	$debug .= "<li>coronavirus_zip($zip,$date,$count,$town)</li>";
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
@@ -66,6 +69,8 @@ function make_datapoints(){
 	global $zip2name;
 	global $date;
 	global $showzip;
+	global $debug;
+	$debug .= "<li>make_datapoints()</li>";
 	$total = 0;
 	$return = '';
 	foreach ($zipData as $zip => $data){
@@ -99,6 +104,8 @@ $nocases .= "<div>$zip $name</div>";
 
 function make_zip($zip){
         global $core;
+	global $debug;
+	$debug .= "<li>make_zip($zip)</li>";
         $return = '';
 	$count=0;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
@@ -117,6 +124,8 @@ function makeZIPpoints(){
 	global $core;
 	global $showzip;
 	global $zip2name;
+	global $debug;
+	$debug .= "<li>makeZIPpoints()</li>";
 	$return = '';
 	$showzip = array_reverse($showzip,true);
 	foreach ($showzip as $zip) {
@@ -224,6 +233,12 @@ chartZIP2.render();
 		
 		
 	</div>
+	<div class="row">
+		<div class="col-sm-12" style='padding: 40px;'><p>debug</p><?PHP echo $debug;?></div>
+		
+		
+	</div>
+
 
 	
 <?PHP	
