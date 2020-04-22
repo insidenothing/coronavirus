@@ -199,7 +199,8 @@ function toggleDataSeries(e) {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "Florida ZIPs over TIME covid19math.net"
+		text: "Florida ZIPs over TIME covid19math.net",
+		fontSize: 14
 	},
 	axisY :{
 		includeZero: false,
