@@ -82,7 +82,7 @@ while($d = mysqli_fetch_array($r)){
 <div class="container"><!--- Open Container -->
 	
 	<div class="alert alert-primary" role="alert">
- 		We have not received the daily update from the Maryland Department of Health yet. It is expected at 10:05 AM.
+ 		We have not received the daily update from the Maryland Department of Health yet. It is expected at 10:05 AM. Everything will show "FLAT" until then.
 	</div>
 	
 	<ul class="nav nav-pills">
