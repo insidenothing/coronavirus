@@ -63,7 +63,7 @@ if(isset($_GET['date'])){
 	$debug_florida .= "<li>Using Live Data for $date</li>";
 }
 
-natsort($zipData); // https://www.php.net/manual/en/function.natsort.php
+asort($zipData); 
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
 function make_datapoints(){
 	global $zipData;
