@@ -16,17 +16,18 @@ $page_description = "$date $zip - ZIP Codes";
 
 include_once('menu.php');
 
-?><div class="row"><div class="col-sm-12"><h3><?PHP echo $zip;?> History</h3><?PHP
+
 $time_chart='';
+$text_div='';
 $q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
-	echo "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
+	$text_div .= "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 }
 $time_chart = rtrim(trim($time_chart), ",");
-?></div></div>
+?>
 
 
 <script src="canvasjs.min.js"></script>
@@ -76,7 +77,7 @@ window.onload = function () {
 </script>
 
 
-<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
+<div class="row"><div class="col-sm-2"><?PHP echo $text_div;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
 	
 <?PHP include_once('footer.php'); ?>
