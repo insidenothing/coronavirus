@@ -94,9 +94,9 @@ $showzip[] = $zip;
 $return .= "{ y: $count, label: '#$total $name' },
 ";
 $total = $total - 1;
-$cases .= "<span>$zip $name $count, </span>";
+$cases .= "<span><a href='zipcode.php?zip=$zip'>$zip $name $count,</a> </span>";
 }else{
-$nocases .= "<div>$zip $name</div>";	
+$nocases .= "<div><a href='zipcode.php?zip=$zip'>$zip $name</a></div>";	
 }
 		}
 	}
