@@ -18,7 +18,7 @@ include_once('menu.php');
 
 ?><div class="row"><div class="col-sm-12"><h3><?PHP echo $zip;?> History</h3><?PHP
 $time_chart='';
-$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
+$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
