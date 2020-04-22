@@ -597,8 +597,8 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 		toolTipContent: "<b>{label}</b>: {y}</b>",
 		indexLabelFontColor: "black",
 		dataPoints: [
-			{ y: <?PHP echo $maryland_history[$date][$AKA];?>, label: "Infected" },
-			{ y: <?PHP echo $maryland_history[$date][$dAKA];?>, label: "Deaths" }
+			{ y: <?PHP echo intval($maryland_history[$date][$AKA]);?>, label: "Infected" },
+			{ y: <?PHP echo intval($maryland_history[$date][$dAKA]);?>, label: "Deaths" }
 		]
 	}]
 });
