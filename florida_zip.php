@@ -131,16 +131,18 @@ function makeZIPpoints(){
 	$return = '';
 	$showzip = array_reverse($showzip,true);
 	foreach ($showzip as $zip) {
-		$name = $zip2name[$zip];
-		$return .= '{	
-		type: "spline",
-		visible: true,
-		showInLegend: false,
-		yValueFormatString: "#####",
-		name: "'.$name.'",
-		dataPoints: [
-			'.make_zip($zip).'
-		]},';
+		if (is_numeric($zip)) {
+			$name = $zip2name[$zip];
+			$return .= '{	
+			type: "spline",
+			visible: true,
+			showInLegend: false,
+			yValueFormatString: "#####",
+			name: "'.$name.'",
+			dataPoints: [
+				'.make_zip($zip).'
+			]},';
+		}
 	}
 	$return = rtrim(trim($return), ",");
 	return $return;	
