@@ -71,10 +71,10 @@ function make_datapoints(){
 			$name = $zip2name[$zip];
 			$return .= "{ y: $count, label: '$total $name $zip' },";
 			$total = $total - 1;
-			$zip_debug .= '<span style="background-color:red;">'.$zip.' </span> ';
+			$zip_debug .= '<span style="background-color:red;"><a href="zipcode.php?zip='.$zip.'">'.$zip.'</a></span> ';
 			$showzip[] = $zip;
 		}elseif( $key > 0  ){
-			$zip_debug .= '<span style="background-color:green;">'.$zip.' </span> ';
+			$zip_debug .= '<span style="background-color:green;"><a href="zipcode.php?zip='.$zip.'">'.$zip.'</a></span> ';
 		}
 	}
 	$return = rtrim(trim($return), ",");
@@ -410,7 +410,7 @@ $new_down=0;
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+        echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</a></li>"; 
         $total_up++;
     }
     ?>
@@ -423,7 +423,7 @@ $new_down=0;
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> '0' and trend_duration <> 0 $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+        echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</a></li>"; 
       $total_flat++;
     }
     ?>
@@ -436,7 +436,7 @@ $new_down=0;
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration <> '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
+        echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</a></li>";
       $total_down++;
     }
     ?>
@@ -453,7 +453,7 @@ $new_down=0;
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration = '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+        echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</a></li>"; 
         $new_up++;
     }
     ?>
@@ -466,7 +466,7 @@ $new_down=0;
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 and trend_duration = '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+        echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</a></li>";
        $new_flat++;
     }
     ?>
@@ -479,7 +479,7 @@ $new_down=0;
     $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration = '0' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
-        echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
+        echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</a></li>";
        $new_down++;
     }
     ?>
