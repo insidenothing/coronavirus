@@ -81,6 +81,9 @@ while($d = mysqli_fetch_array($r)){
 	
 <div class="container"><!--- Open Container -->
 	
+	<div class="alert alert-primary" role="alert">
+ 		We have not received the daily update from the Maryland Department of Health yet. It is expected at 10:05 AM.
+	</div>
 	
 	<ul class="nav nav-pills">
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland</a></li>
