@@ -52,9 +52,9 @@ global $zipData;
 global $date;
 if(isset($_GET['date'])){
 	$date = $_GET['date'];
-	$r = $core->query("select html from coronavirus where url_pulled like '%COVID_19_Cases_in_Florida_by_Zip_Code%' and just_date = '$date' order by id desc");
+	$r = $core->query("select raw_response from coronavirus where url_pulled like '%COVID_19_Cases_in_Florida_by_Zip_Code%' and just_date = '$date' order by id desc");
 	$d = mysqli_fetch_array($r);
-	$zipData = make_florida_zip_array('',$d['html'],'');
+	$zipData = make_florida_zip_array('',$d['raw_response'],'');
 	$zipData2 = make_florida_zip_array('','',''); // this builds the name array
 	$debug_florida .= "<li>Using Saved Data for $date</li>";
 }else{
