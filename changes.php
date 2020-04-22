@@ -68,9 +68,29 @@ $test23 = $json3;
 if ($test13 != $test23){
     	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
     	//$send_message = 'on';
-	message_send('4433862584',"zip codes updated");
+	message_send('4433862584',"maryland zip codes updated");
 }
 
+// FLORIDA
+global $florida;
+$florida = make_florida_zip_array();
+$url_pulled3 = $florida['url_pulled'];
+$r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
+$d3 = mysqli_fetch_array($r3);
+$old3 = $d3['html'];
+$json3 = json_encode($florida);
+$new3 = $core->real_escape_string($json3);
+global $raw;
+$raw_response = $core->real_escape_string($raw);
+$test13 = $old3;
+$test23 = $json3;
+if ($test13 != $test23){
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
+    	//$send_message = 'on';
+	message_send('4433862584',"florida zip codes updated");
+}
+
+// FLORIDA
 
 
 
