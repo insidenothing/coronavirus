@@ -61,7 +61,7 @@ window.onload = function () {
 			<?PHP echo $time_chart; ?>
 		]
 		}]
-	}
+	})
 	chartZIP2.render();	
 
 	function toggleDataSeries(e) {
