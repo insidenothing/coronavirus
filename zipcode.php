@@ -21,6 +21,7 @@ $time_chart='';
 $q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
+	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 	echo "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 }
@@ -36,7 +37,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $zip;?> over TIME covid19math.net"
+			text: "<?PHP echo $name;?> over TIME covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -50,10 +51,17 @@ window.onload = function () {
 			cursor:"pointer",
 			itemclick : toggleDataSeries
 		},
-		data: [
+		data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?>",
+		dataPoints: [
 			<?PHP echo $time_chart; ?>
 		]
-	});
+		}]
+	}
 	chartZIP2.render();	
 
 	function toggleDataSeries(e) {
