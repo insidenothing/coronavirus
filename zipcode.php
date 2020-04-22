@@ -1,49 +1,18 @@
-
 <?PHP
-global $output_buffer;
-$output_buffer = '';
-
-global $global_graph_height;
-$global_graph_height = 0;
-
-//global $county_zip_codes;
-//$county_zip_codes = array();
-//$county_zip_codes['Maryland']['Allegany'] 		= explode(',',"00000,21501,21502,21502,21502,21503,21504,21504,21505,21505,21521,21524,21528,21529,21530,21532,21539,21540,21540,21542,21543,21545,21555,21556,21557,21560,21562,21562,21766");
 include_once('county_zip_codes.php');
 
-
-global $show;
-$show = '';
-if(isset($_GET['show'])){
-	$show = $_GET['show'];
-}
-global $days_to_predict;
-$days_to_predict = '45';
-
-if(isset($_POST['days'])){
-	$days_to_predict = $_POST['days'];	
-}
-if(isset($_GET['day'])){
-	$days_to_predict = $_GET['day'];	
-}
-if(isset($_GET['county'])){
-  global $county;
-	$county = $_GET['county'];	
+global $zip;
+if(isset($_GET['zip'])){
+	$zip = $_GET['zip'];	
 }else{
-  $county = 'Maryland';	
+  	$zip = '99999';	
 }
+
 $logo = 'off';
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php');
 
-global $maryland_history;
-$maryland_history = make_maryland_array();
 
-
-global $zipData;
-$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
-$zipData = make_maryland_array3($url,'');
-asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 global $zip_debug;
 function make_datapoints(){
 	global $zipData;
@@ -84,9 +53,9 @@ function make_datapoints(){
 }
 
 
-$date = $maryland_history['date'];
+//$date = $maryland_history['date'];
 
-$page_description = "$date $county - ZIP Codes";
+$page_description = "$date $zip - ZIP Codes";
 
 include_once('menu.php');
 
@@ -101,27 +70,7 @@ $peak_str = array();
 
 
 
-$links;
-$q = "SELECT distinct name_of_location FROM coronavirus_populations ";
-$r = $core->query($q);
-while($d = mysqli_fetch_array($r)){	
-	$today[$d[name_of_location]] = 0; 	// count
-	$peak[$d[name_of_location]] = 0; 	// count
-	$dpeak[$d[name_of_location]] = 0; 	// count
-	$normal[$d[name_of_location]] = ''; 	// string
-	$dnormal[$d[name_of_location]] = ''; 	// string
-	$peak_str[$d[name_of_location]] = '<p>'.$d['name_of_location'].' peaked at 0<p>'; // string
-	$dpeak_str[$d[name_of_location]] = '<p>'.$d['name_of_location'].' peaked at 0<p>'; // string
-	$links .= "<a href='?county=$d[name_of_location]'>$d[name_of_location]</a>, ";
-}
 
-
-
-global $buffer;
-$buffer = '.85';
-if(isset($_POST['buffer'])){
-	$buffer = $_POST['buffer'];	
-}
 global $debug_in;
 global $debug_out;
 
@@ -376,11 +325,7 @@ function makeZIPpoints(){
 
 	
 
-// pull date from last update, not assume today.
-$q = "select just_date from coronavirus order by id desc limit 1";
-$r = $core->query($q);
-$d = mysqli_fetch_array($r);
-$date = $d['just_date'];
+
 ?>
 
 
@@ -396,11 +341,7 @@ $new_down=0;
 <!--<div class="row">
   <div class="col-sm-12">-->
 	  <?PHP
-	$zip_like=' and ( ';
-    foreach ($county_zip_codes['Maryland'][$county] as $zip => $data){
-      $zip_like .= " zip_code = '$data' or ";
-    }
-    $zip_like .= " zip_code = '99999' )";  
+	$zip_like=" and ( zip_code = '$zip' )";  
 	//echo  "<p>$zip_like</p>"; ?>
  <!-- </div>
 </div>-->
@@ -523,7 +464,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $county;?> covid19math.net"
+		text: "<?PHP echo $zip;?> covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
@@ -568,7 +509,7 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	exportEnabled: true,
 	theme: "light2", //"light1", "dark1", "dark2"
 	title:{
-		text: "<?PHP echo $county;?> COVID-19 Outbreak covid19math.net"
+		text: "<?PHP echo $zip;?> COVID-19 Outbreak covid19math.net"
 	},
 	data: [{
 		type: "funnel",
@@ -589,7 +530,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	exportEnabled: true,
 	theme: "light2", //"light1", "dark1", "dark2"
 	title:{
-		text: "<?PHP echo $county;?> Outbreak covid19math.net",
+		text: "<?PHP echo $zip;?> Outbreak covid19math.net",
 		horizontalAlign: "left"
 	},
 	data: [{
@@ -622,7 +563,7 @@ var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
 		fontSize: 14,
 		interlacedColor: "rgba(1,77,101,.2)",
 		gridColor: "rgba(1,77,101,.1)",
-		title: "<?PHP echo $county;?> ZIP CODES w/ Cases over 7"
+		title: "<?PHP echo $zip;?> w/ Cases over 7"
 	},
 	data: [{
 		type: "bar",
@@ -642,7 +583,7 @@ var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $county;?> - ZIPs over TIME covid19math.net"
+		text: "<?PHP echo $zip;?> over TIME covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
@@ -669,7 +610,7 @@ var chart99 = new CanvasJS.Chart("chartContainer99", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
-		text: "<?PHP echo $county;?> Zipcode Curve Position covid19math.net"
+		text: "<?PHP echo $zip;?> Curve Position covid19math.net"
 	},
 	data: [{
 		type: "pie",
@@ -689,7 +630,7 @@ var chart88 = new CanvasJS.Chart("chartContainer88", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
-		text: "<?PHP echo $county;?> Zipcode New Curve Position covid19math.net"
+		text: "<?PHP echo $zip;?> New Curve Position covid19math.net"
 	},
 	data: [{
 		type: "pie",
@@ -734,7 +675,7 @@ ob_start();
 		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
 	</div>
 	<div class='col-sm-4'>
-		<h3><?PHP echo $county;?> ZIP Codes used by Maryland Dept. Health</h3>
+		<h3><?PHP echo $zip;?></h3>
 		<?PHP echo $zip_debug;?>
 	</div>
 	<div class='col-sm-4'>
