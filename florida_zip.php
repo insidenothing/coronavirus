@@ -75,7 +75,7 @@ function make_datapoints(){
 	$return = '';
 	foreach ($zipData as $zip => $data){
 		if($zip != 'url_pulled' && $zip != 'date'){	
-			$count = intval($data['Cases_1']);
+			$count = intval($data['ProtectedCount']);
 			if ($count > 0){
 				$total++;
 			}
@@ -83,7 +83,7 @@ function make_datapoints(){
 	}	
 	foreach ($zipData as $zip => $data){
 		if($zip != 'url_pulled' && $zip != 'date'){
-			$count = intval($data['Cases_1']);
+			$count = intval($data['ProtectedCount']);
 			$name = substr($zip2name[$zip],0,25); // limit name to 25 characters
 			coronavirus_zip($zip,$date,$count,$zip2name[$zip]);
 if ($count > 0){
