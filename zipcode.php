@@ -12,10 +12,8 @@ $logo = 'off';
 
 global $zip_debug;
 
-$page_description = "$date $zip - ZIP Codes";
-
-include_once('menu.php');
-
+include_once('/var/www/secure.php'); //outside webserver
+include_once('functions.php'); //outside webserver
 
 $time_chart='';
 $text_div='';
@@ -25,8 +23,17 @@ while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
+	$last_count = $d[report_count];
 }
 $time_chart = rtrim(trim($time_chart), ",");
+
+
+$page_description = "$date $name at $last_count Cases";
+
+include_once('menu.php');
+
+
+
 ?>
 
 
