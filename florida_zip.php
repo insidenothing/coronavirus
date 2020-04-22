@@ -226,10 +226,10 @@ chartZIP2.render();
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 1000px; width: 100%;"></div></div></div>
+	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 2000px; width: 100%;"></div></div></div>
 
 		<div class="col-sm-2"><h3>&lt; 7 CASES</h3><?PHP echo $nocases;?></div>
-		<div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div>
+		<div class="col-sm-10"><div id="chartContainerZIP" style="height: 16000px; width: 100%;"></div>
 		
 	</div>
 	<div class="row">
