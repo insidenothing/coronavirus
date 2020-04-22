@@ -1,5 +1,68 @@
 <?PHP
 
+function make_florida_zip_array($url='',$json='',$force=''){
+	global $zip2name;
+	global $debug;
+	global $arcgis_key;
+	global $core;
+	$return = array();
+	if ($json != ''){
+		$array = json_decode($json, true);
+		return $array;
+	}
+	$url = 'https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/ArcGIS/rest/services/COVID_19_Cases_in_Florida_by_Zip_Code/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=';
+	$return['url_pulled'] = $url;
+	if($force == ''){
+		$q = "select raw_response from coronavirus where url_pulled = '$url' order by id desc";
+		$debug .= "<p>USING SAVED VERSION $q</p>";
+		$r = $core->query($q);
+		$d = mysqli_fetch_array($r);
+		$json = $d['raw_response'];
+	}else{
+		$json = getPage($url);
+		global $raw;
+		$raw = $json;
+	}
+	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
+		die('499');	
+	}
+	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
+		die('504');	
+	}
+	if ($json == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
+		die('503');
+	}
+	if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
+		die('400');
+	}
+	if ($json == '{
+  "error" : 
+  {
+    "code" : 400, 
+    "message" : "Cannot perform query. Invalid query parameters.", 
+    "details" : [
+      "Unable to perform query. Please check your parameters."
+    ]
+  }
+}'){
+	die('400');	
+	}
+	ob_start();
+	$array = json_decode($json, true);
+	echo '<pre>';
+	print_r($array);
+	echo '</pre>';
+	$debug .= ob_get_clean();
+	foreach ($array['features'] as $key => $value){
+		$zip = $value['attributes']['ZIP'];
+		$return[$zip]['ProtectedCount'] = $value['attributes']['Cases_1'];
+		$zip2name[$zip] = $value['attributes']['NAME'] ;
+	}
+	return $return;
+}
+
+
+
 function get_hits(){
 	global $core;
 	$page = $_SERVER['SCRIPT_NAME'];
