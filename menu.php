@@ -95,9 +95,10 @@ while($d = mysqli_fetch_array($r)){
 	} 
 	?>
 	<ul class="nav nav-pills">
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/zip.php'){ echo "class='active'"; } ?> ><a href="zip.php">Zip Codes</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Status</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/zip.php'){ echo "class='active'"; } ?> ><a href="florida_zip.php">FL Zip Codes</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/zip.php'){ echo "class='active'"; } ?> ><a href="zip.php">MD Zip Codes</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/graphs.php'){ echo "class='active'"; } ?> ><a href="graphs.php">Maryland</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/graph_age.php'){ echo "class='active'"; } ?> ><a href="graph_age.php">Ages</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/graph_hospital.php'){ echo "class='active'"; } ?> ><a href="graph_hospital.php">Hospital Data</a></li>
