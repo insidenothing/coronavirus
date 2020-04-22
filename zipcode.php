@@ -12,12 +12,6 @@ $logo = 'off';
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php');
 
-$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
-$r = $core->query($q);
-while ($d = mysqli_fetch_array($r)){
-	echo "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
-}
-
 global $zip_debug;
 function make_datapoints(){
 	global $zipData;
@@ -63,6 +57,18 @@ function make_datapoints(){
 $page_description = "$date $zip - ZIP Codes";
 
 include_once('menu.php');
+
+
+
+?><div class="row"><div class="col-sm-12"><h3>$zip History</h3><?PHP
+
+$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
+$r = $core->query($q);
+while ($d = mysqli_fetch_array($r)){
+	echo "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
+}
+?></div></div><?PHP
+
 
 global $today;
 global $normal;
