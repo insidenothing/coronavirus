@@ -220,7 +220,7 @@ function make_maryland_array($json=''){
 	}
 	// old https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json
 	// https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_TotalsTracker/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json
-	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
+	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_2/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
 	$return['url_pulled'] = $url;
 	$json = getPage($url);
 	global $raw;
