@@ -80,11 +80,20 @@ while($d = mysqli_fetch_array($r)){
 	?>
 	
 <div class="container"><!--- Open Container -->
-	
-	<div class="alert alert-primary" role="alert">
- 		We have not received the daily update from the Maryland Department of Health yet. It is expected at 10:05 AM. Everything will show "FLAT" until then.
-	</div>
-	
+	<?PHP
+	// pull date from last update, not assume today.
+	$q = "select checked_datetime, just_date from coronavirus where url_pulled like '%ZIPCodes_MD%' order by id desc limit 1";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$date = $d['just_date'];
+	if ($date != date('Y-m-d')){
+		?>
+		<div class="alert alert-primary" role="alert">
+			We have not received the <?PHP echo date('Y-m-d');?> update from the Maryland Department of Health yet. It is expected at 10:05 AM. Everything will show "FLAT" until then. Last Update was <?PHP echo $d['checked_datetime'];?>.
+		</div>
+		<?PHP 
+	} 
+	?>
 	<ul class="nav nav-pills">
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
