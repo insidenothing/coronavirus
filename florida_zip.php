@@ -3,13 +3,13 @@ if(isset($_GET['novideo'])){
 	$logo = 'off';
 }
 include_once('menu.php');
-global $debug;
+global $debug_florida;
 
 function coronavirus_zip($zip,$date,$count,$town){
 	// the order we call the function will matter...
 	global $core;
-	global $debug;
-	$debug .= "<li>coronavirus_zip($zip,$date,$count,$town)</li>";
+	global $debug_florida;
+	$debug_florida .= "<li>coronavirus_zip($zip,$date,$count,$town)</li>";
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
@@ -55,10 +55,12 @@ if(isset($_GET['date'])){
 	$r = $core->query("select html from coronavirus where url_pulled like '%COVID_19_Cases_in_Florida_by_Zip_Code%' and just_date = '$date' order by id desc");
 	$d = mysqli_fetch_array($r);
 	$zipData = make_florida_zip_array('',$d['html'],'');
-	$zipData2 = make_florida_zip_array('',''); // this builds the name array
+	$zipData2 = make_florida_zip_array('','',''); // this builds the name array
+	$debug_florida .= "<li>Using Saved Data for $date</li>";
 }else{
 	$date = date('Y-m-d');
-	$zipData = make_florida_zip_array('','');
+	$zipData = make_florida_zip_array('','','');
+	$debug_florida .= "<li>Using Live Data for $date</li>";
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
@@ -69,8 +71,8 @@ function make_datapoints(){
 	global $zip2name;
 	global $date;
 	global $showzip;
-	global $debug;
-	$debug .= "<li>make_datapoints()</li>";
+	global $debug_florida;
+	$debug_florida .= "<li>make_datapoints()</li>";
 	$total = 0;
 	$return = '';
 	foreach ($zipData as $zip => $data){
@@ -104,8 +106,8 @@ $nocases .= "<div>$zip $name</div>";
 
 function make_zip($zip){
         global $core;
-	global $debug;
-	$debug .= "<li>make_zip($zip)</li>";
+	global $debug_florida;
+	$debug_florida .= "<li>make_zip($zip)</li>";
         $return = '';
 	$count=0;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
@@ -124,8 +126,8 @@ function makeZIPpoints(){
 	global $core;
 	global $showzip;
 	global $zip2name;
-	global $debug;
-	$debug .= "<li>makeZIPpoints()</li>";
+	global $debug_florida;
+	$debug_florida .= "<li>makeZIPpoints()</li>";
 	$return = '';
 	$showzip = array_reverse($showzip,true);
 	foreach ($showzip as $zip) {
@@ -234,7 +236,7 @@ chartZIP2.render();
 		
 	</div>
 	<div class="row">
-		<div class="col-sm-12" style='padding: 40px;'><p>debug</p><?PHP echo $debug;?></div>
+		<div class="col-sm-12" style='padding: 40px;'><p>debug_florida</p><?PHP echo $debug_florida;?></div>
 		
 		
 	</div>
