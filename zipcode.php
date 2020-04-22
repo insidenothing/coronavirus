@@ -61,12 +61,14 @@ include_once('menu.php');
 
 
 ?><div class="row"><div class="col-sm-12"><h3><?PHP echo $zip;?> History</h3><?PHP
-
+$time_chart='';
 $q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date desc";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
+	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 	echo "<li>$d[id] $d[zip_code] $d[report_date] $d[town_name] $d[state_name] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 }
+$time_chart = rtrim(trim($time_chart), ",");
 ?></div></div><?PHP
 
 
@@ -334,254 +336,50 @@ function makeZIPpoints(){
 	return $return;	
 }
 
-	
-
-
 ?>
-
-
-
-
-
-
-  	
-
-
-
 
 <script src="canvasjs.min.js"></script>
 <script>
 window.onload = function () {
+	var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $zip;?> over TIME covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Cases",
+			suffix: ""
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [
+			<?PHP echo $time_chart; ?>
+		]
+	});
+	chartZIP2.render();	
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	theme:"light2",
-	animationEnabled: true,
-	exportEnabled: true,
-	title:{
-		text: "<?PHP echo $zip;?> covid19math.net"
-	},
-	axisY :{
-		includeZero: false,
-		title: "Number of Cases",
-		suffix: ""
-	},
-	toolTip: {
-		shared: "true"
-	},
-	legend:{
-		cursor:"pointer",
-		itemclick : toggleDataSeries
-	},
-	data: [{
-		type: "spline",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Infected @ <?PHP echo rate_of_infection($county);?>",
-		dataPoints: [
-			<?PHP echo make_county($county); ?>
-		]
-	},
-	{
-		type: "spline",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Fatal @ <?PHP echo rate_of_death($county);?>",
-		dataPoints: [
-			<?PHP echo make_dcounty($county); ?>
-		]
-	}]
-}
-			      
-			      
-			      );
-chart.render();
-	
-var chart2 = new CanvasJS.Chart("chartContainer2", {
-	animationEnabled: true,
-	exportEnabled: true,
-	theme: "light2", //"light1", "dark1", "dark2"
-	title:{
-		text: "<?PHP echo $zip;?> COVID-19 Outbreak covid19math.net"
-	},
-	data: [{
-		type: "funnel",
-		showInLegend: true,
-		legendText: "{label}",
-		indexLabel: "{label} - {y}",
-		toolTipContent: "<b>{label}</b>: {y}</b>",
-		indexLabelFontColor: "black",
-		dataPoints: [
-			{ y: <?PHP echo intval($maryland_history[$date][$AKA]);?>, label: "Infected" },
-			{ y: <?PHP echo intval($maryland_history[$date][$dAKA]);?>, label: "Deaths" }
-		]
-	}]
-});
-chart2.render();
-var chart3 = new CanvasJS.Chart("chartContainer3", {
-	animationEnabled: true,
-	exportEnabled: true,
-	theme: "light2", //"light1", "dark1", "dark2"
-	title:{
-		text: "<?PHP echo $zip;?> Outbreak covid19math.net",
-		horizontalAlign: "left"
-	},
-	data: [{
-		type: "pie",
-		//startAngle: 60,
-		//innerRadius: 60,
-		indexLabelFontSize: 11,
-		indexLabel: "{label} - #percent%",
-		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-		dataPoints: [
-			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
-			{ y: <?PHP echo intval($maryland_history[$date][$AKA]); ?>, label: "Infected" }
-		]
-	}]
-});
-chart3.render();	
-
-
-var chartZIP = new CanvasJS.Chart("chartContainerZIP", {
-	animationEnabled: true,
-	exportEnabled: true,
-	title:{
-		fontSize: 18,
-		text:"COVID-19 Outbreak by Zip Code covid19math.net"
-	},
-	axisX:{
-		interval: 1
-	},
-	axisY2:{
-		fontSize: 14,
-		interlacedColor: "rgba(1,77,101,.2)",
-		gridColor: "rgba(1,77,101,.1)",
-		title: "<?PHP echo $zip;?> w/ Cases over 7"
-	},
-	data: [{
-		type: "bar",
-		name: "zip",
-		axisYType: "secondary",
-		color: "#014D65",
-		indexLabelFontSize: 6,
-		dataPoints: [
-			<?PHP echo make_datapoints(); ?>
-		]
-	}]
-});
-chartZIP.render();
-	
-var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
-	theme:"light2",
-	animationEnabled: true,
-	exportEnabled: true,
-	title:{
-		text: "<?PHP echo $zip;?> over TIME covid19math.net"
-	},
-	axisY :{
-		includeZero: false,
-		title: "Number of Cases",
-		suffix: ""
-	},
-	toolTip: {
-		shared: "true"
-	},
-	legend:{
-		cursor:"pointer",
-		itemclick : toggleDataSeries
-	},
-	data: [
-		<?PHP echo makeZIPpoints(); ?>
-	]
-}
-			      
-			      
-			      );
-chartZIP2.render();	
-	
-var chart99 = new CanvasJS.Chart("chartContainer99", {
-	animationEnabled: true,
-	exportEnabled: true,
-	title: {
-		text: "<?PHP echo $zip;?> Curve Position covid19math.net"
-	},
-	data: [{
-		type: "pie",
-		startAngle: 240,
-		yValueFormatString: "#####",
-		indexLabel: "{label} {y}",
-		dataPoints: [
-			{y: <?PHP echo intval($total_up);?>, label: "UP"},
-			{y: <?PHP echo intval($total_flat);?>, label: "FLAT"},
-      {y: <?PHP echo intval($total_down);?>, label: "DOWN"}
-		]
-	}]
-});
-chart99.render();
-
-var chart88 = new CanvasJS.Chart("chartContainer88", {
-	animationEnabled: true,
-	exportEnabled: true,
-	title: {
-		text: "<?PHP echo $zip;?> New Curve Position covid19math.net"
-	},
-	data: [{
-		type: "pie",
-		startAngle: 240,
-		yValueFormatString: "#####",
-		indexLabel: "{label} {y}",
-		dataPoints: [
-			{y: <?PHP echo intval($new_up);?>, label: "UP"},
-			{y: <?PHP echo intval($new_flat);?>, label: "FLAT"},
-      {y: <?PHP echo intval($new_down);?>, label: "DOWN"}
-		]
-	}]
-});
-chart88.render();
-	
-function toggleDataSeries(e) {
-	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
-		e.dataSeries.visible = false;
-	} else {
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}
-
-
-	
+	function toggleDataSeries(e) {
+		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+			e.dataSeries.visible = false;
+		} else {
+			e.dataSeries.visible = true;
+		}
+		chart.render();
+	}	
 }
 </script>
 
-<div class="row">
- 	<div class="col-sm-6">
-		<div id="chartContainer99" style="height: 400px; width: 100%;"></div>
-	</div>
- 	<div class="col-sm-6">
-		<div id="chartContainer88" style="height: 400px; width: 100%;"></div>
-	</div>
-</div>
 
 <div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
-<div class="row"><div class="col-sm-12"><div id="chartContainerZIP" style="height: 500px; width: 100%;"></div></div></div>
-
-<div class="row"><div class="col-sm-12"><div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div></div></div>
-
-<div class="row">
-	<div class='col-sm-4'>
-		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-	</div>
-	<div class='col-sm-4'>
-		<h3><?PHP echo $zip;?></h3>
-		<?PHP echo $zip_debug;?>
-	</div>
-	<div class='col-sm-4'>
-		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
-
-	</div>
-</div>
 	
 <?PHP include_once('footer.php'); ?>
 	
