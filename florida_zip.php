@@ -131,7 +131,7 @@ function makeZIPpoints(){
 	$return = '';
 	$showzip = array_reverse($showzip,true);
 	foreach ($showzip as $zip) {
-		if (is_numeric($zip)) {
+		if (is_int($zip)) {
 			$name = $zip2name[$zip];
 			$return .= '{	
 			type: "spline",
