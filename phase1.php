@@ -1,8 +1,13 @@
 <?PHP
 // preprocess data using zip.php (reviews all zip codes over known time)
-$page_description = "Reopen Maryland - Phase One  - Status";
+if (isset($_GET['state'])){
+	$state = $_GET['state'];
+}else{
+	$state = 'Maryland';
+}
+$page_description = "Reopen $state - Phase One  - Status";
 include_once('menu.php');
-$q = "SELECT distinct zip_code FROM coronavirus_zip";
+$q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = '$state'";
 $r = $core->query($q);
 $total_zip = $r->num_rows;
 $flat = 23;
@@ -56,7 +61,7 @@ $new_down=0;
     <h3>Up Trend</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' and state_name = '$state' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
@@ -69,7 +74,7 @@ $new_down=0;
     <h3>Flat Trend</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> '0' and trend_duration <> 0 order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> '0' and trend_duration <> 0 and state_name = '$state' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
@@ -82,7 +87,7 @@ $new_down=0;
   <h3>Down Trend</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration <> '0' order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration <> '0' and state_name = '$state' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</li>"; 
@@ -99,7 +104,7 @@ $new_down=0;
     <h3>New Direction Up</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration = '0' order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration = '0' and state_name = '$state' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
@@ -112,7 +117,7 @@ $new_down=0;
     <h3>New Direction Flat</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 and trend_duration = '0' order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 and trend_duration = '0' and state_name = '$state' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
@@ -125,7 +130,7 @@ $new_down=0;
   <h3>New Direction Down</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration = '0' order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration = '0' and state_name = '$state' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         echo "<li>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</li>"; 
@@ -147,7 +152,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
-		text: "Maryland Zipcode Curve Position covid19math.net"
+		text: "<?PHP echo $state;?> Zipcode Curve Position covid19math.net"
 	},
 	data: [{
 		type: "pie",
@@ -167,7 +172,7 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
-		text: "Maryland Zipcode New Curve Position covid19math.net"
+		text: "<?PHP echo $state;?> Zipcode New Curve Position covid19math.net"
 	},
 	data: [{
 		type: "pie",
