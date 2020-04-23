@@ -175,12 +175,12 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		showInLegend: true,
 		indexLabelFontSize: 10,
 		dataPoints: [
-			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['CaseCount']; ?> },
-			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['CaseCount']; ?> },
-			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['CaseCount']; ?> },
-			{ label: 'Hispanic', y: <?PHP echo $attributes['raceHispanic']['CaseCount']; ?> },
-			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['CaseCount']; ?> },
-			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['CaseCount']; ?> }	
+			{ label: 'Asian', y: <?PHP echo intval($attributes['raceAsian']['CaseCount']); ?> },
+			{ label: 'Other', y: <?PHP echo intval($attributes['raceOther']['CaseCount']); ?> },
+			{ label: 'Data not available', y: <?PHP echo intval($attributes['raceNotAvail']['CaseCount']); ?> },
+			{ label: 'Hispanic', y: <?PHP echo intval($attributes['raceHispanic']['CaseCount']); ?> },
+			{ label: 'White', y: <?PHP echo intval($attributes['raceWhite']['CaseCount']); ?> },
+			{ label: 'African-American', y: <?PHP echo intval($attributes['raceAfrAmer']['CaseCount']); ?> }	
 		]
 	},
 	{
@@ -192,12 +192,12 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		axisYType: "secondary",
 		dataPoints: [
-			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['DeathCount']; ?> },
-			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['DeathCount']; ?> },
-			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['DeathCount']; ?> },
-			{ label: 'Hispanic', y: <?PHP echo $attributes['raceHispanic']['DeathCount']; ?> },
-			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['DeathCount']; ?>},
-			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['DeathCount']; ?> }	
+			{ label: 'Asian', y: <?PHP echo intval($attributes['raceAsian']['DeathCount']); ?> },
+			{ label: 'Other', y: <?PHP echo intval($attributes['raceOther']['DeathCount']); ?> },
+			{ label: 'Data not available', y: <?PHP echo intval($attributes['raceNotAvail']['DeathCount']); ?> },
+			{ label: 'Hispanic', y: <?PHP echo intval($attributes['raceHispanic']['DeathCount']); ?> },
+			{ label: 'White', y: <?PHP echo intval($attributes['raceWhite']['DeathCount']); ?>},
+			{ label: 'African-American', y: <?PHP echo intval($attributes['raceAfrAmer']['DeathCount']); ?> }	
 		]
 	},
 	{
@@ -209,12 +209,12 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		axisYType: "secondary",
 		dataPoints: [
-			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['pDeathCount']; ?> },
-			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['pDeathCount']; ?> },
-			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['pDeathCount']; ?> },
-			{ label: 'Hispanic', y: <?PHP echo $attributes['raceHispanic']['pDeathCount']; ?> },
-			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['pDeathCount']; ?>},
-			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['pDeathCount']; ?> }	
+			{ label: 'Asian', y: <?PHP echo intval($attributes['raceAsian']['pDeathCount']); ?> },
+			{ label: 'Other', y: <?PHP echo intval($attributes['raceOther']['pDeathCount']); ?> },
+			{ label: 'Data not available', y: <?PHP echo intval($attributes['raceNotAvail']['pDeathCount']); ?> },
+			{ label: 'Hispanic', y: <?PHP echo intval($attributes['raceHispanic']['pDeathCount']); ?> },
+			{ label: 'White', y: <?PHP echo intval($attributes['raceWhite']['pDeathCount']); ?>},
+			{ label: 'African-American', y: <?PHP echo intval($attributes['raceAfrAmer']['pDeathCount']); ?> }	
 		]
 	}]
 });
