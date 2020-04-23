@@ -10,6 +10,7 @@
 	<li role='presentation'><a target='_Blank' href="https://coronavirus.maryland.gov/">Maryland Data</a></li>
 	<li role='presentation'><a target='_Blank' href="https://arcg.is/0Hfi5O/">Florida Department of Health - GIS Office</a></li>
 	<li role='presentation'><a target='_Blank' href="http://www.ciclt.net/sn/clt/capitolimpact/gw_countymap.aspx?State=md&StFIPS=&StName=Maryland">ZIP Data</a></li>
+	<li role='presentation'><a target='_Blank' href="http://boinc.bakerlab.org/rosetta/team_display.php?teamid=18832">Fold for Covid</a></li>
 	<li role='presentation'><span id="siteseal"><script async type="text/javascript" src="https://seal.starfieldtech.com/getSeal?sealID=JF3ETwtNbyZ345vnJlsp4zh2fEEasPM3vcpVLuhjNIi6TCtnnRaJxL5WiQ5T"></script></span></li>
 </ul>
 
