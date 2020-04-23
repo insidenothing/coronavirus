@@ -178,6 +178,7 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['CaseCount']; ?> },
 			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['CaseCount']; ?> },
 			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['CaseCount']; ?> },
+			{ label: 'Hispanic', y: <?PHP echo $attributes['raceHispanic']['CaseCount']; ?> },
 			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['CaseCount']; ?> },
 			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['CaseCount']; ?> }	
 		]
@@ -185,7 +186,7 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 	{
 		type: "area",
 		name: "Deaths",
-		markerBorderColor: "white",
+		markerBorderColor: "orange",
 		markerBorderThickness: 2,
 		showInLegend: true,
 		indexLabelFontSize: 10,
@@ -194,8 +195,26 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['DeathCount']; ?> },
 			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['DeathCount']; ?> },
 			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['DeathCount']; ?> },
+			{ label: 'Hispanic', y: <?PHP echo $attributes['raceHispanic']['DeathCount']; ?> },
 			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['DeathCount']; ?>},
 			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['DeathCount']; ?> }	
+		]
+	},
+	{
+		type: "area",
+		name: "Prob Deaths",
+		markerBorderColor: "blue",
+		markerBorderThickness: 2,
+		showInLegend: true,
+		indexLabelFontSize: 10,
+		axisYType: "secondary",
+		dataPoints: [
+			{ label: 'Asian', y: <?PHP echo $attributes['raceAsian']['pDeathCount']; ?> },
+			{ label: 'Other', y: <?PHP echo $attributes['raceOther']['pDeathCount']; ?> },
+			{ label: 'Data not available', y: <?PHP echo $attributes['raceNotAvail']['pDeathCount']; ?> },
+			{ label: 'Hispanic', y: <?PHP echo $attributes['raceHispanic']['pDeathCount']; ?> },
+			{ label: 'White', y: <?PHP echo $attributes['raceWhite']['pDeathCount']; ?>},
+			{ label: 'African-American', y: <?PHP echo $attributes['raceAfrAmer']['pDeathCount']; ?> }	
 		]
 	}]
 });
