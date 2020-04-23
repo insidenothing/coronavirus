@@ -143,8 +143,12 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 		yValueFormatString: "#####",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{y: <?PHP echo intval($maryland_history[$date]['Male']);?>, label: "Male"},
-			{y: <?PHP echo intval($maryland_history[$date]['Female']);?>, label: "Female"}
+			{y: <?PHP echo intval($attributes['genMale']['CaseCount']);?>, label: "Male Cases"},
+			{y: <?PHP echo intval($attributes['genFemale']['CaseCount']);?>, label: "Female Cases"},
+			{y: <?PHP echo intval($attributes['genMale']['DeathCount']);?>, label: "Male Deaths"},
+			{y: <?PHP echo intval($attributes['genFemale']['DeathCount']);?>, label: "Female Deaths"},
+			{y: <?PHP echo intval($attributes['genMale']['pDeathCount']);?>, label: "Male Prob Deaths"},
+			{y: <?PHP echo intval($attributes['genFemale']['pDeathCount']);?>, label: "Female Prob Deaths"}
 		]
 	}]
 });
