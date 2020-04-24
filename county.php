@@ -610,7 +610,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 		indexLabel: "{label} - #percent%",
 		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
 		dataPoints: [
-			{ y: <?PHP echo total_count($county); ?>, label: "Population" },
+			{ y: <?PHP echo intval(total_count($county)); ?>, label: "Population" },
 			{ y: <?PHP echo intval($maryland_history[$date][$AKA]); ?>, label: "Infected" }
 		]
 	}]
