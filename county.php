@@ -24,24 +24,35 @@ if(isset($_POST['days'])){
 if(isset($_GET['day'])){
 	$days_to_predict = $_GET['day'];	
 }
-if(isset($_GET['county'])){
-  global $county;
+global $county;
+if(isset($_GET['county'])){	
 	$county = $_GET['county'];	
 }else{
-  $county = 'Maryland';	
+  	$county = 'Baltimore';	
+}
+global $state;
+if(isset($_GET['state'])){
+	$state = $_GET['state'];	
+}else{
+  	$state = 'Maryland';
 }
 $logo = 'off';
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php');
 
-global $maryland_history;
-$maryland_history = make_maryland_array();
 
-
-global $zipData;
-$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
-$zipData = make_maryland_array3($url,'');
-asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+if ($state == 'Maryland'){
+	global $maryland_history;
+	$maryland_history = make_maryland_array();
+	global $zipData;
+	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/TEST_ZIPCodeCases/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,ZIPCODE1,ZIPName,ProtectedCount&returnGeometry=false&outSR=4326&f=json';
+	$zipData = make_maryland_array3($url,'');
+	asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+}
+if ($state == 'Florida'){
+	
+}
+	
 global $zip_debug;
 function make_datapoints(){
 	global $zipData;
@@ -51,7 +62,8 @@ function make_datapoints(){
 	global $global_graph_height;
 	global $zip_debug;
 	global $showzip;
-	$match_array = $county_zip_codes['Maryland'][$county];
+	global $state;
+	$match_array = $county_zip_codes[$state][$county];
 	$return = '';
 	$total=0;
 	foreach ($zipData as $zip => $data){
@@ -84,7 +96,7 @@ function make_datapoints(){
 
 $date = $maryland_history['date'];
 
-$page_description = "$date $county - ZIP Codes";
+$page_description = "$date $county, $state - ZIP Codes";
 
 include_once('menu.php');
 
@@ -395,7 +407,7 @@ $new_down=0;
   <div class="col-sm-12">-->
 	  <?PHP
 	$zip_like=' and ( ';
-    foreach ($county_zip_codes['Maryland'][$county] as $zip => $data){
+    foreach ($county_zip_codes[$state][$county] as $zip => $data){
       $zip_like .= " zip_code = '$data' or ";
     }
     $zip_like .= " zip_code = '99999' )";  
@@ -732,7 +744,7 @@ ob_start();
 		<div id="chartContainer2" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
 	</div>
 	<div class='col-sm-4'>
-		<h3><?PHP echo $county;?> ZIP Codes used by Maryland Dept. Health</h3>
+		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
 	</div>
 	<div class='col-sm-4'>
