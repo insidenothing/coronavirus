@@ -215,7 +215,7 @@ chartZIP2.render();
 
 	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 1000px; width: 100%;"></div></div></div>
 
-		<div class="col-sm-2"><h3>&lt; 7 CASES</h3><?PHP echo $nocases;?></div>
+		<div class="col-sm-2"><h3>0 CASES REPORTED</h3><?PHP echo $nocases;?></div>
 		<div class="col-sm-10"><div id="chartContainerZIP" style="height: 8000px; width: 100%;"></div>
 		
 	</div>
