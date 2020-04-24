@@ -88,7 +88,7 @@ while($d = mysqli_fetch_array($r)){
 	$date = $d['just_date'];
 	if ($date != date('Y-m-d')){
 		?>
-		<div class="alert alert-primary" role="alert">
+		<div class="alert alert-success">
 			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 10:05 AM. Last Update was <?PHP echo $d['checked_datetime'];?>.
 		</div>
 		<?PHP 
@@ -109,8 +109,11 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		<li role='presentation'><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
 	</ul>
-	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Show Maryland Counties</button>
+	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Florida Counties</button>
 	<ul id="demo" class="nav nav-tabs collapse">
 		<?PHP echo "$links"; ?>
+	</ul>
+	<ul id="demo2" class="nav nav-tabs collapse">
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/county.php?state=Florida&county=PalmBeach'){ echo "class='active'"; } ?> ><a href="county.php?state=Florida&county=PalmBeach">PalmBeach</a></li>
 	</ul>
 	
