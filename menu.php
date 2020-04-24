@@ -109,7 +109,7 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		<li role='presentation'><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
 	</ul>
-	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Florida Counties</button>
+	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Florida Counties</button>
 	<ul id="demo" class="nav nav-tabs collapse">
 		<?PHP echo "$links"; ?>
 	</ul>
