@@ -5,7 +5,7 @@ if(isset($_GET['show'])){
 	$show = $_GET['show'];
 }
 global $days_to_predict;
-$days_to_predict = '0';
+$days_to_predict = '-1';
 if(isset($_GET['days'])){
 	// stop bot from running animation
 	$ua = $_SERVER['HTTP_USER_AGENT'];
@@ -134,7 +134,7 @@ function make_county_prediction($county,$start,$count,$dt){
     $return = '';
     $start = new DateTime ($start, new DateTimeZone ('UTC'));
     global $days_to_predict;
-    if ($days_to_predict == '0'){
+    if ($days_to_predict == '-1'){
 	return '';
     }
     $end = new DateTime (" +$days_to_predict days", new DateTimeZone ('UTC'));
