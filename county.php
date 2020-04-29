@@ -5,6 +5,11 @@ $output_buffer = '';
 global $global_graph_height;
 $global_graph_height = 0;
 
+
+global $graph_total;
+$graph_total = array();
+
+
 //global $county_zip_codes;
 //$county_zip_codes = array();
 //$county_zip_codes['Maryland']['Allegany'] 		= explode(',',"00000,21501,21502,21502,21502,21503,21504,21504,21505,21505,21521,21524,21528,21529,21530,21532,21539,21540,21540,21542,21543,21545,21555,21556,21557,21560,21562,21562,21766");
@@ -179,8 +184,7 @@ function show_on_graph($county){
 	}
 	
 }
-global $graph_total;
-$graph_total = array();
+
 
 function make_zip($zip){
         global $core;
@@ -192,8 +196,12 @@ function make_zip($zip){
 	while ($d = mysqli_fetch_array($r)){
 		$count 	= $d['report_count'];
 		$date 	= $d['report_date'];
-		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
-		[$date] = $graph_total[$date] + $count;
+		$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
+		if (isset($graph_total[$date])){
+			$graph_total[$date] = $graph_total[$date] + $count;
+		}else{
+			$graph_total[$date] = $count;
+		}
 	}
     	$return = rtrim(trim($return), ",");
     return $return;
