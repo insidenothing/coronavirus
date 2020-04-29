@@ -614,12 +614,13 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		name: "<?PHP echo $county; ?> Infected",
 		dataPoints: [
 			<?PHP
-
+			$return3='';
 			foreach ($graph_total as $date => $count){
-				$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
+				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' }, 
+				';
 			}
-			$return = rtrim(trim($return), ",");
-			echo $return
+			$return3 = rtrim(trim($return3), ",");
+			echo $return3
 			?>
 		]
 	}]
