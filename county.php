@@ -207,6 +207,8 @@ function graph_total(){
 			//$today[$county] = $count;
 		}
 	}
+	$return = rtrim(trim($return), ",");
+    return $return;
 }
 
 
