@@ -179,8 +179,10 @@ function show_on_graph($county){
 	}
 	
 }
+global $graph_total;
 function make_zip($zip){
         global $core;
+	global $graph_total;
         $return = '';
 	$count=0;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
@@ -189,10 +191,24 @@ function make_zip($zip){
 		$count 	= $d['report_count'];
 		$date 	= $d['report_date'];
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+		$graph_total[$date] = $graph_total[$date] + $count;
 	}
     	$return = rtrim(trim($return), ",");
     return $return;
 }
+
+function graph_total(){
+	global $graph_total;	
+		foreach ($graph_total as $date => $count){
+		if ($date != 'date'){
+			//$last_count = $count;
+			//$count = intval($array[$aka]);
+			$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
+			//$today[$county] = $count;
+		}
+	}
+}
+
 
 function make_county($county){
         global $core;
@@ -589,17 +605,17 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Infected @ <?PHP echo rate_of_infection($county);?>",
+		name: "<?PHP echo $county; ?> Infected",
 		dataPoints: [
-			<?PHP echo make_county($county); ?>
+			<?PHP echo graph_total($county); ?>
 		]
 	},
 	{
 		type: "spline",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Fatal @ <?PHP echo rate_of_death($county);?>",
+		name: "<?PHP echo $county; ?> Fatal",
 		dataPoints: [
 			<?PHP echo make_dcounty($county); ?>
 		]
