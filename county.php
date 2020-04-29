@@ -472,38 +472,6 @@ echo $buffer;
 window.onload = function () {
 
 	
-	
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,  
-	exportEnabled: true,
-	title:{
-		text: "<?PHP echo $county;?> covid19math.net"
-	},
-	axisY: {
-		title: "COVID19 CASES",
-		valueFormatString: "#####",
-		suffix: "",
-		prefix: ""
-	},
-	data: [{
-		type: "splineArea",
-		color: "rgba(54,158,173,.7)",
-		markerSize: 5,
-		xValueFormatString: "YYYY-MM-dd",
-		yValueFormatString: "#####",
-		dataPoints: [
-			<?PHP
-			$return3='';
-			foreach ($graph_total as $date => $count){
-				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' },';
-			}
-			$return3 = rtrim(trim($return3), ",");
-			echo $return3
-			?>
-		]
-	}]
-	});
-chart.render();	
 
 	
 var chart2 = new CanvasJS.Chart("chartContainer2", {
@@ -647,6 +615,40 @@ var chart88 = new CanvasJS.Chart("chartContainer88", {
 	}]
 });
 chart88.render();
+	
+	
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,  
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $county;?> covid19math.net"
+	},
+	axisY: {
+		title: "COVID19 CASES",
+		valueFormatString: "#####",
+		suffix: "",
+		prefix: ""
+	},
+	data: [{
+		type: "splineArea",
+		color: "rgba(54,158,173,.7)",
+		markerSize: 5,
+		xValueFormatString: "YYYY-MM-dd",
+		yValueFormatString: "#####",
+		dataPoints: [
+			<?PHP
+			$return3='';
+			foreach ($graph_total as $date => $count){
+				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' },';
+			}
+			$return3 = rtrim(trim($return3), ",");
+			echo $return3
+			?>
+		]
+	}]
+	});
+chart.render();	
+	
 	
 function toggleDataSeries(e) {
 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
