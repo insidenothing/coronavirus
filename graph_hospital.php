@@ -182,6 +182,26 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
+		name: "ICU Beds",
+		dataPoints: [
+			<?PHP echo make_county('bedsICU'); ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Acute Beds",
+		dataPoints: [
+			<?PHP echo make_county('bedsAcute'); ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
 		name: "Total Hospitalized",
 		dataPoints: [
 			<?PHP echo make_county('total_hospitalized'); ?>
