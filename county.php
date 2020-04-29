@@ -205,7 +205,7 @@ function make_zip($zip){
 			$debug5 .= "$date + $count, ";
 			$graph_total[$date] = $graph_total[$date] + $count;
 		}else{
-			$debug5 .= "$date + $count, ";
+			$debug5 .= "$date = $count, ";
 			$graph_total[$date] = $count;
 		}
 	}
@@ -814,7 +814,7 @@ ob_start();
 		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
 		<hr>
-		<?PHP global $debug5; $debug5 .= 'done'; echo $debug5; ?>
+		<?PHP print_r($graph_total); $debug5 .= 'done'; echo $debug5; ?>
 	</div>
 	<div class='col-sm-4'>
 		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
