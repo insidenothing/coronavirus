@@ -264,123 +264,7 @@ function make_dcounty($county){
     	$return = rtrim(trim($return), ",");
     return $return;
 }
-function make_county_prediction($county,$start,$count,$dt){
-    global $debug_in;
-    global $debug_out;
-    global $core;
-    $return = '';
-    $start = new DateTime ($start, new DateTimeZone ('UTC'));
-    global $days_to_predict;
-    $end = new DateTime (" +$days_to_predict days", new DateTimeZone ('UTC'));
-    $interval = new DateInterval ('P1D');
-    $range = new DatePeriod ($start, $interval, $end);
-    $N = $count; // total cases
-    $Nmax = total_count($county); // population	
-    $a = rate_of_infection($county); // percentage infection rate  
-    $day_buffer = 0;
-    foreach ($range as $date) {
-	$out = $date->format ('Y-m-d');
-        $debug_in .= "<li>$out N: $N Nold: $Nold Nmax:$Nmax a:$a</li>";
-        $Nold=$N;
-        $N=$N+$a*(1-$N/$Nmax)*$N*$dt;   
-        $r=($N-$Nold)/$dt;
-	if(empty($base)){
-		// only set base once
-		global $buffer;
-		$base = ($N - $r)*$buffer;
-		$debug_out .= "<li><b>BASE: $base = ($N - $r) * $buffer</b></li>";
-	}
-	$r = $r + $base;
-	$debug_out .= "<li>$out N:$N r:$r</li>";
-	$r_graph = 0;
-	if($r > $r_graph){
-		$r_graph = $r;
-	}
-        $return .= '{ label: "'.$out.'", y: '.intval($r_graph).' }, ';
-	global $today;
-	global $normal;
-	global $peak;
-	global $peak_str;
-	$r_int = number_format($r, 0, '.', ',');
-        if($r > $peak[$county]){
-		$peak[$county] = $r;
-		$datetime1 = new DateTime($out);
-		$datetime2 = new DateTime("now");
-		$interval = $datetime1->diff($datetime2);
-		$from_now = $interval->format('%R%a days');
-		$peak_str[$county] = "<p>On $out in $from_now $county infection peaked at $r_int<p>";
-        }
-	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $normal[$county] == ''){
-		$datetime1 = new DateTime($out);
-		$datetime2 = new DateTime("now");
-		$interval = $datetime1->diff($datetime2);
-		$from_now = $interval->format('%R%a days');
-		$normal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county infections went under ".$today[$county]." to $r_int</p>";    
-	}
-	$day_buffer++;
-    }
-    return $return;
-}
-function make_dcounty_prediction($county,$start,$count,$dt){
-    global $debug_in;
-    global $debug_out;
-    global $core;
-    $return = '';
-    $start = new DateTime ($start, new DateTimeZone ('UTC'));
-    global $days_to_predict;
-    $end = new DateTime (" +$days_to_predict days", new DateTimeZone ('UTC'));
-    $interval = new DateInterval ('P1D');
-    $range = new DatePeriod ($start, $interval, $end);
-    $N = $count; // total cases
-    $Nmax = total_count($county); // population	
-    $a = rate_of_death($county); // percentage infection rate  
-    $day_buffer = 0;
-    foreach ($range as $date) {
-	$out = $date->format ('Y-m-d');
-        $debug_in .= "<li>$out N: $N Nold: $Nold Nmax:$Nmax a:$a</li>";
-        $Nold=$N;
-        $N=$N+$a*(1-$N/$Nmax)*$N*$dt;   
-        $r=($N-$Nold)/$dt;
-	if(empty($base)){
-		// only set base once
-		global $buffer;
-		$base = ($N - $r)*$buffer;
-		$debug_out .= "<li><b>BASE: $base = ($N - $r) * $buffer</b></li>";
-	}
-	$r = $r + $base;
-	$debug_out .= "<li>$out N:$N r:$r</li>";
-	$r_graph = 0;
-	if($r > $r_graph){
-		$r_graph = $r;
-	}
-        $return .= '{ label: "'.$out.'", y: '.intval($r_graph).' }, ';
-	global $today;
-	global $normal;
-	global $peak;
-	global $peak_str;
-	global $dnormal;
-	global $dpeak;
-	global $dpeak_str;
-	$r_int = number_format($r, 0, '.', ',');
-        if($r > $dpeak[$county]){
-		$dpeak[$county] = $r;
-		$datetime1 = new DateTime($out);
-		$datetime2 = new DateTime("now");
-		$interval = $datetime1->diff($datetime2);
-		$from_now = $interval->format('%R%a days');
-		$dpeak_str[$county] = "<p>On $out in $from_now $county deaths peaked at $r_int<p>";
-        }
-	if (intval($today[$county]) > intval($r) && intval($r) != 0 && $dnormal[$county] == ''){
-		$datetime1 = new DateTime($out);
-		$datetime2 = new DateTime("now");
-		$interval = $datetime1->diff($datetime2);
-		$from_now = $interval->format('%R%a days');
-		$dnormal[$county] = "<p style='background-color:pink; '>On $out in $from_now $county deaths went under ".$today[$county]." to $r_int</p>";    
-	}
-	$day_buffer++;
-    }
-    return $return;
-}
+
 $date = $maryland_history['date'];
 $AKA = county_aka($county);
 $dAKA = county_daka($county);
@@ -587,36 +471,31 @@ echo $buffer;
 <script>
 window.onload = function () {
 
+	
+	
 var chart = new CanvasJS.Chart("chartContainer", {
-	theme:"light2",
-	animationEnabled: true,
+	animationEnabled: true,  
 	exportEnabled: true,
 	title:{
 		text: "<?PHP echo $county;?> covid19math.net"
 	},
-	axisY :{
-		includeZero: false,
-		title: "Number of Cases",
-		suffix: ""
-	},
-	toolTip: {
-		shared: "true"
-	},
-	legend:{
-		cursor:"pointer",
-		itemclick : toggleDataSeries
+	axisY: {
+		title: "COVID19 CASES",
+		valueFormatString: "#####",
+		suffix: "",
+		prefix: ""
 	},
 	data: [{
-		type: "spline",
-		visible: true,
-		showInLegend: true,
+		type: "splineArea",
+		color: "rgba(54,158,173,.7)",
+		markerSize: 5,
+		xValueFormatString: "YYYY-MM-dd",
 		yValueFormatString: "#####",
-		name: "<?PHP echo $county; ?> Infected",
 		dataPoints: [
 			<?PHP
 			$return3='';
 			foreach ($graph_total as $date => $count){
-				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' }, 
+				$return3 .= '{ x: "'.$date.'", y: '.intval($count).' }, 
 				';
 			}
 			$return3 = rtrim(trim($return3), ",");
@@ -624,11 +503,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			?>
 		]
 	}]
-}
-			      
-			      
-			      );
-chart.render();
+	});
+chart.render();	
+
 	
 var chart2 = new CanvasJS.Chart("chartContainer2", {
 	animationEnabled: true,
