@@ -814,7 +814,7 @@ ob_start();
 		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
 		<hr>
-		<PHP echo $debug2; ?>
+		<PHP $debug2 .= 'done'; echo $debug2; ?>
 	</div>
 	<div class='col-sm-4'>
 		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
