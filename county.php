@@ -9,6 +9,8 @@ $global_graph_height = 0;
 global $graph_total;
 $graph_total = array();
 
+global $debug2;
+$debug2 = 'go...';
 
 //global $county_zip_codes;
 //$county_zip_codes = array();
@@ -189,6 +191,8 @@ function show_on_graph($county){
 function make_zip($zip){
         global $core;
 	global $graph_total;
+	global $debug2;
+	$debug2 .= 'make_zip('.$zip.')';
         $return = '';
 	$count=0;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' order by report_date ";
@@ -198,8 +202,10 @@ function make_zip($zip){
 		$date 	= $d['report_date'];
 		$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
 		if (isset($graph_total[$date])){
+			$debug2 .= "$date + $count, ";
 			$graph_total[$date] = $graph_total[$date] + $count;
 		}else{
+			$debug2 .= "$date + $count, ";
 			$graph_total[$date] = $count;
 		}
 	}
@@ -808,7 +814,7 @@ ob_start();
 		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
 		<hr>
-		<PHP print_r($graph_total); ?>
+		<PHP echo $debug2; ?>
 	</div>
 	<div class='col-sm-4'>
 		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
