@@ -57,6 +57,25 @@ $new_down=0;
 ?>
 
 <div class="row">
+  <div class="col-sm-12">
+  <h3>14+ Day Trends</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' order by trend_duration DESC";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        $color='orange';
+	    if ($d['trend_direction'] == 'FLAT'){
+		$color = 'lightgreen';
+		}
+	    echo "<li><a href='zipcode.php?zip=$d[zip_code]'>For $d[trend_duration] days, $d[town_name] ( $d[zip_code] ) has been going $d[trend_direction] and is now $d[report_count]</a></li>"; 
+    }
+    ?>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-sm-4">
     <h3>Up Trend</h3>
     <ol>
