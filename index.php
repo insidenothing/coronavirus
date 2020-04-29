@@ -125,7 +125,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			{ y: <?PHP echo $maryland_history[$date]['TotalCases'];?>, label: "Infected" },
 			{ y: <?PHP echo $maryland_history[$date]['total_hospitalized'];?>, label: "Hospital" },
 			{ y: <?PHP echo $maryland_history[$date]['total_released'];?>,  label: "Recovered" },
-			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Deaths" }
+			{ y: <?PHP echo $maryland_history[$date]['deaths'];?>, label: "Deaths" },
+			{ y: <?PHP echo $maryland_history[$date]['pDeaths'];?>, label: "Prob Deaths" }
 		]
 	}]
 });
@@ -143,12 +144,12 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 		yValueFormatString: "#####",
 		indexLabel: "{label} {y}",
 		dataPoints: [
-			{y: <?PHP echo intval($attributes['genMale']['CaseCount']);?>, label: "Male Cases"},
-			{y: <?PHP echo intval($attributes['genFemale']['CaseCount']);?>, label: "Female Cases"},
-			{y: <?PHP echo intval($attributes['genMale']['DeathCount']);?>, label: "Male Deaths"},
-			{y: <?PHP echo intval($attributes['genFemale']['DeathCount']);?>, label: "Female Deaths"},
-			{y: <?PHP echo intval($attributes['genMale']['pDeathCount']);?>, label: "Male Prob Deaths"},
-			{y: <?PHP echo intval($attributes['genFemale']['pDeathCount']);?>, label: "Female Prob Deaths"}
+			{y: <?PHP echo intval($maryland_history[$date]['genMale']);?>, label: "Male Cases"},
+			{y: <?PHP echo intval($maryland_history[$date]['genFemale']);?>, label: "Female Cases"},
+			{y: <?PHP echo intval($maryland_history[$date]['deathGenMale']);?>, label: "Male Deaths"},
+			{y: <?PHP echo intval($maryland_history[$date]['deathGenFemale']);?>, label: "Female Deaths"},
+			{y: <?PHP echo intval($maryland_history[$date]['pDeathGenMale']);?>, label: "Male Prob Deaths"},
+			{y: <?PHP echo intval($maryland_history[$date]['pDeathGenFemale']);?>, label: "Female Prob Deaths"}
 		]
 	}]
 });
@@ -175,12 +176,12 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		showInLegend: true,
 		indexLabelFontSize: 10,
 		dataPoints: [
-			{ label: 'Asian', y: <?PHP echo intval($attributes['raceAsian']['CaseCount']); ?> },
-			{ label: 'Other', y: <?PHP echo intval($attributes['raceOther']['CaseCount']); ?> },
-			{ label: 'Data not available', y: <?PHP echo intval($attributes['raceNotAvail']['CaseCount']); ?> },
-			{ label: 'Hispanic', y: <?PHP echo intval($attributes['raceHispanic']['CaseCount']); ?> },
-			{ label: 'White', y: <?PHP echo intval($attributes['raceWhite']['CaseCount']); ?> },
-			{ label: 'African-American', y: <?PHP echo intval($attributes['raceAfrAmer']['CaseCount']); ?> }	
+			{ label: 'Asian', y: <?PHP echo intval($maryland_history[$date]['caseAsian']); ?> },
+			{ label: 'Other', y: <?PHP echo intval($maryland_history[$date]['caseOther']); ?> },
+			{ label: 'Data not available', y: <?PHP echo intval($maryland_history[$date]['caseNotAVail']); ?> },
+			{ label: 'Hispanic', y: <?PHP echo intval($maryland_history[$date]['caseHispanic']); ?> },
+			{ label: 'White', y: <?PHP echo intval($maryland_history[$date]['caseWhite']); ?> },
+			{ label: 'African-American', y: <?PHP echo intval($maryland_history[$date]['caseAfrAmer']); ?> }	
 		]
 	},
 	{
@@ -192,12 +193,12 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		axisYType: "secondary",
 		dataPoints: [
-			{ label: 'Asian', y: <?PHP echo intval($attributes['raceAsian']['DeathCount']); ?> },
-			{ label: 'Other', y: <?PHP echo intval($attributes['raceOther']['DeathCount']); ?> },
-			{ label: 'Data not available', y: <?PHP echo intval($attributes['raceNotAvail']['DeathCount']); ?> },
-			{ label: 'Hispanic', y: <?PHP echo intval($attributes['raceHispanic']['DeathCount']); ?> },
-			{ label: 'White', y: <?PHP echo intval($attributes['raceWhite']['DeathCount']); ?>},
-			{ label: 'African-American', y: <?PHP echo intval($attributes['raceAfrAmer']['DeathCount']); ?> }	
+			{ label: 'Asian', y: <?PHP echo intval($maryland_history[$date]['deathAsian']); ?> },
+			{ label: 'Other', y: <?PHP echo intval($maryland_history[$date]['deathOther']); ?> },
+			{ label: 'Data not available', y: <?PHP echo intval($maryland_history[$date]['deathNotAVail']); ?> },
+			{ label: 'Hispanic', y: <?PHP echo intval($maryland_history[$date]['deathHispanic']); ?> },
+			{ label: 'White', y: <?PHP echo intval($maryland_history[$date]['deathWhite']); ?>},
+			{ label: 'African-American', y: <?PHP echo intval($maryland_history[$date]['deathAfrAmer']); ?> }	
 		]
 	},
 	{
@@ -209,12 +210,12 @@ var chartCnD = new CanvasJS.Chart("chartContainerCnD", {
 		indexLabelFontSize: 10,
 		axisYType: "secondary",
 		dataPoints: [
-			{ label: 'Asian', y: <?PHP echo intval($attributes['raceAsian']['pDeathCount']); ?> },
-			{ label: 'Other', y: <?PHP echo intval($attributes['raceOther']['pDeathCount']); ?> },
-			{ label: 'Data not available', y: <?PHP echo intval($attributes['raceNotAvail']['pDeathCount']); ?> },
-			{ label: 'Hispanic', y: <?PHP echo intval($attributes['raceHispanic']['pDeathCount']); ?> },
-			{ label: 'White', y: <?PHP echo intval($attributes['raceWhite']['pDeathCount']); ?>},
-			{ label: 'African-American', y: <?PHP echo intval($attributes['raceAfrAmer']['pDeathCount']); ?> }	
+			{ label: 'Asian', y: <?PHP echo intval($maryland_history[$date]['pDeathAsian']); ?> },
+			{ label: 'Other', y: <?PHP echo intval($maryland_history[$date]['pDeathOther']); ?> },
+			{ label: 'Data not available', y: <?PHP echo intval($maryland_history[$date]['pDeathNotAVail']); ?> },
+			{ label: 'Hispanic', y: <?PHP echo intval($maryland_history[$date]['pDeathHispanic']); ?> },
+			{ label: 'White', y: <?PHP echo intval($maryland_history[$date]['pDeathWhite']); ?>},
+			{ label: 'African-American', y: <?PHP echo intval($maryland_history[$date]['pDeathAfrAmer']); ?> }	
 		]
 	}]
 });
@@ -379,6 +380,9 @@ ob_start();
 echo '<h3>Covid19math.net Update</h3>';
 echo do_math_location('Maryland');
 echo do_math_location('deaths');
+echo do_math_location('bedsICU');
+echo do_math_location('bedsAcute');
+echo do_math_location('bedsTotal');
 echo do_math_location('total_hospitalized');
 echo do_math_location('total_released');
 echo do_math_location('NegativeTests');
