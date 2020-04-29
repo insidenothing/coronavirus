@@ -495,8 +495,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			<?PHP
 			$return3='';
 			foreach ($graph_total as $date => $count){
-				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' }, 
-				';
+				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' },';
 			}
 			$return3 = rtrim(trim($return3), ",");
 			echo $return3
