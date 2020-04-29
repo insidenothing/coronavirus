@@ -198,14 +198,10 @@ function make_zip($zip){
 }
 
 function graph_total(){
-	global $graph_total;	
-		foreach ($graph_total as $date => $count){
-		if ($date != 'date'){
-			//$last_count = $count;
-			//$count = intval($array[$aka]);
-			$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
-			//$today[$county] = $count;
-		}
+	global $graph_total;
+	//asort($graph_total);
+	foreach ($graph_total as $date => $count){
+		$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
 	}
 	$return = rtrim(trim($return), ",");
     return $return;
@@ -609,7 +605,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $county; ?> Infected",
 		dataPoints: [
-			<?PHP echo graph_total($county); ?>
+			<?PHP echo graph_total(); ?>
 		]
 	},
 	{
@@ -801,6 +797,8 @@ ob_start();
 	<div class='col-sm-4'>
 		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
+		<hr>
+		<PHP print_r($graph_total;); ?>
 	</div>
 	<div class='col-sm-4'>
 		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
