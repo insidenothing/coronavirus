@@ -156,6 +156,18 @@ function message_send($to,$master_message,$media=''){
 }
 	
 function county_aka($county){
+	// aliases not in death or prob death
+	if ($county == 'MarylandNegative'){ return 'NegativeTests'; }
+	if ($county == 'MarylandICU'){ return 'bedsICU'; }
+	if ($county == 'MarylandAcute'){ return 'bedsAcute'; }
+	if ($county == 'MarylandTotal'){ return 'bedsTotal'; }
+	if ($county == 'Maryland_hospitalized'){ return 'total_hospitalized'; }	
+	if ($county == 'Maryland_released'){ return 'total_released'; }	
+	if ($county == 'under18'){ return 'under18'; }
+	if ($county == '18to64'){ return '18to64'; }
+	if ($county == '65plus'){ return '65plus'; }
+	// three stage data
+	if ($county == 'DOD'){ return 'DOD'; } // not listed yet... 
  	if ($county == 'Allegany'){ return 'ALLE'; }
         if ($county == 'AnneArundel'){ return 'ANNE'; }
         if ($county == 'Baltimore'){ return 'BALT'; }
@@ -181,9 +193,30 @@ function county_aka($county){
         if ($county == 'Wicomico'){ return 'WICO'; }
         if ($county == 'Worcester'){ return 'WORC'; }
 	if ($county == 'Maryland'){ return 'TotalCases'; }
+	if ($county == '0to9'){ return 'case0to9'; }
+	if ($county == '10to19'){ return 'case10to19'; }
+	if ($county == '20to29'){ return 'case20to29'; }
+	if ($county == '30to39'){ return 'case30to39'; }
+	if ($county == '40to49'){ return 'case40to49'; }
+	if ($county == '50to59'){ return 'case50to59'; }
+	if ($county == '60to69'){ return 'case60to69'; }
+	if ($county == '70to79'){ return 'case70to79'; }
+	if ($county == '80plus'){ return 'case80plus'; }
+	if ($county == 'AgeUnknown'){ return 'caseAgeUnknown'; }
+	if ($county == 'genMale'){ return 'genMale'; }
+	if ($county == 'genFemale'){ return 'genFemale'; }
+	if ($county == 'genUnkn'){ return 'genUnkn'; }
+	if ($county == 'AfrAmer'){ return 'caseAfrAmer'; }
+	if ($county == 'White'){ return 'caseWhite'; }
+	if ($county == 'Hispanic'){ return 'caseHispanic'; }
+	if ($county == 'Asian'){ return 'caseAsian'; }
+	if ($county == 'Other'){ return 'caseOther'; }
+	if ($county == 'NotAVail'){ return 'caseNotAVail'; }
+	
 	return $county;
 }
 function county_daka($county){
+	if ($county == 'DOD'){ return 'deathDOD'; }
  	if ($county == 'Allegany'){ return 'deathALLE'; }
         if ($county == 'AnneArundel'){ return 'deathANNE'; }
         if ($county == 'Baltimore'){ return 'deathBALT'; }
@@ -209,9 +242,76 @@ function county_daka($county){
         if ($county == 'Wicomico'){ return 'deathWICO'; }
         if ($county == 'Worcester'){ return 'deathWORC'; }
 	if ($county == 'Maryland'){ return 'deaths'; }
+	if ($county == '0to9'){ return 'death0to9'; }
+	if ($county == '10to19'){ return 'death10to19'; }
+	if ($county == '20to29'){ return 'death20to29'; }
+	if ($county == '30to39'){ return 'death30to39'; }
+	if ($county == '40to49'){ return 'death40to49'; }
+	if ($county == '50to59'){ return 'death50to59'; }
+	if ($county == '60to69'){ return 'death60to69'; }
+	if ($county == '70to79'){ return 'death70to79'; }
+	if ($county == '80plus'){ return 'death80plus'; }
+	if ($county == 'AgeUnknown'){ return 'deathAgeUnknown'; }
+	if ($county == 'genMale'){ return 'deathGenMale'; }
+	if ($county == 'genFemale'){ return 'deathGenFemale'; }
+	if ($county == 'genUnkn'){ return 'deathGenUnkn'; }
+	if ($county == 'AfrAmer'){ return 'deathAfrAmer'; }
+	if ($county == 'White'){ return 'deathWhite'; }
+	if ($county == 'Hispanic'){ return 'deathHispanic'; }
+	if ($county == 'Asian'){ return 'deathAsian'; }
+	if ($county == 'Other'){ return 'deathOther'; }
+	if ($county == 'NotAVail'){ return 'deathNotAVail'; }
+	
 	return $county;
 }
-
+function county_pdaka($county){
+	if ($county == 'DOD'){ return 'pDeathDOD'; }
+ 	if ($county == 'Allegany'){ return 'pDeathALLE'; }
+        if ($county == 'AnneArundel'){ return 'pDeathANNE'; }
+        if ($county == 'Baltimore'){ return 'pDeathBALT'; }
+        if ($county == 'BaltimoreCity'){ return 'pDeathBCITY'; }
+        if ($county == 'Calvert'){ return 'pDeathCALV'; }
+        if ($county == 'Caroline'){ return 'pDeathCARO'; }
+        if ($county == 'Carroll'){ return 'pDeathCARR'; }
+        if ($county == 'Cecil'){ return 'pDeathCECI'; }
+        if ($county == 'Charles'){ return 'pDeathCHAR'; }
+        if ($county == 'Dorchester'){ return 'pDeathDORC'; }
+        if ($county == 'Frederick'){ return 'pDeathFRED'; }
+        if ($county == 'Garrett'){ return 'pDeathGARR'; }
+        if ($county == 'Harford'){ return 'pDeathHARF'; }
+        if ($county == 'Howard'){ return 'pDeathHOWA'; }
+        if ($county == 'Kent'){ return 'pDeathKENT'; }
+        if ($county == 'Montgomery'){ return 'pDeathMONT'; }
+        if ($county == 'PrinceGeorges'){ return 'pDeathPRIN'; }
+        if ($county == 'QueenAnnes'){ return 'pDeathQUEE'; }
+        if ($county == 'Somerset'){ return 'pDeathSOME'; }
+        if ($county == 'StMarys'){ return 'pDeathSTMA'; }
+        if ($county == 'Talbot'){ return 'pDeathTALB'; }
+        if ($county == 'Washington'){ return 'pDeathWASH'; }
+        if ($county == 'Wicomico'){ return 'pDeathWICO'; }
+        if ($county == 'Worcester'){ return 'pDeathWORC'; }
+	if ($county == 'Maryland'){ return 'pDeaths'; }
+	if ($county == '0to9'){ return 'pDeath0to9'; }
+	if ($county == '10to19'){ return 'pDeath10to19'; }
+	if ($county == '20to29'){ return 'pDeath20to29'; }
+	if ($county == '30to39'){ return 'pDeath30to39'; }
+	if ($county == '40to49'){ return 'pDeath40to49'; }
+	if ($county == '50to59'){ return 'pDeath50to59'; }
+	if ($county == '60to69'){ return 'pDeath60to69'; }
+	if ($county == '70to79'){ return 'pDeath70to79'; }
+	if ($county == '80plus'){ return 'pDeath80plus'; }
+	if ($county == 'AgeUnknown'){ return 'pDeathAgeUnknown'; }
+	if ($county == 'genMale'){ return 'pDeathGenMale'; }
+	if ($county == 'genFemale'){ return 'pDeathGenFemale'; }
+	if ($county == 'genUnkn'){ return 'pDeathGenUnkn'; }
+	if ($county == 'AfrAmer'){ return 'pDeathAfrAmer'; }
+	if ($county == 'White'){ return 'pDeathWhite'; }
+	if ($county == 'Hispanic'){ return 'pDeathHispanic'; }
+	if ($county == 'Asian'){ return 'pDeathAsian'; }
+	if ($county == 'Other'){ return 'pDeathOther'; }
+	if ($county == 'NotAVail'){ return 'pDeathNotAVail'; }
+	return $county;
+}
 function make_maryland_array($json=''){
 	$return = array();
 	if ($json != ''){
