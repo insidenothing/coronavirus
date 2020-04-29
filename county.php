@@ -495,7 +495,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			<?PHP
 			$return3='';
 			foreach ($graph_total as $date => $count){
-				$return3 .= '{ x: "'.$date.'", y: '.intval($count).' }, 
+				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' }, 
 				';
 			}
 			$return3 = rtrim(trim($return3), ",");
@@ -680,14 +680,7 @@ ob_start();
 	<div class='col-sm-4'>
 		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
-		<hr>
-		<?PHP 
-		foreach ($graph_total as $date => $count){
-			echo '{ x: "'.$date.'", y: '.intval($count).' }, ';
-		}
-		$debug5 .= 'done'; 
-		//echo $debug5;
-		?>
+		
 	</div>
 	<div class='col-sm-4'>
 		<div id="chartContainer3" style="height: 400px; max-width: 400px; margin: 0px auto;"></div>	
