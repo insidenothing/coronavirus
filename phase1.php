@@ -68,7 +68,7 @@ $new_down=0;
 	    if ($d['trend_direction'] == 'FLAT'){
 		$color = 'lightgreen';
 		}
-	    echo "<li><a href='zipcode.php?zip=$d[zip_code]'>For $d[trend_duration] days, $d[town_name] ( $d[zip_code] ) has been going $d[trend_direction] and is now $d[report_count]</a></li>"; 
+	    echo "<li style='background-color:$color;'><a href='zipcode.php?zip=$d[zip_code]'>For $d[trend_duration] days, $d[town_name] ( $d[zip_code] ) has been going $d[trend_direction] and is now $d[report_count]</a></li>"; 
     }
     ?>
     </ol>
