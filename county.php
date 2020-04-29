@@ -493,7 +493,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		yValueFormatString: "#####",
 		dataPoints: [
 			<?PHP
-			$null = makeZIPpoints();
 			$return3='';
 			foreach ($graph_total as $date => $count){
 				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' },';
@@ -680,6 +679,15 @@ ob_start();
 	<div class='col-sm-4'>
 		<h3><?PHP echo $county;?>, <?PHP echo $state;?> ZIP Codes</h3>
 		<?PHP echo $zip_debug;?>
+		<hr>
+		<?PHP
+			$return3='';
+			foreach ($graph_total as $date => $count){
+				$return3 .= '{ label: "'.$date.'", y: '.intval($count).' },';
+			}
+			$return3 = rtrim(trim($return3), ",");
+			echo $return3
+			?>
 		
 	</div>
 	<div class='col-sm-4'>
