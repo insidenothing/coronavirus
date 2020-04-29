@@ -180,6 +180,8 @@ function show_on_graph($county){
 	
 }
 global $graph_total;
+$graph_total = array();
+
 function make_zip($zip){
         global $core;
 	global $graph_total;
@@ -191,21 +193,13 @@ function make_zip($zip){
 		$count 	= $d['report_count'];
 		$date 	= $d['report_date'];
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
-		$graph_total[$date] = $graph_total[$date] + $count;
+		[$date] = $graph_total[$date] + $count;
 	}
     	$return = rtrim(trim($return), ",");
     return $return;
 }
 
-function graph_total(){
-	global $graph_total;
-	//asort($graph_total);
-	foreach ($graph_total as $date => $count){
-		$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
-	}
-	$return = rtrim(trim($return), ",");
-    return $return;
-}
+
 
 
 function make_county($county){
@@ -605,7 +599,15 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $county; ?> Infected",
 		dataPoints: [
-			<?PHP echo graph_total(); ?>
+			<?PHP
+			global $graph_total;
+			//asort($graph_total);
+			foreach ($graph_total as $date => $count){
+				$return .= '{ label: "'.$date.'", y: '.intval($count).' }, ';
+			}
+			$return = rtrim(trim($return), ",");
+			echo $return
+			?>
 		]
 	},
 	{
