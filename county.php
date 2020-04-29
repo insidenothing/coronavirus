@@ -682,7 +682,9 @@ ob_start();
 		<?PHP echo $zip_debug;?>
 		<hr>
 		<?PHP 
-		print_r($graph_total); 
+		foreach ($graph_total as $date => $count){
+			echo '{ x: "'.$date.'", y: '.intval($count).' }, ';
+		}
 		$debug5 .= 'done'; 
 		//echo $debug5;
 		?>
