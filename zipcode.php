@@ -56,7 +56,7 @@ if ($zip2 != '99999'){
 		// add blank days to the front of $time_chart2
 		foreach (range($i2, $i) as $back_days) {
 			$date = date('Y-m-d',strtotime('-'.$back_days));
-			$time_chart2_pre =  '{ label: "'.$date.'", y: 0 }, ' . $time_chart2_pre;
+			$time_chart2_pre =  '{ label: "'.$date.'", y: $back_days }, ' . $time_chart2_pre;
 		}
 		$time_chart2 = $time_chart2_pre.$time_chart2;
 	}elseif($i < $i2){
