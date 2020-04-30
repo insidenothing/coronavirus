@@ -92,6 +92,25 @@ if ($test13 != $test23){
 }
 
 // FLORIDA
+// FLORIDA
+global $florida;
+$url = 'https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/ArcGIS/rest/services/Florida_COVID_19_Deaths_by_Day/FeatureServer/0/query?where=1%3D1&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=';
+$florida = make_florida_zip_array($url,'','force');
+$url_pulled3 = $florida['url_pulled'];
+$r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
+$d3 = mysqli_fetch_array($r3);
+$old3 = $d3['html'];
+$json3 = json_encode($florida);
+$new3 = $core->real_escape_string($json3);
+global $raw;
+$raw_response = $core->real_escape_string($raw);
+$test13 = $old3;
+$test23 = $json3;
+if ($test13 != $test23){
+    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
+    	//$send_message = 'on';
+	message_send('4433862584',"florida deaths updated");
+}
 
 
 
