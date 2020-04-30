@@ -89,7 +89,7 @@ function make_fl_deaths(){
 	global $today;
 	foreach ($florida_deaths as $date => $array){
 		$last_count = $count;
-		$count = intval($array[$aka]);
+		$count = intval($array['Deaths']);
 		$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
 		$today[$county] = $count;
 	}
