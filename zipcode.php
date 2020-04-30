@@ -139,7 +139,7 @@ window.onload = function () {
 
 
 <div class="row"><div class="col-sm-2"><?PHP echo $text_div;?><?PHP echo $text_div2;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
-<div class="row"><div class="col-sm-6"><?PHP echo $time_chart;?></div><div class="col-sm-6"><?PHP echo $time_chart2;?></div></div>
+
 	
 <?PHP include_once('footer.php'); ?>
 	
