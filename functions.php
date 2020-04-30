@@ -55,7 +55,7 @@ function make_florida_zip_array($url='',$json='',$force=''){
 	$debug .= ob_get_clean();
 	foreach ($array['features'] as $key => $value){
 		$zip = $value['attributes']['ZIP'];
-		$return[$zip]['ProtectedCount'] = $value['attributes']['Cases_1'];
+		$return[$zip]['ProtectedCount'] = $value['attributes']['Cases'];
 		$zip2name[$zip] = $value['attributes']['c_places'] ;
 	}
 	return $return;
