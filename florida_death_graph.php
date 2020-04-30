@@ -152,7 +152,7 @@ function toggleDataSeries(e) {
 <div id="chartContainer" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 <script src="canvasjs.min.js"></script>
 
-<?PHP print_r($florida_deaths); ?>
+
 
 
 
