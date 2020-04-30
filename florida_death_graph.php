@@ -1,5 +1,5 @@
 <?PHP
-$page_description = "Florida Death Data";
+$page_description = "Florida Deaths";
 include_once('menu.php');
 global $florida_deaths;
 $florida_deaths = $florida = make_florida_zip_array2('','','');
@@ -12,7 +12,11 @@ function make_fl_deaths(){
 	foreach ($florida_deaths as $date => $array){
 		$last_count = $count;
 		$count = intval($array['Deaths']);
-		$return .= '{ label: "'.date('Y-m-d',$date).'", y: '.$count.' }, ';
+		if ($date > 0){
+			$time = $date / 1000;
+			$date = date('Y-m-d',$time+14400);
+			$return .= '{ label: "'.date('Y-m-d',$date).'", y: '.$count.' }, ';
+		}
 		$today[$county] = $count;
 	}
       	$return = rtrim(trim($return), ",");
