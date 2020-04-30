@@ -54,7 +54,7 @@ if ($zip2 != '99999'){
 	if ($i > $i2){
 		$time_chart2_pre='';
 		// add blank days to the front of $time_chart2
-		foreach (range($i2, $i) as $back_days) {
+		foreach (range($i2, $i-1) as $back_days) {
 			$back_days = -1 * $back_days; 
 			$date = date('Y-m-d',strtotime($back_days.' days'));
 			$time_chart2_pre =  '{ label: "'.$date.'", y: 0 }, ' . $time_chart2_pre;
@@ -64,7 +64,8 @@ if ($zip2 != '99999'){
 		$time_chart_pre='';
 		$back_days = -1 * $back_days; 
 		// add blank days to the front of $time_chart
-		foreach (range($i2, $i) as $back_days) {
+		foreach (range($i, $i2-1) as $back_days) {
+			$back_days = -1 * $back_days; 
 			$date = date('Y-m-d',strtotime($back_days.' days'));
 			$time_chart_pre =  '{ label: "'.$date.'", y: 0 }, ' . $time_chart_pre;
 		}
