@@ -35,11 +35,12 @@ while ($d = mysqli_fetch_array($r)){
 }
 $time_chart = rtrim(trim($time_chart), ",");
 $page_description = "$date $name at $last_count Cases";
+$name2='';
 if ($zip2 != '99999'){
 	$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip2' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		$name .= "and $d[town_name], $d[state_name]";
+		$name2 = "and $d[town_name], $d[state_name]";
 		$time_chart2 .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 		$text_div2 .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 		$last_count2 = $d[report_count];
@@ -47,7 +48,7 @@ if ($zip2 != '99999'){
 	$time_chart2 = rtrim(trim($time_chart2), ",");
 	$page_description = "$date $name at $last_count, $last_count2 Cases";
 }
-
+$name = $name.$name2;
 
 include_once('menu.php');
 
