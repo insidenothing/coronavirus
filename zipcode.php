@@ -41,9 +41,15 @@ if ($zip2 != '99999'){
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$name2 = " and $d[town_name], $d[state_name]";
-		$time_chart2 .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
+		$count = $d['report_count'];
+		if ($count == 0){
+			if ($last_count2 > 0){
+				$count = $last_count2; // patch missing data with yesterday	
+			}
+		}
+		$time_chart2 .=  '{ label: "'.$d['report_date'].'", y: '.$count.' }, ';
 		$text_div2 .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
-		$last_count2 = $d[report_count];
+		$last_count2 = $count;
 		$i2++; // number of days in second graph
 	}
 	$time_chart2 = rtrim(trim($time_chart2), ",");
