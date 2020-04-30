@@ -96,7 +96,7 @@ window.onload = function () {
 		dataPoints: [
 			'.$time_chart2.'
 		]
-		}';?>]
+		}'; } ?>]
 	})
 	chartZIP2.render();	
 
