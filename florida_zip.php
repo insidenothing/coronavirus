@@ -139,7 +139,7 @@ function makeZIPpoints(){
 			visible: true,
 			showInLegend: false,
 			yValueFormatString: "#####",
-			name: "'.$name.'",
+			name: "'.$name $zip.'",
 			dataPoints: [
 				'.make_zip($zip).'
 			]},';
