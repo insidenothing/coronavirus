@@ -1,5 +1,63 @@
 <?PHP
-
+function make_florida_zip_array2($url='',$json='',$force=''){
+	global $zip2name;
+	global $debug;
+	global $arcgis_key;
+	global $core;
+	$return = array();
+	if ($json != ''){
+		$array = json_decode($json, true);
+		return $array;
+	}
+	$url = 'https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/ArcGIS/rest/services/Florida_COVID_19_Deaths_by_Day/FeatureServer/0/query?where=1%3D1&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=';
+	$return['url_pulled'] = $url;
+	if($force == ''){
+		$q = "select raw_response from coronavirus where url_pulled = '$url' order by id desc";
+		$debug .= "<p>USING SAVED VERSION $q</p>";
+		$r = $core->query($q);
+		$d = mysqli_fetch_array($r);
+		$json = $d['raw_response'];
+	}else{
+		$json = getPage($url);
+		global $raw;
+		$raw = $json;
+	}
+	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
+		die('499');	
+	}
+	if ($json == '{"error":{"code":504,"message":"Your request has timed out.","details":[]}}'){
+		die('504');	
+	}
+	if ($json == '{"error":{"code":503,"message":"An error occurred.","details":[]}}'){
+		die('503');
+	}
+	if ($json == '{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}'){
+		die('400');
+	}
+	if ($json == '{
+  "error" : 
+  {
+    "code" : 400, 
+    "message" : "Cannot perform query. Invalid query parameters.", 
+    "details" : [
+      "Unable to perform query. Please check your parameters."
+    ]
+  }
+}'){
+	die('400');	
+	}
+	ob_start();
+	$array = json_decode($json, true);
+	echo '<pre>';
+	print_r($array);
+	echo '</pre>';
+	$debug .= ob_get_clean();
+	foreach ($array['features'] as $key => $value){
+		$date = $value['attributes']['Date'];
+		$return[$zip]['ProtectedCount'] = $value['attributes']['Deaths'];
+	}
+	return $return;
+}
 function make_florida_zip_array($url='',$json='',$force=''){
 	global $zip2name;
 	global $debug;
