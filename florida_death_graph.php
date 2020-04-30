@@ -3,9 +3,15 @@ $page_description = "Florida Deaths";
 include_once('menu.php');
 global $florida_deaths;
 $florida_deaths = $florida = make_florida_zip_array2('','','');
+global $graph_total;
+$graph_total='';
+global $graph_total_int;
+$graph_total_int=0;
 function make_fl_deaths(){
         global $core;
         global $florida_deaths;
+	global $graph_total;
+	global $graph_total_int;
         $return = '';
 	$count=0;
 	global $today;
@@ -16,10 +22,13 @@ function make_fl_deaths(){
 			$time = $date / 1000;
 			$date = date('Y-m-d',$time+14400);
 			$return .= '{ label: "'.date('Y-m-d',$date).'", y: '.$count.' }, ';
+			$graph_total_int = $graph_total_int + $count;
+			$graph_total .= '{ label: "'.date('Y-m-d',$date).'", y: '.$graph_total_int.' }, ';
 		}
 		$today[$county] = $count;
 	}
-      	$return = rtrim(trim($return), ",");
+	$graph_total 	= rtrim(trim($graph_total), ",");
+      	$return 	= rtrim(trim($return), ",");
     return $return;
 }
 ?>
@@ -50,9 +59,19 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Floridians",
+		name: "New Deaths",
 		dataPoints: [
 			<?PHP echo make_fl_deaths(); ?>
+		]
+	},
+	      {
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Total Deaths",
+		dataPoints: [
+			<?PHP echo $graph_total; ?>
 		]
 	}]
 }			      			      
