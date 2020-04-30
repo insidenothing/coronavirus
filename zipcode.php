@@ -15,12 +15,9 @@ if ($pos !== false) {
 	$zip2 = $zips[1];
 }
 $logo = 'off';
-
 global $zip_debug;
-
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
-
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -57,8 +54,7 @@ if ($zip2 != '99999'){
 	if ($i > $i2){
 		$time_chart2_pre='';
 		// add blank days to the front of $time_chart2
-		$add = $i - $i2;
-		foreach (range($i2, $add) as $back_days) {
+		foreach (range($i2, $i) as $back_days) {
 			$date = date('Y-m-d',strtotime('-$back_days'));
 			$time_chart2_pre .=  '{ label: "'.$date.'", y: 0 }, ';
 		}
@@ -66,8 +62,7 @@ if ($zip2 != '99999'){
 	}elseif($i < $i2){
 		$time_chart_pre='';
 		// add blank days to the front of $time_chart
-		$add = $i2 - $i;
-		foreach (range($i2, $add) as $back_days) {
+		foreach (range($i2, $i) as $back_days) {
 			$date = date('Y-m-d',strtotime('-$back_days'));
 			$time_chart_pre .=  '{ label: "'.$date.'", y: 0 }, ';
 		}
@@ -75,9 +70,6 @@ if ($zip2 != '99999'){
 	}
 }
 include_once('menu.php');
-
-
-
 ?>
 
 
