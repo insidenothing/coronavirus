@@ -19,8 +19,9 @@ function make_fl_deaths(){
 		$last_count = $count;
 		$count = intval($array['Deaths']);
 		if ($date > 0){
-			$time = $date / 1000;
-			$date = date('Y-m-d',$time+14400);
+			//$time = $date / 1000;
+			//$date = date('Y-m-d',$time+14400);
+			
 			$return .= '{ label: "'.$date.'", y: '.$count.' }, ';
 			$graph_total_int = $graph_total_int + $count;
 			$graph_total .= '{ label: "'.date('Y-m-d',$date).'", y: '.$graph_total_int.' }, ';
