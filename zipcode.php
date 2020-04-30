@@ -40,7 +40,7 @@ if ($zip2 != '99999'){
 	$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip2' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		$name2 = " and $d[town_name], $d[state_name]";
+		$name2 = " $d[town_name], $d[state_name]";
 		$count = $d['report_count'];
 		if ($count == 0){
 			if ($last_count2 > 0){
@@ -53,7 +53,7 @@ if ($zip2 != '99999'){
 		$i2++; // number of days in second graph
 	}
 	$time_chart2 = rtrim(trim($time_chart2), ",");
-	$page_description = "$date $name at $last_count, $last_count2 Cases";
+	$page_description = "$date $name at $last_count, $name2 at $last_count2 Cases";
 }
 $name = $name.$name2;
 if ($zip2 != '99999'){
