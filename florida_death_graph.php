@@ -126,7 +126,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "ICU Beds",
+		name: "Floridians",
 		dataPoints: [
 			<?PHP echo make_fl_deaths(); ?>
 		]
