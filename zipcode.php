@@ -27,29 +27,53 @@ $time_chart2='';
 $text_div2='';
 $q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date";
 $r = $core->query($q);
+$i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
+	$i++; // number of days in the graph
 }
 $time_chart = rtrim(trim($time_chart), ",");
 $page_description = "$date $name at $last_count Cases";
 $name2='';
+$i2=0;
 if ($zip2 != '99999'){
 	$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip2' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		$name2 = "and $d[town_name], $d[state_name]";
+		$name2 = " and $d[town_name], $d[state_name]";
 		$time_chart2 .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 		$text_div2 .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 		$last_count2 = $d[report_count];
+		$i2++; // number of days in second graph
 	}
 	$time_chart2 = rtrim(trim($time_chart2), ",");
 	$page_description = "$date $name at $last_count, $last_count2 Cases";
 }
 $name = $name.$name2;
-
+if ($zip2 != '99999'){
+	if ($i > $i2){
+		$time_chart2_pre='';
+		// add blank days to the front of $time_chart2
+		$add = $i - $i2;
+		foreach (range($i2, $add) as $back_days) {
+			$date = date('Y-m-d',strtotime('-$back_days'));
+			$time_chart2_pre .=  '{ label: "'.$date.'", y: 0 }, ';
+		}
+		$time_chart2 = $time_chart2_pre.$time_chart2;
+	}elseif($i < $i2){
+		$time_chart_pre='';
+		// add blank days to the front of $time_chart
+		$add = $i2 - $i;
+		foreach (range($i2, $add) as $back_days) {
+			$date = date('Y-m-d',strtotime('-$back_days'));
+			$time_chart_pre .=  '{ label: "'.$date.'", y: 0 }, ';
+		}
+		$time_chart = $time_chart_pre.$time_chart;
+	}
+}
 include_once('menu.php');
 
 
