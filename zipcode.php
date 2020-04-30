@@ -7,7 +7,13 @@ if(isset($_GET['zip'])){
 }else{
   	$zip = '99999';	
 }
-
+$zip2 = '99999';
+$pos = strpos($zip, ',');
+if ($pos !== false) {
+	$zips = explode(',',$zip);
+	$zip = $zips[0];
+	$zip2 = $zips[1];
+}
 $logo = 'off';
 
 global $zip_debug;
@@ -17,6 +23,8 @@ include_once('functions.php'); //outside webserver
 
 $time_chart='';
 $text_div='';
+$time_chart2='';
+$text_div2='';
 $q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
@@ -26,9 +34,20 @@ while ($d = mysqli_fetch_array($r)){
 	$last_count = $d[report_count];
 }
 $time_chart = rtrim(trim($time_chart), ",");
-
-
 $page_description = "$date $name at $last_count Cases";
+if ($zip2 != '99999'){
+	$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip2' order by report_date";
+	$r = $core->query($q);
+	while ($d = mysqli_fetch_array($r)){
+		$name .= "and $d[town_name], $d[state_name]";
+		$time_chart2 .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
+		$text_div2 .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
+		$last_count2 = $d[report_count];
+	}
+	$time_chart2 = rtrim(trim($time_chart2), ",");
+	$page_description = "$date $name at $last_count, $last_count2 Cases";
+}
+
 
 include_once('menu.php');
 
@@ -68,7 +87,16 @@ window.onload = function () {
 		dataPoints: [
 			<?PHP echo $time_chart; ?>
 		]
-		}]
+		}<?PHP if ($zip2 != '99999'){ echo ',{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$zip2.';",
+		dataPoints: [
+			'.$time_chart2.'
+		]
+		}';?>]
 	})
 	chartZIP2.render();	
 
@@ -84,7 +112,7 @@ window.onload = function () {
 </script>
 
 
-<div class="row"><div class="col-sm-2"><?PHP echo $text_div;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
+<div class="row"><div class="col-sm-2"><?PHP echo $text_div;?><?PHP echo $text_div2;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
 	
 <?PHP include_once('footer.php'); ?>
