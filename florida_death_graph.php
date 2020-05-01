@@ -42,7 +42,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "Florida Deaths as of $date "
+		text: "Florida Deaths as of <?PHP echo $date; ?>"
 	},
 	axisY :{
 		includeZero: false,
