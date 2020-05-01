@@ -12,6 +12,7 @@ function make_fl_deaths(){
         global $florida_deaths;
 	global $graph_total;
 	global $graph_total_int;
+        global $date;
         $return = '';
 	$count=0;
 	global $today;
@@ -31,6 +32,7 @@ function make_fl_deaths(){
       	$return 	= rtrim(trim($return), ",");
     return $return;
 }
+global $date;
 ?>
 <script>
 window.onload = function () {
@@ -40,7 +42,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "Florida Death Data"
+		text: "Florida Deaths as of $date "
 	},
 	axisY :{
 		includeZero: false,
