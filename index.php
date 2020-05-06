@@ -410,6 +410,7 @@ echo do_math_location('Somerset');
 echo do_math_location('StMarys');
 echo do_math_location('Talbot');
 echo do_math_location('Washington');
+echo do_math_location('Wicomico'); 
 echo do_math_location('Worcester');
 echo '<h4>Age Groups</h4>';
 echo do_math_location('case0to9');
