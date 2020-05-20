@@ -15,7 +15,8 @@ global $send_message;
 $send_message = 'off';
 
 // Last Version
-$url_pulled = $maryland_history['url_pulled'];
+$url_pulled = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_COVID_19_CasesByCounty/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+//$url_pulled = $maryland_history['url_pulled'];
 $r = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
