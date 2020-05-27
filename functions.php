@@ -487,7 +487,6 @@ function make_maryland_array3($url='',$json,$force=''){
 	$return = array();
 	global $raw;
 	$raw = $json;
-	}
 	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
 		die('499');	
 	}
