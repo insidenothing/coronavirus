@@ -14,7 +14,7 @@ if (isset($_GET['date'])){
  $date_formatted = 'total'.date('m_d_Y');
 }
 
-$zipData = make_maryland_array3($d['raw_response'],$date_foramted);
+$zipData = make_maryland_array3($d['raw_response'],$date_formatted);
 //$zipData = format_json($d['raw_response']);
 echo "<h1>INPUT</h1>";
 echo "<div>".$d['raw_response']."</div>";
