@@ -65,7 +65,11 @@ if(isset($_GET['date'])){
 
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+
+
+
 print_r($zipData);
+echo $d['raw_response'];
 die();
 
 
