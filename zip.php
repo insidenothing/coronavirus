@@ -9,7 +9,7 @@ while($d = mysqli_fetch_array($r)){
 	$zipcode[$zip] = $d['town_name'];
 }
 
-function coronavirus_zip($zip,$date,$count,$town){
+function coronavirus_zip($zip,$date,$count){
 	global $zipcode;
 	$town = $zipcode[$zip];
 	// the order we call the function will matter...
