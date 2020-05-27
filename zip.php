@@ -52,19 +52,19 @@ global $nocases;
 global $cases;
 global $zipData;
 global $date;
-if(isset($_GET['date'])){
+
+$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '13' order by id desc");
+$d = mysqli_fetch_array($r);
+if(isset($_GET['date_formatted'])){
+	$zipData = make_maryland_array3($d['raw_response'],$_GET['date_formatted']);
 	$date = $_GET['date'];
-	$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '13' and just_date = '$date' order by id desc");
-	$d = mysqli_fetch_array($r);
-	$zipData = make_maryland_array3($d['raw_response']);
-
 }else{
-	$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '13' order by id desc");
-	$d = mysqli_fetch_array($r);
-	$zipData = make_maryland_array3($d['raw_response']);
+	$zipData = make_maryland_array3($d['raw_response'],'');
 	$date = date('Y-m-d');
-
 }
+
+
+
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 
