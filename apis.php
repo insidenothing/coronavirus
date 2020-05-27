@@ -8,9 +8,9 @@ while($d = mysqli_fetch_array($r)){
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
-  $r = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
-  $d = mysqli_fetch_array($r);
-  $old = $d['raw_response'];
+  $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+  $d2 = mysqli_fetch_array($r2);
+  $old = $d2['raw_response'];
   $raw = getPage($url);
   $raw_response = $core->real_escape_string($raw);
   $test1 = $old;
