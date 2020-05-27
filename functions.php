@@ -479,7 +479,7 @@ function make_maryland_array2($json=''){
 }
 
 global $zip2name;
-function make_maryland_array3($url='',$json,$force=''){
+function make_maryland_array3($json){
 	global $zip2name;
 	global $debug;
 	global $arcgis_key;
