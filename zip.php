@@ -49,13 +49,16 @@ global $zipData;
 global $date;
 if(isset($_GET['date'])){
 	$date = $_GET['date'];
-	$r = $core->query("select html from coronavirus where url_pulled like '%ZIPCodes_MD_1%' and just_date = '$date' order by id desc");
+	$r = $core->query("select raw_response from coronavirus_api_cache where id = '13' and just_date = '$date' order by id desc");
 	$d = mysqli_fetch_array($r);
-	$zipData = make_maryland_array3('',$d['html'],'');
+	$zipData = make_maryland_array3('',$d['raw_response'],'');
 	$zipData2 = make_maryland_array3('',''); // this builds the name array
 }else{
 	$date = date('Y-m-d');
-	$zipData = make_maryland_array3('','');
+	$r = $core->query("select raw_response from coronavirus_api_cache where id = '13' and just_date = '$date' order by id desc");
+	$d = mysqli_fetch_array($r);
+	$zipData = make_maryland_array3('',$d['raw_response'],'');
+	$zipData2 = make_maryland_array3('',''); // this builds the name array
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
