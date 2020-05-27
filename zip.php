@@ -52,13 +52,12 @@ if(isset($_GET['date'])){
 	$r = $core->query("select raw_response from coronavirus_api_cache where id = '13' and just_date = '$date' order by id desc");
 	$d = mysqli_fetch_array($r);
 	$zipData = make_maryland_array3('',$d['raw_response'],'');
-	$zipData2 = make_maryland_array3('',''); // this builds the name array
+
 }else{
-	$date = date('Y-m-d');
-	$r = $core->query("select raw_response from coronavirus_api_cache where id = '13' and just_date = '$date' order by id desc");
+	$r = $core->query("select raw_response from coronavirus_api_cache where id = '13' order by id desc");
 	$d = mysqli_fetch_array($r);
 	$zipData = make_maryland_array3('',$d['raw_response'],'');
-	$zipData2 = make_maryland_array3('',''); // this builds the name array
+
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
