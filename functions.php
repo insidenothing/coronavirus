@@ -1,4 +1,10 @@
 <?PHP
+function format_json($json){
+	$return = array();
+	$array = json_decode($json, true);
+	return $return;
+}
+
 function make_florida_zip_array2($url='',$json='',$force=''){
 	global $zip2name;
 	global $debug;
