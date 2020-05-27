@@ -526,8 +526,7 @@ function make_maryland_array3($json){
 	foreach ($array['features'] as $key => $value){
 		$zip = $value['attributes']['ZIP_CODE'];
 		$date_formated = date('m_d_Y');
-		$return[$zip]['ProtectedCount'] = $value['attributes']['total'.$date_formated];
-		//$zip2name[$zip] = $value['attributes']['ZIPName'] ;
+		$return[$zip] = $value['attributes']['total'.$date_formated];
 	}
 	return $return;
 }
