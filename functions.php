@@ -485,7 +485,7 @@ function make_maryland_array2($json=''){
 }
 
 global $zip2name;
-function make_maryland_array3($json){
+function make_maryland_array3($json,$date){
 	global $zip2name;
 	global $debug;
 	global $arcgis_key;
@@ -525,8 +525,12 @@ function make_maryland_array3($json){
 	$debug .= ob_get_clean();
 	foreach ($array['features'] as $key => $value){
 		$zip = $value['attributes']['ZIP_CODE'];
-		$date_formated = date('m_d_Y');
-		$return[$zip] = $value['attributes']['total'.$date_formated];
+		if ($date != ''){
+		 $date_formated = $date;	
+		}else{
+		 $date_formated = 'total'.$date_formated = date('m_d_Y');	
+		}
+		$return[$zip] = $value['attributes'][$date_formated];
 	}
 	return $return;
 }
