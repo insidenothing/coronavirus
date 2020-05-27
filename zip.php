@@ -4,7 +4,17 @@ if(isset($_GET['novideo'])){
 }
 include_once('menu.php');
 
+global $zipcode;
+$zipcode = array();
+$q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
+$r = $core->query($q);
+where($d = mysqli_fetch_array($r)){
+	$zipcode[$d[zip_code]] = $d['town_name'];
+}
+
 function coronavirus_zip($zip,$date,$count,$town){
+	global $zipcode;
+	$town = $zipcode[$zip];
 	// the order we call the function will matter...
 	global $core;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
@@ -43,6 +53,7 @@ function coronavirus_zip($zip,$date,$count,$town){
 }
 
 
+
 global $nocases;
 global $cases;
 global $zipData;
@@ -60,6 +71,13 @@ if(isset($_GET['date'])){
 
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+
+
+print_r($zipData);
+die();
+
+
+
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
 function make_datapoints(){
 	global $zipData;
