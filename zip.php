@@ -67,8 +67,11 @@ if(isset($_GET['date'])){
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 
-
-print_r($zipData);
+foreach ($zipData as $a => $v){
+  // coronavirus_zip($zip,$date,$count);
+	echo "$a $v <br>";
+}
+//print_r($zipData);
 //echo $d['raw_response'];
 die();
 
