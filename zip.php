@@ -1,15 +1,12 @@
 <?PHP
-if(isset($_GET['novideo'])){
-	$logo = 'off';
-}
 include_once('menu.php');
-
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
 $r = $core->query($q);
 where($d = mysqli_fetch_array($r)){
-	$zipcode[$d[zip_code]] = $d['town_name'];
+	$zip = $d['zip_code'];
+	$zipcode[$zip] = $d['town_name'];
 }
 
 function coronavirus_zip($zip,$date,$count,$town){
@@ -51,9 +48,6 @@ function coronavirus_zip($zip,$date,$count,$town){
 		$core->query("update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date' ");	
 	}
 }
-
-
-
 global $nocases;
 global $cases;
 global $zipData;
@@ -71,8 +65,6 @@ if(isset($_GET['date'])){
 
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
-
-
 print_r($zipData);
 die();
 
