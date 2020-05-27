@@ -62,6 +62,7 @@ if(isset($_GET['date'])){
 	$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '13' order by id desc");
 	$d = mysqli_fetch_array($r);
 	$zipData = make_maryland_array3($d['raw_response']);
+	$date = date('Y-m-d');
 
 }
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
@@ -69,7 +70,7 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 foreach ($zipData as $a => $v){
   // coronavirus_zip($zip,$date,$count);
-	echo "$a $v <br>";
+	echo "$a $date $v <br>";
 }
 //print_r($zipData);
 //echo $d['raw_response'];
