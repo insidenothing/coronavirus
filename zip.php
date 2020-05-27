@@ -70,7 +70,7 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
-	echo $zipcode[$key]." $key $date $value <br>";
+	echo $zipcode[$key]." $key $date ".intval($value)." <br>";
 }
 print_r($zipData);
 //echo $d['raw_response'];
