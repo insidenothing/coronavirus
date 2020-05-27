@@ -4,7 +4,7 @@ global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
 $r = $core->query($q);
-where($d = mysqli_fetch_array($r)){
+while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
 }
