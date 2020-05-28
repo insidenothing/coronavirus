@@ -13,7 +13,7 @@ $total_zip = $r->num_rows;
 $flat = 23;
 $down = 0;
 ?>
-
+<h1>Maryland COVID 19 Reopen Dashboard<h1>
 <?PHP
 // pull date from last update, not assume today.
 $q = "select just_date from coronavirus order by id desc limit 1";
@@ -32,6 +32,12 @@ $new_up=0;
 $new_flat=0;
 $new_down=0;
 ?>
+
+<div class="row">
+  <div class="col-sm-12">
+	<div id="chartContainer5" style="height: 400px; width: 100%;"></div>
+ </div>
+</div>
 
 <div class="row">
   <div class="col-sm-12">
@@ -174,6 +180,22 @@ $new_down=0;
 </div>
 <?PHP 
 $buffer = ob_get_clean();
+function make_reopen($type){
+        global $core;
+        $return = '';
+        $q = "SELECT * FROM coronavirus_reopen";
+	$r = $core->query($q);
+	while ($d = mysqli_fetch_array($r)){
+		if ($type == 'open'){
+			$return .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_open'].' }, ';
+		}else{
+			$return .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_closed'].' }, ';
+		}
+	}
+        
+    	$return = rtrim(trim($return), ",");
+    return $return;
+}
 ?>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
@@ -218,6 +240,50 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 });
 chart2.render();
 
+		var chart5 = new CanvasJS.Chart("chartContainer5", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "The Great State of Maryland - Open v Closed covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "Number of ZIP Codes",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "ZIP Ready",
+		dataPoints: [
+			<?PHP echo make_reopen('open'); ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "ZIP Not Ready",
+		dataPoints: [
+			<?PHP echo make_reopen('closed'); ?>
+		]
+	}]
+}
+			      
+			      
+ );
+chart5.render();
   	
 function toggleDataSeries(e) {
 	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
