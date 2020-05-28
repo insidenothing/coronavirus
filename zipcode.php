@@ -97,7 +97,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name;?> Cases - 14 days covid19math.net"
+			text: "Last 14 days for <?PHP echo $name;?> covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
