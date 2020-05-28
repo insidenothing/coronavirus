@@ -5,7 +5,7 @@
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/download_zip.php'){ echo "class='active'"; } ?> ><a href="download_zip.php">Download Our Zipcode Data</a></li>
 
 	<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">MD Facebook Group</a></li>
-	<li role='presentation'><a target='_Blank' href="https://www.patrickmcguire.me/">&copy 2020 Patrick McGuire</a></li>
+
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/debug.php'){ echo "class='active'"; } ?> ><a href="debug.php">Raw Data</a></li>
 	<li role='presentation'><a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a></li>
 	<li role='presentation'><a target='_Blank' href="https://coronavirus.maryland.gov/">Maryland Department of Health</a></li>
@@ -15,6 +15,7 @@
 	<li role='presentation'><span id="siteseal"><script async type="text/javascript" src="https://seal.starfieldtech.com/getSeal?sealID=JF3ETwtNbyZ345vnJlsp4zh2fEEasPM3vcpVLuhjNIi6TCtnnRaJxL5WiQ5T"></script></span></li>
 </ul>
 
+<div class="row"><div class="col-sm-12">&copy 2020 Patrick McGuire</div></div>
 <div class="row"><div class="col-sm-12"><h3>Hit Counter</h3><?PHP echo get_hits();?></div></div>
 
 
