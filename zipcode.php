@@ -95,7 +95,7 @@ include_once('menu.php');
 ?>
 <div class="row">
 	<div class="col-sm-12" style='text-align:center; background-color:yellow;'>
-		<h1>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP $per = ( ( $end_value - $start_value ) / $start_value ) * 100; echo $per;?>% change in 2 weeks.</h1>
+		<h1>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP $per = round( ( ( $end_value - $start_value ) / $start_value ) * 100); echo $per;?>% change in 2 weeks.</h1>
 	</div>
 </div>
 
