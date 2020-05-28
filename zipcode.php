@@ -126,8 +126,11 @@ window.onload = function () {
 		},
 		axisY :{
 			includeZero: false,
-			title: "Number of Cases",
-			suffix: ""
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
 		},
 		toolTip: {
 			shared: "true"
@@ -141,7 +144,7 @@ window.onload = function () {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Total",
+		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart; ?>
 		]
@@ -151,7 +154,7 @@ window.onload = function () {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> New",
+		name: "<?PHP echo $zip;?> New Count",
 		dataPoints: [
 			<?PHP echo $new_chart; ?>
 		]
