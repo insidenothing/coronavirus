@@ -1,6 +1,5 @@
 <?PHP
 include_once('county_zip_codes.php');
-
 global $zip;
 if(isset($_GET['zip'])){
 	$zip = $_GET['zip'];	
@@ -22,7 +21,7 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 $text_div2='';
-$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip' order by report_date";
+$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit 0, 14";
 $r = $core->query($q);
 $i=0;
 while ($d = mysqli_fetch_array($r)){
@@ -37,7 +36,7 @@ $page_description = "$date $name at $last_count Cases";
 $name2='';
 $i2=0;
 if ($zip2 != '99999'){
-	$q = "SELECT * FROM `coronavirus_zip` where zip_code = '$zip2' order by report_date";
+	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip2' order by report_date limit 0, 14";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$name2 = " $d[town_name], $d[state_name]";
