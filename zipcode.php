@@ -1,4 +1,12 @@
 <?PHP
+$range='14';
+if (isset($_GET['range'])){
+	$range = intval($_GET['range']);
+}
+$type_graph='column';
+if (isset($_GET['type_graph'])){
+	$type_graph = intval($_GET['type_graph']);
+}
 include_once('county_zip_codes.php');
 global $zip;
 if(isset($_GET['zip'])){
@@ -150,7 +158,7 @@ window.onload = function () {
 		]
 		},
 		{
-		type: "column",
+		type: "<?PHP echo $type_graph;?>",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
