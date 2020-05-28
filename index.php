@@ -13,7 +13,7 @@ $total_zip = $r->num_rows;
 $flat = 23;
 $down = 0;
 ?>
-<h1>Maryland COVID 19 Reopen Dashboard<h1>
+<h1>Maryland COVID 19 Reopen Dashboard</h1>
 <?PHP
 // pull date from last update, not assume today.
 $q = "select just_date from coronavirus order by id desc limit 1";
@@ -41,10 +41,9 @@ $new_down=0;
 
 <div class="row">
   <div class="col-sm-12">
-  <h3>Goals</h3>
-    We are setting up this page to track zipcodes across the curve. As they trend higher we count the days, 
+    <h3>We are setting up this page to track zipcodes across the curve. As they trend higher we count the days, 
     as they flatten off we count the days, as they drop we count the days. Every time the trend changes the
-    duration resets.
+	    duration resets.</h3>
   </div>
 </div>
 <?PHP
