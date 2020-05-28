@@ -33,6 +33,12 @@ while ($d = mysqli_fetch_array($r)){
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
+	if($i == 0){
+		$start_value = $d['report_count'];
+	}
+	if($i == 13){
+		$end_value = $d['report_count'];
+	}
 	$i++; // number of days in the graph
 }
 $time_chart = rtrim(trim($time_chart), ",");
@@ -143,7 +149,11 @@ window.onload = function () {
 	}	
 }
 </script>
-
+<div class="row">
+	<div class="col-sm-12">
+		<h1><?PHP echo $start_value;?> to <?PHP echo $end_value;?> is a <?PHP $per = ( ( $start_value - $end_value ) / $end_value ) * 100; echo $per;?>% change</h1>
+	</div>
+</div>
 
 <div class="row"><div class="col-sm-2"><?PHP echo $text_div;?><?PHP echo $text_div2;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
