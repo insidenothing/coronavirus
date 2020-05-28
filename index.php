@@ -239,6 +239,8 @@ function toggleDataSeries(e) {
 </div>
 <?PHP 
 echo $buffer;
+$zip_open=0;
+$zip_closed=0;
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -247,6 +249,7 @@ echo $buffer;
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_direction = 'DOWN' or trend_direction = 'FLAT' ) order by report_count desc";
 	    $r = $core->query($q);
 	    while($d = mysqli_fetch_array($r)){
+	       $zip_open++;
 	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
 	    }
 	    ?>
@@ -259,16 +262,27 @@ echo $buffer;
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_direction = 'UP' order by report_count desc ";
 	    $r = $core->query($q);
 	    while($d = mysqli_fetch_array($r)){
+		    $zip_closed++;
 	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
 	    }
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and state_name = '$state' order by report_count desc";
 	    $r = $core->query($q);
 	    while($d = mysqli_fetch_array($r)){
+		    $zip_closed++;
 	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
 	    }
 	    ?>
   </div>
 </div>
 <?PHP
+$date = date('Y-m-d');
+$q = "select * from coronavirus_reopen where the_date = '$date'";
+$r = $core->query($q);
+$d = mysqli_fetch_array($r);
+if ($d['id'] == ''){
+	$core->query("insert into coronavirus_reopen (zip_closed,zip_open,the_date) values ('$zip_closed','$zip_open','$date') ");
+}else{
+	$core->query("update coronavirus_reopen set zip_closed = '$zip_closed', zip_open = '$zip_open' where the_date = '$date' ");	
+}
 include_once('footer.php');
 ?>
