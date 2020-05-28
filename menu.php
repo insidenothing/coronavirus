@@ -91,7 +91,7 @@ while($d = mysqli_fetch_array($r)){
 	if ($pos === false) {	
 		?>
 		<div class="alert alert-success">
-			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 10:05 AM. Last Update was <?PHP echo $d['checked_datetime'];?>.
+			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 10:05 AM. Last Update was <?PHP echo $date;?>.
 		</div>
 		<?PHP 
 	} 
