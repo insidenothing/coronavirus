@@ -32,35 +32,7 @@ $new_up=0;
 $new_flat=0;
 $new_down=0;
 ?>
-<div class="row">
-  <div class="col-sm-12">
-	  <h1>Phase One Reopen</h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
- 	    <?PHP
-	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_direction = 'DOWN' or trend_direction = 'FLAT' ) order by report_count desc";
-	    $r = $core->query($q);
-	    while($d = mysqli_fetch_array($r)){
-	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
-	    }
-	    ?>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-	  <h1>Not Phase One</h1>
-	    <?PHP
-	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_direction = 'UP' order by report_count desc ";
-	    $r = $core->query($q);
-	    while($d = mysqli_fetch_array($r)){
-	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
-	    }
-	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and state_name = '$state' order by report_count desc";
-	    $r = $core->query($q);
-	    while($d = mysqli_fetch_array($r)){
-	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
-	    }
-	    ?>
-  </div>
-</div>
+
 <div class="row">
   <div class="col-sm-12">
   <h3>Goals</h3>
@@ -267,5 +239,36 @@ function toggleDataSeries(e) {
 </div>
 <?PHP 
 echo $buffer;
+?>
+<div class="row">
+  <div class="col-sm-12">
+	  <h1>Phase One Reopen</h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
+ 	    <?PHP
+	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_direction = 'DOWN' or trend_direction = 'FLAT' ) order by report_count desc";
+	    $r = $core->query($q);
+	    while($d = mysqli_fetch_array($r)){
+	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
+	    }
+	    ?>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+	  <h1>Not Phase One</h1>
+	    <?PHP
+	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_direction = 'UP' order by report_count desc ";
+	    $r = $core->query($q);
+	    while($d = mysqli_fetch_array($r)){
+	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
+	    }
+	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and state_name = '$state' order by report_count desc";
+	    $r = $core->query($q);
+	    while($d = mysqli_fetch_array($r)){
+	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
+	    }
+	    ?>
+  </div>
+</div>
+<?PHP
 include_once('footer.php');
 ?>
