@@ -14,13 +14,52 @@ $flat = 23;
 $down = 0;
 ?>
 
+<?PHP
+// pull date from last update, not assume today.
+$q = "select just_date from coronavirus order by id desc limit 1";
+$r = $core->query($q);
+$d = mysqli_fetch_array($r);
+$date = $d['just_date'];
+?>
+
+
+<?PHP 
+ob_start();
+$total_up=0;
+$total_flat=0;
+$total_down=0;
+$new_up=0;
+$new_flat=0;
+$new_down=0;
+?>
+
+<div class="row">
+  <div class="col-sm-12">
+	  <h1>Phase One Reopen</h1><p>The following zip codes have flattened and are ready to look at how to begin phase one.</h3>
+    <ol>
+    <?PHP
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 and trend_duration = 'DOWN'";
+    $r = $core->query($q);
+    while($d = mysqli_fetch_array($r)){
+        $color='orange';
+	    if ($d['trend_direction'] == 'FLAT'){
+		$color = 'lightgreen';
+		}
+	    echo "<li style='background-color:$color;'><a href='zipcode.php?zip=$d[zip_code]'>For $d[trend_duration] days, $d[town_name] ( $d[zip_code] ) has been going $d[trend_direction] and is now $d[report_count]</a></li>"; 
+    }
+    ?>
+    </ol>
+  </div>
+	
+</div>
+
 
 <div class="row">
   <div class="col-sm-12">
   <h3>Goals</h3>
     We are setting up this page to track zipcodes across the curve. As they trend higher we count the days, 
     as they flatten off we count the days, as they drop we count the days. Every time the trend changes the
-    duration resets. Phase One <b>Starts</b> after 14 days of Down Trend. 
+    duration resets.
   </div>
 </div>
 
