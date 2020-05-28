@@ -31,7 +31,11 @@ $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
-	$me = intval($d['report_count'] - $last);
+	if ($i == 0){
+		$me = 0;
+	}else{
+		$me = intval($d['report_count'] - $last);
+	}
 	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
