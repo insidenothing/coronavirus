@@ -3,6 +3,7 @@ $range='14';
 if (isset($_GET['range'])){
 	$range = intval($_GET['range']);
 }
+$range2 = $range - 1;
 $type_graph='column';
 if (isset($_GET['type_graph'])){
 	$type_graph = $_GET['type_graph'];
@@ -51,7 +52,7 @@ while ($d = mysqli_fetch_array($r)){
 	if($i == 0){
 		$start_value = $d['report_count'];
 	}
-	if($i == 13){
+	if($i == $range2){
 		$end_value = $d['report_count'];
 	}
 	$i++; // number of days in the graph
@@ -65,8 +66,8 @@ if ($zip2 != '99999'){
 	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 	$r = $core->query($q);
 	$rows = mysqli_num_rows($r);
-	$start = $rows - 14;
-	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip2' order by report_date limit $start, 14";
+	$start = $rows - $range;
+	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip2' order by report_date limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$name2 = " $d[town_name], $d[state_name]";
