@@ -35,24 +35,37 @@ $new_down=0;
 
 <div class="row">
   <div class="col-sm-12">
-	  <h1>Phase One Reopen</h1><p>The following zip codes have flattened and are ready to look at how to begin phase one.</h3>
-    <ol>
-    <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 and trend_duration = 'DOWN'";
-    $r = $core->query($q);
-    while($d = mysqli_fetch_array($r)){
-        $color='orange';
-	    if ($d['trend_direction'] == 'FLAT'){
-		$color = 'lightgreen';
-		}
-	    echo "<li style='background-color:$color;'><a href='zipcode.php?zip=$d[zip_code]'>For $d[trend_duration] days, $d[town_name] ( $d[zip_code] ) has been going $d[trend_direction] and is now $d[report_count]</a></li>"; 
-    }
-    ?>
-    </ol>
+	  <h1>Phase One Reopen</h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
+    
+	    <?PHP
+	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_duration = 'DOWN' or trend_duration = 'FLAT' )";
+	    $r = $core->query($q);
+	    while($d = mysqli_fetch_array($r)){
+	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
+	    }
+	    ?>
+    
   </div>
-	
 </div>
-
+<div class="row">
+  <div class="col-sm-12">
+	  <h1>Not Phase One</h1>
+    
+	    <?PHP
+	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_duration = 'UP' )";
+	    $r = $core->query($q);
+	    while($d = mysqli_fetch_array($r)){
+	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
+	    }
+	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and state_name = '$state'";
+	    $r = $core->query($q);
+	    while($d = mysqli_fetch_array($r)){
+	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
+	    }
+	    ?>
+    
+  </div>
+</div>
 
 <div class="row">
   <div class="col-sm-12">
