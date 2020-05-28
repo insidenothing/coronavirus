@@ -3,15 +3,13 @@
 <ul class="nav nav-pills" style="text-align:center;">
 	<li role='presentation'><a target='_Blank' href="https://datastudio.google.com/u/0/reporting/f4919f28-eb01-47d1-8c49-51c343e55f20/page/tBINB">Google Analytics Report</a></li>
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/download_zip.php'){ echo "class='active'"; } ?> ><a href="download_zip.php">Download Our Zipcode Data</a></li>
-	<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19florida/">FL Facebook Group</a></li>
+
 	<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">MD Facebook Group</a></li>
 	<li role='presentation'><a target='_Blank' href="https://www.patrickmcguire.me/">&copy 2020 Patrick McGuire</a></li>
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/debug.php'){ echo "class='active'"; } ?> ><a href="debug.php">Raw Data</a></li>
 	<li role='presentation'><a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a></li>
 	<li role='presentation'><a target='_Blank' href="https://coronavirus.maryland.gov/">Maryland Department of Health</a></li>
-	<li role='presentation'><a target='_Blank' href="https://arcg.is/0Hfi5O/">Florida Department of Health - GIS Office</a></li>
-	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/florida_zip.php'){ echo "class='active'"; } ?> ><a href="florida_zip.php">All FL Zip Codes</a></li>
-	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/zip.php'){ echo "class='active'"; } ?> ><a href="zip.php">All MD Zip Codes</a></li>
+	
 	<li role='presentation'><a target='_Blank' href="http://www.ciclt.net/sn/clt/capitolimpact/gw_countymap.aspx?State=md&StFIPS=&StName=Maryland">ZIP Data</a></li>
 	<li role='presentation'><a target='_Blank' href="http://boinc.bakerlab.org/rosetta/team_display.php?teamid=18832">Fold for Covid</a></li>
 	<li role='presentation'><span id="siteseal"><script async type="text/javascript" src="https://seal.starfieldtech.com/getSeal?sealID=JF3ETwtNbyZ345vnJlsp4zh2fEEasPM3vcpVLuhjNIi6TCtnnRaJxL5WiQ5T"></script></span></li>
