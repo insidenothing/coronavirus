@@ -21,7 +21,7 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 $text_div2='';
-$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit 0, 14";
+$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 $r = $core->query($q);
 $rows = mysqli_num_rows($core);
 $start = $rows - 14;
@@ -40,7 +40,7 @@ $page_description = "$date $name at $last_count Cases";
 $name2='';
 $i2=0;
 if ($zip2 != '99999'){
-	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit 0, 14";
+	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 	$r = $core->query($q);
 	$rows = mysqli_num_rows($core);
 	$start = $rows - 14;
