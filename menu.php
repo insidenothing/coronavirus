@@ -98,9 +98,10 @@ while($d = mysqli_fetch_array($r)){
 	?>
 	
 	<ul class="nav nav-pills">
-		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">Buy Patricks PPE</a></li>
-		<li role='presentation'><a href="https://www.patreon.com/PatrickMcGuire">Donations</a></li>
+		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">etsy.com/shop/PatricksPPE</a></li>
+		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">github.com/sponsors/insidenothing</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
+		<?PHP /*
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland Status</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php?state=Florida'){ echo "class='active'"; } ?> ><a href="phase1.php?state=Florida">Reopen Florida Status</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/florida_death_graph.php'){ echo "class='active'"; } ?> ><a href="florida_death_graph.php">Florida Deaths</a></li>
@@ -111,8 +112,11 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/infection_level.php'){ echo "class='active'"; } ?> ><a href="infection_level.php">Infection Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/death_level.php'){ echo "class='active'"; } ?> ><a href="death_level.php">Death Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
+		*/ ?>
 		<li role='presentation'><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
 	</ul>
+	<?PHP 
+	/*
 	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Florida Counties</button>
 	<ul id="demo" class="nav nav-tabs collapse">
 		<?PHP echo "$links"; ?>
@@ -120,4 +124,4 @@ while($d = mysqli_fetch_array($r)){
 	<ul id="demo2" class="nav nav-tabs collapse">
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/county.php?state=Florida&county=PalmBeach'){ echo "class='active'"; } ?> ><a href="county.php?state=Florida&county=PalmBeach">PalmBeach</a></li>
 	</ul>
-	
+	*/ ?>
