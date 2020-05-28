@@ -32,8 +32,8 @@ $text_div2='';
 $q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 $r = $core->query($q);
 $rows = mysqli_num_rows($r);
-$start = $rows - 14;
-$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, 14";
+$start = $rows - $range;
+$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
 $r = $core->query($q);
 $i=0;
 while ($d = mysqli_fetch_array($r)){
@@ -130,7 +130,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "Last 14 days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
