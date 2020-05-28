@@ -82,11 +82,13 @@ while($d = mysqli_fetch_array($r)){
 <div class="container"><!--- Open Container -->
 	<?PHP
 	// pull date from last update, not assume today.
-	$q = "select checked_datetime, just_date from coronavirus where url_pulled like '%ZIPCodes_MD%' order by id desc limit 1";
+	$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
-	$date = $d['just_date'];
-	if ($date != date('Y-m-d')){
+	$date = $d['last_updated'];
+	//if ($date != date('Y-m-d')){
+	$pos = strpos($date, date('Y-m-d'));
+	if ($pos === false) {	
 		?>
 		<div class="alert alert-success">
 			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 10:05 AM. Last Update was <?PHP echo $d['checked_datetime'];?>.
