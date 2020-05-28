@@ -93,7 +93,11 @@ if ($zip2 != '99999'){
 }
 include_once('menu.php');
 ?>
-
+<div class="row">
+	<div class="col-sm-12" style='text-align:center; background-color:yellow;'>
+		<h1>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP $per = ( ( $end_value - $start_value ) / $start_value ) * 100; echo $per;?>% change in 2 weeks.</h1>
+	</div>
+</div>
 
 <script src="canvasjs.min.js"></script>
 <script>
@@ -103,7 +107,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "Last 14 days for <?PHP echo $name;?> covid19math.net"
+			text: "Last 14 days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -149,11 +153,7 @@ window.onload = function () {
 	}	
 }
 </script>
-<div class="row">
-	<div class="col-sm-12">
-		<h1><?PHP echo $start_value;?> to <?PHP echo $end_value;?> is a <?PHP $per = ( ( $end_value - $start_value ) / $start_value ) * 100; echo $per;?>% change</h1>
-	</div>
-</div>
+
 
 <div class="row"><div class="col-sm-2"><?PHP echo $text_div;?><?PHP echo $text_div2;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
 
