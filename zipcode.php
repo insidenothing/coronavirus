@@ -5,7 +5,7 @@ if (isset($_GET['range'])){
 }
 $type_graph='column';
 if (isset($_GET['type_graph'])){
-	$type_graph = intval($_GET['type_graph']);
+	$type_graph = $_GET['type_graph'];
 }
 include_once('county_zip_codes.php');
 global $zip;
