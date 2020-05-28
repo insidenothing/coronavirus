@@ -31,6 +31,9 @@ $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
+	$me = intval($d['report_count'] - $last);
+	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
 	if($i == 0){
@@ -42,6 +45,7 @@ while ($d = mysqli_fetch_array($r)){
 	$i++; // number of days in the graph
 }
 $time_chart = rtrim(trim($time_chart), ",");
+$new_chart = rtrim(trim($new_chart), ",");
 $page_description = "$date $name at $last_count Cases";
 $name2='';
 $i2=0;
@@ -129,13 +133,23 @@ window.onload = function () {
 			itemclick : toggleDataSeries
 		},
 		data: [{
-		type: "spline",
+		type: "area",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?>",
+		name: "<?PHP echo $zip;?> Total",
 		dataPoints: [
 			<?PHP echo $time_chart; ?>
+		]
+		},
+		{
+		type: "bar",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New",
+		dataPoints: [
+			<?PHP echo $new_chart; ?>
 		]
 		}<?PHP if ($zip2 != '99999'){ echo ',{
 		type: "spline",
