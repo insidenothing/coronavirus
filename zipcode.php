@@ -91,13 +91,20 @@ if ($zip2 != '99999'){
 		$time_chart = $time_chart_pre.$time_chart;
 	}
 }
-include_once('menu.php');
+ob_start();
 ?>
 <div class="row">
 	<div class="col-sm-12" style='text-align:center; background-color:yellow;'>
 		<h1>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP $per = round( ( ( $end_value - $start_value ) / $start_value ) * 100); echo $per;?>% change in 2 weeks.</h1>
 	</div>
 </div>
+<?PHP 
+$page_description = $per."% change $page_description";
+$alert = ob_get_clean();
+include_once('menu.php');
+echo $alert;
+?>
+
 
 <script src="canvasjs.min.js"></script>
 <script>
