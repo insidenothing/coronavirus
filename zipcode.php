@@ -151,7 +151,7 @@ window.onload = function () {
 </script>
 <div class="row">
 	<div class="col-sm-12">
-		<h1><?PHP echo $start_value;?> to <?PHP echo $end_value;?> is a <?PHP $per = ( ( $start_value - $end_value ) / $end_value ) * 100; echo $per;?>% change</h1>
+		<h1><?PHP echo $start_value;?> to <?PHP echo $end_value;?> is a <?PHP $per = ( ( $end_value - $start_value ) / $start_value ) * 100; echo $per;?>% change</h1>
 	</div>
 </div>
 
