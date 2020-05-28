@@ -32,25 +32,21 @@ $new_up=0;
 $new_flat=0;
 $new_down=0;
 ?>
-
 <div class="row">
   <div class="col-sm-12">
 	  <h1>Phase One Reopen</h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
-    
-	    <?PHP
+ 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_duration = 'DOWN' or trend_duration = 'FLAT' )";
 	    $r = $core->query($q);
 	    while($d = mysqli_fetch_array($r)){
 	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
 	    }
 	    ?>
-    
   </div>
 </div>
 <div class="row">
   <div class="col-sm-12">
 	  <h1>Not Phase One</h1>
-    
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_duration = 'UP' )";
 	    $r = $core->query($q);
@@ -63,10 +59,8 @@ $new_down=0;
 	       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
 	    }
 	    ?>
-    
   </div>
 </div>
-
 <div class="row">
   <div class="col-sm-12">
   <h3>Goals</h3>
@@ -75,17 +69,13 @@ $new_down=0;
     duration resets.
   </div>
 </div>
-
 <?PHP
 // pull date from last update, not assume today.
 $q = "select just_date from coronavirus order by id desc limit 1";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r);
 $date = $d['just_date'];
-?>
 
-
-<?PHP 
 ob_start();
 $total_up=0;
 $total_flat=0;
@@ -94,7 +84,6 @@ $new_up=0;
 $new_flat=0;
 $new_down=0;
 ?>
-
 <div class="row">
   <div class="col-sm-6">
   <h3>14+ Day Trends above 0</h3>
@@ -129,8 +118,6 @@ $new_down=0;
     </ol>
   </div>
 </div>
-
-
 <div class="row">
   <div class="col-sm-4">
     <h3>Up Trend</h3>
@@ -172,8 +159,6 @@ $new_down=0;
     </ol>
   </div>
 </div>
-
-
 <div class="row">
   <div class="col-sm-4">
     <h3>New Direction Up</h3>
@@ -215,12 +200,10 @@ $new_down=0;
     </ol>
   </div>
 </div>
-
 <?PHP 
 $buffer = ob_get_clean();
 ?>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 <script>
 	window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
@@ -274,7 +257,6 @@ function toggleDataSeries(e) {
 }
 	}
 </script>
-
 <div class="row">
  	<div class="col-sm-6">
 		<div id="chartContainer" style="height: 400px; width: 100%;"></div>
@@ -283,10 +265,7 @@ function toggleDataSeries(e) {
 		<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
 	</div>
 </div>
-
-
 <?PHP 
 echo $buffer;
+include_once('footer.php');
 ?>
-
-<?PHP include_once('footer.php'); ?>
