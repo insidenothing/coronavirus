@@ -133,7 +133,7 @@ window.onload = function () {
 			itemclick : toggleDataSeries
 		},
 		data: [{
-		type: "area",
+		type: "spline",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
