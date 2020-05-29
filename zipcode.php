@@ -23,6 +23,14 @@ global $zip_debug;
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
+if (isset($_GET['auto'])){
+	$q = "SELECT zip_code FROM coronavirus_zip where ( day7change_percentage = '' or day14change_percentage = '' )  and report_date = '".date('Y-m-d')."' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."\">";
+}
+
+
 function data_points($zip,$field){
 	global $core;
 	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
