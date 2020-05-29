@@ -12,6 +12,7 @@ while($d = mysqli_fetch_array($r)){
 }
 $date = $global_date;
 ?>
+<h1><?PHP echo $date;?></h1>
 <h1>Over 1000%</h1>
 <div class="row">
 	<div class="col-sm-3">
