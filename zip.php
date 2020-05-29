@@ -1,5 +1,11 @@
 <?PHP
 include_once('menu.php');
+if (isset($_GET['delete'])){
+	$delete = $_GET['delete'];
+	$core->query(" delete from coronavirus_zip where report_date = '$delete'");
+	die('done');
+}
+
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
@@ -75,7 +81,7 @@ foreach ($zipData as $key => $value){
 }
 //print_r($zipData);
 //echo $d['raw_response'];
-die();
+die('done');
 
 
 
