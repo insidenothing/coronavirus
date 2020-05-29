@@ -23,6 +23,15 @@ global $zip_debug;
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
+function data_points($zip,$field){
+	$q = "SELECT $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
+	$r = $core->query($q);
+	while ($d = mysqli_fetch_array($r)){
+		$chart .=  '{ label: "'.$d['report_date'].'", y: '.$d[$field].' }, ';
+	}
+	$chart = rtrim(trim($chart), ",");
+	return $chart;
+}
 
 function make_chart($range){
 	global $core;
@@ -418,7 +427,70 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		}'; } ?>]
 	})
 	chartZIP4.render();	
-
+	var chartZIP5 = new CanvasJS.Chart("chartContainerZIP5", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $name_4;?> Changes in Percentages - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Percentage of Change",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day",
+		dataPoints: [
+			<?PHP echo data_points($zip,'day7change_percentage'); ?>
+		]
+		},
+		{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 14 Day",
+		dataPoints: [
+			<?PHP echo data_points($zip,'day14change_percentage'); ?>
+		]
+		},
+		{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 30 Day",
+		dataPoints: [
+			<?PHP echo data_points($zip,'day30change_percentage'); ?>
+		]
+		},
+		{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 45 Day",
+		dataPoints: [
+			<?PHP echo data_points($zip,'day45change_percentage'); ?>
+		]
+		}]
+	})
+	chartZIP5.render();
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 			e.dataSeries.visible = false;
@@ -431,21 +503,17 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </script>
 
 <div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_1;?></div>
-	<div class="col-sm-6"><?PHP echo $alert_2;?></div>
-</div>
-<div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_3;?></div>
-	<div class="col-sm-6"><?PHP echo $alert_4;?></div>
+	<div class="col-sm-12"><div id="chartContainerZIP5" style="height: 500px; width: 100%;"></div></div>
 </div>
 
+
 <div class="row">
-	<div class="col-sm-6"><div id="chartContainerZIP1" style="height: 500px; width: 100%;"></div></div>
-	<div class="col-sm-6"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_1;?><div id="chartContainerZIP1" style="height: 500px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_2;?><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div>
 </div>
 <div class="row">
-	<div class="col-sm-6"><div id="chartContainerZIP3" style="height: 500px; width: 100%;"></div></div>
-	<div class="col-sm-6"><div id="chartContainerZIP4" style="height: 500px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_3;?><div id="chartContainerZIP3" style="height: 500px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_4;?><div id="chartContainerZIP4" style="height: 500px; width: 100%;"></div></div>
 </div>
 
 <div class="row">
