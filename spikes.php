@@ -227,7 +227,9 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '100' and day45change_percentage < '1000' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." ".$zipcode[$d[zip_code]]." ".$d['day45change_percentage']."%</a></li>";
+			$zip_c = $d['zip_code'];
+			$name = $zipcode[$zip_c];
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." ".$name." ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
