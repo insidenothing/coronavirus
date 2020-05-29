@@ -79,7 +79,7 @@ while($d = mysqli_fetch_array($r)){
 }
 	?>
 	
-<div class="container"><!--- Open Container -->
+<div class="container" style='width:100%;'><!--- Open Container -->
 	<?PHP
 	// pull date from last update, not assume today.
 	$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
