@@ -333,7 +333,7 @@ $zip_closed=0;
   </div>
 </div>
 <?PHP
-$date = date('Y-m-d');
+$date = $global_date;
 $q = "select * from coronavirus_reopen where the_date = '$date'";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r);
