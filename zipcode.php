@@ -24,6 +24,7 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 function data_points($zip,$field){
+	global $core;
 	$q = "SELECT $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
