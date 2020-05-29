@@ -45,7 +45,7 @@ $date = $global_date;
 	  ?></ol>
   </div>
 	<div class="col-sm-1">
-   <p>45 Day Over 1000%</h1><p>
+   <p>45 Day Over 1000%</p><ol>
    <?PHP
     	$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '1000' order by day45change_percentage DESC";
 	$r = $core->query($q);
