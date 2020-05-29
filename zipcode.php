@@ -114,8 +114,26 @@ if ($zip2 != '99999'){
 ob_start();
 ?>
 <div class="row">
-	<div class="col-sm-12" style='text-align:center; background-color:yellow;'>
-		<h1>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP $per = round( ( ( $end_value - $start_value ) / $start_value ) * 100); echo $per;?>% change in <?PHP echo $range;?> days.</h1>
+	<?PHP 
+	$per = round( ( ( $end_value - $start_value ) / $start_value ) * 100); 
+	if ($per == '0'){
+		$color = 'lightgreen';	
+	}elseif($per > '10'){
+		$color = 'lightyellow';
+	}elseif($per > '50'){
+		$color = '#fed8b1'; // light orange
+	}elseif($per > '100'){
+		$color = '#fed8b1'; // light red
+	}elseif($per > '150'){
+		$color = '#fed8b1'; // light purple
+	}else{
+		$color = '#800080'; // dark purple	
+	}
+	?>
+	<div class="col-sm-12" style='text-align:center; background-color:<?PHP echo $color;?>;'>
+		<h3>
+			From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.
+		</h3>
 	</div>
 </div>
 <?PHP 
