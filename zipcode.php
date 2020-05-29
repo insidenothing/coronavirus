@@ -27,7 +27,8 @@ if (isset($_GET['auto'])){
 	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time <> '' and report_date = '".date('Y-m-d')."' order by RAND() ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
-	echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=1\">";
+	$left = mysqli_num_rows($r);
+	echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left\">";
 }
 
 
