@@ -228,7 +228,7 @@ window.onload = function () {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Count",
 		dataPoints: [
-			<?PHP echo $new_chart; ?>
+			<?PHP echo $new_chart_1; ?>
 		]
 		}<?PHP if ($zip2 != '99999'){ echo ',{
 		type: "spline",
@@ -237,7 +237,7 @@ window.onload = function () {
 		yValueFormatString: "#####",
 		name: "'.$zip2.';",
 		dataPoints: [
-			'.$time_chart2.'
+			'.$time_chart2_1.'
 		]
 		}'; } ?>]
 	})
@@ -248,7 +248,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $range;?> days <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range_2;?> days <?PHP echo $name_2;?> <?PHP echo $per_2;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -272,7 +272,7 @@ window.onload = function () {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
-			<?PHP echo $time_chart; ?>
+			<?PHP echo $time_chart_2; ?>
 		]
 		},
 		{
@@ -282,7 +282,7 @@ window.onload = function () {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Count",
 		dataPoints: [
-			<?PHP echo $new_chart; ?>
+			<?PHP echo $new_chart_2; ?>
 		]
 		}<?PHP if ($zip2 != '99999'){ echo ',{
 		type: "spline",
@@ -291,7 +291,7 @@ window.onload = function () {
 		yValueFormatString: "#####",
 		name: "'.$zip2.';",
 		dataPoints: [
-			'.$time_chart2.'
+			'.$time_chart2_2.'
 		]
 		}'; } ?>]
 	})
@@ -301,7 +301,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $range;?> days <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range_3;?> days <?PHP echo $name_3;?> <?PHP echo $per_3;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -325,7 +325,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
-			<?PHP echo $time_chart; ?>
+			<?PHP echo $time_chart_3; ?>
 		]
 		},
 		{
@@ -335,7 +335,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Count",
 		dataPoints: [
-			<?PHP echo $new_chart; ?>
+			<?PHP echo $new_chart_3; ?>
 		]
 		}<?PHP if ($zip2 != '99999'){ echo ',{
 		type: "spline",
@@ -344,7 +344,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		yValueFormatString: "#####",
 		name: "'.$zip2.';",
 		dataPoints: [
-			'.$time_chart2.'
+			'.$time_chart2_3.'
 		]
 		}'; } ?>]
 	})
@@ -354,7 +354,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $range;?> days <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range_4;?> days <?PHP echo $name_4;?> <?PHP echo $per_4;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -378,7 +378,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
-			<?PHP echo $time_chart; ?>
+			<?PHP echo $time_chart_4; ?>
 		]
 		},
 		{
@@ -388,7 +388,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Count",
 		dataPoints: [
-			<?PHP echo $new_chart; ?>
+			<?PHP echo $new_chart_4; ?>
 		]
 		}<?PHP if ($zip2 != '99999'){ echo ',{
 		type: "spline",
@@ -397,7 +397,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "'.$zip2.';",
 		dataPoints: [
-			'.$time_chart2.'
+			'.$time_chart2_4.'
 		]
 		}'; } ?>]
 	})
