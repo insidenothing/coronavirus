@@ -26,6 +26,9 @@ $logo = 'off';
 global $zip_debug;
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
+
+
+
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -126,6 +129,60 @@ echo $alert;
 <script src="canvasjs.min.js"></script>
 <script>
 window.onload = function () {
+	var chartZIP1 = new CanvasJS.Chart("chartContainerZIP1", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Total Count",
+		dataPoints: [
+			<?PHP echo $time_chart; ?>
+		]
+		},
+		{
+		type: "<?PHP echo $type_graph;?>",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Count",
+		dataPoints: [
+			<?PHP echo $new_chart; ?>
+		]
+		}<?PHP if ($zip2 != '99999'){ echo ',{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$zip2.';",
+		dataPoints: [
+			'.$time_chart2.'
+		]
+		}'; } ?>]
+	})
+	chartZIP1.render();	
+
 	var chartZIP2 = new CanvasJS.Chart("chartContainerZIP2", {
 		theme:"light2",
 		animationEnabled: true,
@@ -179,6 +236,112 @@ window.onload = function () {
 		}'; } ?>]
 	})
 	chartZIP2.render();	
+var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Total Count",
+		dataPoints: [
+			<?PHP echo $time_chart; ?>
+		]
+		},
+		{
+		type: "<?PHP echo $type_graph;?>",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Count",
+		dataPoints: [
+			<?PHP echo $new_chart; ?>
+		]
+		}<?PHP if ($zip2 != '99999'){ echo ',{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$zip2.';",
+		dataPoints: [
+			'.$time_chart2.'
+		]
+		}'; } ?>]
+	})
+	chartZIP3.render();	
+var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Total Count",
+		dataPoints: [
+			<?PHP echo $time_chart; ?>
+		]
+		},
+		{
+		type: "<?PHP echo $type_graph;?>",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Count",
+		dataPoints: [
+			<?PHP echo $new_chart; ?>
+		]
+		}<?PHP if ($zip2 != '99999'){ echo ',{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$zip2.';",
+		dataPoints: [
+			'.$time_chart2.'
+		]
+		}'; } ?>]
+	})
+	chartZIP4.render();	
 
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
@@ -192,8 +355,20 @@ window.onload = function () {
 </script>
 
 
-<div class="row"><div class="col-sm-2"><?PHP echo $text_div;?><?PHP echo $text_div2;?></div><div class="col-sm-10"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div></div>
+<div class="row">
+	<div class="col-sm-6"><div id="chartContainerZIP1" style="height: 500px; width: 100%;"></div></div>
+	<div class="col-sm-6"><div id="chartContainerZIP2" style="height: 500px; width: 100%;"></div></div>
+</div>
+<div class="row">
+	<div class="col-sm-6"><div id="chartContainerZIP3" style="height: 500px; width: 100%;"></div></div>
+	<div class="col-sm-6"><div id="chartContainerZIP4" style="height: 500px; width: 100%;"></div></div>
+</div>
 
+<div class="row">
+	<div class="col-sm-12">
+		<?PHP echo $text_div1;?><?PHP echo $text_div2;?><?PHP echo $text_div3;?><?PHP echo $text_div4;?>
+	</div>
+</div>
 	
 <?PHP include_once('footer.php'); ?>
 	
