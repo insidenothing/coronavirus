@@ -101,6 +101,7 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">etsy.com/shop/PatricksPPE</a></li>
 		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">github.com/sponsors/insidenothing</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/spikes.php'){ echo "class='active'"; } ?> ><a href="spikes.php">New Spike Monitor</a></li>
 		<?PHP /*
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland Status</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php?state=Florida'){ echo "class='active'"; } ?> ><a href="phase1.php?state=Florida">Reopen Florida Status</a></li>
