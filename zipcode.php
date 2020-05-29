@@ -200,7 +200,7 @@ $per_4 			= $day45['per'];
 
 $date = ('Y-m-d');
 $q = "update coronavirus_zip set day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
-$core->query($q);
+$core->query($q) or die(mysqli_error($core));
 ?>
 
 
