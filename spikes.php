@@ -11,6 +11,11 @@ while($d = mysqli_fetch_array($r)){
 	$zipcode[$zip] = $d['town_name'];
 }
 $date = $global_date;
+if(isset($_GET['zip']) && isset($_GET['name'])){
+	$add_zip = $_GET['zip'];
+	$new_name = $_GET['name'];
+ 	$core->query("update coronavirus_zip set town_name = '$new_name' where zip_code = '$add_zip' and report_date = '$date' ");	
+}
 ?>
 
 <div class="row">
