@@ -25,7 +25,7 @@ include_once('functions.php'); //outside webserver
 
 function data_points($zip,$field){
 	global $core;
-	$q = "SELECT $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
+	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$chart .=  '{ label: "'.$d['report_date'].'", y: '.$d[$field].' }, ';
