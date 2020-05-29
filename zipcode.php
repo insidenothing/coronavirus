@@ -203,7 +203,7 @@ $q = "update coronavirus_zip set day7change_percentage = '$per_1', day14change_p
 $core->query($q) or die(mysqli_error($core));
 ?>
 
-
+<h1><?PHP echo $q; ?></h1>
 <script src="canvasjs.min.js"></script>
 <script>
 window.onload = function () {
