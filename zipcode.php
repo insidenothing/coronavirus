@@ -141,19 +141,13 @@ ob_start();
 		$color = 'lightgreen';	
 	}elseif($per < '10'){
 		$color = 'lightyellow';
-	}elseif($per < '50'){
-		$color = '#fed8b1'; // light orange
-	}elseif($per < '100'){
-		$color = '#fed8b1'; // light red
-	}elseif($per < '150'){
-		$color = '#fed8b1'; // light purple
 	}else{
-		$color = '#800080'; // dark purple	
+		$color = '#fed8b1'; // light orange
 	}
 	?>
 	
 	<p style='text-align:center; background-color:<?PHP echo $color;?>;'>
-		From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days. (<?PHP echo $color;?>)
+		<b>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.</b>
 	</p>
 	
 </div>
