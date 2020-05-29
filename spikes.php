@@ -2,6 +2,7 @@
 $page_description = "Maryland COVID 19 Spike Monitor";
 include_once('menu.php');
 global $zipcode;
+global $global_date;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
 $r = $core->query($q);
@@ -9,7 +10,7 @@ while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
 }
-$date = date('Y-m-d');
+$date = $global_date;
 ?>
 <h1>Over 1000%</h1>
 <div class="row">
