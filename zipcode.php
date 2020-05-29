@@ -414,6 +414,14 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 }
 </script>
 
+<div class="row">
+	<div class="col-sm-6"><?PHP echo $alert_1;?></div>
+	<div class="col-sm-6"><?PHP echo $alert_2;?></div>
+</div>
+<div class="row">
+	<div class="col-sm-6"><?PHP echo $alert_3;?></div>
+	<div class="col-sm-6"><?PHP echo $alert_4;?></div>
+</div>
 
 <div class="row">
 	<div class="col-sm-6"><div id="chartContainerZIP1" style="height: 500px; width: 100%;"></div></div>
