@@ -126,6 +126,9 @@ $alert = ob_get_clean();
 	$return['time_chart'] = $time_chart;
 	$return['time_chart2'] = $time_chart2;
 	$return['new_chart'] = $new_chart;
+	$return['range'] = $range;
+	$return['name'] = $name;
+	$return['per'] = $per;
 	return $return;
 }
 $day7 = make_chart('7');
@@ -139,6 +142,9 @@ $page_description 	= $day14['page_description'];
 $time_chart 		= $day14['time_chart'];
 $time_chart2 		= $day14['time_chart2'];
 $new_chart 		= $day14['new_chart'];
+$range 			= $day14['range'];
+$name 			= $day14['name'];
+$per 			= $day14['per'];
 echo $alert;
 ?>
 
