@@ -130,11 +130,11 @@ ob_start();
 		$color = '#800080'; // dark purple	
 	}
 	?>
-	<div class="col-sm-12" style='text-align:center; background-color:<?PHP echo $color;?>;'>
-		<h3>
-			From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.
-		</h3>
-	</div>
+	
+	<p style='text-align:center; background-color:<?PHP echo $color;?>;'>
+		From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days. (<?PHP echo $color;?>)
+	</p>
+	
 </div>
 <?PHP 
 $page_description = $per."% change $page_description";
