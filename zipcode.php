@@ -24,7 +24,7 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 if (isset($_GET['auto'])){
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and ( day7change_percentage = '' or day14change_percentage = '' )  and report_date = '".date('Y-m-d')."' order by RAND() ";
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' change_percentage_time <> '' and report_date = '".date('Y-m-d')."' order by RAND() ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=1\">";
@@ -217,7 +217,7 @@ $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
 
 $date = date('Y-m-d');
-$q = "update coronavirus_zip set day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$q = "update coronavirus_zip set change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $core->query($q);
 ?>
 <script src="canvasjs.min.js"></script>
