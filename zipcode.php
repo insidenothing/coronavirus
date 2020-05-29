@@ -454,7 +454,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "line",
 		visible: true,
 		showInLegend: true,
-		yValueFormatString: "####%",
+		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day",
 		dataPoints: [
 			<?PHP echo data_points($zip,'day7change_percentage'); ?>
@@ -464,7 +464,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "line",
 		visible: true,
 		showInLegend: true,
-		yValueFormatString: "####%",
+		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 14 Day",
 		dataPoints: [
 			<?PHP echo data_points($zip,'day14change_percentage'); ?>
@@ -474,7 +474,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "line",
 		visible: true,
 		showInLegend: true,
-		yValueFormatString: "####%",
+		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 30 Day",
 		dataPoints: [
 			<?PHP echo data_points($zip,'day30change_percentage'); ?>
@@ -484,7 +484,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "line",
 		visible: true,
 		showInLegend: true,
-		yValueFormatString: "####%",
+		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 45 Day",
 		dataPoints: [
 			<?PHP echo data_points($zip,'day45change_percentage'); ?>
