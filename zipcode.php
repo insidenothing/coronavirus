@@ -1,9 +1,4 @@
 <?PHP
-$range='14';
-if (isset($_GET['range'])){
-	$range = intval($_GET['range']);
-}
-$range2 = $range - 1;
 $type_graph='column';
 if (isset($_GET['type_graph'])){
 	$type_graph = $_GET['type_graph'];
@@ -15,6 +10,7 @@ if(isset($_GET['zip'])){
 }else{
   	$zip = '99999';	
 }
+global $zip2;
 $zip2 = '99999';
 $pos = strpos($zip, ',');
 if ($pos !== false) {
@@ -28,7 +24,10 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 
-
+function make_chart($range){
+	global $core;
+	global $zip;
+	global $zip2;
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -121,7 +120,25 @@ ob_start();
 <?PHP 
 $page_description = $per."% change $page_description";
 $alert = ob_get_clean();
+	$return = array();
+	$return['alert'] = $alert;
+	$return['page_description'] = $page_description;
+	$return['time_chart'] = $time_chart;
+	$return['time_chart2'] = $time_chart2;
+	$return['new_chart'] = $new_chart;
+	return $return;
+}
+$day7 = make_chart('7');
+$day14 = make_chart('14');
+$day30 = make_chart('30');
+$day45 = make_chart('45');
+$page_description = $day14['page_description'];
 include_once('menu.php');
+$alert 			= $day14['alert'];
+$page_description 	= $day14['page_description'];
+$time_chart 		= $day14['time_chart'];
+$time_chart2 		= $day14['time_chart2'];
+$new_chart 		= $day14['new_chart'];
 echo $alert;
 ?>
 
