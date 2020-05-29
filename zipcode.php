@@ -138,15 +138,51 @@ $day30 = make_chart('30');
 $day45 = make_chart('45');
 $page_description = $day14['page_description'];
 include_once('menu.php');
-$alert 			= $day14['alert'];
-$page_description 	= $day14['page_description'];
-$time_chart 		= $day14['time_chart'];
-$time_chart2 		= $day14['time_chart2'];
-$new_chart 		= $day14['new_chart'];
-$range 			= $day14['range'];
-$name 			= $day14['name'];
-$per 			= $day14['per'];
-echo $alert;
+
+
+// Chart 1
+
+$alert_1 		= $day7['alert'];
+$time_chart_1 		= $day7['time_chart'];
+$time_chart2_1 		= $day7['time_chart2'];
+$new_chart_1 		= $day7['new_chart'];
+$range_1 		= $day7['range'];
+$name_1 		= $day7['name'];
+$per_1 			= $day7['per'];
+
+// Chart 2
+
+$alert_2 		= $day14['alert'];
+$time_chart_2 		= $day14['time_chart'];
+$time_chart2_2 		= $day14['time_chart2'];
+$new_chart_2 		= $day14['new_chart'];
+$range_2 		= $day14['range'];
+$name_2 		= $day14['name'];
+$per_2 			= $day14['per'];
+
+// Chart 3
+
+$alert_3 		= $day30['alert'];
+$time_chart_3 		= $day30['time_chart'];
+$time_chart2_3 		= $day30['time_chart2'];
+$new_chart_3 		= $day30['new_chart'];
+$range_3 		= $day30['range'];
+$name_3 		= $day30['name'];
+$per_3 			= $day30['per'];
+
+// Chart 4
+
+$alert_4 		= $day45['alert'];
+$time_chart_4 		= $day45['time_chart'];
+$time_chart2_4 		= $day45['time_chart2'];
+$new_chart_4 		= $day45['new_chart'];
+$range_4 		= $day45['range'];
+$name_4 		= $day45['name'];
+$per_4 			= $day45['per'];
+
+$date = ('Y-m-d');
+$q = "update coronavirus_zip set day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$core->query($q);
 ?>
 
 
@@ -158,7 +194,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range_1;?> days <?PHP echo $name_1;?> <?PHP echo $per_1;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -182,11 +218,11 @@ window.onload = function () {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
-			<?PHP echo $time_chart; ?>
+			<?PHP echo $time_chart_1; ?>
 		]
 		},
 		{
-		type: "<?PHP echo $type_graph;?>",
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -212,7 +248,7 @@ window.onload = function () {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range;?> days <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -240,7 +276,7 @@ window.onload = function () {
 		]
 		},
 		{
-		type: "<?PHP echo $type_graph;?>",
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -265,7 +301,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range;?> days <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -293,7 +329,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		]
 		},
 		{
-		type: "<?PHP echo $type_graph;?>",
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -318,7 +354,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "Last <?PHP echo $range;?> days for <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
+			text: "<?PHP echo $range;?> days <?PHP echo $name;?> <?PHP echo $per;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -346,7 +382,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		]
 		},
 		{
-		type: "<?PHP echo $type_graph;?>",
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
