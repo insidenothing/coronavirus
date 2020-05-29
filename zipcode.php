@@ -24,7 +24,7 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 if (isset($_GET['auto'])){
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time <> '00:00:00' and report_date = '".date('Y-m-d')."' order by RAND() ";
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '".date('Y-m-d')."' order by RAND() ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
