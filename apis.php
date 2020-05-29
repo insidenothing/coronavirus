@@ -4,7 +4,7 @@ include_once('menu.php');
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
-  echo "<li>$d[id] $d[api_status] $d[api_name] $d[api_description] $d[first_found] $d[last_updated] $d[api_url]</li>";
+  echo "<li>$d[id] $d[api_status] <u>$d[api_name]</u> <b>$d[api_description]</b> $d[first_found] $d[last_updated] $d[api_url]</li>";
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
