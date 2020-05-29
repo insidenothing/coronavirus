@@ -1,7 +1,7 @@
 <?PHP
 include_once('menu.php');
 if (isset($_GET['delete'])){
-	$delete = $_GET['delete'];
+	$delete = date('Y-m-d');
 	$core->query(" delete from coronavirus_zip where report_date = '$delete'");
 	die('done');
 }
