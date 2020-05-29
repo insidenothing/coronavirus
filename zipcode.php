@@ -118,13 +118,13 @@ ob_start();
 	$per = round( ( ( $end_value - $start_value ) / $start_value ) * 100); 
 	if ($per == '0'){
 		$color = 'lightgreen';	
-	}elseif($per > '10'){
+	}elseif($per < '10'){
 		$color = 'lightyellow';
-	}elseif($per > '50'){
+	}elseif($per < '50'){
 		$color = '#fed8b1'; // light orange
-	}elseif($per > '100'){
+	}elseif($per < '100'){
 		$color = '#fed8b1'; // light red
-	}elseif($per > '150'){
+	}elseif($per < '150'){
 		$color = '#fed8b1'; // light purple
 	}else{
 		$color = '#800080'; // dark purple	
