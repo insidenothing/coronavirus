@@ -16,10 +16,7 @@ $down = 0;
 <h1>Maryland COVID 19 Reopen Dashboard</h1>
 <?PHP
 // pull date from last update, not assume today.
-$q = "select just_date from coronavirus order by id desc limit 1";
-$r = $core->query($q);
-$d = mysqli_fetch_array($r);
-$date = $d['just_date'];
+$date = $global_date;
 ?>
 
 
@@ -47,11 +44,7 @@ $new_down=0;
   </div>
 </div>
 <?PHP
-// pull date from last update, not assume today.
-$q = "select just_date from coronavirus order by id desc limit 1";
-$r = $core->query($q);
-$d = mysqli_fetch_array($r);
-$date = $d['just_date'];
+
 
 ob_start();
 $total_up=0;
