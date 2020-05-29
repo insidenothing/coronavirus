@@ -224,7 +224,7 @@ $date = $global_date;
 		}
 		?></ol>
   	</div>
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 	   <p>45 Day Over 50%</p><ol>
 	   <?PHP
 		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '50' and day45change_percentage < '100' order by day45change_percentage DESC";
@@ -234,7 +234,7 @@ $date = $global_date;
 		}
 		?></ol>
   	</div>
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 	   <p>45 Day Over 20%</p><ol>
 	   <?PHP
 		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '20' and day45change_percentage < '50' order by day45change_percentage DESC";
@@ -244,7 +244,7 @@ $date = $global_date;
 		}
 		?></ol>
   	</div>
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 	   <p>45 Day Over 10%</p><ol>
 	   <?PHP
 		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '10' and day45change_percentage < '20' order by day45change_percentage DESC";
@@ -254,7 +254,7 @@ $date = $global_date;
 		}
 		?></ol>
   	</div>
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 	   <p>45 Day Under 10%</p><ol>
 	   <?PHP
 		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '0' and day45change_percentage < '10' order by day45change_percentage DESC";
