@@ -222,9 +222,8 @@ $dir='up';
 if ($d['day7change_percentage'] < $per_1){
 	$dir = 'down';	
 }
-$q = "update coronavirus_zip set change_percentage_time=, change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
-$core->query($q);$q = "update coronavirus_zip set percentage_direction='$dir', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
-
+$q = "update coronavirus_zip set percentage_direction='$dir', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$core->query($q);
 ?>
 <script src="canvasjs.min.js"></script>
 <script>
