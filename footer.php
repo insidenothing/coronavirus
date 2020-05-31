@@ -16,7 +16,7 @@
 </ul>
 
 <div class="row"><div class="col-sm-12">&copy 2020 Patrick McGuire</div></div>
-<div class="row"><div class="col-sm-12"><h3>Hit Counter</h3><?PHP echo get_hits();?></div></div>
+<div class="row"><div class="col-sm-12"><h3>Hit Counter</h3><?PHP echo get_hits();?></div><br>Since we get data starting at 8 - but only zips with cases are in the data set, let's fix all the math issues with zero and start with 1 less than the first number we get, 7</div>
 
 
 </div><!--- Close Container -->
