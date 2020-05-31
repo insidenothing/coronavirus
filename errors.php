@@ -39,19 +39,19 @@ while($d = mysqli_fetch_array($r)){
 </ol>
 
   
-  <h2>Monitor 7 Day</h2>
+  <h2>Monitor 14 Day</h2>
 <ol>
 <?PHP
-$q = "SELECT * FROM coronavirus_zip where day7change_percentage < 0 order by day7change_percentage";
+$q = "SELECT * FROM coronavirus_zip where day14change_percentage < 0 order by day14change_percentage";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){	
   $time = strtotime($d['report_date']) - 86400;
   $r_date = date('Y-m-d',$time);
-  $q2 = "SELECT day7change_percentage FROM coronavirus_zip where zip_code = '$d[zip_code]' and report_date = '$r_date' ";
+  $q2 = "SELECT day14change_percentage FROM coronavirus_zip where zip_code = '$d[zip_code]' and report_date = '$r_date' ";
   $r2 = $core->query($q2);
   $d2 = mysqli_fetch_array($r2);
-  echo "<li>Updating record $d[id] zip $d[zip_code] at $d[day7change_percentage] on $d[report_date] for math error with $d2[day7change_percentage].</li>";
-  $core->query("update coronavirus_zip set day7change_percentage = '$d2[day7change_percentage]' where id = '$d[id]' ");
+  echo "<li>Updating record $d[id] zip $d[zip_code] at $d[day14change_percentage] on $d[report_date] for math error with $d2[day14change_percentage].</li>";
+  $core->query("update coronavirus_zip set day14change_percentage = '$d2[day14change_percentage]' where id = '$d[id]' ");
 }
 ?>
 </ol>
