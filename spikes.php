@@ -36,8 +36,25 @@ if(isset($_GET['reset'])){
 .down {
 	height: 20px;
 	width: 20px;
+}
+.unk_big { 
+	height: 40px;
+	width: 40px;	
+}
+.same_big { 
+	height: 20px;
+	width: 20px;	
+}
+.up_big {
+	height: 40px;
+	width: 40px;
 }	
+.down_big {
+	height: 40px;
+	width: 40px;
+}
 </style>
+<h1>Maryland COVID 19 Spike Monitor</h1>
 <?PHP
 ob_start();
 $counter['same']=0;
@@ -141,9 +158,9 @@ $counter['down']=0;
 </div>
 <?PHP $row = ob_get_clean(); ?>
 <div class="row">
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up'> 7 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same'> 7 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down'> 7 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'> 7 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'> 7 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'> 7 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
 <?PHP echo $row; ?>
 <div class="row">
