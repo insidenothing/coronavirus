@@ -15,6 +15,7 @@ while($d = mysqli_fetch_array($r)){
   $r2 = $core->query($q2);
   $d2 = mysqli_fetch_array($r2);
   echo "<li>Updating record $d[id] zip $d[zip_code] at $d[day7change_percentage] on $d[report_date] for math error with $d2[day7change_percentage].</li>";
+  $core->query("update coronavirus_zip set day7change_percentage = '$d2[day7change_percentage]' where id = '$d[id]' ");
 }
 ?>
 </ol>
