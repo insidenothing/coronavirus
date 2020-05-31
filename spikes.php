@@ -39,6 +39,7 @@ if(isset($_GET['reset'])){
 }	
 </style>
 <?PHP
+ob_start();
 $counter['same']=0;
 $counter['up']=0;
 $counter['down']=0;
@@ -138,12 +139,13 @@ $counter['down']=0;
 		?></ol>
 	 </div>
 </div>
-
+<?PHP $row = ob_get_clean(); ?>
 <div class="row">
-	<div class="col-sm-4"><img src='/img/up.png' class='up'> 7 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></div>
-	<div class="col-sm-4"><img src='/img/same.png' class='same'> 7 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></div>
-	<div class="col-sm-4"><img src='/img/down.png' class='down'> 7 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up'> 7 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same'> 7 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down'> 7 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
+<?PHP echo $row; ?>
 <div class="row">
 	<div class="col-sm-2">
 	    <h4>14 Day Over 1000%</h4><ol>
