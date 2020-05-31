@@ -55,7 +55,8 @@ if(isset($_GET['reset'])){
 	<div class="col-sm-2">
 		<h4>7 Day Over 100%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '100' and day7change_percentage < '1000'  order by day7change_percentage DESC";
+//		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '100' and day7change_percentage < '1000'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '100' order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
