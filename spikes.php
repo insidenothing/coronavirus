@@ -22,72 +22,108 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 	<div class="col-sm-2">
 		<h4>7 Day Over 1000%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '1000' order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '1000' order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$img='';	
+			if($d['percentage_direction'] == 'down'){
+				$img='<img height="20" width="20" src="img/green_down.png">';	
+			}elseif($d['percentage_direction'] == 'up'){
+				$img='<img src="img/red_up.png">';	
+			}
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 		<h4>7 Day Over 100%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '100' and day7change_percentage < '1000'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '100' and day7change_percentage < '1000'  order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$img='';	
+			if($d['percentage_direction'] == 'down'){
+				$img='<img height="20" width="20" src="img/green_down.png">';	
+			}elseif($d['percentage_direction'] == 'up'){
+				$img='<img src="img/red_up.png">';	
+			}
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 		<h4>7 Day Over 50%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '50' and day7change_percentage < '100'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '50' and day7change_percentage < '100'  order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$img='';	
+			if($d['percentage_direction'] == 'down'){
+				$img='<img height="20" width="20" src="img/green_down.png">';	
+			}elseif($d['percentage_direction'] == 'up'){
+				$img='<img src="img/red_up.png">';	
+			}
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 		<h4>7 Day Over 20%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '20' and day7change_percentage < '50'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '20' and day7change_percentage < '50'  order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$img='';	
+			if($d['percentage_direction'] == 'down'){
+				$img='<img height="20" width="20" src="img/green_down.png">';	
+			}elseif($d['percentage_direction'] == 'up'){
+				$img='<img src="img/red_up.png">';	
+			}
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 		<h4>7 Day Over 10%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '10' and day7change_percentage < '20' order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '10' and day7change_percentage < '20' order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$img='';	
+			if($d['percentage_direction'] == 'down'){
+				$img='<img height="20" width="20" src="img/green_down.png">';	
+			}elseif($d['percentage_direction'] == 'up'){
+				$img='<img src="img/red_up.png">';	
+			}
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 		<h4>7 Day Under 10%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '0' and day7change_percentage < '10' order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where report_date = '$date' and day7change_percentage > '0' and day7change_percentage < '10' order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$img='';	
+			if($d['percentage_direction'] == 'down'){
+				$img='<img height="20" width="20" src="img/green_down.png">';	
+			}elseif($d['percentage_direction'] == 'up'){
+				$img='<img src="img/red_up.png">';	
+			}
+			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% %img</a></li>";
 		}
 		?></ol>
 	 </div>
