@@ -214,8 +214,17 @@ $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
 
 $date = date('Y-m-d');
-$q = "update coronavirus_zip set change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
-$core->query($q);
+$yesterday = date('Y-m-d',strtotime('-1 day'));
+$q = "select day7change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
+$r = $core->query($q);
+$d = mysqli_fetch_array($r); 
+$dir='up';
+if ($d['day7change_percentage'] < $per_1){
+	$dir = 'down';	
+}
+$q = "update coronavirus_zip set change_percentage_time=, change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$core->query($q);$q = "update coronavirus_zip set percentage_direction='$dir', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+
 ?>
 <script src="canvasjs.min.js"></script>
 <script>
