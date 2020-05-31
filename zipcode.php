@@ -38,7 +38,7 @@ if (isset($_GET['auto'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left\">";
+		echo "<meta http-equiv=\"refresh\" content=\"2; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left\">";
 	}
 }
 
