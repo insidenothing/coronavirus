@@ -224,7 +224,7 @@ $range_4 		= $day45['range'];
 $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
 
-$yesterday = date('Y-m-d',strtotime($date - 86400));
+$yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r); 
