@@ -18,17 +18,16 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 }
 ?>
 <style>
+ol.no_bullet {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
 li.up {
 background: url('/img/red_up.png') no-repeat left top;
-height: 54px;
-padding-left: 44px;
-padding-top: 3px;
 }	
 li.down {
 background: url('/img/green_down.png') no-repeat left top;
-height: 54px;
-padding-left: 44px;
-padding-top: 3px;
 }	
 	
 	
