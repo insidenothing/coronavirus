@@ -16,6 +16,9 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 	$new_name = $_GET['name'];
  	$core->query("update coronavirus_zip set town_name = '$new_name' where zip_code = '$add_zip' and report_date = '$date' ");	
 }
+if(isset($_GET['reset'])){
+ 	$core->query("update coronavirus_zip set change_percentage_time = '00:00:00' where report_date = '$date' ");	
+}
 ?>
 <style>
 .unk { 
@@ -23,8 +26,8 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 	width: 20px;	
 }
 .same { 
-	height: 20px;
-	width: 20px;	
+	height: 15px;
+	width: 15px;	
 }
 .up {
 	height: 20px;
