@@ -180,7 +180,7 @@ if (isset($_GET['auto'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left\">";
+		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date\">";
 	}
 }
 
@@ -560,6 +560,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	<div class="col-sm-6"><?PHP echo $alert_4;?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
+<small><?PHP echo $yesterday;?> & <?PHP echo $date;?></small>
 	
 <?PHP include_once('footer.php'); ?>
 	
