@@ -25,7 +25,18 @@
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="COVID19MATH.net Digital Resources" />
   <meta property="og:description"   content="<?PHP echo $page_description;?>" />
-  <meta property="og:image"         content="https://www.covid19math.net/img/vrus.png" />
+	
+	<?PHP
+	$filename = "img/".date('Y-m-d').".PNG";
+	if (file_exists($filename)) {
+	    echo '<meta property="og:image"         content="https://www.covid19math.net/'.$filename.'" />';
+	} else {
+	    echo '<meta property="og:image"         content="https://www.covid19math.net/img/vrus.png" />';
+	}
+	?>
+  
+	
+	
   <?PHP if (empty($_GET['debug'])){ ?>	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
