@@ -98,6 +98,7 @@ while($d = mysqli_fetch_array($r)){
 		</div>
 		<?PHP 
 	} 
+	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
 	?>
 	
 	<ul class="nav nav-pills">
