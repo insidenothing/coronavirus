@@ -258,6 +258,7 @@ if ($d['day45change_percentage'] > $per_4){
 $q = "update coronavirus_zip set percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $core->query($q);
 ?>
+<?PHP if ($dir == 'up' && $dir2 == 'up' && $dir3 == 'up' && $dir4 == 'up'){ ?><script>alert('7 Day - 14 Day - 30 Day - 45 Day: All 4 Graphs are up!');</script><?PHP } ?>
 <script src="canvasjs.min.js"></script>
 <script>
 window.onload = function () {
