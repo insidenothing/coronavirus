@@ -229,6 +229,7 @@ $per_4 			= $day45['per'];
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
+$debug_query = $q;
 $r = $core->query($q);
 $d = mysqli_fetch_array($r); 
 $dir = 'same';
@@ -564,7 +565,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4;?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
-<small><?PHP echo $yesterday;?> & <?PHP echo $date;?> <?PHP echo mysqli_error($core);?></small>
+<small><?PHP echo $yesterday;?> & <?PHP echo $date;?> <?PHP echo $debug_query;?> <?PHP echo mysqli_error($core);?></small>
 	
 <?PHP include_once('footer.php'); ?>
 	
