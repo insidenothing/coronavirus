@@ -113,7 +113,7 @@ while($d = mysqli_fetch_array($r)){
 	} 
 	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
 	?>
-	
+	<form method='GET' action='zipcode.php'>
 	<ul class="nav nav-pills">
 		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">etsy.com/shop/PatricksPPE</a></li>
 		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">github.com/sponsors/insidenothing</a></li>
@@ -131,8 +131,10 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/death_level.php'){ echo "class='active'"; } ?> ><a href="death_level.php">Death Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		*/ ?>
+		<input name='zip' type="number" min="00000" max="99999"><button type="button" class="btn btn-success">Go to ZIP Code</button>
 		<li role='presentation'><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
 	</ul>
+	</form>
 	<?PHP 
 	/*
 	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Florida Counties</button>
