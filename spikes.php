@@ -162,231 +162,292 @@ $counter['down']=0;
 	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'> 7 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
 	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'> 7 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
-<?PHP echo $row; ?>
+
+
+
+
+
+
+<?PHP
+ob_start();
+$counter['same']=0;
+$counter['up']=0;
+$counter['down']=0;
+?>
 <div class="row">
 	<div class="col-sm-2">
 	    <h4>14 Day Over 1000%</h4><ol>
 	    <?PHP
-		$q = "SELECT day14change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '1000' order by day14change_percentage DESC";
+		$q = "SELECT day14change_percentage, zip_code, percentage_direction14 FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '1000' order by day14change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction14]]++;
+			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>14 Day Over 100%</h4><ol>
 	    <?PHP
-		$q = "SELECT day14change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '100' and day14change_percentage < '1000' order by day14change_percentage DESC";
+		$q = "SELECT day14change_percentage, zip_code, percentage_direction14 FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '100' and day14change_percentage < '1000' order by day14change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction14]]++;
+			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>14 Day Over 50%</h4><ol>
 	    <?PHP
-		$q = "SELECT day14change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '50' and day14change_percentage < '100' order by day14change_percentage DESC";
+		$q = "SELECT day14change_percentage, zip_code, percentage_direction14 FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '50' and day14change_percentage < '100' order by day14change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction14]]++;
+			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>14 Day Over 20%</h4><ol>
 	    <?PHP
-		$q = "SELECT day14change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '20' and day14change_percentage < '50' order by day14change_percentage DESC";
+		$q = "SELECT day14change_percentage, zip_code, percentage_direction14 FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '20' and day14change_percentage < '50' order by day14change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction14]]++;
+			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>14 Day Over 10%</h4><ol>
 	    <?PHP
-		$q = "SELECT day14change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '10' and day14change_percentage < '20' order by day14change_percentage DESC";
+		$q = "SELECT day14change_percentage, zip_code, percentage_direction14 FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '10' and day14change_percentage < '20' order by day14change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction14]]++;
+			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>14 Day Under 10%</h4><ol>
 	    <?PHP
-		$q = "SELECT day14change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '0' and day14change_percentage < '10' order by day14change_percentage DESC";
+		$q = "SELECT day14change_percentage, zip_code, percentage_direction14 FROM coronavirus_zip where report_date = '$date' and day14change_percentage > '0' and day14change_percentage < '10' order by day14change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction14]]++;
+			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
  	</div>
 </div>	
-	
+<?PHP $row2 = ob_get_clean(); ?>
+<div class="row">
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'> 14 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'> 14 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'> 14 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+</div>
+
+<?PHP
+ob_start();
+$counter['same']=0;
+$counter['up']=0;
+$counter['down']=0;
+?>
 <div class="row">	
 	<div class="col-sm-2">
 	    <h4>30 Day Over 1000%</h4><ol>
 	    <?PHP
-		$q = "SELECT day30change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '1000' order by day30change_percentage DESC";
+		$q = "SELECT day30change_percentage, zip_code, percentage_direction30 FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '1000' order by day30change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction30]]++;
+			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>30 Day Over 100%</h4><ol>
 	    <?PHP
-		$q = "SELECT day30change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '100' and day30change_percentage < '1000' order by day30change_percentage DESC";
+		$q = "SELECT day30change_percentage, zip_code, percentage_direction30 FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '100' and day30change_percentage < '1000' order by day30change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction30]]++;
+			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>30 Day Over 50%</h4><ol>
 	    <?PHP
-		$q = "SELECT day30change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '50' and day30change_percentage < '100' order by day30change_percentage DESC";
+		$q = "SELECT day30change_percentage, zip_code, percentage_direction30 FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '50' and day30change_percentage < '100' order by day30change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction30]]++;
+			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>30 Day Over 20%</h4><ol>
 	    <?PHP
-		$q = "SELECT day30change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '20' and day30change_percentage < '50' order by day30change_percentage DESC";
+		$q = "SELECT day30change_percentage, zip_code, percentage_direction30 FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '20' and day30change_percentage < '50' order by day30change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction30]]++;
+			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>30 Day Over 10%</h4><ol>
 	    <?PHP
-		$q = "SELECT day30change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '10' and day30change_percentage < '20' order by day30change_percentage DESC";
+		$q = "SELECT day30change_percentage, zip_code, percentage_direction30 FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '10' and day30change_percentage < '20' order by day30change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction30]]++;
+			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
 	<div class="col-sm-2">
 	    <h4>30 Day Under 10%</h4><ol>
 	    <?PHP
-		$q = "SELECT day30change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '0' and day30change_percentage < '10' order by day30change_percentage DESC";
+		$q = "SELECT day30change_percentage, zip_code, percentage_direction30 FROM coronavirus_zip where report_date = '$date' and day30change_percentage > '0' and day30change_percentage < '10' order by day30change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction30]]++;
+			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
  	 </div>
 </div>	
-	
-	
+<?PHP $row3 = ob_get_clean(); ?>
+<div class="row">
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'> 30 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'> 30 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'> 30 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+</div>
+<?PHP
+ob_start();
+$counter['same']=0;
+$counter['up']=0;
+$counter['down']=0;
+?>
 <div class="row">
 	<div class="col-sm-2">
 	   <h4>45 Day Over 1000%</h4><ol>
 	   <?PHP
-		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '1000' order by day45change_percentage DESC";
+		$q = "SELECT day45change_percentage, zip_code, percentage_direction45 FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '1000' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction45]]++;
+			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	   <h4>45 Day Over 100%</h4><ol>
 	   <?PHP
-		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '100' and day45change_percentage < '1000' order by day45change_percentage DESC";
+		$q = "SELECT day45change_percentage, zip_code, percentage_direction45 FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '100' and day45change_percentage < '1000' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction45]]++;
+			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	   <h4>45 Day Over 50%</h4><ol>
 	   <?PHP
-		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '50' and day45change_percentage < '100' order by day45change_percentage DESC";
+		$q = "SELECT day45change_percentage, zip_code, percentage_direction45 FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '50' and day45change_percentage < '100' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction45]]++;
+			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	   <h4>45 Day Over 20%</h4><ol>
 	   <?PHP
-		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '20' and day45change_percentage < '50' order by day45change_percentage DESC";
+		$q = "SELECT day45change_percentage, zip_code, percentage_direction45 FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '20' and day45change_percentage < '50' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction45]]++;
+			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	   <h4>45 Day Over 10%</h4><ol>
 	   <?PHP
-		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '10' and day45change_percentage < '20' order by day45change_percentage DESC";
+		$q = "SELECT day45change_percentage, zip_code, percentage_direction45 FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '10' and day45change_percentage < '20' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction45]]++;
+			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 	<div class="col-sm-2">
 	   <h4>45 Day Under 10%</h4><ol>
 	   <?PHP
-		$q = "SELECT day45change_percentage, zip_code FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '0' and day45change_percentage < '10' order by day45change_percentage DESC";
+		$q = "SELECT day45change_percentage, zip_code, percentage_direction45 FROM coronavirus_zip where report_date = '$date' and day45change_percentage > '0' and day45change_percentage < '10' order by day45change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$counter[$d[percentage_direction45]]++;
+			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
 </div>
+<?PHP $row4 = ob_get_clean(); ?>
+<div class="row">
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'> 45 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'> 45 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'> 45 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+</div>
+<?PHP echo $row; ?>
+<?PHP echo $row2; ?>
+<?PHP echo $row3; ?>	
+<?PHP echo $row4; ?>
 
 <?PHP include_once('footer.php'); ?>
