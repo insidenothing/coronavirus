@@ -140,7 +140,7 @@ ob_start();
 ?>
 <div class="row">
 	<?PHP 
-	$per = round( ( ( $end_value - $start_value ) / $start_value ) * 100); 
+	$per = round( ( ( fix_zero($end_value) - fix_zero($start_value) ) / fix_zero($start_value) ) * 100); 
 	if ($per == '0'){
 		$color = 'lightgreen';	
 	}elseif($per < '10'){
@@ -151,7 +151,7 @@ ob_start();
 	?>
 	
 	<p style='text-align:center; background-color:<?PHP echo $color;?>;'>
-		<b>From <?PHP echo $start_value;?> cases to <?PHP echo $end_value;?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.</b>
+		<b>From <?PHP echo fix_zero($start_value);?> cases to <?PHP echo fix_zero($end_value);?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.</b>
 	</p>
 	
 </div>
