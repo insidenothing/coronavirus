@@ -26,8 +26,8 @@ if(isset($_GET['reset'])){
 	width: 20px;	
 }
 .same { 
-	height: 15px;
-	width: 15px;	
+	height: 10px;
+	width: 10px;	
 }
 .up {
 	height: 20px;
