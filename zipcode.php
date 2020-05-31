@@ -564,7 +564,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4;?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
-<small><?PHP echo $yesterday;?> & <?PHP echo $date;?></small>
+<small><?PHP echo $yesterday;?> & <?PHP echo $date;?> <?PHP echo mysqli_error($core);?></small>
 	
 <?PHP include_once('footer.php'); ?>
 	
