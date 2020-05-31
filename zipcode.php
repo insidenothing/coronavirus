@@ -49,7 +49,7 @@ function data_points($zip,$field){
 	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		$chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d[$field]).' }, ';
+		$chart .=  '{ label: "'.$d['report_date'].'", y: '.$d[$field].' }, ';
 	}
 	$chart = rtrim(trim($chart), ",");
 	return $chart;
