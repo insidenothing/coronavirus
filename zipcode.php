@@ -23,6 +23,9 @@ function fix_zero($int){
 	if($int == 0){
 		$int = 7;
 	}
+	if($int == ''){
+		$int = 7;
+	}
 	return $int;
 }
 
