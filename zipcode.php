@@ -224,16 +224,34 @@ $per_4 			= $day45['per'];
 
 $date = date('Y-m-d');
 $yesterday = date('Y-m-d',strtotime('-1 day'));
-$q = "select day7change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
+$q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r); 
 $dir = 'same';
 if ($d['day7change_percentage'] > $per_1){
 	$dir = 'down';	
 }elseif ($d['day7change_percentage'] < $per_1){
-	$dir='up';
+	$dir = 'up';
 }
-$q = "update coronavirus_zip set percentage_direction='$dir', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$dir2 = 'same';
+if ($d['day14change_percentage'] > $per_2){
+	$dir2 = 'down';	
+}elseif ($d['day14change_percentage'] < $per_2){
+	$dir2 = 'up';
+}
+$dir3 = 'same';
+if ($d['day30change_percentage'] > $per_3){
+	$dir3 = 'down';	
+}elseif ($d['day30change_percentage'] < $per_3){
+	$dir3 = 'up';
+}
+$dir4 = 'same';
+if ($d['day45change_percentage'] > $per_4){
+	$dir4 = 'down';	
+}elseif ($d['day45change_percentage'] < $per_4){
+	$dir4 = 'up';
+}
+$q = "update coronavirus_zip set percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $core->query($q);
 ?>
 <script src="canvasjs.min.js"></script>
