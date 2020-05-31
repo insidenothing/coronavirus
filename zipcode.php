@@ -40,7 +40,7 @@ include_once('functions.php'); //outside webserver
 
 function data_points($zip,$field){
 	global $core;
-	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
+	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d[$field]).' }, ';
@@ -475,7 +475,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		]
 		}'; } ?>]
 	})
-	chartZIP4.render();	
+	chartZIP4.render();
+	
+	
 	var chartZIP5 = new CanvasJS.Chart("chartContainerZIP5", {
 		theme:"light2",
 		animationEnabled: true,
