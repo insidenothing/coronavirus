@@ -5,7 +5,7 @@
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/download_zip.php'){ echo "class='active'"; } ?> ><a href="download_zip.php">Download Our Zipcode Data</a></li>
 
 	<li role='presentation'><a target='_Blank' href="https://www.facebook.com/groups/covid19md/">MD Facebook Group</a></li>
-
+	<li role='presentation'><a target='_Blank' href="https://www.reddit.com/r/CoronavirusDMV/">CoronavirusDMV</a></li>
 	<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/debug.php'){ echo "class='active'"; } ?> ><a href="debug.php">Raw Data</a></li>
 	<li role='presentation'><a target='_Blank' href='https://github.com/insidenothing/coronavirus/blob/master<?PHP echo $_SERVER['SCRIPT_NAME'];?>'>Open Source - Edit <?PHP echo $_SERVER['SCRIPT_NAME'];?> at Github.com</a></li>
 	<li role='presentation'><a target='_Blank' href="https://coronavirus.maryland.gov/">Maryland Department of Health</a></li>
