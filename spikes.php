@@ -17,7 +17,23 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
  	$core->query("update coronavirus_zip set town_name = '$new_name' where zip_code = '$add_zip' and report_date = '$date' ");	
 }
 ?>
-
+<style>
+li.up {
+background: url('/img/red_up.png') no-repeat left top;
+height: 54px;
+padding-left: 44px;
+padding-top: 3px;
+}	
+li.down {
+background: url('/img/green_down.png') no-repeat left top;
+height: 54px;
+padding-left: 44px;
+padding-top: 3px;
+}	
+	
+	
+	
+</style>
 <div class="row">
 	<div class="col-sm-2">
 		<h4>7 Day Over 1000%</h4><ol>
@@ -27,13 +43,7 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			$img='';	
-			if($d['percentage_direction'] == 'down'){
-				$img='<img height="20" width="20" src="img/green_down.png">';	
-			}elseif($d['percentage_direction'] == 'up'){
-				$img='<img height="20" width="20" src="img/red_up.png">';	
-			}
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
+			echo "<li class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -45,13 +55,7 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			$img='';	
-			if($d['percentage_direction'] == 'down'){
-				$img='<img height="20" width="20" src="img/green_down.png">';	
-			}elseif($d['percentage_direction'] == 'up'){
-				$img='<img height="20" width="20" src="img/red_up.png">';	
-			}
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
+			echo "<li class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -63,13 +67,7 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			$img='';	
-			if($d['percentage_direction'] == 'down'){
-				$img='<img height="20" width="20" src="img/green_down.png">';	
-			}elseif($d['percentage_direction'] == 'up'){
-				$img='<img height="20" width="20" src="img/red_up.png">';	
-			}
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
+			echo "<li class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -81,13 +79,7 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			$img='';	
-			if($d['percentage_direction'] == 'down'){
-				$img='<img height="20" width="20" src="img/green_down.png">';	
-			}elseif($d['percentage_direction'] == 'up'){
-				$img='<img height="20" width="20" src="img/red_up.png">';	
-			}
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
+			echo "<li class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -99,13 +91,8 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			$img='';	
-			if($d['percentage_direction'] == 'down'){
-				$img='<img height="20" width="20" src="img/green_down.png">';	
-			}elseif($d['percentage_direction'] == 'up'){
-				$img='<img height="20" width="20" src="img/red_up.png">';	
-			}
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
+			
+			echo "<li class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -123,7 +110,7 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 			}elseif($d['percentage_direction'] == 'up'){
 				$img='<img height="20" width="20" src="img/red_up.png">';	
 			}
-			echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% $img</a></li>";
+			echo "<li class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
 	 </div>
