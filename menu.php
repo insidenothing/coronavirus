@@ -37,6 +37,7 @@ global $core;
 
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
+include_once('slack.php'); //outside webserver
 set_hits(); // internal page counter
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
