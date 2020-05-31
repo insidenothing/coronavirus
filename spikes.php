@@ -54,7 +54,7 @@ if(isset($_GET['reset'])){
 	width: 40px;
 }
 </style>
-<h1>Maryland COVID 19 Spike Monitor</h1>
+<h1>Maryland COVID 19 Spike Monitor - % Change of Infections</h1>
 <?PHP
 ob_start();
 $counter['same']=0;
@@ -158,9 +158,9 @@ $counter['down']=0;
 </div>
 <?PHP $row = ob_get_clean(); ?>
 <div class="row">
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>7 Day %Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>7 Day %Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>7 Day %Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>7 Day Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>7 Day No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>7 Day Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
 
 
@@ -256,9 +256,9 @@ $counter['down']=0;
 </div>	
 <?PHP $row2 = ob_get_clean(); ?>
 <div class="row">
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>14 Day %Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>14 Day %Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>14 Day %Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>14 Day Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>14 Day No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>14 Day Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
 
 <?PHP
@@ -349,9 +349,9 @@ $counter['down']=0;
 </div>	
 <?PHP $row3 = ob_get_clean(); ?>
 <div class="row">
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>30 Day %Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>30 Day %Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>30 Day %Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>30 Day Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>30 Day No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>30 Day Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
 <?PHP
 ob_start();
@@ -441,9 +441,9 @@ $counter['down']=0;
 </div>
 <?PHP $row4 = ob_get_clean(); ?>
 <div class="row">
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>45 Day %Change of Infections Increasing: <?PHP echo $counter['up'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>45 Day %Change of Infections No Change: <?PHP echo $counter['same'];?></h3></div>
-	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>45 Day %Change of Infections Decreasing: <?PHP echo $counter['down'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/up.png' class='up_big'>45 Day Increasing: <?PHP echo $counter['up'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>45 Day No Change: <?PHP echo $counter['same'];?></h3></div>
+	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>45 Day Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
 <?PHP echo $row; ?>
 <?PHP echo $row2; ?>
