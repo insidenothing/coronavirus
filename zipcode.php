@@ -32,15 +32,7 @@ global $zip_debug;
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
-if (isset($_GET['auto'])){
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '".date('Y-m-d')."' order by RAND() ";
-	$r = $core->query($q);
-	$d = mysqli_fetch_array($r);
-	$left = mysqli_num_rows($r);
-	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left\">";
-	}
-}
+
 
 
 function data_points($zip,$field){
@@ -182,6 +174,15 @@ $page_description = $day14['page_description'];
 include_once('menu.php');
 $date = $global_date;
 
+if (isset($_GET['auto'])){
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' order by RAND() ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$left = mysqli_num_rows($r);
+	if ($left > 0){
+		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left\">";
+	}
+}
 
 // Chart 1
 
