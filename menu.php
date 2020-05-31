@@ -1,3 +1,4 @@
+<?PHP include_once('blocked_bots.php'); ?>
 <html>
 <head>
 	<?PHP 
@@ -47,8 +48,8 @@ global $send_message;
 global $core;
 
 include_once('/var/www/secure.php'); //outside webserver
-include_once('functions.php'); //outside webserver
-include_once('slack.php'); //outside webserver
+include_once('functions.php');
+include_once('slack.php'); 
 set_hits(); // internal page counter
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
