@@ -38,6 +38,11 @@ if(isset($_GET['reset'])){
 	width: 20px;
 }	
 </style>
+<?PHP
+$counter['same']=0;
+$counter['up']=0;
+$counter['down']=0;
+?>
 <div class="row">
 	<?PHP /*
 	<div class="col-sm-2">
@@ -61,6 +66,7 @@ if(isset($_GET['reset'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
+			$counter[$d[percentage_direction]]++;
 			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
@@ -73,6 +79,7 @@ if(isset($_GET['reset'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
+			$counter[$d[percentage_direction]]++;
 			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
@@ -85,6 +92,7 @@ if(isset($_GET['reset'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
+			$counter[$d[percentage_direction]]++;
 			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
@@ -97,6 +105,7 @@ if(isset($_GET['reset'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
+			$counter[$d[percentage_direction]]++;
 			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
@@ -109,7 +118,7 @@ if(isset($_GET['reset'])){
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
-			
+			$counter[$d[percentage_direction]]++;
 			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
@@ -123,17 +132,18 @@ if(isset($_GET['reset'])){
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$img='';	
-			if($d['percentage_direction'] == 'down'){
-				$img='<img height="20" width="20" src="img/green_down.png">';	
-			}elseif($d['percentage_direction'] == 'up'){
-				$img='<img height="20" width="20" src="img/red_up.png">';	
-			}
+			$counter[$d[percentage_direction]]++;
 			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
 	 </div>
 </div>
 
+<div class="row">
+	<div class="col-sm-4"><img src='/img/up.png' class='up'> 7 Day % Change of Infections Increasing: <?PHP echo $counter['up'];?></div>
+	<div class="col-sm-4"><img src='/img/same.png' class='same'> 7 Day % Change of Infections No Change: <?PHP echo $counter['same'];?></div>
+	<div class="col-sm-4"><img src='/img/down.png' class='down'> 7 Day % Change of Infections Decreasing: <?PHP echo $counter['down'];?></div>
+</div>
 <div class="row">
 	<div class="col-sm-2">
 	    <h4>14 Day Over 1000%</h4><ol>
