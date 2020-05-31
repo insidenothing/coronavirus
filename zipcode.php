@@ -18,6 +18,15 @@ if ($pos !== false) {
 	$zip = $zips[0];
 	$zip2 = $zips[1];
 }
+
+function fix_zero($int){
+	if($int == 0){
+		$int = 7;
+	}
+	return $int;
+}
+
+
 $logo = 'off';
 global $zip_debug;
 include_once('/var/www/secure.php'); //outside webserver
@@ -39,7 +48,7 @@ function data_points($zip,$field){
 	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' and $field <> '' order by report_date";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		$chart .=  '{ label: "'.$d['report_date'].'", y: '.$d[$field].' }, ';
+		$chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d[$field]).' }, ';
 	}
 	$chart = rtrim(trim($chart), ",");
 	return $chart;
@@ -63,7 +72,7 @@ $r = $core->query($q);
 $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
-	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['report_count'].' }, ';
+	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 	if ($i == 0){
 		$me = 0;
 	}else{
@@ -74,10 +83,10 @@ while ($d = mysqli_fetch_array($r)){
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
 	if($i == 0){
-		$start_value = $d['report_count'];
+		$start_value = fix_zero($d['report_count']);
 	}
 	if($i == $range2){
-		$end_value = $d['report_count'];
+		$end_value = fix_zero($d['report_count']);
 	}
 	$i++; // number of days in the graph
 }
