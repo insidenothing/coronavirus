@@ -180,6 +180,7 @@ $day30 = make_chart('30');
 $day45 = make_chart('45');
 $page_description = $day14['page_description'];
 include_once('menu.php');
+$date = $global_date;
 
 
 // Chart 1
@@ -222,8 +223,7 @@ $range_4 		= $day45['range'];
 $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
 
-$date = date('Y-m-d');
-$yesterday = date('Y-m-d',strtotime('-1 day'));
+$yesterday = date('Y-m-d',strtotime($date - 86400));
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r); 
