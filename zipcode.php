@@ -555,12 +555,12 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 
 
 <div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_1;?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_2;?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir;?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_2.' '.$dir2;?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
 </div>
 <div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_3;?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_4;?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3;?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4;?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?></small>
