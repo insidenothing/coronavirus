@@ -187,7 +187,7 @@ $counter['down']=0;
 	<div class="col-sm-2">
 		<h4>7 Day Over 50%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' report_date = '$date' and day7change_percentage > '50' and day7change_percentage < '100'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' and report_date = '$date' and day7change_percentage > '50' and day7change_percentage < '100'  order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
@@ -200,7 +200,7 @@ $counter['down']=0;
 	<div class="col-sm-2">
 		<h4>7 Day Over 30%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' report_date = '$date' and day7change_percentage > '30' and day7change_percentage < '50'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' and report_date = '$date' and day7change_percentage > '30' and day7change_percentage < '50'  order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
@@ -213,7 +213,7 @@ $counter['down']=0;
 	<div class="col-sm-2">
 		<h4>7 Day Over 20%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' report_date = '$date' and day7change_percentage > '20' and day7change_percentage < '30'  order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' and report_date = '$date' and day7change_percentage > '20' and day7change_percentage < '30'  order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
@@ -226,7 +226,7 @@ $counter['down']=0;
 	<div class="col-sm-2">
 		<h4>7 Day Over 10%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' report_date = '$date' and day7change_percentage > '10' and day7change_percentage < '20' order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' and report_date = '$date' and day7change_percentage > '10' and day7change_percentage < '20' order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
@@ -239,7 +239,7 @@ $counter['down']=0;
 	<div class="col-sm-2">
 		<h4>7 Day Under 10%</h4><ol>
 		<?PHP
-		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' report_date = '$date' and day7change_percentage > '0' and day7change_percentage < '10' order by day7change_percentage DESC";
+		$q = "SELECT day7change_percentage, zip_code, percentage_direction FROM coronavirus_zip where percentage_direction <> 'up' and report_date = '$date' and day7change_percentage > '0' and day7change_percentage < '10' order by day7change_percentage DESC";
 		$r = $core->query($q);
 		while ($d = mysqli_fetch_array($r)){
 			$zip_c = $d['zip_code'];
