@@ -22,6 +22,10 @@ if(isset($_GET['zip']) && isset($_GET['name'])){
 	height: 20px;
 	width: 20px;	
 }
+.same { 
+	height: 20px;
+	width: 20px;	
+}
 .up {
 	height: 20px;
 	width: 20px;
