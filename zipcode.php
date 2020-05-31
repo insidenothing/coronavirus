@@ -40,7 +40,13 @@ include_once('functions.php'); //outside webserver
 
 function data_points($zip,$field){
 	global $core;
-	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' order by report_date";
+	$range = '7'; // one week
+	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip'";
+	$r = $core->query($q);
+	$rows = mysqli_num_rows($r);
+	$start = $rows - $range;
+	$range2= $range - 1;
+	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d[$field]).' }, ';
