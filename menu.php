@@ -115,8 +115,8 @@ while($d = mysqli_fetch_array($r)){
 	?>
 	<form method='GET' action='zipcode.php'>
 	<ul class="nav nav-pills">
-		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">etsy.com/shop/PatricksPPE</a></li>
-		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">github.com/sponsors/insidenothing</a></li>
+		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
+		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Maryland COVID 19 Reopen Dashboard</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/spikes.php'){ echo "class='active'"; } ?> ><a href="spikes.php">Maryland COVID 19 Spike Monitor</a></li>
 		
@@ -137,12 +137,12 @@ while($d = mysqli_fetch_array($r)){
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/death_level.php'){ echo "class='active'"; } ?> ><a href="death_level.php">Death Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		*/ ?>
-		
+		<li role='presentation'><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button></li>
 		</ul>
 	</form>
 	
 	
-	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button>
+	
 	<ul id="demo" class="nav nav-tabs collapse">
 		<?PHP echo "$links"; ?>
 	</ul>
