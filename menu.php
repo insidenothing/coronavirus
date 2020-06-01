@@ -140,12 +140,13 @@ while($d = mysqli_fetch_array($r)){
 		
 		</ul>
 	</form>
-	<?PHP 
-	/*
+	
+	
 	<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Florida Counties</button>
 	<ul id="demo" class="nav nav-tabs collapse">
 		<?PHP echo "$links"; ?>
 	</ul>
+	<?PHP 	/*
 	<ul id="demo2" class="nav nav-tabs collapse">
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/county.php?state=Florida&county=PalmBeach'){ echo "class='active'"; } ?> ><a href="county.php?state=Florida&county=PalmBeach">PalmBeach</a></li>
 	</ul>
