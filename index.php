@@ -56,10 +56,10 @@ $new_down=0;
 ?>
 <div class="row">
   <div class="col-sm-6">
-  <h3>14+ Day Trends above 0</h3>
+  <h3>14+ Day Trends Flat / Down</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 and trend_direction <> 'up' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         $color='orange';
@@ -72,10 +72,10 @@ $new_down=0;
     </ol>
   </div>
 	<div class="col-sm-6">
-  <h3>14+ Day Trends at 0</h3>
+  <h3>14+ Day Trends Up</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count = 0 order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 and trend_direction = 'up' order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         $color='orange';
