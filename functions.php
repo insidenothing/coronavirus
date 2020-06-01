@@ -390,7 +390,7 @@ function make_maryland_array($json=''){
 	//$return['url_pulled'] = $url;
 	//$json = getPage($url);
 	
-	
+	global $core;
 	$q = "SELECT * FROM `coronavirus_api_cache` where api_id = '20' order by id DESC limit 0, 1";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
