@@ -117,8 +117,8 @@ while($d = mysqli_fetch_array($r)){
 	<ul class="nav nav-pills">
 		<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">etsy.com/shop/PatricksPPE</a></li>
 		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">github.com/sponsors/insidenothing</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Home</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/spikes.php'){ echo "class='active'"; } ?> ><a href="spikes.php">New Spike Monitor</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Maryland COVID 19 Reopen Dashboard</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/spikes.php'){ echo "class='active'"; } ?> ><a href="spikes.php">Maryland COVID 19 Spike Monitor</a></li>
 		
 		<li role='presentation'><input name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success">Go to ZIP Code</button></li>
 		
