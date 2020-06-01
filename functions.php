@@ -377,18 +377,26 @@ function county_pdaka($county){
 	return $county;
 }
 function make_maryland_array($json=''){
-	$return = array();
-	if ($json != ''){
-		$array = json_decode($json, true);
-		return $array;
-	}
+	//$return = array();
+	//if ($json != ''){
+	//	$array = json_decode($json, true);
+	//	return $array;
+	//}
 	// old https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json
 	// https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_TotalsTracker/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json
 	
-	$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_COVID_19_CasesByCounty/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+	//$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_COVID_19_CasesByCounty/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
 	//$url = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MASTER_CaseTracker_3/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json';
-	$return['url_pulled'] = $url;
-	$json = getPage($url);
+	//$return['url_pulled'] = $url;
+	//$json = getPage($url);
+	
+	
+	$q = "SELECT * FROM `coronavirus_api_cache` where api_id = '20' order by id DESC limit 0, 1";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$json = $d['raw_response'];
+	
+	
 	global $raw;
 	$raw = $json;
 	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
