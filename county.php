@@ -343,7 +343,7 @@ $new_down=0;
   <h3>14+ Day Trends Up</h3>
     <ol>
     <?PHP
-    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and trend_direction <> 'UP' $zip_like order by trend_duration DESC";
+    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and trend_direction = 'UP' $zip_like order by trend_duration DESC";
     $r = $core->query($q);
     while($d = mysqli_fetch_array($r)){
         $color='orange';
