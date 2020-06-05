@@ -581,4 +581,26 @@ $counter['down']=0;
 <?PHP echo $row3; ?>	
 <?PHP echo $row4; ?>
 
+
+<script>
+$(function() {
+
+    $('.days45over50downmenu').click(function() {
+        var display=$('.days45over50down').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over50down').css('display', display);
+    });
+	
+    $('.days45over50upmenu').click(function() {
+        var display=$('.days45over50up').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over50up').css('display', display);
+    });
+
+});
+</script>
+<style>
+.days45over50down  { display: block; }     
+.days45over50up  { display: block; } 
+</style>
+<div class="days45over50downmenu"><a>HIDE/SHOW days45over50down</a></div>
+<div class="days45over50upmenu"><a>HIDE/SHOW days45over50up</a></div>
 <?PHP include_once('footer.php'); ?>
