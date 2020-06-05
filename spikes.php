@@ -508,7 +508,18 @@ $counter['down']=0;
 
 
 <div class="row">
-	<div class="col-sm-12">Use the following Buttons to HIDE/SHOW data below. <button class="downmenu btn-success">down</button> <button class="upmenu btn-danger">up</button> <button class="samemenu btn-info">same</button></div>
+	<div class="col-sm-12">Use the following Buttons to HIDE/SHOW data below. 
+		<button class="downmenu btn-success">down</button> 
+		<button class="upmenu btn-danger">up</button> 
+		<button class="samemenu btn-info">same</button>
+		<button class="menu1000">1000</button>
+		<button class="menu100">100</button>
+		<button class="menu50">50</button>
+		<button class="menu30">30</button>
+		<button class="menu20">20</button>
+		<button class="menu10">10</button>
+		<button class="menu0">0</button>
+	</div>
 </div>
 <div class="row">
 	<div class="col-sm-2">
@@ -952,20 +963,46 @@ $(function() {
     $('.upmenu').click(function() {
         var display=$("[class$=up]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class$=up]").css('display', display);
-	//$("[id$=up]").css('display', 'none');
     });	
     $('.downmenu').click(function() {
         var display=$("[class$=down]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class$=down]").css('display', display);
-        //$("[id$=down]").css('display', 'none');
     });	
     $('.samemenu').click(function() {
         var display=$("[class$=same]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class$=same]").css('display', display);
-	//$("[id$=same]").css('display', 'none');
     });	
 	
 	
+	
+    $('.menu1000').click(function() {
+        var display=$("[class*=1000]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=1000]").css('display', display);
+    });	
+    $('.menu100').click(function() {
+        var display=$("[class*=100]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=100]").css('display', display);
+    });	
+    $('.menu50').click(function() {
+        var display=$("[class*=50]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=50]").css('display', display);
+    });	
+    $('.menu30').click(function() {
+        var display=$("[class*=30]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=30]").css('display', display);
+    });	
+    $('.menu20').click(function() {
+        var display=$("[class*=20]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=20]").css('display', display);
+    });	
+    $('.menu10').click(function() {
+        var display=$("[class*=10]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=10]").css('display', display);
+    });	
+    $('.menu0').click(function() {
+        var display=$("[class*=0]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class*=0]").css('display', display);
+    });	
 	
 });
 </script>
