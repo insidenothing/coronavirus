@@ -977,32 +977,32 @@ $(function() {
 	
 	
     $('.menuA').click(function() {
-        var display=$("[class*=1000]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=1000]").css('display', display);
+        var display=$("[id$=1000]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=1000]").css('display', display);
     });	
     $('.menuB').click(function() {
-        var display=$("[class*=100]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=100]").css('display', display);
+        var display=$("[id$=100]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=100]").css('display', display);
     });	
     $('.menuC').click(function() {
-        var display=$("[class*=50]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=50]").css('display', display);
+        var display=$("[id$=50]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=50]").css('display', display);
     });	
     $('.menuD').click(function() {
-        var display=$("[class*=30]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=30]").css('display', display);
+        var display=$("[id$=30]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=30]").css('display', display);
     });	
     $('.menuE').click(function() {
-        var display=$("[class*=20]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=20]").css('display', display);
+        var display=$("[id$=20]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=20]").css('display', display);
     });	
     $('.menuF').click(function() {
-        var display=$("[class*=10]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=10]").css('display', display);
+        var display=$("[id$=10]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=10]").css('display', display);
     });	
     $('.menuG').click(function() {
-        var display=$("[class*=0]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class*=0]").css('display', display);
+        var display=$("[id$=0]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=0]").css('display', display);
     });	
 	
     $('.allmenu').click(function() {
