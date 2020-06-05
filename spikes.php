@@ -997,12 +997,12 @@ $(function() {
         $("[id$=20]").css('display', display);
     });	
     $('.menuF').click(function() {
-        var display=$("[id$=10]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[id$=10]").css('display', display);
+        var display=$("[id$=over10]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=over10]").css('display', display);
     });	
     $('.menuG').click(function() {
-        var display=$("[id$=0]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[id$=0]").css('display', display);
+        var display=$("[id$=under10]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=under10]").css('display', display);
     });	
 	
     $('.allmenu').click(function() {
