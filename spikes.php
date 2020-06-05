@@ -85,7 +85,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days7over100';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -98,7 +99,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7over50';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -111,7 +113,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7over30';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -124,7 +127,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days7over20';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -137,7 +141,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7over10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -151,7 +156,8 @@ $counter['down']=0;
 			$name = $zipcode[$zip_c];
 			$img='';	
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7under10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
 	 </div>
@@ -180,7 +186,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days7over100';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -193,7 +200,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7over50';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -206,7 +214,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7over30';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -219,7 +228,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days7over20';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -232,7 +242,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7over10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
   	</div>
@@ -246,7 +257,8 @@ $counter['down']=0;
 			$name = $zipcode[$zip_c];
 			$img='';	
 			$counter[$d[percentage_direction]]++;
-			echo "<li><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
+			$id = 'zip'.$zip.'days7under10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction].png' class='$d[percentage_direction]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day7change_percentage']."% </a></li>";
 		}
 		?></ol>
 	 </div>
@@ -279,7 +291,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction14]]++;
-			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days14over1000';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -292,7 +305,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction14]]++;
-			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days14over100';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -305,7 +319,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction14]]++;
-			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days14over50';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -318,7 +333,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction14]]++;
-			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days14over20';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -331,7 +347,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction14]]++;
-			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days14over10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -344,7 +361,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction14]]++;
-			echo "<li><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days14under10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction14].png' class='$d[percentage_direction14]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day14change_percentage']."%</a></li>";
 		}
 		?></ol>
  	</div>
@@ -372,7 +390,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction30]]++;
-			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days30over1000';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
@@ -385,7 +404,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction30]]++;
-			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days30over100';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
@@ -398,7 +418,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction30]]++;
-			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days30over50';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
@@ -411,7 +432,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction30]]++;
-			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days30over30';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
@@ -424,7 +446,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction30]]++;
-			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days30over10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
   	</div>
@@ -437,7 +460,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction30]]++;
-			echo "<li><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days30under10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction30].png' class='$d[percentage_direction30]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day30change_percentage']."%</a></li>";
 		}
 	  ?></ol>
  	 </div>
@@ -464,7 +488,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction45]]++;
-			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days45over1000';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -477,7 +502,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction45]]++;
-			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days45over100';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -490,7 +516,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction45]]++;
-			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days45over50';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -503,7 +530,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction45]]++;
-			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days45over20';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -516,7 +544,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction45]]++;
-			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days45over10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
@@ -529,7 +558,8 @@ $counter['down']=0;
 			$zip_c = $d['zip_code'];
 			$name = $zipcode[$zip_c];
 			$counter[$d[percentage_direction45]]++;
-			echo "<li><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
+			$id = 'zip'.$zip.'days45under10';
+			echo "<li id='$id' name='$id'><img src='/img/$d[percentage_direction45].png' class='$d[percentage_direction45]'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['day45change_percentage']."%</a></li>";
 		}
 		?></ol>
   	</div>
