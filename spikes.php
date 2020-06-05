@@ -715,5 +715,5 @@ $(function() {
 .days45under10up  	{ display: block; } 
 </style>
 
-<span class="days45over50upmenu"><a>HIDE/SHOW days45over50up</a></span>
+
 <?PHP include_once('footer.php'); ?>
