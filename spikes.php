@@ -62,6 +62,38 @@ $counter['up']=0;
 $counter['down']=0;
 ?>
 <div class="row">
+	<div class="col-sm-2">
+		<div class="days45over1000downmenu"><a>HIDE/SHOW days45over1000down</a></div>
+		<div class="days45over1000upmenu"><a>HIDE/SHOW days45over1000up</a></div>
+		<div class="days45over1000samemenu"><a>HIDE/SHOW days45over1000same</a></div>
+	</div>
+	<div class="col-sm-2">
+		<div class="days45over100downmenu"><a>HIDE/SHOW days45over100down</a></div>
+		<div class="days45over100upmenu"><a>HIDE/SHOW days45over100up</a></div>
+		<div class="days45over100samemenu"><a>HIDE/SHOW days45over100same</a></div>
+	</div>
+	<div class="col-sm-2">
+		<div class="days45over50downmenu"><a>HIDE/SHOW days45over50down</a></div>
+		<div class="days45over50upmenu"><a>HIDE/SHOW days45over50up</a></div>
+		<div class="days45over50samemenu"><a>HIDE/SHOW days45over50same</a></div>
+	</div>
+	<div class="col-sm-2">
+		<div class="days45over20downmenu"><a>HIDE/SHOW days45over20down</a></div>
+		<div class="days45over20upmenu"><a>HIDE/SHOW days45over20up</a></div>
+		<div class="days45over20samemenu"><a>HIDE/SHOW days45over20same</a></div>
+	</div>
+	<div class="col-sm-2">
+		<div class="days45over10downmenu"><a>HIDE/SHOW days45over10down</a></div>
+		<div class="days45over10upmenu"><a>HIDE/SHOW days45over10up</a></div>
+		<div class="days45over10samemenu"><a>HIDE/SHOW days45over10same</a></div>
+	</div>
+	<div class="col-sm-2">
+		<div class="days45under10downmenu"><a>HIDE/SHOW days45under10down</a></div>
+		<div class="days45under10upmenu"><a>HIDE/SHOW days45under10up</a></div>
+		<div class="days45under10samemenu"><a>HIDE/SHOW days45under10same</a></div>
+	</div>
+</div>
+<div class="row">
 	<?PHP /*
 	<div class="col-sm-2">
 		<h4>7 Day Over 1000%</h4><ol>
@@ -584,23 +616,104 @@ $counter['down']=0;
 
 <script>
 $(function() {
-
+    $('.days45over1000downmenu').click(function() {
+        var display=$('.days45over1000down').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over1000down').css('display', display);
+    });
+    $('.days45over1000samemenu').click(function() {
+        var display=$('.days45over1000same').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over1000same').css('display', display);
+    });
+    $('.days45over1000upmenu').click(function() {
+        var display=$('.days45over1000up').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over1000up').css('display', display);
+    });
+    $('.days45over100downmenu').click(function() {
+        var display=$('.days45over100down').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over100down').css('display', display);
+    });
+    $('.days45over100samemenu').click(function() {
+        var display=$('.days45over100same').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over100same').css('display', display);
+    });
+    $('.days45over100upmenu').click(function() {
+        var display=$('.days45over100up').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over100up').css('display', display);
+    });
     $('.days45over50downmenu').click(function() {
         var display=$('.days45over50down').css('display') == 'block' ? 'none' : 'block'; 
         $('.days45over50down').css('display', display);
     });
-	
+    $('.days45over50samemenu').click(function() {
+        var display=$('.days45over50same').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over50same').css('display', display);
+    });
     $('.days45over50upmenu').click(function() {
         var display=$('.days45over50up').css('display') == 'block' ? 'none' : 'block'; 
         $('.days45over50up').css('display', display);
+    });
+    $('.days45over20downmenu').click(function() {
+        var display=$('.days45over20down').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over20down').css('display', display);
+    });
+    $('.days45over20samemenu').click(function() {
+        var display=$('.days45over20same').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over20same').css('display', display);
+    });
+    $('.days45over20upmenu').click(function() {
+        var display=$('.days45over20up').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over20up').css('display', display);
+    });
+    $('.days45over10downmenu').click(function() {
+        var display=$('.days45over10down').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over10down').css('display', display);
+    });
+    $('.days45over10samemenu').click(function() {
+        var display=$('.days45over10same').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over10same').css('display', display);
+    });
+    $('.days45over10upmenu').click(function() {
+        var display=$('.days45over10up').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45over10up').css('display', display);
+    });
+		$('.days45under10downmenu').click(function() {
+        var display=$('.days45under10down').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45under10down').css('display', display);
+    });
+    $('.days45under10samemenu').click(function() {
+        var display=$('.days45under10same').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45under10same').css('display', display);
+    });
+    $('.days45under10upmenu').click(function() {
+        var display=$('.days45under10up').css('display') == 'block' ? 'none' : 'block'; 
+        $('.days45under10up').css('display', display);
     });
 
 });
 </script>
 <style>
-.days45over50down  { display: block; }     
-.days45over50up  { display: block; } 
+.days45over1000down  	{ display: block; }   
+.days45over1000same  	{ display: block; }  
+.days45over1000up  	{ display: block; } 
+.days45over100down  	{ display: block; }   
+.days45over100same  	{ display: block; }  
+.days45over100up  	{ display: block; } 
+.days45over50down  	{ display: block; }   
+.days45over50same  	{ display: block; }  
+.days45over50up  	{ display: block; } 
+.days45over20down  	{ display: block; }   
+.days45over20same  	{ display: block; }  
+.days45over20up  	{ display: block; } 
+.days45over20down  	{ display: block; }   
+.days45over20same  	{ display: block; }  
+.days45over20up  	{ display: block; } 
+.days45over10down  	{ display: block; }   
+.days45over10same  	{ display: block; }  
+.days45over10up  	{ display: block; }
+.days45under10down  	{ display: block; }   
+.days45under10same  	{ display: block; }  
+.days45under10up  	{ display: block; } 
 </style>
-<div class="days45over50downmenu"><a>HIDE/SHOW days45over50down</a></div>
-<div class="days45over50upmenu"><a>HIDE/SHOW days45over50up</a></div>
+
+<span class="days45over50upmenu"><a>HIDE/SHOW days45over50up</a></span>
 <?PHP include_once('footer.php'); ?>
