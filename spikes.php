@@ -508,7 +508,7 @@ $counter['down']=0;
 
 
 <div class="row">
-	<div class="col-sm-12">Use the following Buttons to HIDE/SHOW data below.</div>
+	<div class="col-sm-12">Use the following Buttons to HIDE/SHOW data below. <button class="downmenu btn-success">down</button> <button class="upmenu btn-danger">up</button> <button class="samemenu btn-info">same</button></div>
 </div>
 <div class="row">
 	<div class="col-sm-2">
@@ -949,8 +949,18 @@ $(function() {
     });
 	
 	
-	
-	
+    $('.upmenu').click(function() {
+        var display=$("[id$=up]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=up]").css('display', display);
+    });	
+    $('.downmenu').click(function() {
+        var display=$("[id$=down]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=down]").css('display', display);
+    });	
+    $('.samemenu').click(function() {
+        var display=$("[id$=same]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[id$=same]").css('display', display);
+    });	
 	
 	
 	
