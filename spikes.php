@@ -512,7 +512,8 @@ $counter['down']=0;
 
 <div class="row">
 	<div class="col-sm-12">Use the following Buttons to HIDE/SHOW data below. 
-		<button class="allmenu">all</button> 
+		<button class="allon">show all</button> 
+		<button class="alloff">hide all</button> 
 		<button class="downmenu btn-success">down</button> 
 		<button class="upmenu btn-danger">up</button> 
 		<button class="samemenu btn-info">same</button>
@@ -1008,13 +1009,16 @@ $(function() {
         $("[id$=under10]").css('display', display);
     });	
 	
-    $('.allmenu').click(function() {
-        var display=$("[class$=up]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class$=up]").css('display', display);
-	var display=$("[class$=down]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class$=down]").css('display', display);    
-	var display=$("[class$=same]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[class$=same]").css('display', display);    
+    $('.alloff').click(function() {
+        $("[class$=up]").css('display', 'none'); 
+        $("[class$=down]").css('display', 'none');     
+        $("[class$=same]").css('display', 'none');    
+    });	
+	
+    $('.allon').click(function() {    
+        $("[class$=up]").css('display', 'block');	
+        $("[class$=down]").css('display', 'block');    
+        $("[class$=same]").css('display', 'block');    
     });	
 	
 });
