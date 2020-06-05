@@ -97,104 +97,7 @@ $counter['down']=0;
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-sm-2">
-		<button class="days14over1000downmenu btn-success">days14over1000down</button>
-		<button class="days14over1000upmenu btn-danger">days14over1000up</button>
-		<button class="days14over1000samemenu btn-info">days14over1000same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days14over100downmenu btn-success">days14over100down</button>
-		<button class="days14over100upmenu btn-danger">days14over100up</button>
-		<button class="days14over100samemenu btn-info">days14over100same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days14over50downmenu btn-success">days14over50down</button>
-		<button class="days14over50upmenu btn-danger">days14over50up</button>
-		<button class="days14over50samemenu btn-info">days14over50same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days14over20downmenu btn-success">days14over20down</button>
-		<button class="days14over20upmenu btn-danger">days14over20up</button>
-		<button class="days14over20samemenu btn-info">days14over20same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days14over10downmenu btn-success">days14over10down</button>
-		<button class="days14over10upmenu btn-danger">days14over10up</button>
-		<button class="days14over10samemenu btn-info">days14over10same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days14under10downmenu btn-success">days14under10down</button>
-		<button class="days14under10upmenu btn-danger">days14under10up</button>
-		<button class="days14under10samemenu btn-info">days14under10same</button>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-sm-2">
-		<button class="days30over1000downmenu btn-success">days30over1000down</button>
-		<button class="days30over1000upmenu btn-danger">days30over1000up</button>
-		<button class="days30over1000samemenu btn-info">days30over1000same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days30over100downmenu btn-success">days30over100down</button>
-		<button class="days30over100upmenu btn-danger">days30over100up</button>
-		<button class="days30over100samemenu btn-info">days30over100same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days30over50downmenu btn-success">days30over50down</button>
-		<button class="days30over50upmenu btn-danger">days30over50up</button>
-		<button class="days30over50samemenu btn-info">days30over50same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days30over20downmenu btn-success">days30over20down</button>
-		<button class="days30over20upmenu btn-danger">days30over20up</button>
-		<button class="days30over20samemenu btn-info">days30over20same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days30over10downmenu btn-success">days30over10down</button>
-		<button class="days30over10upmenu btn-danger">days30over10up</button>
-		<button class="days30over10samemenu btn-info">days30over10same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days30under10downmenu btn-success">days30under10down</button>
-		<button class="days30under10upmenu btn-danger">days30under10up</button>
-		<button class="days30under10samemenu btn-info">days30under10same</button>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-2">
-		<button class="days45over1000downmenu btn-success">days45over1000down</button>
-		<button class="days45over1000upmenu btn-danger">days45over1000up</button>
-		<button class="days45over1000samemenu btn-info">days45over1000same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days45over100downmenu btn-success">days45over100down</button>
-		<button class="days45over100upmenu btn-danger">days45over100up</button>
-		<button class="days45over100samemenu">days45over100same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days45over50downmenu btn-success">days45over50down</button>
-		<button class="days45over50upmenu btn-danger">days45over50up</button>
-		<button class="days45over50samemenu btn-info">days45over50same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days45over20downmenu btn-success">days45over20down</button>
-		<button class="days45over20upmenu btn-danger">days45over20up</button>
-		<button class="days45over20samemenu btn-info">days45over20same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days45over10downmenu btn-success">days45over10down</button>
-		<button class="days45over10upmenu btn-danger">days45over10up</button>
-		<button class="days45over10samemenu btn-info">days45over10same</button>
-	</div>
-	<div class="col-sm-2">
-		<button class="days45under10downmenu btn-success">days45under10down</button>
-		<button class="days45under10upmenu btn-danger">days45under10up</button>
-		<button class="days45under10samemenu btn-info">days45under10same</button>
-	</div>
-</div>
 <div class="row">
 	<?PHP /*
 	<div class="col-sm-2">
@@ -312,6 +215,38 @@ $counter['down']=0;
 
 
 
+<div class="row">
+	<div class="col-sm-2">
+		<button class="days14over1000downmenu btn-success">days14over1000down</button>
+		<button class="days14over1000upmenu btn-danger">days14over1000up</button>
+		<button class="days14over1000samemenu btn-info">days14over1000same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days14over100downmenu btn-success">days14over100down</button>
+		<button class="days14over100upmenu btn-danger">days14over100up</button>
+		<button class="days14over100samemenu btn-info">days14over100same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days14over50downmenu btn-success">days14over50down</button>
+		<button class="days14over50upmenu btn-danger">days14over50up</button>
+		<button class="days14over50samemenu btn-info">days14over50same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days14over20downmenu btn-success">days14over20down</button>
+		<button class="days14over20upmenu btn-danger">days14over20up</button>
+		<button class="days14over20samemenu btn-info">days14over20same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days14over10downmenu btn-success">days14over10down</button>
+		<button class="days14over10upmenu btn-danger">days14over10up</button>
+		<button class="days14over10samemenu btn-info">days14over10same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days14under10downmenu btn-success">days14under10down</button>
+		<button class="days14under10upmenu btn-danger">days14under10up</button>
+		<button class="days14under10samemenu btn-info">days14under10same</button>
+	</div>
+</div>
 
 
 <?PHP
@@ -418,6 +353,42 @@ $counter['down']=0;
 	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>14 Day No Change: <?PHP echo $counter['same'];?></h3></div>
 	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>14 Day Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
+
+
+
+<div class="row">
+	<div class="col-sm-2">
+		<button class="days30over1000downmenu btn-success">days30over1000down</button>
+		<button class="days30over1000upmenu btn-danger">days30over1000up</button>
+		<button class="days30over1000samemenu btn-info">days30over1000same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days30over100downmenu btn-success">days30over100down</button>
+		<button class="days30over100upmenu btn-danger">days30over100up</button>
+		<button class="days30over100samemenu btn-info">days30over100same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days30over50downmenu btn-success">days30over50down</button>
+		<button class="days30over50upmenu btn-danger">days30over50up</button>
+		<button class="days30over50samemenu btn-info">days30over50same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days30over20downmenu btn-success">days30over20down</button>
+		<button class="days30over20upmenu btn-danger">days30over20up</button>
+		<button class="days30over20samemenu btn-info">days30over20same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days30over10downmenu btn-success">days30over10down</button>
+		<button class="days30over10upmenu btn-danger">days30over10up</button>
+		<button class="days30over10samemenu btn-info">days30over10same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days30under10downmenu btn-success">days30under10down</button>
+		<button class="days30under10upmenu btn-danger">days30under10up</button>
+		<button class="days30under10samemenu btn-info">days30under10same</button>
+	</div>
+</div>
+
 
 <?PHP
 ob_start();
@@ -627,6 +598,43 @@ $counter['down']=0;
 	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/same.png' class='same_big'>45 Day No Change: <?PHP echo $counter['same'];?></h3></div>
 	<div class="col-sm-4" style="text-align:center;"><h3><img src='/img/down.png' class='down_big'>45 Day Decreasing: <?PHP echo $counter['down'];?></h3></div>
 </div>
+
+
+
+<div class="row">
+	<div class="col-sm-2">
+		<button class="days45over1000downmenu btn-success">days45over1000down</button>
+		<button class="days45over1000upmenu btn-danger">days45over1000up</button>
+		<button class="days45over1000samemenu btn-info">days45over1000same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days45over100downmenu btn-success">days45over100down</button>
+		<button class="days45over100upmenu btn-danger">days45over100up</button>
+		<button class="days45over100samemenu btn-info">days45over100same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days45over50downmenu btn-success">days45over50down</button>
+		<button class="days45over50upmenu btn-danger">days45over50up</button>
+		<button class="days45over50samemenu btn-info">days45over50same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days45over20downmenu btn-success">days45over20down</button>
+		<button class="days45over20upmenu btn-danger">days45over20up</button>
+		<button class="days45over20samemenu btn-info">days45over20same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days45over10downmenu btn-success">days45over10down</button>
+		<button class="days45over10upmenu btn-danger">days45over10up</button>
+		<button class="days45over10samemenu btn-info">days45over10same</button>
+	</div>
+	<div class="col-sm-2">
+		<button class="days45under10downmenu btn-success">days45under10down</button>
+		<button class="days45under10upmenu btn-danger">days45under10up</button>
+		<button class="days45under10samemenu btn-info">days45under10same</button>
+	</div>
+</div>
+
+
 <?PHP echo $row; ?>
 <?PHP echo $row2; ?>
 <?PHP echo $row3; ?>	
