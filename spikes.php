@@ -164,32 +164,32 @@ $counter['down']=0;
 </div>
 
 <div class="row">
-	<button class="col-sm-2">
+	<div class="col-sm-2">
 		<button class="days45over1000downmenu btn-success">days45over1000down</button>
 		<button class="days45over1000upmenu btn-danger">days45over1000up</button>
 		<button class="days45over1000samemenu btn-info">days45over1000same</button>
 	</div>
-	<button class="col-sm-2">
+	<div class="col-sm-2">
 		<button class="days45over100downmenu btn-success">days45over100down</button>
 		<button class="days45over100upmenu btn-danger">days45over100up</button>
 		<button class="days45over100samemenu">days45over100same</button>
 	</div>
-	<button class="col-sm-2">
+	<div class="col-sm-2">
 		<button class="days45over50downmenu btn-success">days45over50down</button>
 		<button class="days45over50upmenu btn-danger">days45over50up</button>
 		<button class="days45over50samemenu btn-info">days45over50same</button>
 	</div>
-	<button class="col-sm-2">
+	<div class="col-sm-2">
 		<button class="days45over20downmenu btn-success">days45over20down</button>
 		<button class="days45over20upmenu btn-danger">days45over20up</button>
 		<button class="days45over20samemenu btn-info">days45over20same</button>
 	</div>
-	<button class="col-sm-2">
+	<div class="col-sm-2">
 		<button class="days45over10downmenu btn-success">days45over10down</button>
 		<button class="days45over10upmenu btn-danger">days45over10up</button>
 		<button class="days45over10samemenu btn-info">days45over10same</button>
 	</div>
-	<button class="col-sm-2">
+	<div class="col-sm-2">
 		<button class="days45under10downmenu btn-success">days45under10down</button>
 		<button class="days45under10upmenu btn-danger">days45under10up</button>
 		<button class="days45under10samemenu btn-info">days45under10same</button>
