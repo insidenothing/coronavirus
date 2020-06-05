@@ -53,6 +53,9 @@ if(isset($_GET['reset'])){
 	height: 40px;
 	width: 40px;
 }
+	li{
+		white-space:pre;
+	}
 </style>
 <h1>Maryland COVID 19 Spike Monitor - % Change of Infections</h1>
 <?PHP
