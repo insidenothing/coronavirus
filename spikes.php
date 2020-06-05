@@ -509,6 +509,7 @@ $counter['down']=0;
 
 <div class="row">
 	<div class="col-sm-12">Use the following Buttons to HIDE/SHOW data below. 
+		<button class="allmenu">all</button> 
 		<button class="downmenu btn-success">down</button> 
 		<button class="upmenu btn-danger">up</button> 
 		<button class="samemenu btn-info">same</button>
@@ -1002,6 +1003,15 @@ $(function() {
     $('.menuG').click(function() {
         var display=$("[class*=0]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=0]").css('display', display);
+    });	
+	
+    $('.allmenu').click(function() {
+        var display=$("[class$=up]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class$=up]").css('display', display);
+	var display=$("[class$=down]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class$=down]").css('display', display);    
+	var display=$("[class$=same]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class$=same]").css('display', display);    
     });	
 	
 });
