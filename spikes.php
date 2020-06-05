@@ -512,13 +512,13 @@ $counter['down']=0;
 		<button class="downmenu btn-success">down</button> 
 		<button class="upmenu btn-danger">up</button> 
 		<button class="samemenu btn-info">same</button>
-		<button class="menu1000">1000</button>
-		<button class="menu100">100</button>
-		<button class="menu50">50</button>
-		<button class="menu30">30</button>
-		<button class="menu20">20</button>
-		<button class="menu10">10</button>
-		<button class="menu0">0</button>
+		<button class="menuA">1000</button>
+		<button class="menuB">100</button>
+		<button class="menuC">50</button>
+		<button class="menuD">30</button>
+		<button class="menuE">20</button>
+		<button class="menuF">10</button>
+		<button class="menuG">0</button>
 	</div>
 </div>
 <div class="row">
@@ -975,31 +975,31 @@ $(function() {
 	
 	
 	
-    $('.menu1000').click(function() {
+    $('.menuA').click(function() {
         var display=$("[class*=1000]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=1000]").css('display', display);
     });	
-    $('.menu100').click(function() {
+    $('.menuB').click(function() {
         var display=$("[class*=100]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=100]").css('display', display);
     });	
-    $('.menu50').click(function() {
+    $('.menuC').click(function() {
         var display=$("[class*=50]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=50]").css('display', display);
     });	
-    $('.menu30').click(function() {
+    $('.menuD').click(function() {
         var display=$("[class*=30]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=30]").css('display', display);
     });	
-    $('.menu20').click(function() {
+    $('.menuE').click(function() {
         var display=$("[class*=20]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=20]").css('display', display);
     });	
-    $('.menu10').click(function() {
+    $('.menuF').click(function() {
         var display=$("[class*=10]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=10]").css('display', display);
     });	
-    $('.menu0').click(function() {
+    $('.menuG').click(function() {
         var display=$("[class*=0]").css('display') == 'block' ? 'none' : 'block'; 
         $("[class*=0]").css('display', display);
     });	
