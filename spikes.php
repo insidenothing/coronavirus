@@ -950,16 +950,19 @@ $(function() {
 	
 	
     $('.upmenu').click(function() {
-        var display=$("[id$=up]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[id$=up]").css('display', display);
+        var display=$("[class$=up]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class$=up]").css('display', display);
+	//$("[id$=up]").css('display', 'none');
     });	
     $('.downmenu').click(function() {
-        var display=$("[id$=down]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[id$=down]").css('display', display);
+        var display=$("[class$=down]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class$=down]").css('display', display);
+        //$("[id$=down]").css('display', 'none');
     });	
     $('.samemenu').click(function() {
-        var display=$("[id$=same]").css('display') == 'block' ? 'none' : 'block'; 
-        $("[id$=same]").css('display', display);
+        var display=$("[class$=same]").css('display') == 'block' ? 'none' : 'block'; 
+        $("[class$=same]").css('display', display);
+	//$("[id$=same]").css('display', 'none');
     });	
 	
 	
