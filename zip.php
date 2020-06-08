@@ -73,10 +73,11 @@ if(isset($_GET['date_formatted'])){
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
-
+$i=0;
 foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
-	echo $zipcode[$key]." $key $date ".intval($value)." <br>";
+	$i++;
+	echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value);
 	if ($count == 0){
 		$count = 7; 
