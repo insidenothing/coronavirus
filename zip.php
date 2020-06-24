@@ -48,14 +48,19 @@ function coronavirus_zip($zip,$date,$count){
 	}else{
 		// we reached the start of data collection.	
 	}
-	slack_general("SQL update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date'",'covid19');
-
+	
 	if ($d['id'] == ''){
-		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Maryland','$current_trend','$current_duration') ");
+		$q = "insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Maryland','$current_trend','$current_duration') ";
+		
 	}else{
-		$core->query("update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date' ");	
+		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date' "
+		
 	}
+	$core->query($q);
+	slack_general("SQL $q",'covid19');
+
 }
+
 global $nocases;
 global $cases;
 global $zipData;
@@ -90,6 +95,8 @@ foreach ($zipData as $key => $value){
 }
 //print_r($zipData);
 //echo $d['raw_response'];
+slack_general("*DONE*",'covid19');
+
 die('done');
 
 
