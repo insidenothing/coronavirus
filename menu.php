@@ -103,6 +103,9 @@ while($d = mysqli_fetch_array($r)){
 	$pos = strpos($date, date('Y-m-d'));
 	global $global_date;
 	$global_date = date('Y-m-d');
+	if(isset($_GET['global_date'])){
+		$global_date = $_GET['global_date'];
+	}
 	if ($pos === false) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
 		?>
