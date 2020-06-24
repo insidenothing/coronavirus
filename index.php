@@ -196,7 +196,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
-		text: "<?PHP echo $state;?> Zipcode Curve Position covid19math.net"
+		text: "<?PHP echo $state;?> Zipcode Curve Position <?PHP echo $date;?> covid19math.net"
 	},
 	data: [{
 		type: "pie",
@@ -216,7 +216,7 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 	animationEnabled: true,
 	exportEnabled: true,
 	title: {
-		text: "<?PHP echo $state;?> Zipcode New Curve Position covid19math.net"
+		text: "<?PHP echo $state;?> Zipcode New Curve Position <?PHP echo $date;?> covid19math.net"
 	},
 	data: [{
 		type: "pie",
@@ -237,7 +237,7 @@ chart2.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "The Great State of Maryland - Open v Closed covid19math.net"
+		text: "The Great State of Maryland - Open v Closed <?PHP echo $date;?> covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
@@ -302,7 +302,7 @@ $zip_closed=0;
 ?>
 <div class="row">
   <div class="col-sm-12">
-	  <h1>Phase One Reopen</h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
+	  <h1>Phase One Reopen <?PHP echo $date;?></h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
  	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_direction = 'DOWN' or trend_direction = 'FLAT' ) order by report_count desc";
 	    $r = $core->query($q);
@@ -315,7 +315,7 @@ $zip_closed=0;
 </div>
 <div class="row">
   <div class="col-sm-12">
-	  <h1>Not Phase One</h1>
+	  <h1>Not Phase One <?PHP echo $date;?></h1>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_direction = 'UP' order by report_count desc ";
 	    $r = $core->query($q);
