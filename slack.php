@@ -8,10 +8,10 @@ function slack_general($msg,$room){
 	} else {
 	    	$ip = $_SERVER['REMOTE_ADDR'];
 	}
-	if ($ip == '69.250.28.138'){
-		return 'developer';
-		die();
-	}
+	//if ($ip == '69.250.28.138'){
+	//	return 'developer';
+	//	die();
+	//}
     	global $slack_api;
 	$room = str_replace("'",'-',strtolower(str_replace(' ','-',$room)));
 	$thisroom = $room;
