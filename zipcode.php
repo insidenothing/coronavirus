@@ -561,9 +561,6 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 }
 </script>
 
-<div class="row">
-	<div class="col-sm-12"><div id="chartContainerZIP5" style="height: 400px; width: 100%;"></div></div>
-</div>
 
 
 <div class="row">
