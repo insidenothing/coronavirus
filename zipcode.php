@@ -266,7 +266,8 @@ $debug_query = $q;
 $core->query($q);
 slack_general("SQL: $q",'covid19');
 ?>
-<?PHP if ($dir == 'up' && $dir2 == 'up' && $dir3 == 'up' && $dir4 == 'up'){ ?><script>alert('7 Day - 14 Day - 30 Day - 45 Day: All 4 Graphs are up!');</script><?PHP } ?>
+<?PHP if ($dir == 'up' && $dir2 == 'up' && $dir3 == 'up' && $dir4 == 'up'){ ?><script>document.body.style.backgroundColor = "#FF0000";</script><?PHP } ?>
+<?PHP if ($dir == 'down' && $dir2 == 'down' && $dir3 == 'down' && $dir4 == 'down'){ ?><script>document.body.style.backgroundColor = "#00FF00";</script><?PHP } ?>
 <script src="canvasjs.min.js"></script>
 <script>
 window.onload = function () {
