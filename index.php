@@ -338,9 +338,11 @@ $q = "select * from coronavirus_reopen where the_date = '$date'";
 $r = $core->query($q);
 $d = mysqli_fetch_array($r);
 if ($d['id'] == ''){
-	$core->query("insert into coronavirus_reopen (zip_closed,zip_open,the_date) values ('$zip_closed','$zip_open','$date') ");
+	$q = "insert into coronavirus_reopen (zip_closed,zip_open,the_date) values ('$zip_closed','$zip_open','$date') ";	
 }else{
-	$core->query("update coronavirus_reopen set zip_closed = '$zip_closed', zip_open = '$zip_open' where the_date = '$date' ");	
+	$q = "update coronavirus_reopen set zip_closed = '$zip_closed', zip_open = '$zip_open' where the_date = '$date' ";		
 }
+$core->query($q);
+slack_general("SQL $q",'covid19');
 include_once('footer.php');
 ?>
