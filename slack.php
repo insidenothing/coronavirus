@@ -8,15 +8,15 @@ function slack_general($msg,$room){
 	} else {
 	    	$ip = $_SERVER['REMOTE_ADDR'];
 	}
-	//if ($ip == '69.250.28.138'){
-	//	return 'developer';
-	//	die();
-	//}
+	
     	global $slack_api;
 	$room = str_replace("'",'-',strtolower(str_replace(' ','-',$room)));
 	$thisroom = $room;
-	$add = "[".$ip."][".$_SERVER['HTTP_USER_AGENT']."][".$_SERVER['PHP_SELF']."] ";
-	$msg = $add.$msg;
+	if ($ip != '69.250.28.138'){
+		$add = "[".$ip."][".$_SERVER['HTTP_USER_AGENT']."][".$_SERVER['PHP_SELF']."] ";
+		$msg = $add.$msg;	
+	}
+	
 	$msg = str_replace('http://','_______',$msg);
 	$msg = str_replace('https://','________',$msg);
 	$msg = str_replace('.net','____',$msg);
