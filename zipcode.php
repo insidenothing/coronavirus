@@ -424,6 +424,15 @@ window.onload = function () {
 		dataPoints: [
 			<?PHP echo $time_chart_2; ?>
 		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 14 Day Removed Count",
+		dataPoints: [
+			<?PHP echo $remove_chart_2; ?>
+		]
 		},
 		{
 		type: "column",
@@ -477,6 +486,15 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		dataPoints: [
 			<?PHP echo $time_chart_3; ?>
 		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 14 Day Removed Count",
+		dataPoints: [
+			<?PHP echo $remove_chart_3; ?>
+		]
 		},
 		{
 		type: "column",
@@ -529,6 +547,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_4; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 14 Day Removed Count",
+		dataPoints: [
+			<?PHP echo $remove_chart_4; ?>
 		]
 		},
 		{
