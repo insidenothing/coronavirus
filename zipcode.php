@@ -89,7 +89,7 @@ while ($d = mysqli_fetch_array($r)){
 	$remove[$in_14_days] = $me; //difference to remove
 	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 	
-	$remove_count = $in_14_days[.$d['report_date']]; 
+	$remove_count = $in_14_days[$d['report_date']]; 
 	$remove_total = $remove_total + $remove_count;
 	
 	$rolling = $d['report_count'] - $remove_total;
