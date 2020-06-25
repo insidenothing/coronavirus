@@ -74,6 +74,7 @@ $range2= $range - 1;
 $q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
 $r = $core->query($q);
 $i=0;
+	$remove_total=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
@@ -87,6 +88,14 @@ while ($d = mysqli_fetch_array($r)){
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
 	$remove[$in_14_days] = $me; //difference to remove
 	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+	
+	$remove_count = $in_14_days[.$d['report_date']]; 
+	$remove_total = $remove_total + $remove_count;
+	
+	$rolling = $d['report_count'] - $remove_total;
+	
+	$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+	
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
@@ -98,6 +107,7 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$i++; // number of days in the graph
 }
+	$remove_chart = rtrim(trim($remove_chart), ",");
 $time_chart = rtrim(trim($time_chart), ",");
 $new_chart = rtrim(trim($new_chart), ",");
 $page_description = "$date $name at $last_count Cases";
@@ -177,6 +187,7 @@ $alert = ob_get_clean();
 	$return['time_chart'] = $time_chart;
 	$return['time_chart2'] = $time_chart2;
 	$return['new_chart'] = $new_chart;
+	$return['remove_chart'] = $remove_chart;
 	$return['range'] = $range;
 	$return['name'] = $name;
 	$return['per'] = $per;
@@ -248,6 +259,7 @@ $alert_6 		= $day90['alert'];
 $time_chart_6 		= $day90['time_chart'];
 $time_chart2_6 		= $day90['time_chart2'];
 $new_chart_6 		= $day90['new_chart'];
+$remove_chart_6 		= $day90['remove_chart'];
 $range_6 		= $day90['range'];
 $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
@@ -614,7 +626,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 14 Day Removal Count",
 		dataPoints: [
-			<?PHP echo $time_chart_6; ?>
+			<?PHP echo $remove_chart_6; ?>
 		]
 		}]
 	})
