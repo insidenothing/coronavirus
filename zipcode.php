@@ -37,6 +37,7 @@ include_once('functions.php'); //outside webserver
 
 
 global $remove;
+$remove = array();
 
 function data_points($zip,$field){
 	global $core;
@@ -60,7 +61,7 @@ function make_chart($range){
 	global $zip;
 	global $zip2;
 	global $remove;
-	$remove = ''; // yea we clear it
+	
 $time_chart='';
 $text_div='';
 $time_chart2='';
