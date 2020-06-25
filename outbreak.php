@@ -13,7 +13,7 @@ while($d = mysqli_fetch_array($r)){
 $date = $global_date;
 echo "<h1>Maryland Outbreak Monitor for $date</h1>";
 echo "<h3>This table of ZIP codes are seeing a percentage increase in cases at 7, 14, 30, and 45 days.</h3><table width='100%' border='1' cellpadding='10' cellspacing='0'>";
-$q = "SELECT * FROM coronavirus_zip where report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' order by report_count DESC";
+$q = "SELECT * FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' order by report_count DESC";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
@@ -25,7 +25,7 @@ while ($d = mysqli_fetch_array($r)){
 echo "</table>";
 echo "<h1>Maryland Outbreak Monitor for $date</h1>";
 echo "<h3>This list of ZIP codes are seeing a percentage increase in cases at 7, 14, 30, and 45 days.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' order by report_count DESC";
+$q = "SELECT * FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' order by report_count DESC";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
