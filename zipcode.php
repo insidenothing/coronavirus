@@ -243,24 +243,28 @@ if ($d['day7change_percentage'] > $per_1){
 }elseif ($d['day7change_percentage'] < $per_1){
 	$dir = 'up';
 }
+$day7change = $d['day7change_percentage'] - $per_1;
 $dir2 = 'same';
 if ($d['day14change_percentage'] > $per_2){
 	$dir2 = 'down';	
 }elseif ($d['day14change_percentage'] < $per_2){
 	$dir2 = 'up';
 }
+$day14change = $d['day14change_percentage'] - $per_2;
 $dir3 = 'same';
 if ($d['day30change_percentage'] > $per_3){
 	$dir3 = 'down';	
 }elseif ($d['day30change_percentage'] < $per_3){
 	$dir3 = 'up';
 }
+$day30change = $d['day30change_percentage'] - $per_3;
 $dir4 = 'same';
 if ($d['day45change_percentage'] > $per_4){
 	$dir4 = 'down';	
 }elseif ($d['day45change_percentage'] < $per_4){
 	$dir4 = 'up';
 }
+$day45change = $d['day45change_percentage'] - $per_4;
 $q = "update coronavirus_zip set percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
 $core->query($q);
@@ -564,12 +568,12 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 
 
 <div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir;?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_2.' '.$dir2;?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir.' '.$day7change.'%';?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_2.' '.$dir2.' '.$day14change.'%';?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
 </div>
 <div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3;?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4;?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?></small>
