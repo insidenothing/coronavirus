@@ -36,7 +36,7 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 
-
+global $remove;
 
 function data_points($zip,$field){
 	global $core;
@@ -59,6 +59,8 @@ function make_chart($range){
 	global $core;
 	global $zip;
 	global $zip2;
+	global $remove;
+	$remove = ''; // yea we clear it
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -74,6 +76,9 @@ $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+	$in_14_days = date('Y-m-d',strtotime($d['report_date']));
+	$remove[$in_14_days] = fix_zero($d['report_count']);
+	
 	if ($i == 0){
 		$me = 0;
 	}else{
@@ -554,6 +559,53 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		}]
 	})
 	chartZIP5.render();
+	
+	
+	var chartZIP6 = new CanvasJS.Chart("chartContainerZIP6", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $range_4;?> days <?PHP echo $name_4;?> <?PHP echo $per_4;?>% change - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Total Count",
+		dataPoints: [
+			<?PHP echo $time_chart_4; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 14 Day Removal",
+		dataPoints: [
+			<?PHP echo $time_chart_4; ?>
+		]
+		}]
+	})
+	chartZIP6.render();
+	
+	
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 			e.dataSeries.visible = false;
@@ -565,7 +617,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 }
 </script>
 
-
+<div class="row">
+	<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
+</div>
 
 <div class="row">
 	<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir.' '.$day7change.'%';?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
@@ -576,7 +630,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
-<small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?></small>
+<small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?> <?PHP print_r($remove);?></small>
 	
 <?PHP include_once('footer.php'); ?>
 	
