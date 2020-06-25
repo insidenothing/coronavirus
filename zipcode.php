@@ -243,28 +243,28 @@ if ($d['day7change_percentage'] > $per_1){
 }elseif ($d['day7change_percentage'] < $per_1){
 	$dir = 'up';
 }
-$day7change = $d['day7change_percentage'] - $per_1;
+$day7change = $per_1 - $d['day7change_percentage'];
 $dir2 = 'same';
 if ($d['day14change_percentage'] > $per_2){
 	$dir2 = 'down';	
 }elseif ($d['day14change_percentage'] < $per_2){
 	$dir2 = 'up';
 }
-$day14change = $d['day14change_percentage'] - $per_2;
+$day14change = $per_2 - $d['day14change_percentage'];
 $dir3 = 'same';
 if ($d['day30change_percentage'] > $per_3){
 	$dir3 = 'down';	
 }elseif ($d['day30change_percentage'] < $per_3){
 	$dir3 = 'up';
 }
-$day30change = $d['day30change_percentage'] - $per_3;
+$day30change = $per_3 - $d['day30change_percentage'];
 $dir4 = 'same';
 if ($d['day45change_percentage'] > $per_4){
 	$dir4 = 'down';	
 }elseif ($d['day45change_percentage'] < $per_4){
 	$dir4 = 'up';
 }
-$day45change = $d['day45change_percentage'] - $per_4;
+$day45change = $per_4 - $d['day45change_percentage'];
 $q = "update coronavirus_zip set percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
 $core->query($q);
