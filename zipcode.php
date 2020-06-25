@@ -186,6 +186,7 @@ $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('45');
+$day90 = make_chart('90');
 $page_description = $day14['page_description'];
 include_once('menu.php');
 $date = $global_date;
@@ -239,6 +240,18 @@ $new_chart_4 		= $day45['new_chart'];
 $range_4 		= $day45['range'];
 $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
+
+
+// Chart 6
+
+$alert_6 		= $day90['alert'];
+$time_chart_6 		= $day90['time_chart'];
+$time_chart2_6 		= $day90['time_chart2'];
+$new_chart_6 		= $day90['new_chart'];
+$range_6 		= $day90['range'];
+$name_6 		= $day90['name'];
+$per_6 			= $day90['per'];
+
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
@@ -568,7 +581,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $range_4;?> days <?PHP echo $name_4;?> <?PHP echo $per_4;?>% change - source covid19math.net"
+			text: "<?PHP echo $range_6;?> days <?PHP echo $name_6;?> <?PHP echo $per_6;?>% change - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -592,16 +605,16 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
-			<?PHP echo $time_chart_4; ?>
+			<?PHP echo $time_chart_6; ?>
 		]
 		},{
 		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 14 Day Removal",
+		name: "<?PHP echo $zip;?> 14 Day Removal Count",
 		dataPoints: [
-			<?PHP echo $time_chart_4; ?>
+			<?PHP echo $time_chart_6; ?>
 		]
 		}]
 	})
