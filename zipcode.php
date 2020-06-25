@@ -510,7 +510,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	chartZIP4.render();
 	
 	
-	var chartZIP5 = new CanvasJS.Chart("chartContainerZIP5", {
+/*	var chartZIP5 = new CanvasJS.Chart("chartContainerZIP5", {
 		theme:"light2",
 		animationEnabled: true,
 		exportEnabled: true,
@@ -575,7 +575,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	})
 	chartZIP5.render();
 	
-	
+*/	
 	var chartZIP6 = new CanvasJS.Chart("chartContainerZIP6", {
 		theme:"light2",
 		animationEnabled: true,
