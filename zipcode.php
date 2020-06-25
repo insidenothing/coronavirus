@@ -93,6 +93,15 @@ while ($d = mysqli_fetch_array($r)){
 	$remove_total = $remove_total + $remove_count;
 	
 	$rolling = $d['report_count'] - $remove_total;
+
+	 $trader_sma_real[] = intval($d['report_count']);
+		  $trader_sma_timePeriod++;
+		  $trader_sma = trader_sma($trader_sma_real,7);
+		  //print_r($trader_sma);
+		  $the_index = $trader_sma_timePeriod - 1;
+		  $this_sma = $trader_sma[$the_index]; // should be last value?
+		  $sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma).' }, ';
+	
 	
 	$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	
@@ -108,6 +117,7 @@ while ($d = mysqli_fetch_array($r)){
 	$i++; // number of days in the graph
 }
 	$remove_chart = rtrim(trim($remove_chart), ",");
+	$sma_chart = rtrim(trim($sma_chart), ",");
 $time_chart = rtrim(trim($time_chart), ",");
 $new_chart = rtrim(trim($new_chart), ",");
 $page_description = "$date $name at $last_count Cases";
@@ -188,6 +198,7 @@ $alert = ob_get_clean();
 	$return['time_chart2'] = $time_chart2;
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
+	$return['sma_chart'] = $sma_chart;
 	$return['range'] = $range;
 	$return['name'] = $name;
 	$return['per'] = $per;
@@ -260,7 +271,8 @@ $alert_6 		= $day90['alert'];
 $time_chart_6 		= $day90['time_chart'];
 $time_chart2_6 		= $day90['time_chart2'];
 $new_chart_6 		= $day90['new_chart'];
-$remove_chart_6 		= $day90['remove_chart'];
+$remove_chart_6 	= $day90['remove_chart'];
+$sma_chart_6 		= $day90['sma_chart'];
 $range_6 		= $day90['range'];
 $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
@@ -619,6 +631,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_6; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day Simple Moving Average",
+		dataPoints: [
+			<?PHP echo $sma_chart_6; ?>
 		]
 		},{
 		type: "line",
