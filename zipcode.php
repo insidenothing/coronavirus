@@ -77,14 +77,15 @@ $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-	$in_14_days = date('Y-m-d',strtotime($d['report_date']));
-	$remove[$in_14_days] = fix_zero($d['report_count']);
+	
 	
 	if ($i == 0){
 		$me = 0;
 	}else{
 		$me = intval($d['report_count'] - $last);
 	}
+	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
+	$remove[$in_14_days] = $me; //difference to remove
 	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
