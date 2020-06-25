@@ -204,11 +204,13 @@ $alert = ob_get_clean();
 	$return['per'] = $per;
 	return $return;
 }
+$just_make_data = make_chart('60');
+
 $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('45');
-$just_make_data = make_chart('60');
+
 $day90 = make_chart('60');
 $page_description = $day14['page_description'];
 include_once('menu.php');
@@ -230,6 +232,8 @@ $alert_1 		= $day7['alert'];
 $time_chart_1 		= $day7['time_chart'];
 $time_chart2_1 		= $day7['time_chart2'];
 $new_chart_1 		= $day7['new_chart'];
+$remove_chart_1 	= $day7['remove_chart'];
+$sma_chart_1 		= $day7['sma_chart'];
 $range_1 		= $day7['range'];
 $name_1 		= $day7['name'];
 $per_1 			= $day7['per'];
@@ -240,6 +244,8 @@ $alert_2 		= $day14['alert'];
 $time_chart_2 		= $day14['time_chart'];
 $time_chart2_2 		= $day14['time_chart2'];
 $new_chart_2 		= $day14['new_chart'];
+$remove_chart_2 	= $day14['remove_chart'];
+$sma_chart_2 		= $day14['sma_chart'];
 $range_2 		= $day14['range'];
 $name_2 		= $day14['name'];
 $per_2 			= $day14['per'];
@@ -250,6 +256,8 @@ $alert_3 		= $day30['alert'];
 $time_chart_3 		= $day30['time_chart'];
 $time_chart2_3 		= $day30['time_chart2'];
 $new_chart_3 		= $day30['new_chart'];
+$remove_chart_3 	= $day30['remove_chart'];
+$sma_chart_3 		= $day30['sma_chart'];
 $range_3 		= $day30['range'];
 $name_3 		= $day30['name'];
 $per_3 			= $day30['per'];
@@ -260,6 +268,8 @@ $alert_4 		= $day45['alert'];
 $time_chart_4 		= $day45['time_chart'];
 $time_chart2_4 		= $day45['time_chart2'];
 $new_chart_4 		= $day45['new_chart'];
+$remove_chart_4 	= $day45['remove_chart'];
+$sma_chart_4 		= $day45['sma_chart'];
 $range_4 		= $day45['range'];
 $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
@@ -350,6 +360,15 @@ window.onload = function () {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_1; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 14 Day Removed Count",
+		dataPoints: [
+			<?PHP echo $remove_chart_1; ?>
 		]
 		},
 		{
