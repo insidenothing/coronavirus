@@ -333,7 +333,7 @@ $day45change = $per_4 - $d['day45change_percentage'];
 $q = "update coronavirus_zip set percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
 $core->query($q);
-slack_general("SQL: $q",'covid19');
+slack_general("$q",'covid19-sql');
 ?>
 <?PHP if ($dir == 'up' && $dir2 == 'up' && $dir3 == 'up' && $dir4 == 'up'){ ?><script>document.body.style.backgroundColor = "#FF0000";</script><?PHP } ?>
 <?PHP if ($dir == 'down' && $dir2 == 'down' && $dir3 == 'down' && $dir4 == 'down'){ ?><script>document.body.style.backgroundColor = "#00FF00";</script><?PHP } ?>
