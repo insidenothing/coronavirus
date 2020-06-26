@@ -55,7 +55,128 @@ function data_points($zip,$field){
 	$chart = rtrim(trim($chart), ",");
 	return $chart;
 }
+function make_chart2($range){
+	global $core;
+	global $zip;
+	global $zip2;
+	global $remove;
+	
+$time_chart='';
+$text_div='';
+$time_chart2='';
+$text_div2='';
+$q = "SELECT * FROM coronavirus_facility where zip_code = '$zip' order by report_date";
+$r = $core->query($q);
+$rows = mysqli_num_rows($r);
+$start = $rows - $range;
+$range2= $range - 1;
+$q = "SELECT * FROM coronavirus_facility where zip_code = '$zip' order by report_date limit $start, $range";
+$r = $core->query($q);
+$i=0;
+	$remove_total=0;
+while ($d = mysqli_fetch_array($r)){
+	$name = "$d[Facility_Name], $d[state_name]";
+	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
+	if ($i == 0){
+		$me = 0;
+		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
+		$remove[$in_14_days] = $remove_base; //difference to remove
+	}else{
+		$me = intval($d['report_count'] - $last);
+		$remove[$in_14_days] = $me; //difference to remove
+	}
 
+	$remove_date = $d['report_date'];
+	$remove_count = $remove[$remove_date]; 
+	$remove_total = $remove_total + $remove_count;
+	
+	$rolling = $d['report_count'] - $remove_total;
+
+	$trader_sma_real[] = intval($d['report_count']);
+	$trader_sma_timePeriod++;
+	$trader_sma_7 = trader_sma($trader_sma_real,7);
+	$trader_sma_3 = trader_sma($trader_sma_real,3);
+	//print_r($trader_sma);
+	$the_index = $trader_sma_timePeriod - 1;
+	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
+	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
+	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
+		// start making the charts when SMA and rolling have a value for the 60 day chart
+		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
+		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
+		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+	}elseif( $range != '60' ){
+		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
+		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
+		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+	}
+	
+	
+	
+	
+	$last = $d['report_count'];
+	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
+	$last_count = $d[report_count];
+	if($i == 0){
+		$start_value = fix_zero($d['report_count']);
+	}
+	if($i == $range2){
+		$end_value = fix_zero($d['report_count']);
+	}
+	$i++; // number of days in the graph
+}
+$remove_chart 		= rtrim(trim($remove_chart), ",");
+$sma_chart 		= rtrim(trim($sma_chart), ",");
+$sma_chart3 		= rtrim(trim($sma_chart3), ",");
+$time_chart 		= rtrim(trim($time_chart), ",");
+$new_chart 		= rtrim(trim($new_chart), ",");
+$page_description 	= "$date $name at $last_count Cases";
+$name2			= '';
+$i2			= 0;
+
+$name = $name.$name2;
+
+ob_start();
+?>
+<div class="row">
+	<?PHP 
+	$per = round( ( ( fix_zero($end_value) - fix_zero($start_value) ) / fix_zero($start_value) ) * 100); 
+	if ($per == '0'){
+		$color = 'lightgreen';	
+	}elseif($per < '10'){
+		$color = 'lightyellow';
+	}else{
+		$color = '#fed8b1'; // light orange
+	}
+	?>
+	
+	<p style='text-align:center; background-color:<?PHP echo $color;?>;'>
+		<b>From <?PHP echo fix_zero($start_value);?> cases to <?PHP echo fix_zero($end_value);?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.</b>
+	</p>
+	
+</div>
+<?PHP 
+$page_description = $per."% change $page_description";
+$alert = ob_get_clean();
+	$return = array();
+	$return['alert'] = $alert;
+	$return['page_description'] = $page_description;
+	$return['time_chart'] = $time_chart;
+	$return['time_chart2'] = $time_chart2;
+	$return['new_chart'] = $new_chart;
+	$return['remove_chart'] = $remove_chart;
+	$return['sma_chart'] = $sma_chart;
+	$return['sma3_chart'] = $sma_chart3;
+	$return['range'] = $range;
+	$return['active_count'] = $rolling;
+	$return['name'] = $name;
+	$return['per'] = $per;
+	return $return;
+}
 function make_chart($range){
 	global $core;
 	global $zip;
@@ -230,6 +351,8 @@ $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('45');
 $day90 = make_chart('60');
+
+
 
 $page_description = $active_count.' active cases '.$day14['page_description'];
 include_once('menu.php');
