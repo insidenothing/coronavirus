@@ -56,7 +56,7 @@ function coronavirus_zip($zip,$date,$count){
 		
 	}
 	$core->query($q);
-	slack_general("SQL $q",'covid19');
+	slack_general("$q",'covid19-sql');
 
 }
 
