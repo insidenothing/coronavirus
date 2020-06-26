@@ -171,7 +171,7 @@ function coronavirus_Facility($Facility_Name,$date,$count){
 	}
 	
 	if ($d['id'] == ''){
-		$q = "insert into coronavirus_facility (Facility_Name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$Facility_Name','$date','$count','$town','Maryland','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_facility (Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration) values ('$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration') ";
 	}else{
 		$q = "update coronavirus_facility set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
 		
