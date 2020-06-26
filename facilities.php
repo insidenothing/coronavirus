@@ -194,6 +194,9 @@ foreach ($array['features'] as $key => $value){
 	$return[$Facility_Name]['Date'] = $date;
 	$return[$Facility_Name]['County'] = $value['attributes']['County'];
 	$return[$Facility_Name]['Zip'] = $Facility_ZIP[$Facility_Name];
+	if ($Facility_ZIP[$Facility_Name] = ''){
+		die ('FIX: '.$Facility_Name);	
+	}
 	$return[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Number_of_Resident_Cases'];
 	$return[$Facility_Name]['Number_of_Staff_Cases'] = $value['attributes']['Number_of_Staff_Cases'];
 	$return[$Facility_Name]['Number_of_Resident_Deaths'] = $value['attributes']['Number_of_Resident_Deaths'];
