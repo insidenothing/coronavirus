@@ -99,7 +99,7 @@ while ($d = mysqli_fetch_array($r)){
 	//print_r($trader_sma);
 	$the_index = $trader_sma_timePeriod - 1;
 	$this_sma = $trader_sma[$the_index]; // should be last value?
-	if ( $this_sma > 0 && $rolling > 0 && $range == '60' ){
+	if ( $this_sma > 0 && $remove_total > 0 && $range == '60' ){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
