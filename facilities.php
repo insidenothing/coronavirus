@@ -178,15 +178,13 @@ function coronavirus_Facility($Facility_Name,$date,$count){
 	}
 	$core->query($q);
 	slack_general("$q",'covid19-sql');
+	slack_general(mysqli_error($core),'covid19-sql');
 
 }
 
 $r = $core->query("select raw_response from coronavirus_api_cache where api_id = '23' order by id desc");
 $d = mysqli_fetch_array($r);
 $array = json_decode($json, true);
-echo '<pre>';
-print_r($array);
-echo '</pre>';
 foreach ($array['features'] as $key => $value){
 	$Facility_Name = cleanup($value['attributes']['Facility_Name']);
 	$return[$Facility_Name]['Date'] = $value['attributes']['Date'];
