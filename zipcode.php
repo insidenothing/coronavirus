@@ -78,15 +78,15 @@ $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-	
-	
+	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
 	if ($i == 0){
 		$me = 0;
+		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
+		$remove[$in_14_days] = $remove_base; //difference to remove
 	}else{
 		$me = intval($d['report_count'] - $last);
+		$remove[$in_14_days] = $me; //difference to remove
 	}
-	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
-	$remove[$in_14_days] = $me; //difference to remove
 	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 	$remove_date = $d['report_date'];
 	$remove_count = $remove[$remove_date]; 
