@@ -15,7 +15,7 @@ $date = $global_date;
 
 echo "<h1>Maryland Active COVID-19 Cases for $date</h1>";
 echo "<h3>This list of ZIP codes have active cases. Cases are removed after 14 days.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where active_cases <> '1' and report_date = '$date'  order by active_cases DESC";
+$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date'  order by active_cases DESC";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
