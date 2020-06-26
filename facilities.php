@@ -184,6 +184,7 @@ function coronavirus_Facility($Facility_Name,$date,$count){
 
 $r = $core->query("select raw_response from coronavirus_api_cache where api_id = '23' order by id desc");
 $d = mysqli_fetch_array($r);
+$json = $d['raw_response'];
 $array = json_decode($json, true);
 foreach ($array['features'] as $key => $value){
 	$Facility_Name = cleanup($value['attributes']['Facility_Name']);
