@@ -1,6 +1,26 @@
 <?PHP
 $page_description = "APIs and Descriptions";
 include_once('menu.php');
+function check_error($json,$url){
+  $error429 = '{
+  "error" : 
+  {
+    "code" : 429, 
+    "message" : "Unable to perform query. Too many requests.", 
+    "details" : [
+      "API calls quota exceeded (24001)! maximum allowed (24000) per Minute. Retry after 60 sec."
+    ]
+  }
+}';
+  if ($json = $error429){
+    slack_general("CODE 429 - 61 second delay",'covid19-apis');
+    sleep(61); // wait 61 seconds
+    $json = getPage($url);
+    $json = check_error($json,$url)
+  }
+  slack_general("NO JSON ERROR",'covid19-apis');
+  return $json;
+}
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
@@ -12,6 +32,7 @@ while($d = mysqli_fetch_array($r)){
   $d2 = mysqli_fetch_array($r2);
   $old = $d2['raw_response'];
   $raw = getPage($url);
+  $raw = check_error($raw,$url);
   $raw_response = $core->real_escape_string($raw);
   $test1 = $old;
   $test2 = $raw;
