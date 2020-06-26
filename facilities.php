@@ -177,6 +177,30 @@ function coronavirus_Facility($Facility_Name,$date,$count){
 
 }
 
+$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '23' order by id desc");
+$d = mysqli_fetch_array($r);
+$array = json_decode($json, true);
+echo '<pre>';
+print_r($array);
+echo '</pre>';
+foreach ($array['features'] as $key => $value){
+	$Facility_Name = $value['attributes']['Facility_Name'];
+	
+	$return[$Facility_Name]['Date'] = $value['attributes']['Date'];
+	$return[$Facility_Name]['County'] = $value['attributes']['County'];
+	$return[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Number_of_Resident_Cases'];
+	$return[$Facility_Name]['Number_of_Staff_Cases'] = $value['attributes']['Number_of_Staff_Cases'];
+	$return[$Facility_Name]['Number_of_Resident_Deaths'] = $value['attributes']['Number_of_Resident_Deaths'];
+	$return[$Facility_Name]['Number_of_Staff_Deaths'] = $value['attributes']['Number_of_Staff_Deaths'];
+	$return[$Facility_Name]['Total_Cases'] = $value['attributes']['Total_Cases'];
+
+	
+}
+
+
+
+print_r($return);
+
 
 
 
