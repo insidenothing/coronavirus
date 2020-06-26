@@ -713,7 +713,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </script>
 
 <div class="row">
-	<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-12"><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
 <div class="row">
@@ -722,7 +722,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </div>
 <div class="row">
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
 </div>
 
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?> <?PHP print_r($remove);?></small>
