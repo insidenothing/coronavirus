@@ -77,7 +77,6 @@ $i=0;
 	$remove_total=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
-	$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
 	if ($i == 0){
 		$me = 0;
@@ -87,23 +86,34 @@ while ($d = mysqli_fetch_array($r)){
 		$me = intval($d['report_count'] - $last);
 		$remove[$in_14_days] = $me; //difference to remove
 	}
-	$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+
 	$remove_date = $d['report_date'];
 	$remove_count = $remove[$remove_date]; 
 	$remove_total = $remove_total + $remove_count;
 	
 	$rolling = $d['report_count'] - $remove_total;
 
-	 $trader_sma_real[] = intval($d['report_count']);
-		  $trader_sma_timePeriod++;
-		  $trader_sma = trader_sma($trader_sma_real,7);
-		  //print_r($trader_sma);
-		  $the_index = $trader_sma_timePeriod - 1;
-		  $this_sma = $trader_sma[$the_index]; // should be last value?
-		  $sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma).' }, ';
+	$trader_sma_real[] = intval($d['report_count']);
+	$trader_sma_timePeriod++;
+	$trader_sma = trader_sma($trader_sma_real,7);
+	//print_r($trader_sma);
+	$the_index = $trader_sma_timePeriod - 1;
+	$this_sma = $trader_sma[$the_index]; // should be last value?
+	if ( $this_sma > 0 && $rolling > 0 && $range == '60' ){
+		// start making the charts when SMA and rolling have a value for the 60 day chart
+		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma).' }, ';
+		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+	}elseif( $range != '60' ){
+		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma).' }, ';
+		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+	}
 	
 	
-	$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+	
 	
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
