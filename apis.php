@@ -15,6 +15,7 @@ function check_error($json,$url){
   if ($json = $error429){
     slack_general("CODE 429 - 61 second delay",'covid19-apis');
     sleep(61); // wait 61 seconds
+    slack_general("CODE 429 - resume",'covid19-apis');
     $json = getPage($url);
     $json = check_error($json,$url)
   }
