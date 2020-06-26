@@ -24,11 +24,11 @@ while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
   $name = $zipcode[$zip_c];
   $total = $total + $d['active_count'];
-  echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." infections</li>";
+  echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
 
-echo "<h1>$total Maryland Active COVID-19 Infections for $date</h1>".$list;
+echo "<h1>".number_format($total)." Maryland Active COVID-19 Infections for $date</h1>".$list;
 
 include_once('footer.php');
