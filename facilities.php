@@ -136,7 +136,7 @@ function cleanup($str){
 }
 
 
-function coronavirus_Facility($Facility_Name,$date,$count){
+function coronavirus_Facility($Facility_Name,$zip,$date,$count){
 	global $Facility_ZIP;
 	// the order we call the function will matter...
 	global $core;
@@ -171,9 +171,9 @@ function coronavirus_Facility($Facility_Name,$date,$count){
 	}
 	
 	if ($d['id'] == ''){
-		$q = "insert into coronavirus_facility (Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration) values ('$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_facility (zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration) values ('$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration') ";
 	}else{
-		$q = "update coronavirus_facility set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
+		$q = "update coronavirus_facility set zip_code = '$zip', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
 		
 	}
 	$core->query($q);
@@ -208,7 +208,7 @@ print_r($return);
 
 foreach ($return as $Facility => $Data){
 	// basic
-	coronavirus_Facility($Data['Name'],$Data['Date'],$Data['Total_Cases']);
+	coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['Date'],$Data['Total_Cases']);
 }
 
 
