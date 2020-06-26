@@ -1,5 +1,5 @@
 <?PHP
-$page_description = "Maryland COVID 19 Outbreak Monitor";
+$page_description = "Maryland COVID 19 Active Cases";
 include_once('menu.php');
 global $zipcode;
 global $global_date;
@@ -13,17 +13,22 @@ while($d = mysqli_fetch_array($r)){
 $date = $global_date;
 
 
-echo "<h1>Maryland Active COVID-19 Cases for $date</h1>";
+
+
+ob_start();
 echo "<h3>This list of ZIP codes have active cases. Cases are removed after 14 days.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date'  order by active_count DESC";
 $r = $core->query($q);
+$total = 0;
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
   $name = $zipcode[$zip_c];
+  $total = $total + $d['active_count'];
   echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." infections</li>";
 }
 echo "</ol>";
+$list = ob_get_clean();
 
-
+echo "<h1>$total Maryland Active COVID-19 Infections for $date</h1>".$list;
 
 include_once('footer.php');
