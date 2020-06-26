@@ -478,6 +478,15 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		dataPoints: [
 			<?PHP echo $time_chart_3; ?>
 		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day Simple Moving Average",
+		dataPoints: [
+			<?PHP echo $sma_chart_3; ?>
+		]
 		},
 		{
 		type: "column",
@@ -657,7 +666,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Total Count",
+		name: "<?PHP echo $zip;?> Total Cases",
 		dataPoints: [
 			<?PHP echo $time_chart_6; ?>
 		]
@@ -675,7 +684,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 14 Day Removal Count",
+		name: "<?PHP echo $zip;?> Assumed Active w/ 14 Day Removal",
 		dataPoints: [
 			<?PHP echo $remove_chart_6; ?>
 		]
