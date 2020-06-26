@@ -343,6 +343,6 @@ if ($d['id'] == ''){
 	$q = "update coronavirus_reopen set zip_closed = '$zip_closed', zip_open = '$zip_open' where the_date = '$date' ";		
 }
 $core->query($q);
-slack_general("SQL $q",'covid19');
+slack_general("$q",'covid19-sql');
 include_once('footer.php');
 ?>
