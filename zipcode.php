@@ -557,6 +557,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		dataPoints: [
 			<?PHP echo $remove_chart_4; ?>
 		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day Simple Moving Average",
+		dataPoints: [
+			<?PHP echo $sma_chart_4; ?>
+		]
 		},
 		{
 		type: "column",
