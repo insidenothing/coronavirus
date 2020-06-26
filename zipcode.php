@@ -750,7 +750,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </div>
 <?PHP 
 
-$q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip2' order by report_date";
+$q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip' order by Facility_Name";
 $r = $core->query($q);
 $i=7;
 while ($d = mysqli_fetch_array($r)){
