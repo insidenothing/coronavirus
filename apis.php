@@ -18,7 +18,8 @@ while($d = mysqli_fetch_array($r)){
   if ($test1 != $test2){
         $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
         $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
-        message_send('4433862584',"$name update");
+       // message_send('4433862584',"$name update");
+       slack_general("$name update",'covid19-apis');
   }
 }
 include_once('footer.php');
