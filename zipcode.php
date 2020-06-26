@@ -216,19 +216,22 @@ $alert = ob_get_clean();
 	$return['sma_chart'] = $sma_chart;
 	$return['sma3_chart'] = $sma_chart3;
 	$return['range'] = $range;
+	$return['active_count'] = $rolling;
 	$return['name'] = $name;
 	$return['per'] = $per;
 	return $return;
 }
 $just_make_data = make_chart('60');
+$active_count = $just_make_data['active_count'];
+
 
 $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('45');
-
 $day90 = make_chart('60');
-$page_description = $day14['page_description'];
+
+$page_description = $active_count.' active cases '.$day14['page_description'];
 include_once('menu.php');
 $date = $global_date;
 
