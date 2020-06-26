@@ -188,7 +188,10 @@ $json = $d['raw_response'];
 $array = json_decode($json, true);
 foreach ($array['features'] as $key => $value){
 	$Facility_Name = cleanup($value['attributes']['Facility_Name']);
-	$return[$Facility_Name]['Date'] = $value['attributes']['Date'];
+	$return[$Facility_Name]['Name'] = $Facility_Name;
+	$time = $value['attributes']['Date'] / 1000;
+	$date = date('Y-m-d',$time+14400);
+	$return[$Facility_Name]['Date'] = $date;
 	$return[$Facility_Name]['County'] = $value['attributes']['County'];
 	$return[$Facility_Name]['Zip'] = $Facility_ZIP[$Facility_Name];
 	$return[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Number_of_Resident_Cases'];
@@ -203,8 +206,10 @@ foreach ($array['features'] as $key => $value){
 
 print_r($return);
 
-
-
+foreach ($return as $Facility => $Data){
+	// basic
+	coronavirus_Facility($Data['Name'],$Data['Date'],$Data['Total_Cases']);
+}
 
 
 //coronavirus_Facility($Facility_Name,$date,$count);
