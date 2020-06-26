@@ -371,15 +371,6 @@ window.onload = function () {
 		dataPoints: [
 			<?PHP echo $time_chart_1; ?>
 		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 14 Day Removed Count",
-		dataPoints: [
-			<?PHP echo $remove_chart_1; ?>
-		]
 		},
 		{
 		type: "column",
@@ -434,15 +425,6 @@ window.onload = function () {
 		dataPoints: [
 			<?PHP echo $time_chart_2; ?>
 		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 14 Day Removed Count",
-		dataPoints: [
-			<?PHP echo $remove_chart_2; ?>
-		]
 		},
 		{
 		type: "column",
@@ -496,15 +478,6 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		dataPoints: [
 			<?PHP echo $time_chart_3; ?>
 		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 14 Day Removed Count",
-		dataPoints: [
-			<?PHP echo $remove_chart_3; ?>
-		]
 		},
 		{
 		type: "column",
@@ -557,15 +530,6 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_4; ?>
-		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 14 Day Removed Count",
-		dataPoints: [
-			<?PHP echo $remove_chart_4; ?>
 		]
 		},{
 		type: "line",
@@ -671,7 +635,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $range_6;?> days <?PHP echo $name_6;?> <?PHP echo $per_6;?>% change - source covid19math.net"
+			text: "<?PHP echo $name_6;?> Assumed Active COVID-19 Cases - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -732,7 +696,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </script>
 
 <div class="row">
-	<div class="col-sm-12"><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
 </div>
 
 <div class="row">
@@ -741,7 +705,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </div>
 <div class="row">
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
+	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?> <?PHP print_r($remove);?></small>
