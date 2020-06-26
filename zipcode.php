@@ -748,7 +748,20 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
-<?PHP /* debug...
+<?PHP 
+
+$q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip2' order by report_date";
+$r = $core->query($q);
+$i=7;
+while ($d = mysqli_fetch_array($r)){
+	echo '<div class="row">
+		<div class="col-sm-12"><h3>'.str_replace('_',' ',$d['Facility_Name']).'<h3><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
+	</div>';
+ 	$i++;
+}
+
+
+/* debug...
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?> <?PHP print_r($remove);?></small>
 	*/ ?>
 <?PHP include_once('footer.php'); ?>
