@@ -95,20 +95,24 @@ while ($d = mysqli_fetch_array($r)){
 
 	$trader_sma_real[] = intval($d['report_count']);
 	$trader_sma_timePeriod++;
-	$trader_sma = trader_sma($trader_sma_real,7);
+	$trader_sma_7 = trader_sma($trader_sma_real,7);
+	$trader_sma_3 = trader_sma($trader_sma_real,7);
 	//print_r($trader_sma);
 	$the_index = $trader_sma_timePeriod - 1;
-	$this_sma = $trader_sma[$the_index]; // should be last value?
-	if ( $this_sma > 0 && $remove_total > 0 && $range == '60' ){
+	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
+	$this_sma3 = $trader_sma_7[$the_index]; // should be last value
+	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
-		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma).' }, ';
+		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
+		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
-		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma).' }, ';
+		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
+		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}
 	
@@ -126,13 +130,14 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$i++; // number of days in the graph
 }
-	$remove_chart = rtrim(trim($remove_chart), ",");
-	$sma_chart = rtrim(trim($sma_chart), ",");
-$time_chart = rtrim(trim($time_chart), ",");
-$new_chart = rtrim(trim($new_chart), ",");
-$page_description = "$date $name at $last_count Cases";
-$name2='';
-$i2=0;
+$remove_chart 		= rtrim(trim($remove_chart), ",");
+$sma_chart 		= rtrim(trim($sma_chart), ",");
+$sma_chart3 		= rtrim(trim($sma_chart3), ",");
+$time_chart 		= rtrim(trim($time_chart), ",");
+$new_chart 		= rtrim(trim($new_chart), ",");
+$page_description 	= "$date $name at $last_count Cases";
+$name2			= '';
+$i2			= 0;
 if ($zip2 != '99999'){
 	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 	$r = $core->query($q);
@@ -209,6 +214,7 @@ $alert = ob_get_clean();
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
 	$return['sma_chart'] = $sma_chart;
+	$return['sma_chart3'] = $sma_chart3;
 	$return['range'] = $range;
 	$return['name'] = $name;
 	$return['per'] = $per;
@@ -244,6 +250,7 @@ $time_chart2_1 		= $day7['time_chart2'];
 $new_chart_1 		= $day7['new_chart'];
 $remove_chart_1 	= $day7['remove_chart'];
 $sma_chart_1 		= $day7['sma_chart'];
+$sma3_chart_1 		= $day7['sma3_chart'];
 $range_1 		= $day7['range'];
 $name_1 		= $day7['name'];
 $per_1 			= $day7['per'];
@@ -256,6 +263,7 @@ $time_chart2_2 		= $day14['time_chart2'];
 $new_chart_2 		= $day14['new_chart'];
 $remove_chart_2 	= $day14['remove_chart'];
 $sma_chart_2 		= $day14['sma_chart'];
+$sma3_chart_2 		= $day14['sma3_chart'];
 $range_2 		= $day14['range'];
 $name_2 		= $day14['name'];
 $per_2 			= $day14['per'];
@@ -268,6 +276,7 @@ $time_chart2_3 		= $day30['time_chart2'];
 $new_chart_3 		= $day30['new_chart'];
 $remove_chart_3 	= $day30['remove_chart'];
 $sma_chart_3 		= $day30['sma_chart'];
+$sma3_chart_3 		= $day30['sma3_chart'];
 $range_3 		= $day30['range'];
 $name_3 		= $day30['name'];
 $per_3 			= $day30['per'];
@@ -280,6 +289,7 @@ $time_chart2_4 		= $day45['time_chart2'];
 $new_chart_4 		= $day45['new_chart'];
 $remove_chart_4 	= $day45['remove_chart'];
 $sma_chart_4 		= $day45['sma_chart'];
+$sma3_chart_4 		= $day45['sma3_chart'];
 $range_4 		= $day45['range'];
 $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
@@ -293,6 +303,7 @@ $time_chart2_6 		= $day90['time_chart2'];
 $new_chart_6 		= $day90['new_chart'];
 $remove_chart_6 	= $day90['remove_chart'];
 $sma_chart_6 		= $day90['sma_chart'];
+$sma3_chart_6 		= $day90['sma3_chart'];
 $range_6 		= $day90['range'];
 $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
@@ -371,6 +382,15 @@ window.onload = function () {
 		dataPoints: [
 			<?PHP echo $time_chart_1; ?>
 		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 3 Day Simple Moving Average",
+		dataPoints: [
+			<?PHP echo $sma3_chart_1; ?>
+		]
 		},
 		{
 		type: "column",
@@ -424,6 +444,15 @@ window.onload = function () {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_2; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 3 Day Simple Moving Average",
+		dataPoints: [
+			<?PHP echo $sma3_chart_2; ?>
 		]
 		},
 		{
