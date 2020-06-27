@@ -124,40 +124,42 @@ $Facility_ZIP['Village_at_Rockville'] = '20850';
 $Facility_ZIP['Westgate_Hills_Rehabilitation___Healthcare_Center'] = '21229';
 $Facility_ZIP['Westminster_Healthcare_Center'] = '21157';
 
-die('enter zips first');
-$Facility_ZIP['Anne Arundel Detention Center Jennifer Road'] = '21157';
-$Facility_ZIP['Baltimore County Detention Center'] = '21157';
-$Facility_ZIP['Prince George_s County Jail'] = '21157';
-$Facility_ZIP['Springfield Hospital Center'] = '21157';
-$Facility_ZIP['Baltimore Central Booking and Intake Center'] = '21157';
-$Facility_ZIP['Chesapeake Detention Facility (Formerly MCAC)'] = '21157';
-$Facility_ZIP['Metropolitan Transition Center'] = '21157';
-$Facility_ZIP['Youth Detention Center'] = '21157';
-$Facility_ZIP['Baltimore City Correctional Center'] = '21157';
-$Facility_ZIP['Maryland Reception, Diagnostic and Classification Center'] = '21157';
-$Facility_ZIP['Dorsey Run Correctional Facility'] = '21157';
-$Facility_ZIP['Jessup Correctional Institution\n *Including Baltimore Pretrial Complex (BPFJ)'] = '21157';
-$Facility_ZIP['Maryland Correctional Institution for Women'] = '21157';
-$Facility_ZIP['Maryland Correctional Institution - Jessup'] = '21157';
-$Facility_ZIP['Patuxent Institution\n *Including Correctional Mental Health Center-Jessup'] = '21157';
-$Facility_ZIP['Central Maryland Correctional Facility (Formerly CLF)'] = '21157';
-$Facility_ZIP['Southern Maryland Pre-Release Unit'] = '21157';
-$Facility_ZIP['Eastern Correctional Institution'] = '21157';
-$Facility_ZIP['Eastern Correctional Institution Annex'] = '21157';
-$Facility_ZIP['Maryland Correctional Institution Hagerstown'] = '21157';
-$Facility_ZIP['Maryland Correctional Training Center'] = '21157';
-$Facility_ZIP['Roxbury Correctional Institution'] = '21157';
-$Facility_ZIP['North Branch Correctional Institution'] = '21157';
-$Facility_ZIP['Western Correctional Institution'] = '21157';
-$Facility_ZIP['Charles H. Hickey, Jr. School'] = '21157';
+
+$Facility_ZIP['Anne_Arundel_Detention_Center_Jennifer_Road'] = '21401';
+$Facility_ZIP['Baltimore_County_Detention_Center'] = '21204';
+$Facility_ZIP['Prince_George_s_County_Jail'] = '20772';
+$Facility_ZIP['Springfield_Hospital_Center'] = '21784';
+$Facility_ZIP['Baltimore_Central_Booking_and_Intake_Center'] = '21202';
+$Facility_ZIP['Chesapeake_Detention_Facility__Formerly_MCAC_'] = '21202';
+$Facility_ZIP['Metropolitan_Transition_Center'] = '21202';
+$Facility_ZIP['Youth_Detention_Center'] = '21202';
+$Facility_ZIP['Baltimore_City_Correctional_Center'] = '21202';
+$Facility_ZIP['Maryland_Reception__Diagnostic_and_Classification_Center'] = '21202';
+$Facility_ZIP['Dorsey_Run_Correctional_Facility'] = '20794';
+$Facility_ZIP['Jessup_Correctional_Institution___Including_Baltimore_Pretrial_Complex__BPFJ_'] = '20794';
+$Facility_ZIP['Maryland_Correctional_Institution_for_Women'] = '20794';
+$Facility_ZIP['Maryland_Correctional_Institution___Jessup'] = '20794';
+$Facility_ZIP['Patuxent_Institution___Including_Correctional_Mental_Health_Center_Jessup'] = '20794';
+$Facility_ZIP['Central_Maryland_Correctional_Facility__Formerly_CLF_'] = '21784';
+$Facility_ZIP['Southern_Maryland_Pre_Release_Unit'] = '20622';
+$Facility_ZIP['Eastern_Correctional_Institution'] = '21890';
+$Facility_ZIP['Eastern_Correctional_Institution_Annex'] = '21890';
+$Facility_ZIP['Maryland_Correctional_Institution_Hagerstown'] = '21746';
+$Facility_ZIP['Maryland_Correctional_Training_Center'] = '21746';
+$Facility_ZIP['Roxbury_Correctional_Institution'] = '21746';
+$Facility_ZIP['North_Branch_Correctional_Institution'] = '21502';
+$Facility_ZIP['Wester_Correctional_Institution'] = '21502';
+$Facility_ZIP['Charles_H__Hickey__Jr__School'] = '21234';
 
 
 
 function cleanup($str){
+   $str = str_replace("\n",'_',$str);
    $str = str_replace("'",'_',$str);
    $str = str_replace(",",'_',$str);
    $str = str_replace(".",'_',$str);
    $str = str_replace("&",'_',$str);
+   $str = str_replace("*",'_',$str);
    $str = str_replace("/",'_',$str);
    $str = str_replace("(",'_',$str);
    $str = str_replace(")",'_',$str); 
