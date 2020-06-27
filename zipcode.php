@@ -937,6 +937,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 
 
 	<?PHP 
+	$i++;
 	} 
 	?>
 	
