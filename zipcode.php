@@ -1018,7 +1018,7 @@ $r = $core->query($q);
 $i=7;
 while ($d = mysqli_fetch_array($r)){
 	echo '<div class="row">
-		<div class="col-sm-12"><h3>'.str_replace('_',' ',$d['Facility_Name']).'<h3><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
+		<div class="col-sm-12"><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
 	</div>';
  	$i++;
 }
