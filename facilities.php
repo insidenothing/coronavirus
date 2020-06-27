@@ -124,6 +124,35 @@ $Facility_ZIP['Village_at_Rockville'] = '20850';
 $Facility_ZIP['Westgate_Hills_Rehabilitation___Healthcare_Center'] = '21229';
 $Facility_ZIP['Westminster_Healthcare_Center'] = '21157';
 
+
+$Facility_ZIP['Anne Arundel Detention Center Jennifer Road'] = '21157';
+$Facility_ZIP['Baltimore County Detention Center'] = '21157';
+$Facility_ZIP['Prince George_s County Jail'] = '21157';
+$Facility_ZIP['Springfield Hospital Center'] = '21157';
+$Facility_ZIP['Baltimore Central Booking and Intake Center'] = '21157';
+$Facility_ZIP['Chesapeake Detention Facility (Formerly MCAC)'] = '21157';
+$Facility_ZIP['Metropolitan Transition Center'] = '21157';
+$Facility_ZIP['Youth Detention Center'] = '21157';
+$Facility_ZIP['Baltimore City Correctional Center'] = '21157';
+$Facility_ZIP['Maryland Reception, Diagnostic and Classification Center'] = '21157';
+$Facility_ZIP['Dorsey Run Correctional Facility'] = '21157';
+$Facility_ZIP['Jessup Correctional Institution\n *Including Baltimore Pretrial Complex (BPFJ)'] = '21157';
+$Facility_ZIP['Maryland Correctional Institution for Women'] = '21157';
+$Facility_ZIP['Maryland Correctional Institution - Jessup'] = '21157';
+$Facility_ZIP['Patuxent Institution\n *Including Correctional Mental Health Center-Jessup'] = '21157';
+$Facility_ZIP['Central Maryland Correctional Facility (Formerly CLF)'] = '21157';
+$Facility_ZIP['Southern Maryland Pre-Release Unit'] = '21157';
+$Facility_ZIP['Eastern Correctional Institution'] = '21157';
+$Facility_ZIP['Eastern Correctional Institution Annex'] = '21157';
+$Facility_ZIP['Maryland Correctional Institution Hagerstown'] = '21157';
+$Facility_ZIP['Maryland Correctional Training Center'] = '21157';
+$Facility_ZIP['Roxbury Correctional Institution'] = '21157';
+$Facility_ZIP['North Branch Correctional Institution'] = '21157';
+$Facility_ZIP['Western Correctional Institution'] = '21157';
+$Facility_ZIP['Charles H. Hickey, Jr. School'] = '21157';
+
+
+
 function cleanup($str){
    $str = str_replace("'",'_',$str);
    $str = str_replace(",",'_',$str);
@@ -139,7 +168,7 @@ function cleanup($str){
 }
 
 
-function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Resident_Cases,$Number_of_Staff_Cases,$Number_of_Resident_Deaths,$Number_of_Staff_Deaths){
+function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Resident_Cases,$Number_of_Staff_Cases,$Number_of_Resident_Deaths,$Number_of_Staff_Deaths,$Resident_Type){
 	global $Facility_ZIP;
 	// the order we call the function will matter...
 	global $core;
@@ -174,9 +203,9 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 	}
 	
 	if ($d['id'] == ''){
-		$q = "insert into coronavirus_facility (zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration,Number_of_Resident_Cases,Number_of_Staff_Cases,Number_of_Resident_Deaths,Number_of_Staff_Deaths) values ('$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration','$Number_of_Resident_Cases','$Number_of_Staff_Cases','$Number_of_Resident_Deaths','$Number_of_Staff_Deaths') ";
+		$q = "insert into coronavirus_facility (Resident_Type,zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration,Number_of_Resident_Cases,Number_of_Staff_Cases,Number_of_Resident_Deaths,Number_of_Staff_Deaths) values ('$Resident_Type','$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration','$Number_of_Resident_Cases','$Number_of_Staff_Cases','$Number_of_Resident_Deaths','$Number_of_Staff_Deaths') ";
 	}else{
-		$q = "update coronavirus_facility set Number_of_Resident_Cases='$Number_of_Resident_Cases', Number_of_Staff_Cases='$Number_of_Staff_Cases', Number_of_Resident_Deaths='$Number_of_Resident_Deaths',Number_of_Staff_Deaths='$Number_of_Staff_Deaths', zip_code = '$zip', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
+		$q = "update coronavirus_facility set Resident_Type='$Resident_Type',Number_of_Resident_Cases='$Number_of_Resident_Cases', Number_of_Staff_Cases='$Number_of_Staff_Cases', Number_of_Resident_Deaths='$Number_of_Resident_Deaths',Number_of_Staff_Deaths='$Number_of_Staff_Deaths', zip_code = '$zip', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
 		
 	}
 	$core->query($q);
@@ -205,6 +234,7 @@ foreach ($array['features'] as $key => $value){
 	$return[$Facility_Name]['Number_of_Resident_Deaths'] = $value['attributes']['Number_of_Resident_Deaths'];
 	$return[$Facility_Name]['Number_of_Staff_Deaths'] = $value['attributes']['Number_of_Staff_Deaths'];
 	$return[$Facility_Name]['Total_Cases'] = $value['attributes']['Total_Cases'];
+	$return[$Facility_Name]['Resident_Type'] = 'Assisted';
 
 }
 
@@ -228,6 +258,7 @@ foreach ($array['features'] as $key => $value){
 	$return[$Facility_Name]['Number_of_Resident_Deaths'] = $value['attributes']['Number_of_Resident_Deaths'];
 	$return[$Facility_Name]['Number_of_Staff_Deaths'] = $value['attributes']['Number_of_Staff_Deaths'];
 	$return[$Facility_Name]['Total_Cases'] = $value['attributes']['Total_Cases'];
+	$return[$Facility_Name]['Resident_Type'] = $value['attributes']['Resident_Type'];
 
 }
 
@@ -236,7 +267,7 @@ print_r($return);
 
 foreach ($return as $Facility => $Data){
 	// basic
-	coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['Date'],$Data['Total_Cases'],$Data['Number_of_Resident_Cases'],$Data['Number_of_Staff_Cases'],$Data['Number_of_Resident_Deaths'],$Data['Number_of_Staff_Deaths']);
+	coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['Date'],$Data['Total_Cases'],$Data['Number_of_Resident_Cases'],$Data['Number_of_Staff_Cases'],$Data['Number_of_Resident_Deaths'],$Data['Number_of_Staff_Deaths'],$Data['Resident_Type']);
 }
 
 
