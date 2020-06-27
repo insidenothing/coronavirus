@@ -907,7 +907,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> - source covid19math.net"
+			text: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> - <?PHP echo $d['Resident_Type'];?> - covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
