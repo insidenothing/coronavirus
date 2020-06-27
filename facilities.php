@@ -124,7 +124,7 @@ $Facility_ZIP['Village_at_Rockville'] = '20850';
 $Facility_ZIP['Westgate_Hills_Rehabilitation___Healthcare_Center'] = '21229';
 $Facility_ZIP['Westminster_Healthcare_Center'] = '21157';
 
-
+die('enter zips first');
 $Facility_ZIP['Anne Arundel Detention Center Jennifer Road'] = '21157';
 $Facility_ZIP['Baltimore County Detention Center'] = '21157';
 $Facility_ZIP['Prince George_s County Jail'] = '21157';
