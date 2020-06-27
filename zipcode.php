@@ -847,6 +847,90 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	})
 	chartZIP6.render();
 	
+	<?PHP 
+	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip' order by Facility_Name";
+	$r = $core->query($q);
+	$i=7;
+	while ($d = mysqli_fetch_array($r)){
+		$day7 = make_chart2('7',$d['Facility_Name']);
+		$alert_1 		= $day7['alert'];
+		$time_chart_1 		= $day7['time_chart'];
+		$time_chart2_1 		= $day7['time_chart2'];
+		$new_chart_1 		= $day7['new_chart'];
+		$remove_chart_1 	= $day7['remove_chart'];
+		$sma_chart_1 		= $day7['sma_chart'];
+		$sma3_chart_1 		= $day7['sma3_chart'];
+		$range_1 		= $day7['range'];
+		$name_1 		= $day7['name'];
+		$per_1 			= $day7['per'];
+	?>
+var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $i;?>", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $range_1;?> days <?PHP echo $d['Facility_Name'];?> <?PHP echo $per_1;?>% change - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Total Count",
+		dataPoints: [
+			<?PHP echo $time_chart_1; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 3 Day Simple Moving Average",
+		dataPoints: [
+			<?PHP echo $sma3_chart_1; ?>
+		]
+		},
+		{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Count",
+		dataPoints: [
+			<?PHP echo $new_chart_1; ?>
+		]
+		}<?PHP if ($zip2 != '99999'){ echo ',{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "'.$zip2.';",
+		dataPoints: [
+			'.$time_chart2_1.'
+		]
+		}'; } ?>]
+	})
+	chartZIP<?PHP echo $i;?>.render();
+
+
+	<?PHP 
+	} 
+	?>
 	
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
