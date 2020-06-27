@@ -83,6 +83,7 @@ $i=0;
 	$remove_total=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[Facility_Name], $d[state_name]";
+	$Resident_Type = $d['Resident_Type'];
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
 	if ($i == 0){
 		$me = 0;
@@ -208,6 +209,7 @@ $alert = ob_get_clean();
 	$return['active_count'] = $rolling;
 	$return['name'] = $name;
 	$return['per'] = $per;
+	$return['Resident_Type'] = $Resident_Type;
 	return $return;
 }
 function make_chart($range){
@@ -901,13 +903,14 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		$range_1 		= $day7['range'];
 		$name_1 		= $day7['name'];
 		$per_1 			= $day7['per'];
+		$Resident_Type_1 	= $day7['Resident_Type'];
 	?>
 var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $i;?>", {
 		theme:"light2",
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> - <?PHP echo $d['Resident_Type'];?> - covid19math.net"
+			text: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> - <?PHP echo $Resident_Type_1;?> - covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
