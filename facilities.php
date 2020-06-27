@@ -148,7 +148,7 @@ $Facility_ZIP['Maryland_Correctional_Institution_Hagerstown'] = '21746';
 $Facility_ZIP['Maryland_Correctional_Training_Center'] = '21746';
 $Facility_ZIP['Roxbury_Correctional_Institution'] = '21746';
 $Facility_ZIP['North_Branch_Correctional_Institution'] = '21502';
-$Facility_ZIP['Wester_Correctional_Institution'] = '21502';
+$Facility_ZIP['Western_Correctional_Institution'] = '21502';
 $Facility_ZIP['Charles_H__Hickey__Jr__School'] = '21234';
 
 
