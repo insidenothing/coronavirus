@@ -110,12 +110,27 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		
+		
+		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
+		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
+		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
+		$time_chartd .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Deaths']).' }, ';
+		
+		
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		
+		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
+		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
+		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
+		$time_chartd .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Deaths']).' }, ';
+		
+		
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
@@ -140,6 +155,13 @@ $remove_chart 		= rtrim(trim($remove_chart), ",");
 $sma_chart 		= rtrim(trim($sma_chart), ",");
 $sma_chart3 		= rtrim(trim($sma_chart3), ",");
 $time_chart 		= rtrim(trim($time_chart), ",");
+	
+	$time_charta 		= rtrim(trim($time_charta), ",");
+	$time_chartb 		= rtrim(trim($time_chartb), ",");
+	$time_chartc 		= rtrim(trim($time_chartc), ",");
+	$time_chartd 		= rtrim(trim($time_chartd), ",");
+	
+	
 $new_chart 		= rtrim(trim($new_chart), ",");
 $page_description 	= "$date $name at $last_count Cases";
 $name2			= '';
@@ -173,6 +195,10 @@ $alert = ob_get_clean();
 	$return['alert'] = $alert;
 	$return['page_description'] = $page_description;
 	$return['time_chart'] = $time_chart;
+	$return['time_charta'] = $time_charta;
+	$return['time_chartb'] = $time_chartb;
+	$return['time_chartc'] = $time_chartc;
+	$return['time_chartd'] = $time_chartd;
 	$return['time_chart2'] = $time_chart2;
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
@@ -860,9 +886,13 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	$r = $core->query($q);
 	$i=7;
 	while ($d = mysqli_fetch_array($r)){
-		$day7 = make_chart2('7',$d['Facility_Name']);
+		$day7 			= make_chart2('60',$d['Facility_Name']);
 		$alert_1 		= $day7['alert'];
 		$time_chart_1 		= $day7['time_chart'];
+		$time_chart_1a 		= $day7['time_charta'];
+		$time_chart_1b 		= $day7['time_chartb'];
+		$time_chart_1c 		= $day7['time_chartc'];
+		$time_chart_1d 		= $day7['time_chartd'];
 		$time_chart2_1 		= $day7['time_chart2'];
 		$new_chart_1 		= $day7['new_chart'];
 		$remove_chart_1 	= $day7['remove_chart'];
@@ -877,7 +907,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $range_1;?> days <?PHP echo str_replace('_',' ',$d['Facility_Name']);?> <?PHP echo $per_1;?>% change - source covid19math.net"
+			text: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -899,7 +929,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> Total Count",
+		name: "Total Cases",
 		dataPoints: [
 			<?PHP echo $time_chart_1; ?>
 		]
@@ -908,17 +938,43 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> 3 Day Simple Moving Average",
+		name: "Resident Cases",
 		dataPoints: [
-			<?PHP echo $sma3_chart_1; ?>
+			<?PHP echo $time_chart_1a; ?>
 		]
-		},
-		{
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Staff Cases",
+		dataPoints: [
+			<?PHP echo $time_chart_1b; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Resident Deaths",
+		dataPoints: [
+			<?PHP echo $time_chart_1c; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Staff Deaths",
+		dataPoints: [
+			<?PHP echo $time_chart_1d; ?>
+		]
+		},{
 		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> New Count",
+		name: "New Count",
 		dataPoints: [
 			<?PHP echo $new_chart_1; ?>
 		]
