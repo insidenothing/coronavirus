@@ -899,7 +899,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Total Count",
+		name: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_1; ?>
 		]
@@ -908,7 +908,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 3 Day Simple Moving Average",
+		name: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> 3 Day Simple Moving Average",
 		dataPoints: [
 			<?PHP echo $sma3_chart_1; ?>
 		]
@@ -918,20 +918,11 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> New Count",
+		name: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> New Count",
 		dataPoints: [
 			<?PHP echo $new_chart_1; ?>
 		]
-		}<?PHP if ($zip2 != '99999'){ echo ',{
-		type: "spline",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "'.$zip2.';",
-		dataPoints: [
-			'.$time_chart2_1.'
-		]
-		}'; } ?>]
+		}]
 	})
 	chartZIP<?PHP echo $i;?>.render();
 
