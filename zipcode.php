@@ -55,7 +55,10 @@ function data_points($zip,$field){
 	$chart = rtrim(trim($chart), ",");
 	return $chart;
 }
-function make_chart2($range){
+
+
+// Assisted Living
+function make_chart2($range,$Facility_Name){
 	global $core;
 	global $zip;
 	global $zip2;
@@ -65,12 +68,12 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 $text_div2='';
-$q = "SELECT * FROM coronavirus_facility where zip_code = '$zip' order by report_date";
+$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
 $r = $core->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
-$q = "SELECT * FROM coronavirus_facility where zip_code = '$zip' order by report_date limit $start, $range";
+$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
 $r = $core->query($q);
 $i=0;
 	$remove_total=0;
