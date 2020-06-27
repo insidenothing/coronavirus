@@ -47,6 +47,7 @@ function data_points($zip,$field){
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
 	$range2= $range - 1;
+	$start = max($start, 0);
 	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
@@ -74,6 +75,7 @@ $r = $core->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
+$start = max($start, 0);
 $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
 slack_general("$q",'covid19-sql');
 $r = $core->query($q);
@@ -197,6 +199,7 @@ $r = $core->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
+$start = max($start, 0);
 $q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
 $r = $core->query($q);
 $i=0;
