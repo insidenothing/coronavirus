@@ -208,6 +208,28 @@ foreach ($array['features'] as $key => $value){
 
 }
 
+$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '24' order by id desc");
+$d = mysqli_fetch_array($r);
+$json = $d['raw_response'];
+$array = json_decode($json, true);
+foreach ($array['features'] as $key => $value){
+	$Facility_Name = cleanup($value['attributes']['Facility_Name']);
+	$return[$Facility_Name]['Name'] = $Facility_Name;
+	$time = $value['attributes']['Date'] / 1000;
+	$date = date('Y-m-d',$time+14400);
+	$return[$Facility_Name]['Date'] = $date;
+	$return[$Facility_Name]['County'] = $value['attributes']['County'];
+	$return[$Facility_Name]['Zip'] = $Facility_ZIP[$Facility_Name];
+	if ($Facility_ZIP[$Facility_Name] = ''){
+		die ('FIX: '.$Facility_Name);	
+	}
+	$return[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Number_of_Resident_Cases'];
+	$return[$Facility_Name]['Number_of_Staff_Cases'] = $value['attributes']['Number_of_Staff_Cases'];
+	$return[$Facility_Name]['Number_of_Resident_Deaths'] = $value['attributes']['Number_of_Resident_Deaths'];
+	$return[$Facility_Name]['Number_of_Staff_Deaths'] = $value['attributes']['Number_of_Staff_Deaths'];
+	$return[$Facility_Name]['Total_Cases'] = $value['attributes']['Total_Cases'];
+
+}
 
 
 print_r($return);
