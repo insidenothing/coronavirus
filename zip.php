@@ -79,6 +79,14 @@ if(isset($_GET['date_formatted'])){
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
+
+print_r($zipData);
+echo $d['raw_response'];
+
+
+die('dev hold');
+
+
 $i=0;
 foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
@@ -92,8 +100,6 @@ foreach ($zipData as $key => $value){
 	}
 	coronavirus_zip($key,$date,$count);
 }
-print_r($zipData);
-//echo $d['raw_response'];
 slack_general("*DONE*",'covid19');
 
 die('done');
