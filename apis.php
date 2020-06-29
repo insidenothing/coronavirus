@@ -54,7 +54,7 @@ while($d = mysqli_fetch_array($r)){
 
 if ($_GET['single']){
   $api_id = $_GET['single'];
-  $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and api_id = '$api_id' order by run_order DESC ";
+  $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
   slack_general("$q",'covid19-apis');
   $r = $core->query($q);
   while($d = mysqli_fetch_array($r)){
