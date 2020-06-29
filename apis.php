@@ -72,7 +72,7 @@ if ($_GET['single']){
     echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
-    $raw = getPage($url);
+    $raw = getPageDebug($url);
     //$raw = check_error($raw,$url);
     $raw_response = $core->real_escape_string($raw);
     $test1 = $old;
