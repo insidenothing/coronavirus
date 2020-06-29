@@ -25,6 +25,7 @@ function check_error($json,$url){
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
+  sleep(61);
   echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
   $url = $d['api_url'];
   $id = $d['id'];
