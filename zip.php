@@ -65,7 +65,9 @@ global $cases;
 global $zipData;
 global $date;
 
-$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '13' order by id desc");
+$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc";
+$r = $core->query($q);
+echo "<h1>$q</h1>";
 $d = mysqli_fetch_array($r);
 if(isset($_GET['date_formatted'])){
 	$zipData = make_maryland_array3($d['raw_response'],$_GET['date_formatted']);
