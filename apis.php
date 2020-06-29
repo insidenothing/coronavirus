@@ -22,11 +22,15 @@ function check_error($json,$url){
  // slack_general("NO JSON ERROR",'covid19-apis');
   return $json;
 }
+
+
+
+
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
-  slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
-  sleep($d['run_delay']);
+  //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
+  //sleep($d['run_delay']);
   echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
   $url = $d['api_url'];
   $id = $d['id'];
@@ -34,16 +38,45 @@ while($d = mysqli_fetch_array($r)){
   $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
   $d2 = mysqli_fetch_array($r2);
   $old = $d2['raw_response'];
-  $raw = getPage($url);
-  $raw = check_error($raw,$url);
-  $raw_response = $core->real_escape_string($raw);
-  $test1 = $old;
-  $test2 = $raw;
-  if ($test1 != $test2){
-        $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
-        $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
+ // $raw = getPage($url);
+ // $raw = check_error($raw,$url);
+ // $raw_response = $core->real_escape_string($raw);
+ // $test1 = $old;
+//  $test2 = $raw;
+//  if ($test1 != $test2){
+//        $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
+ //       $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
        // message_send('4433862584',"$name update");
-       slack_general("*$name update*",'covid19-apis');
+  //     slack_general("*$name update*",'covid19-apis');
+ // }
+}
+
+
+
+if ($_GET['run']){
+  $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC ";
+  $r = $core->query($q);
+  while($d = mysqli_fetch_array($r)){
+    slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
+    sleep($d['run_delay']);
+    echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
+    $url = $d['api_url'];
+    $id = $d['id'];
+    $name = $d['api_name'];
+    $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+    $d2 = mysqli_fetch_array($r2);
+    $old = $d2['raw_response'];
+    $raw = getPage($url);
+    $raw = check_error($raw,$url);
+    $raw_response = $core->real_escape_string($raw);
+    $test1 = $old;
+    $test2 = $raw;
+    if ($test1 != $test2){
+          $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
+          $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
+         // message_send('4433862584',"$name update");
+         slack_general("*$name update*",'covid19-apis');
+    }
   }
 }
 include_once('footer.php');
