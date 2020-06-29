@@ -69,6 +69,12 @@ $q = "select * from coronavirus_api_cache where api_id = '13' order by id desc";
 $r = $core->query($q);
 echo "<h1>$q</h1>";
 $d = mysqli_fetch_array($r);
+echo "<h1>Cache ID $d[id] from $d[cache_date_time]</h1>";
+
+
+echo $d['raw_response'];
+
+
 if(isset($_GET['date_formatted'])){
 	$zipData = make_maryland_array3($d['raw_response'],$_GET['date_formatted']);
 	$date = $_GET['date'];
@@ -83,7 +89,7 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 
 print_r($zipData);
-echo $d['raw_response'];
+
 
 
 die('dev hold');
