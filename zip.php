@@ -91,9 +91,9 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 print_r($zipData);
 
 
-
-die('dev hold');
-
+if (empty($_GET['run'])){
+	die('set run=1');
+}
 
 $i=0;
 foreach ($zipData as $key => $value){
