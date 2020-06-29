@@ -72,11 +72,15 @@ if ($_GET['single']){
     $test1 = $old;
     $test2 = $raw;
     if ($test1 != $test2){
-          $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
+          $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )") or slack_general(mysqli_error($core),'covid19-apis');
           $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
          // message_send('4433862584',"$name update");
          slack_general("*$name update*",'covid19-apis');
+    }else{
+         slack_general("no change in $name",'covid19-apis');
     }
+         
+    
   }
 }
 
