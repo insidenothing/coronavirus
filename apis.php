@@ -60,6 +60,7 @@ if ($_GET['single']){
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
   slack_general("$q",'covid19-apis');
   $r = $core->query($q);
+  echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
   while($d = mysqli_fetch_array($r)){
     slack_general("single run to check $d[api_name]",'covid19-apis');
     //sleep($d['run_delay']);
@@ -68,6 +69,7 @@ if ($_GET['single']){
     $id = $d['id'];
     $name = $d['api_name'];
     $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+    echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
     $raw = getPage($url);
@@ -77,8 +79,9 @@ if ($_GET['single']){
     $test2 = $raw;
     if ($test1 != $test2){
           $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
-          slack_general('Error?: '.mysqli_error($core),'covid19-apis');
+          echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
           $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
+          echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
          // message_send('4433862584',"$name update");
          slack_general("*$name update*",'covid19-apis');
     }else{
