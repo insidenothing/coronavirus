@@ -12,8 +12,8 @@ while($d = mysqli_fetch_array($r)){
 }
 $date = $global_date;
 ob_start();
-echo "<h3>This list of ZIP codes have active cases. Cases are removed after 14 days.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date'  order by active_count DESC";
+echo "<h3>Cases are removed after 14 days, sorted by zipcode.</h3><ol>";
+$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date'  order by zip_code DESC";
 $r = $core->query($q);
 $total = 0;
 while ($d = mysqli_fetch_array($r)){
@@ -25,6 +25,6 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 $list = ob_get_clean();
 
-echo "<style> .up { background-color: yellow; } </style><h1>".number_format($total)." Maryland Active COVID-19 Infections for $date</h1>".$list;
+echo "<h1>".number_format($total)." Maryland Active COVID-19 Infections for $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 include_once('footer.php');
