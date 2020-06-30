@@ -51,13 +51,12 @@ global $cases;
 global $zipData;
 global $date;
 
-$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '34' and cache_date_time like '$date%' order by id desc"); // always get the latest for today
+$r = $core->query("select * from coronavirus_api_cache where api_id = '34' and cache_date_time like '$date%' order by id desc"); // always get the latest for today
 $d = mysqli_fetch_array($r);
-$zipData = make_florida_zip_array('',$d['raw_response'],'');
-$zipData2 = make_florida_zip_array('',$d['raw_response'],'');
-$debug_florida .= "<li>Using Saved Data for $date</li>";
 
-print_r($zipData);
+echo $d['raw_response'];
+
+//print_r($zipData);
 
 die('debug break');
 
