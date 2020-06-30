@@ -27,12 +27,13 @@ function check_error($json,$url){
 
 
 if ($_GET['run']){
+  // this is our cron job
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC ";
   $r = $core->query($q);
   while($d = mysqli_fetch_array($r)){
-    slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
+    //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
     sleep($d['run_delay']);
-    echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
+    //echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
     $url = $d['api_url'];
     $id = $d['id'];
     $name = $d['api_name'];
@@ -56,6 +57,7 @@ if ($_GET['run']){
 
 
 if ($_GET['single']){
+  // this will debug a single api
   $api_id = $_GET['single'];
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
   slack_general("$q",'covid19-apis');
@@ -95,7 +97,7 @@ if ($_GET['single']){
 
 
 
-
+// display what we got active
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
