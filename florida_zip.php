@@ -1,15 +1,20 @@
 <?PHP
-if(isset($_GET['novideo'])){
-	$logo = 'off';
-}
 include_once('menu.php');
-global $debug_florida;
 
-function coronavirus_zip($zip,$date,$count,$town){
-	// the order we call the function will matter...
+global $zipcode;
+$zipcode = array();
+$q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
+$r = $core->query($q);
+while($d = mysqli_fetch_array($r)){
+	$zip = $d['zip_code'];
+	$zipcode[$zip] = $d['town_name'];
+}
+
+
+function coronavirus_zip($zip,$date,$count){
 	global $core;
-	global $debug_florida;
-	$debug_florida .= "<li>coronavirus_zip($zip,$date,$count,$town)</li>";
+	global $zipcode;
+	$town = $zipcode[$zip];
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
@@ -39,10 +44,12 @@ function coronavirus_zip($zip,$date,$count,$town){
 		// we reached the start of data collection.	
 	}
 	if ($d['id'] == ''){
-		$core->query("insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Florida','$current_trend','$current_duration') ");
+		$q = "insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Florida','$current_trend','$current_duration') ";
 	}else{
-		$core->query("update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ");	
+		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
+	$core->query($q);
+	slack_general("$q",'covid19-sql');
 }
 
 
@@ -60,7 +67,7 @@ $d = mysqli_fetch_array($r);
 echo $d['raw_response'];
 
 $array = json_decode($d['raw_response'], true);
-
+/*
 $return = array();
 
 foreach ($array['features'] as $key => $value){
@@ -70,8 +77,27 @@ foreach ($array['features'] as $key => $value){
 }
 
 print_r($return);
+*/
+if (empty($_GET['run'])){
+	die('debug break');
+}
 
-die('debug break');
+if($global_date == date('Y-m-d')){
+	foreach ($array['features'] as $key => $value){
+		//OBJECTID" : 642, "ZIP" : "33445", "OBJECTID_1" : 1053, "DEPCODE" : 50, "COUNTYNAME" : "Palm Beach", "FieldMatch" : "Palm Beach-33445", "POName" : "Delray Beach", "Places" : "Boca Raton, Delray Beach, Boynton Beach", "OBJECTID_12" : 798, "ZIPX" : "Palm Beach-33445", "c_places" : "Delray Beach", "Cases_1" : "221", "LabelY" : 221, "Shape__Area" : 0.00188006293865328, "Shape__Length" : 0.199578714953371 } }, 
+		$zip = $value['attributes']['ZIP'];
+		$count = $value['attributes']['Cases_1'];
+		coronavirus_zip($zip,$global_date,$count);
+	}
+}	
+	
+
+
+
+
+
+die('DONE');
+
 
 asort($zipData); 
 //ksort($zipData); // Sort Array (Ascending Order), According to Key - ksort()
