@@ -12,7 +12,7 @@ while($d = mysqli_fetch_array($r)){
 }
 $date = $global_date;
 
-echo "<table><tr><td valign='top'>";
+echo "<table><tr><td valign='top' width='50%'>";
 
 ob_start();
 echo "<h3>Cases are removed after 14 days, sorted by zipcode.</h3><ol>";
@@ -30,7 +30,7 @@ $list = ob_get_clean();
 
 echo "<h1>".number_format($total)." Maryland Active COVID-19 Infections for $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
-echo "</td><td valign='top'>";
+echo "</td><td valign='top' width='50%'>";
 
 ob_start();
 echo "<h3>Cases are removed after 14 days, sorted by zipcode.</h3><ol>";
