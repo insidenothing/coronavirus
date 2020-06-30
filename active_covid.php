@@ -28,7 +28,7 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 $list = ob_get_clean();
 
-echo "<h1>".number_format($total)." Maryland Active COVID-19 Infections for $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
+echo "<h1>".number_format($total)." Maryland Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 echo "</td><td valign='top' width='50%'>";
 
@@ -46,7 +46,7 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 $list = ob_get_clean();
 
-echo "<h1>".number_format($total)." Florida Active COVID-19 Infections for $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
+echo "<h1>".number_format($total)." Florida Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 
 echo "</tr></td></table>";
