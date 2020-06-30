@@ -51,12 +51,25 @@ global $cases;
 global $zipData;
 global $date;
 
-$r = $core->query("select * from coronavirus_api_cache where api_id = '34' and cache_date_time like '$date%' order by id desc"); // always get the latest for today
+
+
+
+$r = $core->query("select * from coronavirus_api_cache where api_id = '30' order by id desc limit 0, 1"); // always get the latest from the cache
 $d = mysqli_fetch_array($r);
 
 echo $d['raw_response'];
 
-//print_r($zipData);
+$array = json_decode($d['raw_response'], true);
+
+$return = array();
+
+foreach ($array['features'] as $key => $value){
+	//OBJECTID" : 642, "ZIP" : "33445", "OBJECTID_1" : 1053, "DEPCODE" : 50, "COUNTYNAME" : "Palm Beach", "FieldMatch" : "Palm Beach-33445", "POName" : "Delray Beach", "Places" : "Boca Raton, Delray Beach, Boynton Beach", "OBJECTID_12" : 798, "ZIPX" : "Palm Beach-33445", "c_places" : "Delray Beach", "Cases_1" : "221", "LabelY" : 221, "Shape__Area" : 0.00188006293865328, "Shape__Length" : 0.199578714953371 } }, 
+	$zip = $value['attributes']['ZIP'];
+	$return[$zip]['Cases'] = $value['attributes']['Cases_1'];
+}
+
+print_r($return);
 
 die('debug break');
 
