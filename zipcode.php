@@ -361,6 +361,7 @@ ob_start();
 	
 </div>
 <?PHP 
+$per = abs($per); // fix -%
 $page_description = $per."% change $page_description";
 $alert = ob_get_clean();
 	$return = array();
