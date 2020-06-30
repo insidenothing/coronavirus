@@ -115,6 +115,22 @@ while($d = mysqli_fetch_array($r)){
 		<?PHP 
 	} 
 	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$done = mysqli_num_rows($r);
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$global_date' ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$left = mysqli_num_rows($r);
+	if ($left > 0){
+		?>
+		<div class="alert alert-success">
+			We are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. 
+		</div>
+		<?PHP 	
+		
+	}
 	?>
 	<form method='GET' action='zipcode.php'>
 	<ul class="nav nav-pills">
