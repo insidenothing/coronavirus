@@ -127,7 +127,7 @@ while($d = mysqli_fetch_array($r)){
 		if ($left > 0){
 			?>
 			<div class="alert alert-warning">
-				We are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo $processed_zips; ?> Total.
+				We are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total.
 			</div>
 			<?PHP 		
 		}else{
