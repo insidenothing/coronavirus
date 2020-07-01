@@ -4,6 +4,15 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
 
+function fix_zero($int){
+	if($int == 0){
+		$int = 7;
+	}
+	if($int == ''){
+		$int = 7;
+	}
+	return $int;
+}
 
 $page_description = 'Facilities Data';
 include_once('menu.php');
