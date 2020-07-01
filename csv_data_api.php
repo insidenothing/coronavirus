@@ -29,7 +29,11 @@ if($num_found = preg_match_all($pattern, $str, $out))
         $pos = strpos($v, 'csv');
         if ($pos !== false) {
             $p = explode('">', $v);
-            echo "<li>API: ".$p[1]." URL: ".$p[0]."</li>";
+            $pos2 = strpos($p[1], 'zip');
+            if ($pos2 !== false) {
+                echo "<li>ZIP API: ".$p[1]." URL: ".$p[0]."</li>";
+            }
+            
         }
         
     }
