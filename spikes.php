@@ -1,5 +1,5 @@
 <?PHP
-$page_description = "Maryland COVID 19 Spike Monitor";
+$page_description = "COVID 19 Spike Monitor";
 include_once('menu.php');
 global $zipcode;
 global $global_date;
