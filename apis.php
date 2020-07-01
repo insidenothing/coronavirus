@@ -41,7 +41,6 @@ if ($_GET['run']){
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
     $raw = getPage($url);
-    $raw = check_error($raw,$url);
     $raw_response = $core->real_escape_string($raw);
     $test1 = $old;
     $test2 = $raw;
