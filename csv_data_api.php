@@ -1,4 +1,6 @@
+
 <?PHP
+include_once('menu.php');
 
 
 function getPage($url){
@@ -12,24 +14,30 @@ function getPage($url){
     return $html;
 }
 
-$url = 'https://www.vdh.virginia.gov/coronavirus/';
 
 
-$str = getPage($url);
-
-
-$pattern = '~[a-z]+://\S+~';
-
-echo "<ol>";
-if($num_found = preg_match_all($pattern, $str, $out))
-{
-    foreach ($out[0] as $k => $v) {
-        $pos = strpos($v, 'csv');
-        if ($pos !== false) {
-            $p = explode('">', $v);
-                echo "<li>CSV: ".$p[0]."<br />$v</li>";
+    $url = 'https://www.vdh.virginia.gov/coronavirus/';
+    $str = getPage($url);
+    $pattern = '~[a-z]+://\S+~';
+    echo "<ol>";
+    if($num_found = preg_match_all($pattern, $str, $out))
+    {
+        foreach ($out[0] as $k => $v) {
+            $pos = strpos($v, 'csv');
+            if ($pos !== false) {
+                $p = explode('">', $v);
+                    echo "<li>CSV: <b>".$p[0]."</b><br /><small>$v</small></li>";
+            }
         }
     }
-}
-echo "</ol>";
+    echo "</ol>";
+
+
+
+
+
+
+
+
+
 ?>
