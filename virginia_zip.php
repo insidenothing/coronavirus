@@ -101,7 +101,7 @@ if($global_date == date('Y-m-d')){
 
 }
 
-
+print_r($pieces);
 	
 
 
