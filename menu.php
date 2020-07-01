@@ -114,6 +114,9 @@ while($d = mysqli_fetch_array($r)){
 		</div>
 		<?PHP 
 	} else{
+		$q = "SELECT distinct Facility_Name FROM coronavirus_facility";
+		$r = $core->query($q);
+		$processed_facility = mysqli_num_rows($r);
 		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
 		$r = $core->query($q);
 		$done = mysqli_num_rows($r);
@@ -130,7 +133,7 @@ while($d = mysqli_fetch_array($r)){
 		}else{
 			?>
 			<div class="alert alert-success">
-				We have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes for <?PHP echo $date;?>! 
+				We have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! #BigData
 			</div>
 			<?PHP 		
 		}
