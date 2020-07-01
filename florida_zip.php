@@ -44,12 +44,14 @@ function coronavirus_zip($zip,$date,$count){
 		// we reached the start of data collection.	
 	}
 	if ($d['id'] == ''){
+		echo "[insert $zip]";
 		$q = "insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Florida','$current_trend','$current_duration') ";
 	}else{
+		echo "[update $zip]";
 		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
 	$core->query($q);
-	slack_general("$q",'covid19-sql');
+	//slack_general("$q",'covid19-sql');
 }
 
 
