@@ -79,14 +79,14 @@ if($global_date == date('Y-m-d')){
 
 	//echo $d['raw_response'];
 
-	$break = '
-	';
+$break = '
+';
 
 	$pieces = explode($break, $d['raw_response']);
 	$i=0;
 	foreach ($pieces as $v) {
 		if ($i != 0){
-			echo "<li>$v</li>";
+			//echo "<li>$v</li>";
 			$pieces2 = explode(',',$v);
 			$date = date('Y-m-d',strtotime($pieces2[0]));
 			$zip = $pieces2[1];
@@ -101,7 +101,7 @@ if($global_date == date('Y-m-d')){
 
 }
 
-print_r($pieces);
+//print_r($pieces);
 	
 
 
