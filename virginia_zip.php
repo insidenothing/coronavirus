@@ -92,6 +92,9 @@ $break = '
 			$zip = $pieces2[1];
 			$count = $pieces2[2];
 			$testing = $pieces2[3];
+			if ($count == 'Suppressed*'){
+				$count = 4;
+			}
 			echo "<li>$date - $zip - $count / $testing</li>";
 			//coronavirus_zip($zip,$date,$count,$testing);
 		}
