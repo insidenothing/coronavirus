@@ -302,7 +302,5 @@ while ($d = mysqli_fetch_array($r)){
  	$i++;
 }
 
-
-
-<?PHP include_once('footer.php'); ?>
+ include_once('footer.php');
 	
