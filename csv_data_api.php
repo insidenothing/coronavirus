@@ -20,17 +20,16 @@ $str = getPage($url);
 
 $pattern = '~[a-z]+://\S+~';
 
-
+echo "<ol>";
 if($num_found = preg_match_all($pattern, $str, $out))
 {
     foreach ($out[0] as $k => $v) {
         $pos = strpos($v, 'csv');
         if ($pos !== false) {
             $p = explode('">', $v);
-                echo "<li>CSV: ".$p[0]."</li>";
-                echo "<li>$v</li>";
+                echo "<li>CSV: ".$p[0]."<br />$v</li>";
         }
     }
 }
-
+echo "</ol>";
 ?>
