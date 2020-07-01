@@ -130,7 +130,7 @@ while($d = mysqli_fetch_array($r)){
 		}else{
 			?>
 			<div class="alert alert-success">
-				We have finished processing <?PHP echo $processed_zips;?> for <?PHP echo $date;?>.
+				We have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes for <?PHP echo $date;?>! 
 			</div>
 			<?PHP 		
 		}
