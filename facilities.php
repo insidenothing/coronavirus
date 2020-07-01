@@ -124,7 +124,6 @@ $Facility_ZIP['Village_at_Rockville'] = '20850';
 $Facility_ZIP['Westgate_Hills_Rehabilitation___Healthcare_Center'] = '21229';
 $Facility_ZIP['Westminster_Healthcare_Center'] = '21157';
 
-
 $Facility_ZIP['Anne_Arundel_Detention_Center_Jennifer_Road'] = '21401';
 $Facility_ZIP['Baltimore_County_Detention_Center'] = '21204';
 $Facility_ZIP['Prince_George_s_County_Jail'] = '20772';
@@ -150,6 +149,28 @@ $Facility_ZIP['Roxbury_Correctional_Institution'] = '21746';
 $Facility_ZIP['North_Branch_Correctional_Institution'] = '21502';
 $Facility_ZIP['Western_Correctional_Institution'] = '21502';
 $Facility_ZIP['Charles_H__Hickey__Jr__School'] = '21234';
+
+
+$Facility_ZIP['Woodholme_Garden'] = '21208';
+$Facility_ZIP['Baltimore_City_Juvenile_Justice_Center'] = '21202';
+$Facility_ZIP['Clifton_T__Perkins_Hospital_Center'] = '20794';
+$Facility_ZIP['Arbor_Terrace_Waugh_Chapel'] = '21113';
+$Facility_ZIP['Arden_Courts_of_Silver_Spring'] = '20904';
+$Facility_ZIP['Brightview_Severna_Park'] = '21146';
+$Facility_ZIP['Commonwealth_Senior_Living_Cockeysville'] = '21030';
+$Facility_ZIP['Encore_at_Turf_Valley'] = '21042';
+$Facility_ZIP['FutureCare_Northpoint'] = '21224';
+$Facility_ZIP['Genesis_Perring_Parkway'] = '21234';
+$Facility_ZIP['Glade_Valley_Center___Genesis_Healthcare'] = '21793';
+$Facility_ZIP['Kensington_Park'] = '20895';
+$Facility_ZIP['Keswick_Multi_Care_Center'] = '21211';
+$Facility_ZIP['Lighthouse_Senior_Living_at_Ellicott_City'] = '21043';
+$Facility_ZIP['Lighthouse_Senior_Living_at_Hopkins_Creek'] = '21221';
+$Facility_ZIP['Overlea_Health_and_Rehab'] = '21206';
+$Facility_ZIP['St__John_Neumann_Residence'] = '21093';
+$Facility_ZIP['Sterling_at_Riverside'] = '21017';
+$Facility_ZIP['The_Landing_of_Silver_Spring'] = '20904';
+
 
 
 
