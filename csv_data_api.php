@@ -24,7 +24,10 @@ $pattern = '~[a-z]+://\S+~';
 if($num_found = preg_match_all($pattern, $str, $out))
 {
   echo "FOUND ".$num_found." LINKS:\n";
-  print_r($out[0]);
+    //print_r($out[0]);
+    foreach ($out[0] as $k => $v) {
+        echo "<li>$v</li>
+    }
 }
 
 ?>
