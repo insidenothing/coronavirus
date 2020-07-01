@@ -95,7 +95,7 @@ $break = '
 			if ($count == 'Suppressed*'){
 				$count = 4;
 			}
-			if ($zip = 'Not Reported'){
+			if ($zip == 'Not Reported'){
 				$zip = '00000';
 			}
 			if ($date != '1969-12-31'){
