@@ -57,7 +57,7 @@ if(isset($_GET['reset'])){
 		white-space:pre;
 	}
 </style>
-<h1>Maryland COVID 19 Spike Monitor - % Change of Infections</h1>
+<h1>COVID 19 Spike Monitor - % Change of Infections</h1>
 <?PHP
 ob_start();
 $counter['same']=0;
