@@ -109,25 +109,33 @@ while($d = mysqli_fetch_array($r)){
 	if ($pos === false) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
 		?>
-		<div class="alert alert-success">
-			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 10:05 AM. Last Update was <?PHP echo $date;?>.
+		<div class="alert alert-danger">
+			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 11:05 AM. Last Update was <?PHP echo $date;?>.
 		</div>
 		<?PHP 
-	} 
-	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
-	$r = $core->query($q);
-	$done = mysqli_num_rows($r);
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$global_date' ";
-	$r = $core->query($q);
-	$left = mysqli_num_rows($r);
-	if ($left > 0){
-		?>
-		<div class="alert alert-success">
-			We are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. 
-		</div>
-		<?PHP 		
+	} else{
+		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
+		$r = $core->query($q);
+		$done = mysqli_num_rows($r);
+		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$global_date' ";
+		$r = $core->query($q);
+		$left = mysqli_num_rows($r);
+		$processed_zips = $done + $left;
+		if ($left > 0){
+			?>
+			<div class="alert alert-warning">
+				We are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo $processed_zips; ?> Total.
+			</div>
+			<?PHP 		
+		}else{
+			?>
+			<div class="alert alert-success">
+				We have finished processing <?PHP echo $processed_zips;?> for <?PHP echo $date;?>.
+			</div>
+			<?PHP 		
+		}
 	}
+	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
 	?>
 	<form method='GET' action='zipcode.php'>
 	<ul class="nav nav-pills">
