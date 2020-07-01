@@ -144,10 +144,10 @@ while($d = mysqli_fetch_array($r)){
 	<ul class="nav nav-pills">
 		<!--<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>-->
 		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">Maryland COVID 19 Reopen Dashboard</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/active_covid.php'){ echo "class='active'"; } ?> ><a href="active_covid.php">Maryland Active COVID 19 Infections</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/spikes.php'){ echo "class='active'"; } ?> ><a href="spikes.php">Maryland COVID 19 Spike Monitor</a></li>
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/outbreak.php'){ echo "class='active'"; } ?> ><a href="outbreak.php">Maryland COVID 19 Outbreak Monitor</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">COVID 19 Reopen Dashboard</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/active_covid.php'){ echo "class='active'"; } ?> ><a href="active_covid.php">Active COVID 19 Infections</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/spikes.php'){ echo "class='active'"; } ?> ><a href="spikes.php">COVID 19 Spike Monitor</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/outbreak.php'){ echo "class='active'"; } ?> ><a href="outbreak.php">COVID 19 Outbreak Monitor</a></li>
 		
 		<li role='presentation'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success">Go to ZIP Code</button></li>
 		
