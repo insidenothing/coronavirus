@@ -83,16 +83,19 @@ if($global_date == date('Y-m-d')){
 	';
 
 	$pieces = explode($break, $d['raw_response']);
-
+	$i=0;
 	foreach ($pieces as $v) {
-	    //echo "<li>$v</li>";
-		$pieces2 = explode(',',$v);
-	        $date = date('Y-m-d',strtotime($pieces2[0]));
-		$zip = $pieces2[1];
-		$count = $pieces2[2];
-	 	$testing = $pieces2[3];
-		echo "<li>$date $zip $total/$testing</li>";
-	        //coronavirus_zip($zip,$date,$count,$testing);
+		if ($i != 0){
+			 //echo "<li>$v</li>";
+			$pieces2 = explode(',',$v);
+			$date = date('Y-m-d',strtotime($pieces2[0]));
+			$zip = $pieces2[1];
+			$count = $pieces2[2];
+			$testing = $pieces2[3];
+			echo "<li>$date $zip $total/$testing</li>";
+			//coronavirus_zip($zip,$date,$count,$testing);
+		}
+		$i++;
 	}
 
 
