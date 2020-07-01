@@ -62,47 +62,43 @@ global $date;
 
 
 
-// watch for microsoft characters =(
-$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache
-$d = mysqli_fetch_array($r);
-
-//echo $d['raw_response'];
-
-$break = '
-';
-
-$pieces = explode($break, $d['raw_response']);
-
-foreach ($pieces as $v) {
-    echo "<li>$v</li>";
-}
 
 
-die('not json');
-$array = json_decode($d['raw_response'], true);
-/*
-$return = array();
-
-foreach ($array['features'] as $key => $value){
-	//OBJECTID" : 642, "ZIP" : "33445", "OBJECTID_1" : 1053, "DEPCODE" : 50, "COUNTYNAME" : "Palm Beach", "FieldMatch" : "Palm Beach-33445", "POName" : "Delray Beach", "Places" : "Boca Raton, Delray Beach, Boynton Beach", "OBJECTID_12" : 798, "ZIPX" : "Palm Beach-33445", "c_places" : "Delray Beach", "Cases_1" : "221", "LabelY" : 221, "Shape__Area" : 0.00188006293865328, "Shape__Length" : 0.199578714953371 } }, 
-	$zip = $value['attributes']['ZIP'];
-	$return[$zip] = $value['attributes']['Cases_1'];
-}
-
-print_r($return);
-*/
 if (empty($_GET['run'])){
-	die('debug break');
+	die('missing run=1');
 }
+
+
 
 if($global_date == date('Y-m-d')){
-	foreach ($array['features'] as $key => $value){
-		//OBJECTID" : 642, "ZIP" : "33445", "OBJECTID_1" : 1053, "DEPCODE" : 50, "COUNTYNAME" : "Palm Beach", "FieldMatch" : "Palm Beach-33445", "POName" : "Delray Beach", "Places" : "Boca Raton, Delray Beach, Boynton Beach", "OBJECTID_12" : 798, "ZIPX" : "Palm Beach-33445", "c_places" : "Delray Beach", "Cases_1" : "221", "LabelY" : 221, "Shape__Area" : 0.00188006293865328, "Shape__Length" : 0.199578714953371 } }, 
-		$zip = $value['attributes']['ZIP'];
-		$count = $value['attributes']['Cases_1'];
-		coronavirus_zip($zip,$global_date,$count);
+
+
+	// watch for microsoft characters =(
+	$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache
+	$d = mysqli_fetch_array($r);
+
+	//echo $d['raw_response'];
+
+	$break = '
+	';
+
+	$pieces = explode($break, $d['raw_response']);
+
+	foreach ($pieces as $v) {
+	    //echo "<li>$v</li>";
+		$pieces2 = explode(',',$v);
+	        $date = date('Y-m-d',strtotime($pieces2[0]));
+		$zip = $pieces2[1];
+		$count = $pieces2[2];
+	 	$testing = $pieces2[3];
+		echo "<li>$date $zip $total/$testing</li>";
+	        //coronavirus_zip($zip,$date,$count,$testing);
 	}
-}	
+
+
+}
+
+
 	
 
 
