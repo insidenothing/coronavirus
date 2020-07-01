@@ -27,7 +27,7 @@ if($num_found = preg_match_all($pattern, $str, $out))
         $pos = strpos($v, 'csv');
         if ($pos !== false) {
             $p = explode('">', $v);
-                echo "<li>API: ".$p[1]." URL: ".$p[0]."</li>";
+                echo "<li>CSV: ".$p[0]."</li>";
                 echo "<li>$v</li>";
         }
     }
