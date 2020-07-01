@@ -114,6 +114,9 @@ while($d = mysqli_fetch_array($r)){
 		</div>
 		<?PHP 
 	} else{
+		$q = "SELECT distinct api_url FROM coronavirus_apis";
+		$r = $core->query($q);
+		$total_apis = mysqli_num_rows($r);
 		$q = "SELECT distinct Facility_Name FROM coronavirus_facility";
 		$r = $core->query($q);
 		$processed_facility = mysqli_num_rows($r);
@@ -127,13 +130,13 @@ while($d = mysqli_fetch_array($r)){
 		if ($left > 0){
 			?>
 			<div class="alert alert-warning">
-				We are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total.
+				Using <?PHP echo $total_apis;?> API's we are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total.
 			</div>
 			<?PHP 		
 		}else{
 			?>
 			<div class="alert alert-success">
-				We have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! #BigData
+				Using <?PHP echo $total_apis;?> API's we have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! #BigData
 			</div>
 			<?PHP 		
 		}
