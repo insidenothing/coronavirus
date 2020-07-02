@@ -18,6 +18,9 @@ function getPage($url){
 
     $url = 'https://coronavirus.dc.gov/page/coronavirus-data';
     $str = getPage($url);
+    echo $str;
+
+
     $pattern = '~[a-z]+://\S+~';
     echo "<ol>";
     if($num_found = preg_match_all($pattern, $str, $out))
