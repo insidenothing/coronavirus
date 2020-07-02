@@ -103,7 +103,7 @@ if ($_GET['level']){
   echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
   while($d = mysqli_fetch_array($r)){
     slack_general("checking all apis at level check $api_id $d[api_name]",'covid19-apis');
-    //sleep($d['run_delay']);
+    sleep($d['run_delay']);
     echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
     $url = $d['api_url'];
     $id = $d['id'];
