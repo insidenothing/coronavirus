@@ -23,6 +23,28 @@ function check_error($json,$url){
   return $json;
 }
 
+if ($_GET['debug']){
+  // this will debug a single api
+  $api_id = $_GET['debug'];
+  $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
+  slack_general("$q",'covid19-apis');
+  $r = $core->query($q);
+  echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
+  while($d = mysqli_fetch_array($r)){
+    slack_general("debug $d[api_name]",'covid19-apis');
+    //sleep($d['run_delay']);
+    echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
+    $url = $d['api_url'];
+    $id = $d['id'];
+    $name = $d['api_name'];
+    $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+    $d2 = mysqli_fetch_array($r2);
+    $old = $d2['raw_response'];
+    echo $old"; 
+    
+  }
+  die();
+}
 
 
 
