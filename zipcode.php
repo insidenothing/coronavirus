@@ -111,7 +111,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-		
+		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		
 		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
 		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
@@ -125,7 +125,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-		
+		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
 		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
 		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
@@ -156,6 +156,7 @@ $remove_chart 		= rtrim(trim($remove_chart), ",");
 $sma_chart 		= rtrim(trim($sma_chart), ",");
 $sma_chart3 		= rtrim(trim($sma_chart3), ",");
 $time_chart 		= rtrim(trim($time_chart), ",");
+	$testing_chart 		= rtrim(trim($testing_chart), ",");
 	
 	$time_charta 		= rtrim(trim($time_charta), ",");
 	$time_chartb 		= rtrim(trim($time_chartb), ",");
@@ -196,6 +197,7 @@ $alert = ob_get_clean();
 	$return['alert'] = $alert;
 	$return['page_description'] = $page_description;
 	$return['time_chart'] = $time_chart;
+	$return['testing_chart'] = $testing_chart;
 	$return['time_charta'] = $time_charta;
 	$return['time_chartb'] = $time_chartb;
 	$return['time_chartc'] = $time_chartc;
@@ -261,12 +263,14 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
+		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
@@ -289,6 +293,7 @@ while ($d = mysqli_fetch_array($r)){
 }
 $remove_chart 		= rtrim(trim($remove_chart), ",");
 $sma_chart 		= rtrim(trim($sma_chart), ",");
+	$testing_chart 		= rtrim(trim($testing_chart), ",");
 $sma_chart3 		= rtrim(trim($sma_chart3), ",");
 $time_chart 		= rtrim(trim($time_chart), ",");
 $new_chart 		= rtrim(trim($new_chart), ",");
@@ -369,6 +374,7 @@ $alert = ob_get_clean();
 	$return['page_description'] = $page_description;
 	$return['time_chart'] = $time_chart;
 	$return['time_chart2'] = $time_chart2;
+	$return['testing_chart'] = $testing_chart;
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
 	$return['sma_chart'] = $sma_chart;
@@ -417,6 +423,7 @@ $sma3_chart_1 		= $day7['sma3_chart'];
 $range_1 		= $day7['range'];
 $name_1 		= $day7['name'];
 $per_1 			= $day7['per'];
+$testing_chart_1 	= $day7['testing_chart'];
 
 // Chart 2
 
@@ -430,6 +437,7 @@ $sma3_chart_2 		= $day14['sma3_chart'];
 $range_2 		= $day14['range'];
 $name_2 		= $day14['name'];
 $per_2 			= $day14['per'];
+$testing_chart_2 	= $day14['testing_chart'];
 
 // Chart 3
 
@@ -443,6 +451,7 @@ $sma3_chart_3 		= $day30['sma3_chart'];
 $range_3 		= $day30['range'];
 $name_3 		= $day30['name'];
 $per_3 			= $day30['per'];
+$testing_chart_3 	= $day30['testing_chart'];
 
 // Chart 4
 
@@ -456,6 +465,7 @@ $sma3_chart_4 		= $day45['sma3_chart'];
 $range_4 		= $day45['range'];
 $name_4 		= $day45['name'];
 $per_4 			= $day45['per'];
+$testing_chart_4 	= $day45['testing_chart'];
 
 
 // Chart 6
@@ -470,6 +480,7 @@ $sma3_chart_6 		= $day90['sma3_chart'];
 $range_6 		= $day90['range'];
 $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
+$testing_chart_6 	= $day90['testing_chart'];
 
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
@@ -550,6 +561,15 @@ window.onload = function () {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Testing Count",
+		dataPoints: [
+			<?PHP echo $testing_chart_1; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 3 Day Simple Moving Average",
 		dataPoints: [
 			<?PHP echo $sma3_chart_1; ?>
@@ -607,6 +627,15 @@ window.onload = function () {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_2; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Testing Count",
+		dataPoints: [
+			<?PHP echo $testing_chart_2; ?>
 		]
 		},{
 		type: "line",
@@ -675,6 +704,15 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Testing Count",
+		dataPoints: [
+			<?PHP echo $testing_chart_3; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day Simple Moving Average",
 		dataPoints: [
 			<?PHP echo $sma_chart_3; ?>
@@ -731,6 +769,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Total Count",
 		dataPoints: [
 			<?PHP echo $time_chart_4; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Testing Count",
+		dataPoints: [
+			<?PHP echo $testing_chart_4; ?>
 		]
 		},{
 		type: "line",
@@ -861,6 +908,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Total Cases",
 		dataPoints: [
 			<?PHP echo $time_chart_6; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Testing Count",
+		dataPoints: [
+			<?PHP echo $testing_chart_6; ?>
 		]
 		},{
 		type: "line",
