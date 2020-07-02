@@ -40,7 +40,7 @@ if ($_GET['debug']){
     $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
-    echo $old"; 
+    echo $old; 
     
   }
   die();
