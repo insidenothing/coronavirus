@@ -16,10 +16,11 @@ function getPage($url){
 
 
 
-    $url = 'https://coronavirus.dc.gov/page/coronavirus-data';
+    $url = 'https://coronavirus.dc.gov/sites/default/files/dc/sites/coronavirus/page_content/attachments/DC-COVID-19-Data-for-July-1-2020_0.xlsx';
     $str = getPage($url);
     echo $str;
 
+die();
 
     $pattern = '~[a-z]+://\S+~';
     echo "<ol>";
