@@ -21,6 +21,7 @@ function getPage($url){
     $verboseLog = stream_get_contents($verbose);
     slack_general($verboseLog,'covid19-apis');
     curl_close ($curl);
+    echo $url;
     return $html;
 }
 
