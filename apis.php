@@ -161,12 +161,12 @@ $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
   //sleep($d['run_delay']);
-  $color = 'red';
+  $color = 'lightorange';
   if (substr($d['last_updated'],0,10) == date('Y-m-d')){
-    $color='green';
+    $color='lightgreen';
   }
   if (substr($d['last_updated'],0,10) == date('Y-m-d',strtotime('-1 day'))){
-    $color='yellow';
+    $color='lightyellow';
   }
   echo "<li style='background-color:$color;' title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> $d[api_status] <a target='_Blank' href='?debug=$d[id]'>CACHE</a> or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $url = $d['api_url'];
