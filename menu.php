@@ -110,7 +110,7 @@ while($d = mysqli_fetch_array($r)){
 		$global_date = date('Y-m-d',strtotime('-1 day'));
 		?>
 		<div class="alert alert-danger">
-			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 11:05 AM. Last Update was <?PHP echo $date;?>.
+			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 11:05 AM. Last Update was <?PHP echo $date;?>. View APIs <a href='apis.php'>HERE</a>. #BigData #covid19math
 		</div>
 		<?PHP 
 	} else{
@@ -130,13 +130,13 @@ while($d = mysqli_fetch_array($r)){
 		if ($left > 0){
 			?>
 			<div class="alert alert-warning">
-				Using <?PHP echo $total_apis;?> API's we are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total.
+				Using <?PHP echo $total_apis;?> API's we are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total. View APIs <a href='apis.php'>HERE</a>. #BigData #covid19math
 			</div>
 			<?PHP 		
 		}else{
 			?>
 			<div class="alert alert-success">
-				Using <?PHP echo $total_apis;?> API's we have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! #BigData
+				Using <?PHP echo $total_apis;?> API's we have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! View APIs <a href='apis.php'>HERE</a>. #BigData #covid19math
 			</div>
 			<?PHP 		
 		}
