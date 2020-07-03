@@ -168,7 +168,7 @@ while($d = mysqli_fetch_array($r)){
   if (substr($d['last_updated'],0,10) == date('Y-m-d',substr('-1 day'))){
     $color='yellow';
   }
-  echo "<li style='background-color:$color;' title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='?debug=$d[api_id]'>CACHE</a> <a target='_Blank' href='$d[api_url]'>$d[api_status] SOURCE</a></li>";
+  echo "<li style='background-color:$color;' title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> $d[api_status] <a target='_Blank' href='?debug=$d[id]'>CACHE</a> or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
