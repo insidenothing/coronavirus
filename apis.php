@@ -161,7 +161,7 @@ $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
   //sleep($d['run_delay']);
-  $color = 'lightorange';
+  $color = 'lightblue';
   if (substr($d['last_updated'],0,10) == date('Y-m-d')){
     $color='lightgreen';
   }
