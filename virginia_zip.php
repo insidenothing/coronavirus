@@ -1,6 +1,12 @@
 <?PHP
 include_once('menu.php');
 
+if (isset($_GET['delete'])){
+	$delete = date('Y-m-d');
+	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
+	die('done');
+}
+
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
