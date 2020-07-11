@@ -174,8 +174,8 @@ $new_down=0;
 $buffer = ob_get_clean();
 function make_reopen($type){
         global $core;
-        $return = '';
-        $q = "SELECT * FROM coronavirus_reopen";
+        $return = ''; 
+        $q = "SELECT * FROM coronavirus_reopen limit 0, 30";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		if ($type == 'open'){
