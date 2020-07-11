@@ -293,18 +293,9 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		
 		
-		if ($rolling == $d['active_count_low']){
-			$chart_date = '\u2193 '.$d['report_date'].' \u2193';
-			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
-		}elseif ($rolling == $d['active_count_high']){
-			$chart_date = '\u2191 '.$d['report_date'].' \u2191';
-			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
-		}else{
-			$chart_date = $d['report_date'];
-			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
-		}
 		
 		
+		$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
@@ -347,7 +338,7 @@ while ($d = mysqli_fetch_array($r)){
 	$sma_chart3 		= rtrim(trim($sma_chart3), ",");
 	$time_chart 		= rtrim(trim($time_chart), ",");
 	$new_chart 		= rtrim(trim($new_chart), ",");
-	$page_description 	= "$date $name at $last_count Cases";
+	$page_description 	= "$date $name at $last_count Cases ($active_count_low to $active_count_high) ";
 	$name2			= '';
 	$i2			= 0;
 if ($zip2 != '99999'){
