@@ -296,6 +296,15 @@ while ($d = mysqli_fetch_array($r)){
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+		// only check and set once we are graphing
+		if ($active_count_high > $rolling){
+			$active_count_high 	= $rolling;	
+			$active_count_date_high = $d['report_date'];
+		}
+		if ($active_count_low > $rolling){
+			$active_count_low 	= $rolling;	
+			$active_count_date_low 	= $d['report_date'];
+		}
 	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
@@ -304,18 +313,6 @@ while ($d = mysqli_fetch_array($r)){
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}
-	
-	if ($active_count_high > $rolling){
-		$active_count_high 	= $rolling;	
-		$active_count_date_high = $d['report_date'];
-	}
-	
-	if ($active_count_low > $rolling){
-		$active_count_low 	= $rolling;	
-		$active_count_date_low 	= $d['report_date'];
-	}
-	
-	
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
@@ -327,15 +324,15 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$i++; // number of days in the graph
 }
-$remove_chart 		= rtrim(trim($remove_chart), ",");
-$sma_chart 		= rtrim(trim($sma_chart), ",");
+	$remove_chart 		= rtrim(trim($remove_chart), ",");
+	$sma_chart 		= rtrim(trim($sma_chart), ",");
 	$testing_chart 		= rtrim(trim($testing_chart), ",");
-$sma_chart3 		= rtrim(trim($sma_chart3), ",");
-$time_chart 		= rtrim(trim($time_chart), ",");
-$new_chart 		= rtrim(trim($new_chart), ",");
-$page_description 	= "$date $name at $last_count Cases";
-$name2			= '';
-$i2			= 0;
+	$sma_chart3 		= rtrim(trim($sma_chart3), ",");
+	$time_chart 		= rtrim(trim($time_chart), ",");
+	$new_chart 		= rtrim(trim($new_chart), ",");
+	$page_description 	= "$date $name at $last_count Cases";
+	$name2			= '';
+	$i2			= 0;
 if ($zip2 != '99999'){
 	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
 	$r = $core->query($q);
