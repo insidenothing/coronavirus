@@ -106,11 +106,18 @@ while($d = mysqli_fetch_array($r)){
 	if(isset($_GET['global_date'])){
 		$global_date = $_GET['global_date'];
 	}
-	if ($pos === false) {	
+	if ($pos === false && empty($_GET['global_date'])) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
 		?>
 		<div class="alert alert-danger">
 			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 11:05 AM. Last Update was <?PHP echo $date;?>. View APIs <a href='apis.php'>HERE</a>. #BigData #covid19math
+		</div>
+		<?PHP 
+	} elseif ($pos === false && isset($_GET['global_date'])) {	
+		//$global_date = date('Y-m-d',strtotime('-1 day'));
+		?>
+		<div class="alert alert-success">
+			Processing Global Date <?PHP echo $global_date;?>. #BigData #covid19math
 		</div>
 		<?PHP 
 	} else{
