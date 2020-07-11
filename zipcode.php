@@ -933,7 +933,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name_6;?> <?PHP echo $active_count;?> Assumed Active COVID-19 Cases - source covid19math.net"
+			text: "<?PHP echo $name_6;?> COVID-19 Cases - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -977,7 +977,32 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		dataPoints: [
 			<?PHP echo $sma_chart_6; ?>
 		]
-		},{
+		}]
+	})
+	chartZIP6.render();
+	var chartZIP6b = new CanvasJS.Chart("chartContainerZIP6b", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $name_6;?> <?PHP echo $active_count;?> Assumed Active COVID-19 Cases - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
 		type: "line",
 		visible: true,
 		showInLegend: true,
@@ -988,8 +1013,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		]
 		}]
 	})
-	chartZIP6.render();
-	
+	chartZIP6b.render();
 	<?PHP 
 	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip' order by Facility_Name";
 	$r = $core->query($q);
@@ -1108,6 +1132,10 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	}	
 }
 </script>
+
+<div class="row">
+	<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
+</div>
 
 <div class="row">
 	<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
