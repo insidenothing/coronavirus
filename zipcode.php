@@ -299,7 +299,7 @@ while ($d = mysqli_fetch_array($r)){
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		// only check and set once we are graphing
-		if ($active_count_high > $rolling){
+		if ($rolling > $active_count_high){
 			$active_count_high 	= $rolling;	
 			$active_count_date_high = $d['report_date'];
 		}
