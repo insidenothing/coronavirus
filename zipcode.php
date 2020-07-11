@@ -1,4 +1,20 @@
 <?PHP
+
+/*
+active_count_high	int(11)	
+active_count_low	int(11)	
+active_count_date_high	date	
+active_count_date_low	date
+*/
+
+global $active_count_high;
+global $active_count_low;
+global $active_count_date_high;
+global $active_count_date_low;
+
+
+
+
 $type_graph='column';
 if (isset($_GET['type_graph'])){
 	$type_graph = $_GET['type_graph'];
@@ -214,11 +230,23 @@ $alert = ob_get_clean();
 	$return['Resident_Type'] = $Resident_Type;
 	return $return;
 }
+
+
+
+
+
+
+/// zip code code =)
+ /// 
 function make_chart($range){
 	global $core;
 	global $zip;
 	global $zip2;
 	global $remove;
+	global $active_count_high;
+	global $active_count_low;
+	global $active_count_date_high;
+	global $active_count_date_low;
 	
 $time_chart='';
 $text_div='';
@@ -277,7 +305,15 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}
 	
+	if ($active_count_high > $rolling){
+		$active_count_high 	= $rolling;	
+		$active_count_date_high = $d['report_date'];
+	}
 	
+	if ($active_count_low > $rolling){
+		$active_count_low 	= $rolling;	
+		$active_count_date_low 	= $d['report_date'];
+	}
 	
 	
 	$last = $d['report_count'];
@@ -515,7 +551,15 @@ if ($d['day45change_percentage'] > $per_4){
 	$dir4 = 'up';
 }
 $day45change = $per_4 - $d['day45change_percentage'];
-$q = "update coronavirus_zip set active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+
+/*
+global $active_count_high;
+global $active_count_low;
+global $active_count_date_high;
+global $active_count_date_low;
+*/
+
+$q = "update coronavirus_zip set active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
 $core->query($q);
 slack_general("$q",'covid19-sql');
