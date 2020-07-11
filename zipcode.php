@@ -308,7 +308,7 @@ while ($d = mysqli_fetch_array($r)){
 			$active_count_date_low 	= $d['report_date'];
 		}
 		if ($d['report_date'] == $d['active_count_low_date']){
-			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2191 lowest",markerColor: "green", markerType: "triangle" }, ';
+			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2193 lowest",markerColor: "green", markerType: "triangle" }, ';
 		}elseif ($d['report_date'] == $d['active_count_high_date']){
 			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" }, ';
 		}else{
@@ -959,7 +959,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		dataPoints: [
 			<?PHP echo $time_chart_6; ?>
 		]
-		},{
+		}<?PHP if ($state == 'Virginia'){ ?>,{
 		type: "line",
 		visible: true,
 		showInLegend: true,
@@ -968,7 +968,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		dataPoints: [
 			<?PHP echo $testing_chart_6; ?>
 		]
-		},{
+		}<?PHP } ?>,{
 		type: "line",
 		visible: true,
 		showInLegend: true,
