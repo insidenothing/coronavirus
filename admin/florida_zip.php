@@ -1,11 +1,17 @@
 <?PHP
-include_once('menu.php');
+include_once('../menu.php');
 
 
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
 	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Florida'");
-	die('done');
+	die('done '.$delete);
+}
+
+if (isset($_GET['delete_date'])){
+	$delete = $_GET['delete_date'];
+	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Florida'");
+	die('done '.$delete);
 }
 
 global $zipcode;
@@ -68,9 +74,12 @@ global $zipData;
 global $date;
 
 
-
-
-$r = $core->query("select * from coronavirus_api_cache where api_id = '30' order by id desc limit 0, 1"); // always get the latest from the cache
+if (isset($_GET['id'])){
+	$cache_id = $_GET['id'];
+	$r = $core->query("select * from coronavirus_api_cache where id = '$cache_id' limit 0, 1"); // use a specific item from the cache
+}else{
+	$r = $core->query("select * from coronavirus_api_cache where api_id = '30' order by id desc limit 0, 1"); // always get the latest from the cache
+}
 $d = mysqli_fetch_array($r);
 
 echo $d['raw_response'];
@@ -271,7 +280,7 @@ chartZIP2.render();
 }
 </script>
 
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="../canvasjs.min.js"></script>
 
 	<div class="row"><div class="col-sm-12"><div id="chartContainerZIP2" style="height: 2000px; width: 100%;"></div></div></div>
 
