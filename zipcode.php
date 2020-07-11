@@ -307,10 +307,10 @@ while ($d = mysqli_fetch_array($r)){
 			$active_count_low 	= $rolling;	
 			$active_count_date_low 	= $d['report_date'];
 		}
-		if ($d['report_date'] == $d['active_count_low_date']){
-			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2193 lowest", markerColor: "green" }, ';
-		}elseif ($d['report_date'] == $d['active_count_high_date']){
-			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2191 highest", markerColor: "green" }, ';
+		if ($rolling == $d['active_count_low']){
+			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2193 lowest", markerColor: "green", markerType: "triangle" }, ';
+		}elseif ($rolling == $d['active_count_high']){
+			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.', indexLabel: "\u2191 highest", markerColor: "red", markerType: "triangle" }, ';
 		}else{
 			$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		}
