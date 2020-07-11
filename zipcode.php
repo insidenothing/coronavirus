@@ -9,6 +9,8 @@ active_count_date_low	date
 
 global $active_count_high;
 global $active_count_low;
+$active_count_high = 9999999999999;
+$active_count_low = 0;
 global $active_count_date_high;
 global $active_count_date_low;
 
