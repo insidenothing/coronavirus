@@ -293,16 +293,25 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		
 		
+		if ($rolling == $d['active_count_low']){
+			$chart_date = '\u2193 '.$d['report_date'].' \u2193';
+			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
+		}elseif ($rolling == $d['active_count_high']){
+			$chart_date = '\u2191 '.$d['report_date'].' \u2191';
+			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
+		}else{
+			$chart_date = $d['report_date'];
+			$remove_chart .=  '{ label: "'.$chart_date.'", y: '.$rolling.' }, ';
+		}
 		
-		
-		$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
+		//$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
-		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+		//$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		// only check and set once we are graphing
 		if ($rolling > $active_count_high){
 			$active_count_high 	= $rolling;	
