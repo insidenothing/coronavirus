@@ -291,8 +291,7 @@ while ($d = mysqli_fetch_array($r)){
 	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
 	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
-		$low_chart .=  '{ label: "$chart_date", y: '.$d['active_count_low'].' }, ';
-		$high_chart .=  '{ label: "$chart_date", y: '.$d['active_count_high'].' }, ';
+		
 		$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
@@ -310,7 +309,8 @@ while ($d = mysqli_fetch_array($r)){
 			$active_count_low 	= $rolling;	
 			$active_count_date_low 	= $d['report_date'];
 		}
-		
+		$low_chart .=  '{ label: "'.$chart_date.'", y: '.$active_count_high.' }, ';
+		$high_chart .=  '{ label: "'.$chart_date.'", y: '.$active_count_low.' }, ';
 	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
