@@ -291,20 +291,9 @@ while ($d = mysqli_fetch_array($r)){
 	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
 	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
-		
-		
-		if ($rolling == $d['active_count_low']){
-			$chart_date = '\u2193 '.$d['report_date'].' \u2193';
-			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
-		}elseif ($rolling == $d['active_count_high']){
-			$chart_date = '\u2191 '.$d['report_date'].' \u2191';
-			$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
-		}else{
-			$chart_date = $d['report_date'];
-			$remove_chart .=  '{ label: "'.$chart_date.'", y: '.$rolling.' }, ';
-		}
-		
-		//$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
+		$low_chart .=  '{ label: "$chart_date", y: '.$d['active_count_low'].' }, ';
+		$high_chart .=  '{ label: "$chart_date", y: '.$d['active_count_high'].' }, ';
+		$remove_chart .=  '{ label: "$chart_date", y: '.$rolling.' }, ';
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
@@ -342,6 +331,8 @@ while ($d = mysqli_fetch_array($r)){
 	$i++; // number of days in the graph
 }
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
+	$low_chart 		= rtrim(trim($low_chart), ",");
+	$high_chart 		= rtrim(trim($high_chart), ",");
 	$sma_chart 		= rtrim(trim($sma_chart), ",");
 	$testing_chart 		= rtrim(trim($testing_chart), ",");
 	$sma_chart3 		= rtrim(trim($sma_chart3), ",");
@@ -427,6 +418,8 @@ $alert = ob_get_clean();
 	$return['testing_chart'] = $testing_chart;
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
+	$return['high_chart'] = $high_chart;
+	$return['low_chart'] = $low_chart;
 	$return['sma_chart'] = $sma_chart;
 	$return['sma3_chart'] = $sma_chart3;
 	$return['range'] = $range;
@@ -525,6 +518,8 @@ $time_chart_6 		= $day90['time_chart'];
 $time_chart2_6 		= $day90['time_chart2'];
 $new_chart_6 		= $day90['new_chart'];
 $remove_chart_6 	= $day90['remove_chart'];
+$high_chart_6 		= $day90['high_chart'];
+$low_chart_6 		= $day90['low_chart'];
 $sma_chart_6 		= $day90['sma_chart'];
 $sma3_chart_6 		= $day90['sma3_chart'];
 $range_6 		= $day90['range'];
@@ -1018,6 +1013,24 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Assumed Active w/ 14 Day Removal",
 		dataPoints: [
 			<?PHP echo $remove_chart_6; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Assumed Active High w/ 14 Day Removal",
+		dataPoints: [
+			<?PHP echo $high_chart_6; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Assumed Active Low w/ 14 Day Removal",
+		dataPoints: [
+			<?PHP echo $low_chart_6; ?>
 		]
 		}]
 	})
