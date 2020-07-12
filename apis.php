@@ -26,6 +26,15 @@ function check_error($json,$url){
 if ($_GET['debug']){
   // this will debug a single api
   $api_id = $_GET['debug'];
+  
+  
+ $r2 = $core->query("SELECT id, last_updated FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,30");
+ while($d = mysqli_fetch_array($r)){
+  echo "<li>API $api_id CACHE $d[id] ON $d[last_updated]</li>";
+ }
+  
+  
+  
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
   slack_general("$q",'covid19-apis');
   $r = $core->query($q);
