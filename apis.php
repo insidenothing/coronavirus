@@ -28,9 +28,9 @@ if ($_GET['debug']){
   $api_id = $_GET['debug'];
   
   
- $r = $core->query("SELECT id, last_updated FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,30");
+ $r = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,30");
  while($d = mysqli_fetch_array($r)){
-  echo "<li>API $api_id CACHE $d[id] ON $d[last_updated]</li>";
+  echo "<li>API $api_id CACHE $d[id] ON $d[cache_date_time]</li>";
  }
   
   
