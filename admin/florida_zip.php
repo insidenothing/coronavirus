@@ -96,8 +96,11 @@ foreach ($array['features'] as $key => $value){
 
 print_r($return);
 */
+
+print_r($array);
+
 if (empty($_GET['run'])){
-	die('debug break');
+	die('missing &run=1');
 }
 
 if($global_date == date('Y-m-d')){
