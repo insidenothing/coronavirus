@@ -436,7 +436,7 @@ $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('45');
-$day90 = make_chart('60');
+$day90 = make_chart('90');
 
 
 
