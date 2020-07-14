@@ -24,11 +24,11 @@ if (isset($_GET['cache'])){
 }
 
 
-
+echo '<div class="row">';
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
-  echo '<div class="row"><div class="col"><div class="collapse multi-collapse" id="multiCollapseExample'.$d['id'].'"><div class="card card-body">';
+  echo '<div class="col"><div class="collapse multi-collapse" id="multiCollapseExample'.$d['id'].'"><div class="card card-body">';
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
   //sleep($d['run_delay']);
   $color = 'lightblue';
@@ -48,7 +48,7 @@ while($d = mysqli_fetch_array($r)){
   }
   echo "</div></div></div>";
 }
-//echo "</tr></table>";
+echo "</div>";
 
 include_once('footer.php');
 ?>
