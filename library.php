@@ -18,7 +18,7 @@ while($d = mysqli_fetch_array($r)){
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
-  $r2 = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+  $r2 = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC);
   while($d2 = mysqli_fetch_array($r2)){
     echo "<li>$d2[id]: $d2[cache_date_time]</li>";
   }
