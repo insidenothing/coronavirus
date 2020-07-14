@@ -4,15 +4,15 @@ include_once('menu.php');
 
 
 
-echo "<h1>National Library of COVID API's</h1>";
 
-echo "<p>";
+echo '<div class="row">';
+echo "<h1>National Library of COVID API's</h1>";
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
   echo "<a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample$d[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExample$d[id]'>$d[api_name]</a>";
 }
-echo "</p>";
+echo "</div>";
 
 
 
@@ -45,6 +45,8 @@ while($d = mysqli_fetch_array($r)){
   echo "</div></div></div>";
 }
 echo "</div>";
+
+
 
 echo '<div class="row">';
 echo $raws;
