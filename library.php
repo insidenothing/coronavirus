@@ -16,7 +16,7 @@ echo "</p>";
 
 
 
-
+$raws='';
 
 echo '<div class="row">';
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
@@ -36,16 +36,19 @@ while($d = mysqli_fetch_array($r)){
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
-  $r2 = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC");
+  $r2 = $core->query("SELECT id, cache_date_time, raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC");
   while($d2 = mysqli_fetch_array($r2)){
-    echo "<a class='btn btn-primary' target='_Blank' href='?cache=$d2[id]'>$d2[cache_date_time]</a>";
+    echo "<a class='btn btn-warning' data-toggle='collapse' href='#multiCollapseExamplecache$d2[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExamplecache$d2[id]'>$d2[cache_date_time]</a>";
+    $raws .= '<div class="col"><div class="collapse multi-collapse" id="multiCollapseExamplecache'.$d2['id'].'"><div class="card card-body"><pre><code>$d2[raw_response]</code></pre></div></div></div>';
   }
   echo "</div></div></div>";
 }
 echo "</div>";
 
-
-
+echo '<div class="row">';
+echo $raws;
+echo "</div>";
+/*
 if (isset($_GET['cache'])){
   echo '<div class="row">';
   $id = substr(intval($_GET['cache']),0,10); // take int val # or 0 , limit to first 10 digits
@@ -55,7 +58,7 @@ if (isset($_GET['cache'])){
   echo "<h1>Response</h1><pre><code>$d[raw_response]</code></pre>";
   echo '</div>';
 }
-
+*/
 
 
 include_once('footer.php');
