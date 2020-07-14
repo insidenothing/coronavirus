@@ -32,14 +32,15 @@ while($d = mysqli_fetch_array($r)){
   if (substr($d['last_updated'],0,10) == date('Y-m-d',strtotime('-1 day'))){
     $color='lightyellow';
   }
-  echo "<h3 style='background-color:$color;' title='$d[api_description]'>$d[run_order]: $d[last_updated] <u>$d[api_name]</u> $d[api_status]</h3>";
+  echo "<p><a class='btn btn-info'>$d[api_name]</a></p>";
+ // echo "<h3 style='background-color:$color;' title='$d[api_description]'>$d[run_order]: $d[last_updated] <u>$d[api_name]</u> $d[api_status]</h3>";
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
   $r2 = $core->query("SELECT id, cache_date_time, raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC");
   while($d2 = mysqli_fetch_array($r2)){
     echo "<a class='btn btn-warning' data-toggle='collapse' href='#multiCollapseExamplecache$d2[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExamplecache$d2[id]'>$d2[cache_date_time]</a>";
-    $raws .= '<div class="col"><div class="collapse multi-collapse" id="multiCollapseExamplecache'.$d2['id'].'"><div class="card card-body"><pre><code>$d2[raw_response]</code></pre></div></div></div>';
+    $raws .= '<div class="col"><div class="collapse multi-collapse" id="multiCollapseExamplecache'.$d2['id'].'"><div class="card card-body"><h3>$d[api_name]</h3><pre><code>'.$d2[raw_response].'</code></pre></div></div></div>';
   }
   echo "</div></div></div>";
 }
