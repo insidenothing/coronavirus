@@ -5,20 +5,21 @@ include_once('menu.php');
 
 
 
-echo '<div class="row">';
+echo '<div class="row"><p>';
 echo "<h1>National Library of COVID API's</h1>";
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
+echo '<div id="list-example" class="list-group">';
 while($d = mysqli_fetch_array($r)){
-  echo "<a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample$d[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExample$d[id]'>$d[api_name]</a>";
+  echo "<a class='btn btn-primary' data-target='#list-example' data-toggle='collapse' href='#multiCollapseExample$d[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExample$d[id]'>$d[api_name]</a>";
 }
-echo "</div>";
+echo "</div></p></div>";
 
 
 
 $raws='';
 
-echo '<div class="row">';
+echo '<div class="row"><p>';
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
@@ -44,13 +45,13 @@ while($d = mysqli_fetch_array($r)){
   }
   echo "</div></div></div>";
 }
-echo "</div>";
+echo "</p></div>";
 
 
 
-echo '<div class="row">';
+echo '<div class="row"><p>';
 echo $raws;
-echo "</div>";
+echo "</p></div>";
 /*
 if (isset($_GET['cache'])){
   echo '<div class="row">';
