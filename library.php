@@ -13,7 +13,7 @@ if (isset($_GET['cache'])){
 }
 
 
-echo "<h1>Library</h1><table><tr>";
+echo "<h1>National Library of COVID API's</h1><table><tr>";
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
