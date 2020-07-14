@@ -32,7 +32,7 @@ while($d = mysqli_fetch_array($r)){
   $name = $d['api_name'];
   $r2 = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC");
   while($d2 = mysqli_fetch_array($r2)){
-    echo "<li>$d2[id]: <a target='_Blank' href='?cache=$d2[id]'>$d2[cache_date_time]</a></li>";
+    echo "<li style='white-space:pre;'>$d2[id]: <a target='_Blank' href='?cache=$d2[id]'>$d2[cache_date_time]</a></li>";
   }
   echo "</ol></td>";
 }
