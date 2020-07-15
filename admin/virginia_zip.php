@@ -4,7 +4,13 @@ include_once('menu.php');
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
 	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
-	die('done');
+	die('done '.$delete);
+}
+
+if (isset($_GET['delete_date'])){
+	$delete = $_GET['delete_date'];
+	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
+	die('done '.$delete);
 }
 
 global $zipcode;
@@ -50,10 +56,10 @@ function coronavirus_zip($zip,$date,$count,$testing){
 		// we reached the start of data collection.	
 	}
 	if ($d['id'] == ''){
-		echo "[insert $zip]";
+		echo "[insert $zip $date $count]";
 		$q = "insert into coronavirus_zip (testing_count,zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','Virginia','$current_trend','$current_duration') ";
 	}else{
-		echo "[update $zip]";
+		echo "[update $zip $date $count]";
 		$q = "update coronavirus_zip set testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
 	$core->query($q);
@@ -76,11 +82,17 @@ if (empty($_GET['run'])){
 
 
 
-if($global_date == date('Y-m-d')){
+if($global_date == date('Y-m-d') || isset($_GET['id'])){
 
+	
+	if(isset($_GET['id'])){
+		$id = $_GET['id'];
+		$r = $core->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
+	}else{
+		$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache	
+	}
 
 	// watch for microsoft characters =(
-	$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache
 	$d = mysqli_fetch_array($r);
 
 	//echo $d['raw_response'];
