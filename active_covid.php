@@ -12,11 +12,19 @@ while($d = mysqli_fetch_array($r)){
 }
 $date = $global_date;
 
-echo "<table><tr><td valign='top' width='33%'>";
+
+if (isset($_GET['sort'])){
+	$order = 'active_count';	
+}else{
+	$order = 'zip_code';	
+}
+
+
+echo "<a href='?sort=count'>Sort by Count</a><table><tr><td valign='top' width='33%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by zip code.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Maryland'  order by zip_code DESC";
+echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
+$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Maryland'  order by $order DESC";
 $r = $core->query($q);
 $total = 0;
 $total2 = 0;
@@ -39,8 +47,8 @@ echo "<h1>".number_format($total)." to ".number_format($total2)." Maryland Activ
 echo "</td><td valign='top' width='33%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by zip code.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Virginia'  order by zip_code DESC";
+echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
+$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Virginia'  order by $order DESC";
 $r = $core->query($q);
 $total = 0;
 $total2 = 0;
@@ -63,8 +71,8 @@ echo "<h1>".number_format($total)." to ".number_format($total2)." Virginia Activ
 echo "</td><td valign='top' width='33%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by zip code.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Florida'  order by zip_code DESC";
+echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
+$q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Florida'  order by $order DESC";
 $r = $core->query($q);
 $total = 0;
 $total2 = 0;
