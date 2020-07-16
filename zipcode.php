@@ -312,6 +312,9 @@ while ($d = mysqli_fetch_array($r)){
 		if ($remove2_total > 0){
 			// start graph line later?
 			$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
+		}else{
+			// test placeholder
+			$remove2_chart .=  '{ label: "'.$d['report_date'].'", y:  }, ';
 		}
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
