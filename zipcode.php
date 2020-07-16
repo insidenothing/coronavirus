@@ -14,7 +14,8 @@ $active_count_low = 999999999999999999999;
 global $active_count_date_high;
 global $active_count_date_low;
 
-
+global $master_facility_table;
+$master_facility_table = '';
 
 
 $type_graph='column';
@@ -82,6 +83,7 @@ function make_chart2($range,$Facility_Name){
 	global $zip;
 	global $zip2;
 	global $remove;
+	global $master_facility_table;
 	
 $time_chart='';
 $text_div='';
@@ -157,7 +159,7 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	
 	
-	
+	$master_facility_table .= "<tr><td>$d[report_date]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
 	
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
@@ -1170,6 +1172,25 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
+
+
+<div class="row">
+	<table>
+		<tr>
+			<td>Report Date]</td>
+			<td>Name</td>
+			<td>Resident Type</td>
+			<td>Report Count]</td>
+			<td>Number of Resident Cases</td>
+			<td>Number of Staff Cases</td>
+			<td>Number of Resident Deaths</td>
+			<td>Number of Staff Deaths</td>
+		</tr>
+		<?PHP echo $master_facility_table; ?>
+	</table>
+</div>
+
+
 <?PHP 
 
 $q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip' order by Facility_Name";
