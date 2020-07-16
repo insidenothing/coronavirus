@@ -1180,7 +1180,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 			<td>Report Date]</td>
 			<td>Name</td>
 			<td>Resident Type</td>
-			<td>Report Count]</td>
+			<td>Report Count</td>
 			<td>Number of Resident Cases</td>
 			<td>Number of Staff Cases</td>
 			<td>Number of Resident Deaths</td>
