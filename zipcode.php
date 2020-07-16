@@ -1017,7 +1017,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name_6;?> <?PHP echo $active_count;?> Assumed Active COVID-19 Cases - source covid19math.net"
+			text: "<?PHP echo $name_6;?> <?PHP echo $active_count;?> to <?PHP echo $active2_count;?> Assumed Active COVID-19 Cases - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
