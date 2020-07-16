@@ -172,6 +172,26 @@ $Facility_ZIP['Sterling_at_Riverside'] = '21017';
 $Facility_ZIP['The_Landing_of_Silver_Spring'] = '20904';
 
 
+$Facility_ZIP['Anna_Politan_Assisted_Living'] = '21409';
+$Facility_ZIP['Brightview_White_Marsh___Brightview_Senior_Living'] = '21236';
+$Facility_ZIP['Broadmead'] = '21030';
+$Facility_ZIP['Dennett_Road_Manor'] = '21550';
+$Facility_ZIP['Discovery_Commons_at_Wildewood'] = '20619';
+$Facility_ZIP['Genesis_La_Plata'] = '20646';
+$Facility_ZIP['Genesis_Multi_Medical_Center'] = '21204';
+$Facility_ZIP['Howard_County_Detention_Center'] = '20794';
+$Facility_ZIP['Lorien_Elkridge'] = '21075';
+$Facility_ZIP['New_Life_Healthy_Living_Center'] = '21244';
+$Facility_ZIP['Northampton_Manor_Nursing_and_Rehabilitation_Center'] = '21701';
+$Facility_ZIP['Potomac_Center'] = '21740';
+$Facility_ZIP['Restore_Health_Rehabilitation_Center'] = '20695';
+$Facility_ZIP['Rockville_Nursing_Home'] = '20850';
+$Facility_ZIP['Somerford_Place_Columbia'] = '21045';
+$Facility_ZIP['Sunrise_of_Pikesville'] = '21208';
+$Facility_ZIP['Thoms_J_S__Waxter_Children_s_Center'] = '20724';
+$Facility_ZIP['Western_Maryland_Hospital_Center'] = '21742';
+
+
 
 
 function cleanup($str){
