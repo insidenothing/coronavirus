@@ -1057,7 +1057,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Active High w/ 14 Day Removal",
+		name: "<?PHP echo $zip;?> Active Low w/ 14 Day Removal",
 		dataPoints: [
 			<?PHP echo $high_chart_6; ?>
 		]
@@ -1066,7 +1066,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Active Low w/ 14 Day Removal",
+		name: "<?PHP echo $zip;?> Active High w/ 14 Day Removal",
 		dataPoints: [
 			<?PHP echo $low_chart_6; ?>
 		]
