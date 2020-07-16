@@ -25,7 +25,11 @@ while ($d = mysqli_fetch_array($r)){
   $name = $zipcode[$zip_c];
   $total = $total + $d['active_count'];
   $total2 = $total2 + $d['active_count_28day'];
-  echo "<li class='".$d['percentage_direction30']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." to ".$d['active_count_28day']." infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
+	$to = '';
+	if ($d['active_count_28day'] > 0){
+	 $to = "to ".$d['active_count_28day'];	
+	}
+  echo "<li class='".$d['percentage_direction30']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
@@ -45,7 +49,11 @@ while ($d = mysqli_fetch_array($r)){
   $name = $zipcode[$zip_c];
   $total = $total + $d['active_count'];
 	$total2 = $total2 + $d['active_count_28day'];
-  echo "<li class='".$d['percentage_direction30']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." to ".$d['active_count_28day']." infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
+	$to = '';
+	if ($d['active_count_28day'] > 0){
+	 $to = "to ".$d['active_count_28day'];	
+	}
+  echo "<li class='".$d['percentage_direction30']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
@@ -65,7 +73,11 @@ while ($d = mysqli_fetch_array($r)){
   $name = $zipcode[$zip_c];
   $total = $total + $d['active_count'];
 	$total2 = $total2 + $d['active_count_28day'];
-  echo "<li class='".$d['percentage_direction30']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." to ".$d['active_count_28day']." infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
+	$to = '';
+	if ($d['active_count_28day'] > 0){
+	 $to = "to ".$d['active_count_28day'];	
+	}
+  echo "<li class='".$d['percentage_direction30']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 30 Day Change ".$d['day30change_percentage']."% ".$d['percentage_direction30']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
