@@ -1,5 +1,5 @@
 <?PHP
-include_once('menu.php');
+include_once('../menu.php');
 // pull assisted living numbers and store just like side zip_codes 
 
 global $Facility_ZIP;
