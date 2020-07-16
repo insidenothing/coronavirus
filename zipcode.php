@@ -84,7 +84,6 @@ function make_chart2($range,$Facility_Name){
 	global $zip2;
 	global $remove;
 	global $master_facility_table;
-	
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -128,10 +127,10 @@ while ($d = mysqli_fetch_array($r)){
 	$the_index = $trader_sma_timePeriod - 1;
 	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
 	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
-	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '90' ){
+	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
+		
 		
 		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
 		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
@@ -143,9 +142,9 @@ while ($d = mysqli_fetch_array($r)){
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
-	}elseif( $range != '90' ){
+	}elseif( $range != '60' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
+		
 		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
 		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
 		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
@@ -158,8 +157,9 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}
 	
+	$master_facility_table .= "<tr><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
 	
-	$master_facility_table .= "<tr><td>$d[report_date]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+	
 	
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
@@ -176,7 +176,6 @@ $remove_chart 		= rtrim(trim($remove_chart), ",");
 $sma_chart 		= rtrim(trim($sma_chart), ",");
 $sma_chart3 		= rtrim(trim($sma_chart3), ",");
 $time_chart 		= rtrim(trim($time_chart), ",");
-	$testing_chart 		= rtrim(trim($testing_chart), ",");
 	
 	$time_charta 		= rtrim(trim($time_charta), ",");
 	$time_chartb 		= rtrim(trim($time_chartb), ",");
@@ -217,7 +216,6 @@ $alert = ob_get_clean();
 	$return['alert'] = $alert;
 	$return['page_description'] = $page_description;
 	$return['time_chart'] = $time_chart;
-	$return['testing_chart'] = $testing_chart;
 	$return['time_charta'] = $time_charta;
 	$return['time_chartb'] = $time_chartb;
 	$return['time_chartc'] = $time_chartc;
@@ -234,8 +232,6 @@ $alert = ob_get_clean();
 	$return['Resident_Type'] = $Resident_Type;
 	return $return;
 }
-
-
 
 
 
