@@ -247,6 +247,7 @@ function make_chart($range){
 	global $zip;
 	global $zip2;
 	global $remove;
+	global $remove2;
 	global $active_count_high;
 	global $active_count_low;
 	global $active_count_date_high;
@@ -266,6 +267,7 @@ $q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date
 $r = $core->query($q);
 $i=0;
 	$remove_total=0;
+	$remove2_total=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
@@ -307,6 +309,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '90' ){
 		
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
