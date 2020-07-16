@@ -257,7 +257,14 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 
 }
 
-$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '23' order by id desc");
+
+if (isset($_GET['id'])){
+	$id = $_GET['id'];
+	$r = $core->query("select raw_response from coronavirus_api_cache where id = '$id' order by id desc");
+}else{
+	$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '23' order by id desc");
+}
+
 $d = mysqli_fetch_array($r);
 $json = $d['raw_response'];
 $array = json_decode($json, true);
@@ -281,7 +288,12 @@ foreach ($array['features'] as $key => $value){
 
 }
 
-$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '24' order by id desc");
+if (isset($_GET['id2'])){
+	$id = $_GET['id2'];
+	$r = $core->query("select raw_response from coronavirus_api_cache where id = '$id' order by id desc");
+}else{
+	$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '24' order by id desc");
+}
 $d = mysqli_fetch_array($r);
 $json = $d['raw_response'];
 $array = json_decode($json, true);
