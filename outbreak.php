@@ -20,7 +20,7 @@ while ($d = mysqli_fetch_array($r)){
   $name = $zipcode[$zip_c];
   echo "<tr><td>".$d['state_name']."</td><td><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']."</a></td><td> 
   $name</td><td>7 Days ".$d['day7change_percentage']."%</td><td>14 Days ".$d['day14change_percentage']."%</td><td>30 Days
-  ".$d['day30change_percentage']."%</td><td>45 Days ".$d['day45change_percentage']."%</td><td>".$d['report_count']." infections</td><td>".$d['active_count']." active</td></tr>";
+  ".$d['day30change_percentage']."%</td><td>45 Days ".$d['day45change_percentage']."%</td><td>".$d['report_count']." infections</td><td>".$d['active_count']." to ".$d['active_count_28day']." active</td></tr>";
 }
 echo "</table>";
 echo "<h1>Outbreak Monitor for $date</h1>";
@@ -30,7 +30,7 @@ $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
   $name = $zipcode[$zip_c];
-  echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name, ".$d['state_name']." ".$d['active_count']." active infections</li>";
+  echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name, ".$d['state_name']." ".$d['active_count']." to ".$d['active_count_28day']."  active infections</li>";
 }
 echo "</ol>";
 include_once('footer.php');
