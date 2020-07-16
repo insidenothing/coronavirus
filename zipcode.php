@@ -6,6 +6,19 @@ active_count_low	int(11)
 active_count_date_high	date	
 active_count_date_low	date
 */
+global $global_color;
+$global_color='white';
+
+function get_color(){
+	global $global_color;
+	if ($global_color == 'white'){
+		$global_color='grey';
+		return 'grey';
+	}else{
+		$global_color='white';
+		return 'white';
+	}
+}
 
 global $active_count_high;
 global $active_count_low;
@@ -84,6 +97,7 @@ function make_chart2($range,$Facility_Name){
 	global $zip2;
 	global $remove;
 	global $master_facility_table;
+	$color = get_color();
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -157,7 +171,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}
 	
-	$master_facility_table .= "<tr><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+	$master_facility_table .= "<tr style='background-color:$color;'><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
 	
 	
 	
@@ -1209,9 +1223,9 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 
 
 <div class="row">
-	<table>
+	<table border='1' cellpadding='0' cellspacing='0'>
 		<tr>
-			<td>Report Date]</td>
+			<td>Report Date</td>
 			<td>Name</td>
 			<td>Resident Type</td>
 			<td>Report Count</td>
