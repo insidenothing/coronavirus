@@ -473,7 +473,7 @@ include_once('menu.php');
 $date = $global_date;
 
 if (isset($_GET['auto'])){
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by report_count desc ";
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
