@@ -18,13 +18,16 @@ $page_description = 'Facilities Data';
 include_once('menu.php');
 
 
+global $master_facility_table;
+$master_facility_table = '';
+
 // Assisted Living
 function make_chart2($range,$Facility_Name){
 	global $core;
 	global $zip;
 	global $zip2;
 	global $remove;
-	
+	global $master_facility_table;
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -98,6 +101,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 	}
 	
+	$master_facility_table .= "<tr><td>$d[report_date]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
 	
 	
 	
@@ -298,6 +302,31 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	}	
 }
 </script>
+
+
+
+
+<div class="row">
+	<table>
+		<tr>
+			<td>Report Date</td>
+			<td>Name</td>
+			<td>Resident Type</td>
+			<td>Report Count</td>
+			<td>Number of Resident Cases</td>
+			<td>Number of Staff Cases</td>
+			<td>Number of Resident Deaths</td>
+			<td>Number of Staff Deaths</td>
+		</tr>
+		<?PHP echo $master_facility_table; ?>
+	</table>
+</div>
+
+
+
+
+
+
 
 <?PHP 
 
