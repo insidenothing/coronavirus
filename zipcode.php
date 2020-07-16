@@ -269,13 +269,17 @@ $i=0;
 while ($d = mysqli_fetch_array($r)){
 	$name = "$d[town_name], $d[state_name]";
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
+	$in_28_days = date('Y-m-d',strtotime($d['report_date'])+2419200); // date + 28 days
 	if ($i == 0){
 		$me = 0;
 		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
 		$remove[$in_14_days] = $remove_base; //difference to remove
+		$remove2_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
+		$remove2[$in_28_days] = $remove_base; //difference to remove
 	}else{
 		$me = intval($d['report_count'] - $last);
 		$remove[$in_14_days] = $me; //difference to remove
+		$remove2[$in_28_days] = $me; //difference to remove
 	}
 
 	$remove_date = $d['report_date'];
@@ -283,6 +287,14 @@ while ($d = mysqli_fetch_array($r)){
 	$remove_total = $remove_total + $remove_count;
 	
 	$rolling = $d['report_count'] - $remove_total;
+	
+	
+	$remove2_date = $d['report_date'];
+	$remove2_count = $remove2[$remove2_date]; 
+	$remove2_total = $remove2_total + $remove2_count;
+	
+	$rolling2 = $d['report_count'] - $remove2_total;
+	
 
 	$trader_sma_real[] = intval($d['report_count']);
 	$trader_sma_timePeriod++;
@@ -320,6 +332,7 @@ while ($d = mysqli_fetch_array($r)){
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
+		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 	}
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
@@ -333,6 +346,7 @@ while ($d = mysqli_fetch_array($r)){
 	$i++; // number of days in the graph
 }
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
+	$remove2_chart 		= rtrim(trim($remove2_chart), ",");
 	$low_chart 		= rtrim(trim($low_chart), ",");
 	$high_chart 		= rtrim(trim($high_chart), ",");
 	$sma_chart 		= rtrim(trim($sma_chart), ",");
@@ -420,6 +434,7 @@ $alert = ob_get_clean();
 	$return['testing_chart'] = $testing_chart;
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
+	$return['remove2_chart'] = $remove2_chart;
 	$return['high_chart'] = $high_chart;
 	$return['low_chart'] = $low_chart;
 	$return['sma_chart'] = $sma_chart;
@@ -520,6 +535,7 @@ $time_chart_6 		= $day90['time_chart'];
 $time_chart2_6 		= $day90['time_chart2'];
 $new_chart_6 		= $day90['new_chart'];
 $remove_chart_6 	= $day90['remove_chart'];
+$remove2_chart_6 	= $day90['remove2_chart'];
 $high_chart_6 		= $day90['high_chart'];
 $low_chart_6 		= $day90['low_chart'];
 $sma_chart_6 		= $day90['sma_chart'];
@@ -1015,6 +1031,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> Assumed Active w/ 14 Day Removal",
 		dataPoints: [
 			<?PHP echo $remove_chart_6; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Assumed Active w/ 28 Day Removal",
+		dataPoints: [
+			<?PHP echo $remove2_chart_6; ?>
 		]
 		},{
 		type: "line",
