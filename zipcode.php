@@ -450,12 +450,14 @@ $alert = ob_get_clean();
 	$return['sma3_chart'] = $sma_chart3;
 	$return['range'] = $range;
 	$return['active_count'] = $rolling;
+	$return['active2_count'] = $rolling2;
 	$return['name'] = $name;
 	$return['per'] = $per;
 	return $return;
 }
 $just_make_data = make_chart('90');
 $active_count = $just_make_data['active_count'];
+$active2_count = $just_make_data['active2_count'];
 
 
 $day7 = make_chart('7');
@@ -466,7 +468,7 @@ $day90 = make_chart('90');
 
 
 
-$page_description = $active_count.' active cases '.$day14['page_description'];
+$page_description = $active_count.' to '.$active2_count.' active cases '.$day14['page_description'];
 include_once('menu.php');
 $date = $global_date;
 
@@ -595,7 +597,7 @@ global $active_count_date_high;
 global $active_count_date_low;
 */
 
-$q = "update coronavirus_zip set active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$q = "update coronavirus_zip set active_count_28day='$active2_count', active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
 $core->query($q);
 slack_general("$q",'covid19-sql');
