@@ -7,16 +7,17 @@ active_count_date_high	date
 active_count_date_low	date
 */
 global $global_color;
-$global_color='white';
+$global_color='FFFFFF';
 
 function get_color(){
 	global $global_color;
-	if ($global_color == 'white'){
-		$global_color='grey';
-		return 'grey';
+	if ($global_color == 'FFFFFF'){
+		$global_color='b3e5fc';
+		return '#'.$global_color;
 	}else{
-		$global_color='white';
-		return 'white';
+		// set back to white
+		$global_color='FFFFFF';
+		return '#'.$global_color;
 	}
 }
 
