@@ -1095,6 +1095,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		$per_1 			= $day7['per'];
 		$Resident_Type_1 	= $day7['Resident_Type'];
 	?>
+	
 var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $i;?>", {
 		theme:"light2",
 		animationEnabled: true,
@@ -1174,7 +1175,8 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 		}]
 	})
 	chartZIP<?PHP echo $i;?>.render();
-
+  
+	
 
 	<?PHP 
 	$i++;
@@ -1235,7 +1237,8 @@ $i=7;
 while ($d = mysqli_fetch_array($r)){
 	echo '<div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
-	</div>';
+	</div>
+	';
  	$i++;
 }
 
