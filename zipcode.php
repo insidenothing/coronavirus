@@ -309,7 +309,10 @@ while ($d = mysqli_fetch_array($r)){
 	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '90' ){
 		
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
-		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
+		if ($remove2_total > 0){
+			// start graph line later?
+			$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
+		}
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
