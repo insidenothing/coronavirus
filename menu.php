@@ -10,7 +10,7 @@
 	if(isset($page_description)){
 		echo "<title>$page_description</title>";
 	}elseif (isset($_POST['checked_datetime'])){ 
-		echo "<title>COVID19MATH.net Digital Resources - ".$_POST['checked_datetime']."</title>";
+		echo "<title>COVID19MATH.net Digital Resources - ".date('Y-m-d',strtotime($_POST['checked_datetime']))."</title>";
 	}else{
 		echo "<title>COVID19MATH.net Digital Resources</title>";
 	}
@@ -104,7 +104,7 @@ while($d = mysqli_fetch_array($r)){
 	global $global_date;
 	$global_date = date('Y-m-d');
 	if(isset($_GET['global_date'])){
-		$global_date = $_GET['global_date'];
+		$global_date = date('Y-m-d',strtotime($_GET['global_date']));
 	}
 	if ($pos === false && empty($_GET['global_date'])) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
