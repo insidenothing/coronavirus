@@ -15,7 +15,7 @@ $date = $global_date;
 echo "<table><tr><td valign='top' width='33%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by zipcode.</h3><ol>";
+echo "<h3>Cases are removed after 14 days and 28 days, sorted by zip code.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Maryland'  order by zip_code DESC";
 $r = $core->query($q);
 $total = 0;
@@ -35,7 +35,7 @@ echo "<h1>".number_format($total)." to ".number_format($total2)." Maryland Activ
 echo "</td><td valign='top' width='33%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by zipcode.</h3><ol>";
+echo "<h3>Cases are removed after 14 days and 28 days, sorted by zip code.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Virginia'  order by zip_code DESC";
 $r = $core->query($q);
 $total = 0;
@@ -55,7 +55,7 @@ echo "<h1>".number_format($total)." to ".number_format($total2)." Virginia Activ
 echo "</td><td valign='top' width='33%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by zipcode.</h3><ol>";
+echo "<h3>Cases are removed after 14 days and 28 days, sorted by zip code.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Florida'  order by zip_code DESC";
 $r = $core->query($q);
 $total = 0;
