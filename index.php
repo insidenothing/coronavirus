@@ -202,7 +202,7 @@ function toggleDataSeries(e) {
 	</div>
 </div>
 
-
+<?PHP
 
 function state_data($state){
 	global $core;
