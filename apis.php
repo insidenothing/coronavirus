@@ -71,7 +71,7 @@ if ($_GET['run']){
     $r2 = $core->query("SELECT raw_response, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
-    if (substr($d2['cache_date_time'],0,10) == date('Y-m-d')){
+    if (substr($d2['cache_date_time'],0,10) != date('Y-m-d')){
       $raw = getPage($url);
       $raw_response = $core->real_escape_string($raw);
       $test1 = $old;
