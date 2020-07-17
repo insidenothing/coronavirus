@@ -42,14 +42,10 @@ $new_down=0;
 </div>
 <?PHP
 
-
-
-
-
 function make_reopen($state){
-	$type = 'open';
         global $core;
-        $return = ''; 
+        $return1 = ''; 
+	$return2 = ''; 
 	$range = '30';
 	$q = "SELECT * FROM coronavirus_reopen where state = '$state' ";
 	$r = $core->query($q);
@@ -60,16 +56,14 @@ function make_reopen($state){
         $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
-		if ($type == 'open'){
-			$return .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_open'].' }, ';
-		}else{
-			$return .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_closed'].' }, ';
-		}
+		$return1 .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_open'].' }, ';
+		$return2 .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_closed'].' }, ';
 	}
-        
-    	$return = rtrim(trim($return), ",");
-    return $return;
+    	$return[] = rtrim(trim($return1), ",");
+	$return[] = rtrim(trim($return2), ",");
+    	return $return;
 }
+
 ?>
 <script src="canvasjs.min.js"></script>
 
@@ -141,9 +135,18 @@ chart2.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Maryland",
+		name: "Maryland Open",
 		dataPoints: [
-			<?PHP echo make_reopen('Maryland'); ?>
+			<?PHP echo make_reopen('Maryland')[0]; ?>
+		]
+	},{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Maryland Closed",
+		dataPoints: [
+			<?PHP echo make_reopen('Maryland')[1]; ?>
 		]
 	},
 	{
