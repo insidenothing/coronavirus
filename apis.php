@@ -68,18 +68,22 @@ if ($_GET['run']){
     $url = $d['api_url'];
     $id = $d['id'];
     $name = $d['api_name'];
-    $r2 = $core->query("SELECT raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+    $r2 = $core->query("SELECT raw_response, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
-    $raw = getPage($url);
-    $raw_response = $core->real_escape_string($raw);
-    $test1 = $old;
-    $test2 = $raw;
-    if ($test1 != $test2){
-          $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
-          $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
-         // message_send('4433862584',"$name update");
-         slack_general("*$name update*",'covid19-apis');
+    if (substr($d2['cache_date_time'],0,10) == date('Y-m-d')){
+      $raw = getPage($url);
+      $raw_response = $core->real_escape_string($raw);
+      $test1 = $old;
+      $test2 = $raw;
+      if ($test1 != $test2){
+            $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
+            $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
+           // message_send('4433862584',"$name update");
+           slack_general("*$name update*",'covid19-apis');
+      }
+    }else{
+      slack_general("*Skipping $name* - last update on ".$d2['cache_date_time'],'covid19-apis');
     }
   }
   die();
