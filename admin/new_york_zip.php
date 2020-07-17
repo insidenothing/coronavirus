@@ -69,10 +69,10 @@ function coronavirus_zip($zip,$date,$count,$testing,$positivity){
 	}
 	if ($d['id'] == ''){
 		echo "[insert $zip $date $count]";
-		$q = "insert into coronavirus_zip (testing_count,zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','$state','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_zip (positivity_ratetesting_count,zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$positivity','$testing','$zip','$date','$count','$town','$state','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
-		$q = "update coronavirus_zip set testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_zip set positivity_rate='$positivity', testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
 	$core->query($q);
 	//slack_general("$q",'covid19-sql');
@@ -126,12 +126,12 @@ $break = '
 			if ($count == 'Suppressed*'){
 				$count = 4;
 			}
-			if ($zip == 'Not Reported'){
-				$zip = '00000';
+			if ($zip == 'NA'){
+				$zip = '00003';
 			}
-			if ($date != '1969-12-31'){
+			if ($date != '1969-12-31' && $count > 0){
 				echo "<li>$date - $zip - $count / $testing = $positivity</li>";
-				//coronavirus_zip($zip,$date,$count,$testing,$positivity);
+				coronavirus_zip($zip,$date,$count,$testing,$positivity);
 			}
 		}
 		$i++;
