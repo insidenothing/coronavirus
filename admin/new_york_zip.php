@@ -5,6 +5,11 @@ global $state;
 // EDIT HERE
 $state = 'New York';
 $api_id = '62';
+// "modzcta","Positive","Total","modzcta_cum_perc_pos"
+$zip_piece = '1';
+$count_piece = '2';
+$testing_piece = '3';
+$positivity_piece = '4'; 
 // EDIT HERE
 
 if (isset($_GET['delete'])){
@@ -29,10 +34,10 @@ while($d = mysqli_fetch_array($r)){
 }
 
 
-function coronavirus_zip($zip,$date,$count,$testing){
+function coronavirus_zip($zip,$date,$count,$testing,$positivity){
 	global $core;
 	global $zipcode;
-  global $state;
+  	global $state;
 	$town = $zipcode[$zip];
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
@@ -114,9 +119,10 @@ $break = '
 			//echo "<li>$v</li>";
 			$pieces2 = explode(',',$v);
 			$date = date('Y-m-d',strtotime($pieces2[0]));
-			$zip = $pieces2[1];
-			$count = $pieces2[2];
-			$testing = $pieces2[3];
+			$zip = $pieces2[$zip_piece];
+			$count = $pieces2[$count_piece];
+			$testing = $pieces2[$testing_piece];
+			$positivity = $pieces2[$positivity_piece];
 			if ($count == 'Suppressed*'){
 				$count = 4;
 			}
@@ -124,8 +130,8 @@ $break = '
 				$zip = '00000';
 			}
 			if ($date != '1969-12-31'){
-				echo "<li>$date - $zip - $count / $testing</li>";
-				//coronavirus_zip($zip,$date,$count,$testing);
+				echo "<li>$date - $zip - $count / $testing = $positivity</li>";
+				//coronavirus_zip($zip,$date,$count,$testing,$positivity);
 			}
 		}
 		$i++;
