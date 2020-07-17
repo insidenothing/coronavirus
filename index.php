@@ -406,8 +406,11 @@ function count_open_zips($state){
 	slack_general("$q",'covid19-sql');
 }
 
+// This makes the data in the top graphs 
 count_open_zips('Maryland');
-
+count_open_zips('Florida');
+count_open_zips('Virginia');
+count_open_zips('New York');
 
 include_once('footer.php');
 ?>
