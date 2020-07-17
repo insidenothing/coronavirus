@@ -61,7 +61,7 @@ function make_reopen($state){
 	$r = $core->query($q);
 	if ($test1 < 0){
 		foreach(range(0,$test1) as $days){
-			$date = date('Y-m-d',strtotime('-'.$days.' days'));
+			$date = date('Y-m-d',strtotime($days.' days'));
 			$return1 .= '{ label: "'.$date.'", y: 0 }, ';
 			$return2 .= '{ label: "'.$date.'", y: 0 }, ';
 		}
