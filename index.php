@@ -54,16 +54,17 @@ function make_reopen($state){
 	$r = $core->query($q);
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
+	$test1 = $start;
 	$range2= $range - 1;
 	$start = max($start, 0);
         $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
 	$r = $core->query($q);
-	$true_range = $range - $start;
-	$blank = $true_range - 30;
-	foreach(range($true_range,0) as $days){
-		$date = date('Y-m-d',strtotime('-'.$days.' days'));
-		$return1 .= '{ label: "'.$date.'", y: 0 }, ';
-		$return2 .= '{ label: "'.$date.'", y: 0 }, ';
+	if ($test1 < 0){
+		foreach(range($test1,0) as $days){
+			$date = date('Y-m-d',strtotime('-'.$days.' days'));
+			$return1 .= '{ label: "'.$date.'", y: 0 }, ';
+			$return2 .= '{ label: "'.$date.'", y: 0 }, ';
+		}
 	}
 	while ($d = mysqli_fetch_array($r)){
 		$return1 .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_open'].' }, ';
