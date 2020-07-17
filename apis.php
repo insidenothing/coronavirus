@@ -181,7 +181,14 @@ while($d = mysqli_fetch_array($r)){
   if (substr($d['last_updated'],0,10) == date('Y-m-d',strtotime('-1 day'))){
     $color='lightyellow';
   }
+  ob_start();
   echo "<li style='background-color:$color;' title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> $d[api_status] <a target='_Blank' href='?debug=$d[id]'>CACHE</a> or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
+  $line = ob_get_clean();
+  if ($color == 'lightgreen'){
+    $done .= $line;
+  }else{
+    $todo .= $line;
+  }
   $url = $d['api_url'];
   $id = $d['id'];
   $name = $d['api_name'];
@@ -201,7 +208,7 @@ while($d = mysqli_fetch_array($r)){
  // }
 }
 
-
+echo "<table><tr><td>todo</td><td>done</td></tr><tr><td>$todo</td><td>$done</td></tr></table>";
 
 
 include_once('footer.php');
