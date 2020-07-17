@@ -400,7 +400,7 @@ if ($zip2 != '99999'){
 	$time_chart2 = rtrim(trim($time_chart2), ",");
 	$page_description = "$date $name at $last_count, $name2 at $last_count2 Cases";
 }
-$name = $name.$name2;
+$name = $zip.' '.$name.$name2;
 if ($zip2 != '99999'){
 	if ($i > $i2){
 		$time_chart2_pre='';
