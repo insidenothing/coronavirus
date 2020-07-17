@@ -83,7 +83,7 @@ if ($_GET['run']){
            slack_general("*$name update*",'covid19-apis');
       }
     }else{
-      slack_general("*Skipping $name* - last update on ".$d2['cache_date_time'],'covid19-apis');
+      //slack_general("*Skipping $name* - last update on ".$d2['cache_date_time'],'covid19-apis');
     }
   }
   die();
