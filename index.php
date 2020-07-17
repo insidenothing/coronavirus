@@ -59,6 +59,7 @@ function make_reopen($state){
 	$start = max($start, 0);
         $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
 	$r = $core->query($q);
+	$test1 = $test1 - 1; // maybe +1
 	if ($test1 < 0){
 		foreach(range($test1,0) as $days){
 			$date = date('Y-m-d',strtotime($days.' days'));
