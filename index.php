@@ -137,7 +137,7 @@ chart2.render();
 		itemclick : toggleDataSeries
 	},
 	data: [{
-		type: "spline",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -146,7 +146,7 @@ chart2.render();
 			<?PHP echo make_reopen('Maryland')[0]; ?>
 		]
 	},{
-		type: "spline",
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -154,9 +154,8 @@ chart2.render();
 		dataPoints: [
 			<?PHP echo make_reopen('Maryland')[1]; ?>
 		]
-	},
-	{
-		type: "spline",
+	},{
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -164,9 +163,8 @@ chart2.render();
 		dataPoints: [
 			<?PHP echo make_reopen('Florida')[0]; ?>
 		]
-	},
-	{
-		type: "spline",
+	},{
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -174,9 +172,8 @@ chart2.render();
 		dataPoints: [
 			<?PHP echo make_reopen('Florida')[1]; ?>
 		]
-	},
-	{
-		type: "spline",
+	},{
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -184,9 +181,8 @@ chart2.render();
 		dataPoints: [
 			<?PHP echo make_reopen('Virginia')[0]; ?>
 		]
-	},
-	{
-		type: "spline",
+	},{
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -194,9 +190,8 @@ chart2.render();
 		dataPoints: [
 			<?PHP echo make_reopen('Virginia')[1]; ?>
 		]
-	},
-	{
-		type: "spline",
+	},{
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -204,9 +199,8 @@ chart2.render();
 		dataPoints: [
 			<?PHP echo make_reopen('New York')[0]; ?>
 		]
-	},
-	{
-		type: "spline",
+	},{
+		type: "column",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
