@@ -63,7 +63,6 @@ if ($_GET['run']){
   $r = $core->query($q);
   while($d = mysqli_fetch_array($r)){
     //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
-    sleep($d['run_delay']);
     //echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
     $url = $d['api_url'];
     $id = $d['id'];
@@ -72,6 +71,7 @@ if ($_GET['run']){
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
     if (substr($d2['cache_date_time'],0,10) != date('Y-m-d')){
+      sleep($d['run_delay']);
       $raw = getPage($url);
       $raw_response = $core->real_escape_string($raw);
       $test1 = $old;
