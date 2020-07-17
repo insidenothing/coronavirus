@@ -9,7 +9,6 @@ echo '<div class="row">';
 echo "<h1>National Library of COVID API's</h1>";
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
-
 while($d = mysqli_fetch_array($r)){
   echo "
   <a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample$d[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExample$d[id]'>$d[api_name]</a>";
@@ -18,7 +17,7 @@ echo "</div>";
 
 
 
-$raws='';
+//$raws='';
 
 echo '<div class="row">';
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
@@ -41,9 +40,11 @@ while($d = mysqli_fetch_array($r)){
   $r2 = $core->query("SELECT id, cache_date_time, raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC");
   while($d2 = mysqli_fetch_array($r2)){
     echo "
-    <a class='btn btn-warning' data-toggle='collapse' href='#multiCollapseExamplecache$d2[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExamplecache$d2[id]'>$d2[cache_date_time]</a>";
-    $raws .= '
-    <div class="col"><div class="collapse multi-collapse" id="multiCollapseExamplecache'.$d2['id'].'"><div class="card card-body"><h3>'.$d['api_name'].'</h3><pre><code>'.$d2[raw_response].'</code></pre></div></div></div>';
+    <a class='btn btn-warning' href='?cache=$d2[id]'>$d2[cache_date_time]</a>";
+    //echo "
+    //<a class='btn btn-warning' data-toggle='collapse' href='#multiCollapseExamplecache$d2[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExamplecache$d2[id]'>$d2[cache_date_time]</a>";
+    //$raws .= '
+    //<div class="col"><div class="collapse multi-collapse" id="multiCollapseExamplecache'.$d2['id'].'"><div class="card card-body"><h3>'.$d['api_name'].'</h3><pre><code>'.$d2[raw_response].'</code></pre></div></div></div>';
   }
   echo "</div></div></div>";
 }
@@ -56,17 +57,23 @@ echo $raws;
 echo "</div>";
 
 
-/*
+
 if (isset($_GET['cache'])){
   echo '<div class="row">';
-  $id = substr(intval($_GET['cache']),0,10); // take int val # or 0 , limit to first 10 digits
-  $q = "SELECT raw_response FROM coronavirus_api_cache where id = '$id' ";
-  $r = $core->query($q);
-  $d = mysqli_fetch_array($r);
-  echo "<h1>Response</h1><pre><code>$d[raw_response]</code></pre>";
-  echo '</div>';
+    $id = substr(intval($_GET['cache']),0,10); 
+    //$q = "SELECT raw_response FROM coronavirus_api_cache where id = '$id' ";
+    //$r = $core->query($q);
+    //$d = mysqli_fetch_array($r);
+    $q = "SELECT raw_response FROM coronavirus_api_cache where id = ?";
+    $stmt = $dbConnection->prepare($q);
+    $stmt->bind_param('i', $id); 
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $coronavirus_api_cache = $result->fetch_assoc();
+    echo "<h1>Response</h1><pre><code>$coronavirus_api_cache[raw_response]</code></pre>";
+   echo '</div>';
 }
-*/
+
 
 
 include_once('footer.php');
