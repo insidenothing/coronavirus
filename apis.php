@@ -84,10 +84,10 @@ if ($_GET['run']){
            // message_send('4433862584',"$name update");
            slack_general("done: $name - *update*",'covid19-apis');
       }else{
-           slack_general("done: $name - no change",'covid19-apis');
+           //slack_general("done: $name - no change",'covid19-apis');
       }
     }else{
-      slack_general("Skip $name ".$d2['cache_date_time'],'covid19-apis');
+      //slack_general("Skip $name ".$d2['cache_date_time'],'covid19-apis');
     }
   }
   die();
