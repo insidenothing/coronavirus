@@ -167,7 +167,8 @@ if ($_GET['level']){
   }
   die();
 }
-
+  $done_list = '';
+  $todo_list = '';
 // display what we got active
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by last_updated DESC ";
 $r = $core->query($q);
@@ -185,9 +186,9 @@ while($d = mysqli_fetch_array($r)){
   echo "<li style='background-color:$color;' title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> $d[api_status] <a target='_Blank' href='?debug=$d[id]'>CACHE</a> or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
   if ($color == 'lightgreen'){
-    $done .= $line;
+    $done_list .= $line;
   }else{
-    $todo .= $line;
+    $todo_list .= $line;
   }
   $url = $d['api_url'];
   $id = $d['id'];
@@ -208,7 +209,7 @@ while($d = mysqli_fetch_array($r)){
  // }
 }
 
-echo "<table><tr><td>todo</td><td>done</td></tr><tr><td>$todo</td><td>$done</td></tr></table>";
+echo "<table><tr><td>todo</td><td>done</td></tr><tr><td valign='top'>$todo_list</td><td valign='top'>$done_list</td></tr></table>";
 
 
 include_once('footer.php');
