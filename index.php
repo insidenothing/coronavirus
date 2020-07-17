@@ -10,9 +10,8 @@ $r = $core->query($q);
 $total_zip = $r->num_rows;
 $flat = 23;
 $down = 0;
-?>
-<h1>COVID 19 Reopen Dashboard</h1>
-<?PHP
+
+
 // pull date from last update, not assume today.
 $date = $global_date;
 ?>
