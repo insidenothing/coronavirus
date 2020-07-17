@@ -5,11 +5,22 @@ global $state;
 // EDIT HERE
 $state = 'New York';
 $api_id = '62';
-// "modzcta","Positive","Total","modzcta_cum_perc_pos"
+/* 
+0 MODIFIED_ZCTA,
+1 NEIGHBORHOOD_NAME,
+2 BOROUGH_GROUP,
+3 COVID_CASE_COUNT,
+4 COVID_CASE_RATE,
+5 POP_DENOMINATOR,
+6 COVID_DEATH_COUNT,
+7 COVID_DEATH_RATE,
+8 PERCENT_POSITIVE,
+9 TOTAL_COVID_TESTS
+*/
 $zip_piece = '0';
-$count_piece = '1';
-$testing_piece = '2';
-$positivity_piece = '3'; 
+$count_piece = '3';
+$testing_piece = '9';
+$positivity_piece = '8'; 
 // EDIT HERE
 
 if (isset($_GET['delete'])){
@@ -131,7 +142,7 @@ $break = '
 			}
 			if ($date != '1969-12-31' && $count > 0){
 				echo "<li>$date - $zip - $count / $testing = $positivity</li>";
-				coronavirus_zip($zip,$date,$count,$testing,$positivity);
+				//coronavirus_zip($zip,$date,$count,$testing,$positivity);
 			}
 		}
 		$i++;
