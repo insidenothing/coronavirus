@@ -226,19 +226,10 @@ function toggleDataSeries(e) {
 	}
 </script>
 
-<?PHP 
 
-/*
-<div class="row">
- 	<div class="col-sm-6">
-		<div id="chartContainer" style="height: 400px; width: 100%;"></div>
-	</div>
- 	<div class="col-sm-6">
-		<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
-	</div>
-</div> */
 
-?>
+
+
 
 <?PHP
 
@@ -450,6 +441,20 @@ count_open_zips('Maryland');
 count_open_zips('Florida');
 count_open_zips('Virginia');
 count_open_zips('New York');
+?>
 
+
+<div class="row">
+ 	<div class="col-sm-6">
+		<div id="chartContainer" style="height: 400px; width: 100%;"></div>
+	</div>
+ 	<div class="col-sm-6">
+		<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
+	</div>
+</div> 
+
+
+
+<?PHP
 include_once('footer.php');
 ?>
