@@ -65,7 +65,7 @@ if (isset($_GET['cache'])){
     //$r = $core->query($q);
     //$d = mysqli_fetch_array($r);
     $q = "SELECT raw_response FROM coronavirus_api_cache where id = ?";
-    $stmt = $dbConnection->prepare($q);
+    $stmt = $core->prepare($q);
     $stmt->bind_param('i', $id); 
     $stmt->execute();
     $result = $stmt->get_result();
