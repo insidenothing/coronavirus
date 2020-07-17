@@ -60,7 +60,7 @@ function make_reopen($state){
         $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
 	$r = $core->query($q);
 	if ($test1 < 0){
-		foreach(range(0,$test1) as $days){
+		foreach(range($test1,0) as $days){
 			$date = date('Y-m-d',strtotime($days.' days'));
 			$return1 .= '{ label: "'.$date.'", y: 0 }, ';
 			$return2 .= '{ label: "'.$date.'", y: 0 }, ';
