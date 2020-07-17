@@ -209,7 +209,7 @@ chart2.render();
 			<?PHP echo make_reopen('New York')[0]; ?>
 		]
 	},{
-		type: "column",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
