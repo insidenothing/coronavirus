@@ -32,7 +32,8 @@ $new_down=0;
 	<div id="chartContainer5" style="height: 400px; width: 100%;"></div>
  </div>
 </div>
-
+<?PHP 
+/*
 <div class="row">
   <div class="col-sm-12">
     <h3>We are setting up this page to track zipcodes across the curve. As they trend higher we count the days, 
@@ -41,6 +42,8 @@ $new_down=0;
   </div>
 </div>
 <?PHP
+*/
+
 
 function make_reopen($state){
         global $core;
@@ -71,6 +74,9 @@ function make_reopen($state){
 
 <script>
 	window.onload = function () {
+		
+		
+		
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	exportEnabled: true,
@@ -154,9 +160,9 @@ chart2.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Florida",
+		name: "Florida Open",
 		dataPoints: [
-			<?PHP echo make_reopen('Florida'); ?>
+			<?PHP echo make_reopen('Florida')[0]; ?>
 		]
 	},
 	{
@@ -164,9 +170,9 @@ chart2.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Virginia",
+		name: "Florida Closed",
 		dataPoints: [
-			<?PHP echo make_reopen('Virginia'); ?>
+			<?PHP echo make_reopen('Florida')[1]; ?>
 		]
 	},
 	{
@@ -174,9 +180,39 @@ chart2.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "New York",
+		name: "Virginia Open",
 		dataPoints: [
-			<?PHP echo make_reopen('New York'); ?>
+			<?PHP echo make_reopen('Virginia')[0]; ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Virginia Closed",
+		dataPoints: [
+			<?PHP echo make_reopen('Virginia')[1]; ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "New York Open",
+		dataPoints: [
+			<?PHP echo make_reopen('New York')[0]; ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "New York Closed",
+		dataPoints: [
+			<?PHP echo make_reopen('New York')[1]; ?>
 		]
 	}]
 }
@@ -195,6 +231,10 @@ function toggleDataSeries(e) {
 }
 	}
 </script>
+
+<?PHP 
+
+/*
 <div class="row">
  	<div class="col-sm-6">
 		<div id="chartContainer" style="height: 400px; width: 100%;"></div>
@@ -202,7 +242,9 @@ function toggleDataSeries(e) {
  	<div class="col-sm-6">
 		<div id="chartContainer2" style="height: 400px; width: 100%;"></div>
 	</div>
-</div>
+</div> */
+
+?>
 
 <?PHP
 
