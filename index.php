@@ -172,17 +172,18 @@ $new_down=0;
 </div>
 <?PHP 
 $buffer = ob_get_clean();
-function make_reopen($type){
+function make_reopen($state){
+	$type = 'open';
         global $core;
         $return = ''; 
 	$range = '30';
-	$q = "SELECT * FROM coronavirus_reopen";
+	$q = "SELECT * FROM coronavirus_reopen where state = '$state' ";
 	$r = $core->query($q);
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
 	$range2= $range - 1;
 	$start = max($start, 0);
-        $q = "SELECT * FROM coronavirus_reopen limit $start, $range";
+        $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		if ($type == 'open'){
@@ -196,7 +197,10 @@ function make_reopen($type){
     return $return;
 }
 ?>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="canvasjs.min.js"></script>
+
+
+
 <script>
 	window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
@@ -244,7 +248,7 @@ chart2.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "The Great State of Maryland - Open v Closed <?PHP echo $date;?> covid19math.net"
+		text: "14 Days Flat <?PHP echo $date;?> covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
@@ -263,9 +267,9 @@ chart2.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "ZIP Ready",
+		name: "Maryland",
 		dataPoints: [
-			<?PHP echo make_reopen('open'); ?>
+			<?PHP echo make_reopen('Maryland'); ?>
 		]
 	},
 	{
@@ -273,9 +277,29 @@ chart2.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "ZIP Not Ready",
+		name: "Florida",
 		dataPoints: [
-			<?PHP echo make_reopen('closed'); ?>
+			<?PHP echo make_reopen('Florida'); ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Virginia",
+		dataPoints: [
+			<?PHP echo make_reopen('Virginia'); ?>
+		]
+	},
+	{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "New York",
+		dataPoints: [
+			<?PHP echo make_reopen('New York'); ?>
 		]
 	}]
 }
