@@ -58,6 +58,13 @@ function make_reopen($state){
 	$start = max($start, 0);
         $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
 	$r = $core->query($q);
+	$true_range = $range - $start;
+	$blank = $true_range - 30;
+	foreach(range($true_range,0) as $days){
+		$date = date('Y-m-d',strtotime('-'.$days.' days'));
+		$return1 .= '{ label: "'.$date.'", y: 0 }, ';
+		$return2 .= '{ label: "'.$date.'", y: 0 }, ';
+	}
 	while ($d = mysqli_fetch_array($r)){
 		$return1 .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_open'].' }, ';
 		$return2 .= '{ label: "'.$d['the_date'].'", y: '.$d['zip_closed'].' }, ';
@@ -146,7 +153,7 @@ chart2.render();
 			<?PHP echo make_reopen('Maryland')[0]; ?>
 		]
 	},{
-		type: "column",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -164,7 +171,7 @@ chart2.render();
 			<?PHP echo make_reopen('Florida')[0]; ?>
 		]
 	},{
-		type: "column",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -182,7 +189,7 @@ chart2.render();
 			<?PHP echo make_reopen('Virginia')[0]; ?>
 		]
 	},{
-		type: "column",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
