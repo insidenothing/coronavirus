@@ -651,7 +651,7 @@ window.onload = function () {
 		]
 		},{
 		type: "line",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Testing Count",
@@ -723,7 +723,7 @@ window.onload = function () {
 		]
 		},{
 		type: "line",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Testing Count",
@@ -794,7 +794,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		]
 		},{
 		type: "line",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Testing Count",
@@ -865,7 +865,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		]
 		},{
 		type: "line",
-		visible: true,
+		visible: false,
 		showInLegend: true,
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> Testing Count",
