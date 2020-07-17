@@ -1,19 +1,16 @@
 <?PHP
 // preprocess data using zip.php (reviews all zip codes over known time)
-if (isset($_GET['state'])){
-	$state = $_GET['state'];
-}else{
-	$state = 'Maryland';
-}
-$page_description = "Reopen $state - Phase One  - Status";
+$page_description = "Reopen Status - Phase One";
 include_once('menu.php');
-$q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = '$state'";
+
+// move inside function?
+$q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = 'Maryland'";
 $r = $core->query($q);
 $total_zip = $r->num_rows;
 $flat = 23;
 $down = 0;
 ?>
-<h1>Maryland COVID 19 Reopen Dashboard</h1>
+<h1>COVID 19 Reopen Dashboard</h1>
 <?PHP
 // pull date from last update, not assume today.
 $date = $global_date;
