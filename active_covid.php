@@ -37,7 +37,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ($d['active_count_28day'] > 0){
 	 $to = "to ".$d['active_count_28day'];	
 	}
-  echo "<li class='".$d['percentage_direction7']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction7']."</li>";
+  echo "<li class='".$d['percentage_direction']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
@@ -61,7 +61,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ($d['active_count_28day'] > 0){
 	 $to = "to ".$d['active_count_28day'];	
 	}
-  echo "<li class='".$d['percentage_direction7']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction7']."</li>";
+  echo "<li class='".$d['percentage_direction']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
@@ -85,7 +85,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ($d['active_count_28day'] > 0){
 	 $to = "to ".$d['active_count_28day'];	
 	}
-  echo "<li class='".$d['percentage_direction7']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction7']."</li>";
+  echo "<li class='".$d['percentage_direction']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
@@ -110,7 +110,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ($d['active_count_28day'] > 0){
 	 $to = "to ".$d['active_count_28day'];	
 	}
-  echo "<li class='".$d['percentage_direction7']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction7']."</li>";
+  echo "<li class='".$d['percentage_direction']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
