@@ -6,10 +6,10 @@ global $state;
 $state = 'New York';
 $api_id = '62';
 // "modzcta","Positive","Total","modzcta_cum_perc_pos"
-$zip_piece = '1';
-$count_piece = '2';
-$testing_piece = '3';
-$positivity_piece = '4'; 
+$zip_piece = '0';
+$count_piece = '1';
+$testing_piece = '2';
+$positivity_piece = '3'; 
 // EDIT HERE
 
 if (isset($_GET['delete'])){
@@ -118,7 +118,7 @@ $break = '
 		if ($i != 0){
 			//echo "<li>$v</li>";
 			$pieces2 = explode(',',$v);
-			$date = date('Y-m-d',strtotime($pieces2[0]));
+			$date = $global_date;
 			$zip = $pieces2[$zip_piece];
 			$count = $pieces2[$count_piece];
 			$testing = $pieces2[$testing_piece];
