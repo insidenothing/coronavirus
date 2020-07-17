@@ -114,7 +114,7 @@ $break = '
 				$count = 4;
 			}
 			if ($zip == 'Not Reported'){
-				$zip = '00000';
+				$zip = '00002';
 			}
 			if ($date != '1969-12-31'){
 				echo "<li>$date - $zip - $count / $testing</li>";
