@@ -142,7 +142,7 @@ $break = '
 				$zip = '00003';
 			}
 			if ($date != '1969-12-31' && $count > 0){
-				echo "<li>$date - $zip - $count / $testing = $positivity</li>";
+				echo "<li>$date - $town - $zip - $count / $testing = $positivity</li>";
 				coronavirus_zip($zip,$date,$count,$testing,$positivity,$town);
 			}
 		}
