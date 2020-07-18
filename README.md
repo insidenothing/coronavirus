@@ -3,7 +3,7 @@
 
 | State           | Health Dept Site | API Flavor |
 | --------------- | ---------------- | -----------|
-| Alabama         | x  | x |
+| Alabama         | https://dph1.adph.state.al.us/covid-19/  | XLSX |
 | Alaska          | x  | x |
 | Arizona         | x  | x |
 | Arkansas        | x  | x |
