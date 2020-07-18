@@ -78,11 +78,12 @@ function coronavirus_zip($zip,$date,$count,$testing,$positivity,$town){
 	}else{
 		// we reached the start of data collection.	
 	}
+	$town = $core->real_escape_string($town);
 	if ($d['id'] == ''){
-		echo "[insert $zip $date $count]";
+		echo "[insert $town $zip $date $count]";
 		$q = "insert into coronavirus_zip (positivity_rate,testing_count,zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$positivity','$testing','$zip','$date','$count','$town','$state','$current_trend','$current_duration') ";
 	}else{
-		echo "[update $zip $date $count]";
+		echo "[update $town $zip $date $count]";
 		$q = "update coronavirus_zip set positivity_rate='$positivity', testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
 	$core->query($q);
