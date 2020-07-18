@@ -280,8 +280,10 @@ $i=0;
 	$remove_total=0;
 	$remove2_total=0;
 while ($d = mysqli_fetch_array($r)){
-	if ($d[town_name] != ''){
+	if ($d['town_name'] != ''){
 		$name = "$d[town_name], $d[state_name]";
+	}else{
+		$state = $d['state_name'];	
 	}
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
 	$in_28_days = date('Y-m-d',strtotime($d['report_date'])+2419200); // date + 28 days
@@ -367,9 +369,7 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$i++; // number of days in the graph
 }
-	if ($name == ''){
-		$name = "$d[state_name]";
-	}
+	
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
 	$remove2_chart 		= rtrim(trim($remove2_chart), ",");
 	$low_chart 		= rtrim(trim($low_chart), ",");
@@ -404,6 +404,9 @@ if ($zip2 != '99999'){
 	}
 	$time_chart2 = rtrim(trim($time_chart2), ",");
 	$page_description = "$date $name at $last_count, $name2 at $last_count2 Cases";
+}
+if ($name == ''){
+	$name = $state;
 }
 $name = $zip.' '.$name.$name2;
 if ($zip2 != '99999'){
