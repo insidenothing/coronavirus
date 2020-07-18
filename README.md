@@ -4,9 +4,9 @@
 | State           | Health Dept Site | API Flavor |
 | --------------- | ---------------- | -----------|
 | Alabama         | https://dph1.adph.state.al.us/covid-19/  | XLSX |
-| Alaska          | x  | x |
-| Arizona         | x  | x |
-| Arkansas        | x  | x |
+| Alaska          | https://coronavirus-response-alaska-dhss.hub.arcgis.com/search  | JSON |
+| Arizona         | https://adhsgis.maps.arcgis.com/sharing/rest/content/items/8a2c089c866940bbac0ee70a41ea27bd/data  | XLS |
+| Arkansas        | https://www.healthy.arkansas.gov/programs-services/topics/novel-coronavirus#Covidnumbers  | x |
 | California      | x  | x |
 | Colorado        | x  | x |
 | Connecticut     | x  | x |
