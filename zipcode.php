@@ -280,7 +280,9 @@ $i=0;
 	$remove_total=0;
 	$remove2_total=0;
 while ($d = mysqli_fetch_array($r)){
-	$name = "$d[town_name], $d[state_name]";
+	if ($d[town_name] != ''){
+		$name = "$d[town_name], $d[state_name]";
+	}
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
 	$in_28_days = date('Y-m-d',strtotime($d['report_date'])+2419200); // date + 28 days
 	if ($i == 0){
@@ -365,6 +367,9 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$i++; // number of days in the graph
 }
+	if ($name == ''){
+		$name = "$d[state_name]";
+	}
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
 	$remove2_chart 		= rtrim(trim($remove2_chart), ",");
 	$low_chart 		= rtrim(trim($low_chart), ",");
