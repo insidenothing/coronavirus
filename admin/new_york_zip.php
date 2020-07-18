@@ -17,6 +17,7 @@ $api_id = '62';
 8 PERCENT_POSITIVE,
 9 TOTAL_COVID_TESTS
 */
+$town_piece = '1';
 $zip_piece = '0';
 $count_piece = '3';
 $testing_piece = '9';
@@ -45,11 +46,10 @@ while($d = mysqli_fetch_array($r)){
 }
 
 
-function coronavirus_zip($zip,$date,$count,$testing,$positivity){
+function coronavirus_zip($zip,$date,$count,$testing,$positivity,$town){
 	global $core;
 	global $zipcode;
   	global $state;
-	$town = $zipcode[$zip];
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
@@ -134,6 +134,7 @@ $break = '
 			$count = $pieces2[$count_piece];
 			$testing = $pieces2[$testing_piece];
 			$positivity = $pieces2[$positivity_piece];
+			$town =  $pieces2[$town_piece];
 			if ($count == 'Suppressed*'){
 				$count = 4;
 			}
@@ -142,7 +143,7 @@ $break = '
 			}
 			if ($date != '1969-12-31' && $count > 0){
 				echo "<li>$date - $zip - $count / $testing = $positivity</li>";
-				coronavirus_zip($zip,$date,$count,$testing,$positivity);
+				coronavirus_zip($zip,$date,$count,$testing,$positivity,$town);
 			}
 		}
 		$i++;
