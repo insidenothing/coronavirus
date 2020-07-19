@@ -35,7 +35,8 @@
 | New Hampshire   |     | x     | x |
 | New Jersey      |     | x     | x |
 | New Mexico      |     | x     | x |
-| New York        | YES | CSV   | https://raw.githubusercontent.com/nychealth/coronavirus-data/master/data-by-modzcta.csv  |
+| New York City   | YES | CSV   | https://raw.githubusercontent.com/nychealth/coronavirus-data/master/data-by-modzcta.csv  |
+| New York State  |     | x     | https://covid19tracker.health.ny.gov/views/NYS-COVID19-Tracker/NYSDOHCOVID-19Tracker-Map?%3Aembed=yes&%3Atoolbar=no&%3Atabs=n
 | North Carolina  |     | x     | https://covid19.ncdhhs.gov/dashboard/cases  |
 | North Dakota    |     | x     | x |
 | Ohio            | YES | CSV   | https://coronavirus.ohio.gov/static/COVIDSummaryData.csv  |
