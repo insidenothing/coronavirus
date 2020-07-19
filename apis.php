@@ -76,10 +76,10 @@ if ($_GET['run']){
            slack_general("done: $name - *update*",'covid19-apis-update');
            galert_mail('trigger@applet.ifttt.com',$name.' API Updated','https://www.covid19math.net/index.php');
       }else{
-           slack_general("done: $name - no change",'covid19-apis');
+           slack_general("done: $name - *no change*",'covid19-apis');
       }
     }else{
-      slack_general("Skip $name ".$d2['cache_date_time'],'covid19-apis');
+      slack_general("*Skip* $name ".$d2['cache_date_time'],'covid19-apis');
     }
   }
   die('done');
