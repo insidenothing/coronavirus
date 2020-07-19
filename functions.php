@@ -136,6 +136,10 @@ function set_hits(){
 	
 }
 function getPage($url){
+	$url = str_replace('[month]',date('F'),$url); // replace month January through December
+	$url = str_replace('[day]',date('j'),$url); // replace day 1 to 31
+	$url = str_replace('[year]',date('Y'),$url); // replace year Examples: 1999 or 2003
+	
     $curl = curl_init();
     curl_setopt ($curl, CURLOPT_URL, $url);
     curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire Coronavirus Monitor covid19math.net /%d.0",rand(4,50)));
@@ -148,6 +152,10 @@ function getPage($url){
     return $html;
 }
 function getPageDebug($url){
+	$url = str_replace('[month]',date('F'),$url); // replace month January through December
+	$url = str_replace('[day]',date('j'),$url); // replace day 1 to 31
+	$url = str_replace('[year]',date('Y'),$url); // replace year Examples: 1999 or 2003
+	
     $curl = curl_init();
     curl_setopt ($curl, CURLOPT_URL, $url);
     curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire Coronavirus Monitor covid19math.net /%d.0",rand(4,50)));
