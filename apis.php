@@ -56,9 +56,11 @@ if ($_GET['run']){
   // this is our cron job
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC ";
   $r = $core->query($q);
+  $left = $total_apis;
   while($d = mysqli_fetch_array($r)){
     $name = $d['api_name'];
-    slack_general("start: $name",'covid19-apis');
+    slack_general("$left) start: $name",'covid19-apis');
+    $left = $left - 1;
     $url = $d['api_url'];
     $id = $d['id'];
     $r2 = $core->query("SELECT raw_response, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
@@ -73,13 +75,13 @@ if ($_GET['run']){
       if ($test1 != $test2){
             $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
             $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
-           slack_general("done: $name - *update*",'covid19-apis-update');
+           slack_general("$left) done: $name - *update*",'covid19-apis-update');
            galert_mail('trigger@applet.ifttt.com',$name.' API Updated','https://www.covid19math.net/index.php');
       }else{
-           slack_general("done: $name - *no change*",'covid19-apis');
+           slack_general("$left) done: $name - *no change*",'covid19-apis');
       }
     }else{
-      slack_general("*Skip* $name ".$d2['cache_date_time'],'covid19-apis');
+      slack_general("$left) *Skip* $name ".$d2['cache_date_time'],'covid19-apis');
     }
   }
   die('done');
