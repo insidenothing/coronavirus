@@ -213,7 +213,7 @@ while($d = mysqli_fetch_array($r)){
  // }
 }
 
-echo "<table><tr><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'>$todo_list</td><td valign='top'>$done_list</td></tr></table>";
+echo "<table><tr><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 
 
 include_once('footer.php');
