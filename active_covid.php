@@ -90,7 +90,7 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 $list = ob_get_clean();
 
-echo "<h1>".number_format($total)." to ".number_format($total2)." New York Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
+echo "<h1>".number_format($total)." to ".number_format($total2)." New York City Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 
 echo "</td><td valign='top' width='25%'>";
