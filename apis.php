@@ -64,7 +64,7 @@ if ($_GET['run']){
   $r = $core->query($q);
   while($d = mysqli_fetch_array($r)){
     $name = $d['api_name'];
-    //slack_general("start: $name",'covid19-apis');
+    slack_general("start: $name",'covid19-apis');
     //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
     //echo "<li title='$d[api_description]'>$d[last_updated] <u>$d[api_name]</u> <a target='_Blank' href='$d[api_url]'>$d[api_status] API</a></li>";
     $url = $d['api_url'];
@@ -86,10 +86,10 @@ if ($_GET['run']){
            slack_general("done: $name - *update*",'covid19-apis');
            galert_mail('trigger@applet.ifttt.com',$name.' API Updated','https://www.covid19math.net/index.php');
       }else{
-           //slack_general("done: $name - no change",'covid19-apis');
+           slack_general("done: $name - no change",'covid19-apis');
       }
     }else{
-      //slack_general("Skip $name ".$d2['cache_date_time'],'covid19-apis');
+      slack_general("Skip $name ".$d2['cache_date_time'],'covid19-apis');
     }
   }
   die();
