@@ -51,7 +51,7 @@
 | Vermont         | |  x | https://www.healthvermont.gov/response/coronavirus-covid-19/current-activity-vermont#town  |
 | Virginia        | YES | CSV | https://www.vdh.virginia.gov/content/uploads/sites/182/2020/05/VDH-COVID-19-PublicUseDataset-ZIPCode.csv  |
 | Washington      |     | x     | x |
-| Washington D.C. | | XLSX | https://coronavirus.dc.gov/sites/default/files/dc/sites/coronavirus/page_content/attachments/DC-COVID-19-Data-for-July-15-2020.xlsx  |
+| Washington D.C. | YES | XLSX | https://coronavirus.dc.gov/sites/default/files/dc/sites/coronavirus/page_content/attachments/DC-COVID-19-Data-for-[month]-[yesterday]-[year].xlsx  |
 | West Virginia   |  | x | https://experience.arcgis.com/experience/cfb3803eb93d42f7ab1c2cfccca78bf7/  |
 | Wisconsin       |     | x     | x |
 | Wyoming         |     | x     | x |
