@@ -138,6 +138,7 @@ function set_hits(){
 function getPage($url){
 	$url = str_replace('[month]',date('F'),$url); // replace month January through December
 	$url = str_replace('[day]',date('j'),$url); // replace day 1 to 31
+	$url = str_replace('[yesterday]',date('j',strtotime('yesterday')),$url); // replace day 1 to 31
 	$url = str_replace('[year]',date('Y'),$url); // replace year Examples: 1999 or 2003
 	
     $curl = curl_init();
@@ -154,6 +155,7 @@ function getPage($url){
 function getPageDebug($url){
 	$url = str_replace('[month]',date('F'),$url); // replace month January through December
 	$url = str_replace('[day]',date('j'),$url); // replace day 1 to 31
+	$url = str_replace('[yesterday]',date('j',strtotime('yesterday')),$url); // replace day 1 to 31
 	$url = str_replace('[year]',date('Y'),$url); // replace year Examples: 1999 or 2003
 	
     $curl = curl_init();
