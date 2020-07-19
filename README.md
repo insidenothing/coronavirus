@@ -1,5 +1,6 @@
-![remote ssh command](https://github.com/insidenothing/coronavirus/workflows/remote%20ssh%20command/badge.svg)
-
+# COVID-19 State Resources
+## Data Transparency
+* Access Data Over Time Here https://www.covid19math.net/library.php
 
 | State           | Tracking Status |  API Flavor |  Health Dept Site |
 | --------------- | --------------- | ----------- | ----------------- |
