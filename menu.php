@@ -106,6 +106,9 @@ while($d = mysqli_fetch_array($r)){
 	if(isset($_GET['global_date'])){
 		$global_date = date('Y-m-d',strtotime($_GET['global_date']));
 	}
+	$q = "SELECT distinct api_url FROM coronavirus_apis";
+	$r = $core->query($q);
+	$total_apis = mysqli_num_rows($r);
 	if ($pos === false && empty($_GET['global_date'])) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
 		?>
@@ -121,9 +124,7 @@ while($d = mysqli_fetch_array($r)){
 		</div>
 		<?PHP 
 	} else{
-		$q = "SELECT distinct api_url FROM coronavirus_apis";
-		$r = $core->query($q);
-		$total_apis = mysqli_num_rows($r);
+
 		$q = "SELECT distinct Facility_Name FROM coronavirus_facility";
 		$r = $core->query($q);
 		$processed_facility = mysqli_num_rows($r);
