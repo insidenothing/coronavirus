@@ -141,6 +141,7 @@ function getPage($url){
     curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire Coronavirus Monitor covid19math.net /%d.0",rand(4,50)));
     curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt ($curl, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt ($curl, CURLOPT_HTTPHEADER, array("Cookie: policy_accepted=true"));
     $html = curl_exec ($curl);
     curl_close ($curl);
