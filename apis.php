@@ -1,4 +1,5 @@
 <?PHP
+include_once('/var/www/html/mdwestserve/newsbot.php');
 $page_description = "APIs and Descriptions";
 include_once('menu.php');
 function check_error($json,$url){
@@ -83,6 +84,7 @@ if ($_GET['run']){
             $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
            // message_send('4433862584',"$name update");
            slack_general("done: $name - *update*",'covid19-apis');
+           galert_mail('trigger@applet.ifttt.com',$name.' API Updated','https://www.covid19math.net/index.php');
       }else{
            //slack_general("done: $name - no change",'covid19-apis');
       }
