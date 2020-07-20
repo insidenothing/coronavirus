@@ -179,7 +179,7 @@ while($d = mysqli_fetch_array($r)){
     $color='lightyellow';
   }
   $list = ''; // last 2 caches
-  $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,2");
+  $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$d[id]' order by id DESC limit 0,2");
   while($dX = mysqli_fetch_array($rX)){
     $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]'>$dX[id] ON $dX[cache_date_time]</a>]";
   }
