@@ -40,7 +40,7 @@ while($d = mysqli_fetch_array($r)){
   $r2 = $core->query("SELECT id, cache_date_time, raw_response FROM coronavirus_api_cache where api_id = '$id' order by id DESC");
   while($d2 = mysqli_fetch_array($r2)){
     echo "
-    <a class='btn btn-warning' href='?cache=$d2[id]'>$d2[cache_date_time]</a>";
+    <a class='btn btn-warning' href='cache.php?id=$d2[id]&type=$d[api_flavor]'>$d[api_flavor] $d2[cache_date_time]</a>";
     //echo "
     //<a class='btn btn-warning' data-toggle='collapse' href='#multiCollapseExamplecache$d2[id]' role='button' aria-expanded='false' aria-controls='multiCollapseExamplecache$d2[id]'>$d2[cache_date_time]</a>";
     //$raws .= '
