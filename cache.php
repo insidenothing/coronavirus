@@ -1,10 +1,6 @@
 <?PHP
 if (isset($_GET['id'])){
-  if (is_int($_GET['id'])){
-    $id = intval($_GET['id']);
-  }else{
-    die('not in int');
-  }
+  $id = intval($_GET['id']);
 }else{
   die('no get id');
 }
