@@ -3,10 +3,10 @@ if (isset($_GET['id'])){
   if (is_int($_GET['id'])){
     $id = intval($_GET['id']);
   }else{
-    die();
+    die('not in int');
   }
 }else{
-  die();
+  die('no get id');
 }
 include_once('/var/www/secure.php'); // this makes $core with out credientals 
 $id = substr($id,0,10); // protect strlen
@@ -16,7 +16,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $cache = $result->fetch_assoc();
 if ($cache['id'] < 1){
- die(); 
+ die('id less than 1'); 
 }
 $type = $cache['api_flavor'];
 if ($type == 'csv'){
@@ -49,7 +49,6 @@ if ($type == 'csv'){
   //header("Content-Length: ".filesize($filepath.$filename)); 
 }else{
   // unknown type
-  die(); 
+  die('unknown type'); 
 }
 echo $cache['raw_response'];
-die(); 
