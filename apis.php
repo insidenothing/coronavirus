@@ -179,9 +179,9 @@ while($d = mysqli_fetch_array($r)){
     $color='lightyellow';
   }
   $list = ''; // last 2 caches
-  $r = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,2");
-  while($d = mysqli_fetch_array($r)){
-    $list .= "[<a target='_Blank' href='cache.php?id=$d[id]'>$d[id] ON $d[cache_date_time]</a>]";
+  $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,2");
+  while($dX = mysqli_fetch_array($rX)){
+    $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]'>$dX[id] ON $dX[cache_date_time]</a>]";
   }
   ob_start();
   echo "<li style='background-color:$color;' title='$d[api_description]'>($d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
