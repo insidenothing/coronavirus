@@ -18,7 +18,11 @@ $cache = $result->fetch_assoc();
 if ($cache['id'] < 1){
  die('id less than 1'); 
 }
-$type = $cache['api_flavor'];
+if (isset($_GET['type'])){
+  $type = $_GET['type'];
+}else{
+  $type = $cache['api_flavor']; 
+}
 if ($type == 'csv'){
   $type = 'csv';
   header('Content-Type: application/csv');
