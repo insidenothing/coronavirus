@@ -1,6 +1,6 @@
 <?PHP
 if (isset($_GET['id'])){
-  if (isint($_GET['id'])){
+  if (is_int($_GET['id'])){
     $id = intval($_GET['id']);
   }else{
     die();
