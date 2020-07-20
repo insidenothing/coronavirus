@@ -15,6 +15,9 @@ $stmt->bind_param('i', $id); // https://www.php.net/manual/en/mysqli-stmt.bind-p
 $stmt->execute();
 $result = $stmt->get_result();
 $cache = $result->fetch_assoc();
+if ($cache['id'] < 1){
+ die(); 
+}
 $type = $cache['api_flavor'];
 if ($type == 'csv'){
   $type = 'csv';
@@ -49,4 +52,4 @@ if ($type == 'csv'){
   die(); 
 }
 echo $cache['raw_response'];
-die(); // do nothing even if included
+die(); 
