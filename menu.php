@@ -155,6 +155,7 @@ while($d = mysqli_fetch_array($r)){
 	<ul class="nav nav-pills">
 		<!--<li role='presentation'><a href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>-->
 		<li role='presentation'><a href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
+		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/facilities_table.php'){ echo "class='active'"; } ?> ><a href="facilities_table.php">COVID 19 Facilities Table</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/library.php'){ echo "class='active'"; } ?> ><a href="library.php">COVID 19 National Library</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/index.php'){ echo "class='active'"; } ?> ><a href="index.php">COVID 19 Reopen Dashboard</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/active_covid.php'){ echo "class='active'"; } ?> ><a href="active_covid.php">Active COVID 19 Infections</a></li>
