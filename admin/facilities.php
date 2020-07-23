@@ -191,7 +191,39 @@ $Facility_ZIP['Sunrise_of_Pikesville'] = '21208';
 $Facility_ZIP['Thoms_J_S__Waxter_Children_s_Center'] = '20724';
 $Facility_ZIP['Western_Maryland_Hospital_Center'] = '21742';
 
-
+$Facility_ZIP['Arbor_Terrace_Senior_Living'] = '20706';
+$Facility_ZIP['Arcola_Health_and_Rehabilitation_Center'] = '20902';
+$Facility_ZIP['Bedford_Court'] = '20906';
+$Facility_ZIP['Bel_Air_Health_and_Rehabilitation_Center'] = '21014';
+$Facility_ZIP['Brightview_Assisted_Living_Catonsville'] = '21228';
+$Facility_ZIP['Brightview_Senior_Living_Annapolis'] = '21401';
+$Facility_ZIP['Brightview_Senior_Living_Rolling_Hills'] = '21228';
+$Facility_ZIP['Brightview_Towson'] = '21286';
+$Facility_ZIP['Brookdale_Woodward_Estates'] = '20716';
+$Facility_ZIP['Cadia_Health_Springbrook'] = '20904';
+$Facility_ZIP['Chapel_Hill_Nursing_Center'] = '21133';
+$Facility_ZIP['Commonwealth_Senior_Living_Hagerstown'] = '21740';
+$Facility_ZIP['Fahrney_Keedy_Home_and_Village'] = '21713';
+$Facility_ZIP['Foxchase_Rehabilitation_and_Nursing_Center'] = '20910';
+$Facility_ZIP['Future_Care_Charles_Village'] = '21218';
+$Facility_ZIP['Genesis_Eldercare_Franklin_Woods'] = '21237';
+$Facility_ZIP['Genesis_Homewood_Center'] = '21212';
+$Facility_ZIP['Genesis_Loch_Raven'] = '21234';
+$Facility_ZIP['Goodwill_Retirement_Community'] = '21536';
+$Facility_ZIP['Homestead_Manor'] = '21629';
+$Facility_ZIP['In_Good_Hands_Assisted_Living'] = '21085';
+$Facility_ZIP['Lorien_Mays_Chapel'] = '21093';
+$Facility_ZIP['Marley_Neck_Health_and_Rehabilitation_Center'] = '21060';
+$Facility_ZIP['Northwest_Hospital_Center___Subacute_rehab_facility'] = '21133';
+$Facility_ZIP['Oakwood_Care_Center'] = '21220';
+$Facility_ZIP['Pickersgill_Retirement'] = '21204';
+$Facility_ZIP['Pleasant_Gardens_Assisted_Living'] = '21206';
+$Facility_ZIP['Residences_at_Vantage_Point'] = '21044';
+$Facility_ZIP['Ridgeway_Manor'] = '21228';
+$Facility_ZIP['Rockville_Nursing_and_Rehab'] = '20850';
+$Facility_ZIP['Somerford_House_Frederick'] = '21702';
+$Facility_ZIP['St__Joseph_s_Nursing_Home'] = '21228';
+$Facility_ZIP['Wilson_Healthcare_Center'] = '20877';
 
 
 function cleanup($str){
