@@ -72,14 +72,14 @@ if ($_GET['run']){
       $wait_check='';
       $last_update_hour = date('g',strtotime($d2['cache_date_time'])); 
       $this_hour = date('g');
-      if ($last_update_hour < $this_hour){
+      if ($last_update_hour > $this_hour){
         // wait to run
         //$wait_check = 'wait';
-        slack_general("$left) wait check ( $last_update_hour < $this_hour )",'covid19-apis');
+        slack_general("$left) *wait* ( $last_update_hour > $this_hour )",'covid19-apis');
       }else{
         // ok to run 
         //$wait_check = 'run';
-        slack_general("$left) start check ( $last_update_hour < $this_hour )",'covid19-apis');
+        slack_general("$left) *start* ( $last_update_hour > $this_hour )",'covid19-apis');
         sleep($d['run_delay']);
         $raw = getPage($url);
         $raw_response = $core->real_escape_string($raw);
