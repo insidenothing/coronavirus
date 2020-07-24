@@ -108,6 +108,9 @@ $break = '
 		if ($count == 'Suppressed*'){
 			$count = 4;
 		}
+		if ($testing == 'Suppressed*'){
+			$testing = 4;
+		}
 		if ($zip == 'Not Reported'){
 			$zip = '00002';
 		}
@@ -121,9 +124,9 @@ $break = '
 	}
 }
 
-echo "<pre>";
-print_r($pieces);
-echo "</pre>";	
+//echo "<pre>";
+//print_r($pieces);
+//echo "</pre>";	
 
 
 
