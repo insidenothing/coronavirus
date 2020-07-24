@@ -59,7 +59,7 @@ if ($_GET['run']){
   $left = $total_apis;
   while($d = mysqli_fetch_array($r)){
     $name = $d['api_name'];
-    slack_general("$left) start: $name",'covid19-apis');
+    slack_general("$left) $name",'covid19-apis');
     $left = $left - 1;
     $url = $d['api_url'];
     $id = $d['id'];
@@ -70,8 +70,8 @@ if ($_GET['run']){
    
     if (substr($d2['cache_date_time'],0,10) != date('Y-m-d') || $_GET['run'] == 2){
       $wait_check='';
-      $last_update_hour = date('g',strtotime($d2['cache_date_time'])); 
-      $this_hour = date('g');
+      $last_update_hour = date('G',strtotime($d2['cache_date_time'])); 
+      $this_hour = date('G');
       if ($last_update_hour > $this_hour){
         // wait to run
         //$wait_check = 'wait';
@@ -179,6 +179,7 @@ if ($_GET['level']){
 
 $done_list = '';
 $todo_list = '';
+$wait_list = '';
 // display what is active
 $q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
 $r = $core->query($q);
@@ -200,13 +201,18 @@ while($d = mysqli_fetch_array($r)){
   ob_start();
   echo "<li style='background-color:$color;' title='$d[api_description]'>($d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
-  if ($color == 'lightgreen'){
+  
+  $last_update_hour = date('g',strtotime($d2['cache_date_time'])); 
+  $this_hour = date('G');
+  if ($last_update_hour > $this_hour){
+    $wait_list .= $line;
+  }elseif ($color == 'lightgreen'){
     $done_list .= $line;
   }else{
     $todo_list .= $line;
   }
 }
-echo "<table><tr><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
+echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 
 include_once('footer.php');
 ?>
