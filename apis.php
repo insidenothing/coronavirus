@@ -70,7 +70,7 @@ if ($_GET['run']){
    
     if (substr($d2['cache_date_time'],0,10) != date('Y-m-d') || $_GET['run'] == 2){
       $wait_check='';
-      $last_update_hour = date('g',strtotime($d2['cache_date_time'])) - 2; // start checking 2 hours before last update
+      $last_update_hour = date('g',strtotime($d2['cache_date_time'])); 
       $this_hour = date('g');
       if ($last_update_hour > $this_hour){
         // wait to run
