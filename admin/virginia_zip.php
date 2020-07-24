@@ -119,7 +119,7 @@ $break = '
 		}
 		if ($date != '1969-12-31'){
 			echo "<li>$date - $zip - $count / $testing</li>";
-			//coronavirus_zip($zip,$date,$count,$testing);
+			coronavirus_zip($zip,$date,$count,$testing);
 		}
 	}
 }
