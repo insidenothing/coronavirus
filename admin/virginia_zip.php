@@ -99,8 +99,8 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 
 $break = '
 ';
-
-	$pieces = explode($break, $d['raw_response']);
+	$pieces = json_decode($d['raw_response'], true);
+	//$pieces = explode($break, $d['raw_response']);
 	$i=0;
 	foreach ($pieces as $v) {
 		if ($i != 0){
@@ -118,7 +118,7 @@ $break = '
 			}
 			if ($date != '1969-12-31'){
 				echo "<li>$date - $zip - $count / $testing</li>";
-				coronavirus_zip($zip,$date,$count,$testing);
+				//coronavirus_zip($zip,$date,$count,$testing);
 			}
 		}
 		$i++;
@@ -127,8 +127,9 @@ $break = '
 
 }
 
-//print_r($pieces);
-	
+echo "<pre>";
+print_r($pieces);
+echo "</pre>";	
 
 
 
