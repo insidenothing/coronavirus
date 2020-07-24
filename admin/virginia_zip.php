@@ -101,27 +101,31 @@ $break = '
 ';
 	$pieces = json_decode($d['raw_response'], true);
 	//$pieces = explode($break, $d['raw_response']);
-	$i=0;
+	//$i=0;
 	foreach ($pieces as $v) {
-		if ($i != 0){
+		//if ($i != 0){
 			//echo "<li>$v</li>";
-			$pieces2 = explode(',',$v);
-			$date = date('Y-m-d',strtotime($pieces2[0]));
-			$zip = $pieces2[1];
-			$count = $pieces2[2];
-			$testing = $pieces2[3];
-			if ($count == 'Suppressed*'){
-				$count = 4;
-			}
-			if ($zip == 'Not Reported'){
-				$zip = '00002';
-			}
-			if ($date != '1969-12-31'){
-				echo "<li>$date - $zip - $count / $testing</li>";
-				//coronavirus_zip($zip,$date,$count,$testing);
-			}
+		$pieces2 = explode(',',$v);
+		$date = $global_date;
+		$zip = $pieces2[1];
+		$count = $pieces2[2];
+		$testing = $pieces2[3];
+		if ($count == 'Suppressed*'){
+			$count = 4;
 		}
-		$i++;
+		if ($zip == 'Not Reported'){
+			$zip = '00002';
+		}
+		if ($zip == 'Out-of-State'){
+			$zip = '00004';
+		}
+
+		if ($date != '1969-12-31'){
+			echo "<li>$date - $zip - $count / $testing</li>";
+			//coronavirus_zip($zip,$date,$count,$testing);
+		}
+		//}
+		//$i++;
 	}
 
 
