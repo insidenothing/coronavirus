@@ -100,16 +100,11 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 $break = '
 ';
 	$pieces = json_decode($d['raw_response'], true);
-	//$pieces = explode($break, $d['raw_response']);
-	//$i=0;
-	foreach ($pieces as $v) {
-		//if ($i != 0){
-			//echo "<li>$v</li>";
-		$pieces2 = explode(',',$v);
+	foreach ($pieces as $pieces2) {
 		$date = $global_date;
-		$zip = $pieces2[1];
-		$count = $pieces2[2];
-		$testing = $pieces2[3];
+		$zip = $pieces2['zcta'];
+		$count = $pieces2['number_of_cases'];
+		$testing = $pieces2['number_of_pcr_testing'];
 		if ($count == 'Suppressed*'){
 			$count = 4;
 		}
@@ -119,16 +114,11 @@ $break = '
 		if ($zip == 'Out-of-State'){
 			$zip = '00004';
 		}
-
 		if ($date != '1969-12-31'){
 			echo "<li>$date - $zip - $count / $testing</li>";
 			//coronavirus_zip($zip,$date,$count,$testing);
 		}
-		//}
-		//$i++;
 	}
-
-
 }
 
 echo "<pre>";
