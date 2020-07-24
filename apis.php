@@ -193,16 +193,14 @@ while($d = mysqli_fetch_array($r)){
   if (substr($d['last_updated'],0,10) == date('Y-m-d',strtotime('-1 day'))){
     $color='lightyellow';
   }
-  $list = ''; // last 2 caches
-  $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$d[id]' order by id DESC limit 0,2");
-  while($dX = mysqli_fetch_array($rX)){
-    $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]'>$dX[id] ON $dX[cache_date_time]</a>]";
-  }
+  $list = ''; 
+  $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$d[id]' order by id DESC limit 0,1");
+  $dX = mysqli_fetch_array($rX);
+  $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]'>$dX[id] ON $dX[cache_date_time]</a>]";
   ob_start();
   echo "<li style='background-color:$color;' title='$d[api_description]'>($d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
-  
-  $last_update_hour = date('g',strtotime($d2['cache_date_time'])); 
+  $last_update_hour = date('G',strtotime($dX['cache_date_time'])); 
   $this_hour = date('G');
   if ($last_update_hour > $this_hour){
     $wait_list .= $line;
