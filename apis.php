@@ -79,6 +79,7 @@ if ($_GET['run']){
       }else{
         // ok to run 
         //$wait_check = 'run';
+        slack_general("$left) start check ( $last_update_hour > $this_hour )",'covid19-apis');
         sleep($d['run_delay']);
         $raw = getPage($url);
         $raw_response = $core->real_escape_string($raw);
