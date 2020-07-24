@@ -157,6 +157,8 @@ function getPageDebug($url){
 	$url = str_replace('[day]',date('j'),$url); // replace day 1 to 31
 	$url = str_replace('[yesterday]',date('j',strtotime('yesterday')),$url); // replace day 1 to 31
 	$url = str_replace('[year]',date('Y'),$url); // replace year Examples: 1999 or 2003
+	$url = str_replace('[RD]',date('Y-m-d'),$url); //  ?report_date=2020-05-16T00:00:00.000
+	
 	
     $curl = curl_init();
     curl_setopt ($curl, CURLOPT_URL, $url);
