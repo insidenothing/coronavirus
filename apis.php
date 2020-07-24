@@ -66,6 +66,17 @@ if ($_GET['run']){
     $r2 = $core->query("SELECT raw_response, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
+    $wait_check='';
+    $last_update_hour = date('g',strtotime($d2['cache_date_time'])) - 2; // start checking 2 hours before last update
+    $this_hour = date('g')
+    if ($last_update_hour < $this_hour){
+      // wait to run
+      $wait_check = 'wait';
+    }else{
+     // ok to run 
+       $wait_check = 'run';
+    }
+    slack_general("$left) wait check = $wait_check",'covid19-apis');
     if (substr($d2['cache_date_time'],0,10) != date('Y-m-d') || $_GET['run'] == 2){
       sleep($d['run_delay']);
       $raw = getPage($url);
