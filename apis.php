@@ -68,7 +68,7 @@ if ($_GET['run']){
     $old = $d2['raw_response'];
     $wait_check='';
     $last_update_hour = date('g',strtotime($d2['cache_date_time'])) - 2; // start checking 2 hours before last update
-    $this_hour = date('g')
+    $this_hour = date('g');
     if ($last_update_hour < $this_hour){
       // wait to run
       $wait_check = 'wait';
