@@ -1,4 +1,2 @@
 # Can you help, YES you can. 
-* Front end design
-* database 
-* expanding data
+I will assume you know the most about your state. To keep patching easy each state now has their own folder for application code.
