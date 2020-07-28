@@ -100,7 +100,7 @@ set_hits(); // internal page counter
 	
 <div class="container" style='width:100%;'><!--- Open Container -->
 	
-<a href="javascript:ddtreemenu.flatten('treemenu1', 'expand')">Show All</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'contact')">Hide All</a>
+<a href="/index.php">Home</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'expand')">Show All</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'contact')">Hide All</a>
 
 <ul id="treemenu1" class="treeview">
 	
