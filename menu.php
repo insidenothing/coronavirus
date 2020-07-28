@@ -107,9 +107,8 @@ set_hits(); // internal page counter
 <?PHP if ( $_SERVER['REMOTE_ADDR'] == '69.250.28.138'){ ?>	
 <li>Hello Patrick 	
 	<ul>
-		<li><a target='_Blank' href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
-		<li><a target='_Blank' href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
-		<li><a target='_Blank' href="http://sales.patrickmcguire.me">Buy Websites Here</a></li>
+		<li><a href="https://www.covid19math.net/apis.php">API Status</a></li>
+		<li><a target='_Blank' href="https://www.covid19math.net/Maryland/zip.php?run=1">Process MD ZIP Codes</a></li>
 	</ul>
 </li>
 <?PHP } ?>
