@@ -109,6 +109,7 @@ set_hits(); // internal page counter
 	<ul>
 		<li><a href="https://www.covid19math.net/apis.php">API Status</a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/Maryland/zip.php?run=1">Process MD ZIP Codes</a></li>
+		<li><a target='_Blank' href="https://www.covid19math.net/admin/florida_zip.php?run=1&global_date=<?PHP echo date('Y-m-d');?>">Process FL ZIP Codes for <?PHP echo date('Y-m-d');?></a></li>
 	</ul>
 </li>
 <?PHP } ?>
