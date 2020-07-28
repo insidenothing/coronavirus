@@ -205,12 +205,11 @@ ddtreemenu.createTree("treemenu1", true)
 	}
 	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
 	?>
-	<form method='GET' action='zipcode.php'>
-	<ul class="nav nav-pills">
-		
-				
-		<li role='presentation'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success">Go to ZIP Code</button></li>
-		<li role='presentation'><div class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
+	
+	
+	<div style='position:absolute; top:10px; right:10px;' class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+	<form style='position:absolute; top:10px; right:50px;' method='GET' action='zipcode.php'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success">Go to ZIP Code</button></form>
+	
 	
 		
 		<?PHP /*
@@ -226,8 +225,8 @@ ddtreemenu.createTree("treemenu1", true)
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		*/ ?>
 		
-		</ul>
-	</form>
+		
+	
 	
 	
 	
