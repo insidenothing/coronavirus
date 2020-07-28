@@ -94,23 +94,9 @@ set_hits(); // internal page counter
 	<?PHP
 	
 	
-$links;
-$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland'";
-$r = $core->query($q);
-	$loc_test='';
-	if (isset($_GET['county'])){
-		$loc_test = $_GET['county'];
-	}
-while($d = mysqli_fetch_array($r)){	
-	if ($d['name_of_location'] == $loc_test){
-		$links .= "<li role='presentation' class='active'><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";	
-	}else{
-		$links .= "<li role='presentation'><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
-	}
-	
-	//<li role="presentation"><a href="#">Home</a></li>
-}
-	?>
+
+
+?>
 	
 <div class="container" style='width:100%;'><!--- Open Container -->
 	
@@ -121,14 +107,24 @@ while($d = mysqli_fetch_array($r)){
 	<ul>
 	<li>Maryland
 		<ul>
-		<li>Baltimore City</li>
-		<li>Baltimore County</li>
+		<?PHP
+		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' and state_of_location = 'Maryland'";
+		$r = $core->query($q);
+		while($d = mysqli_fetch_array($r)){	
+			echo "<li><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
+		}			
+		?>
 		</ul>
 	</li>
 	<li>Florida
 		<ul>
-		<li>Miami-Dade</li>
-		<li>Palm Beach</li>
+		<?PHP
+		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Florida' and state_of_location = 'Florida'";
+		$r = $core->query($q);
+		while($d = mysqli_fetch_array($r)){	
+			echo "<li><a href='county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
+		}			
+		?>
 		</ul>
 	</li>
 </ul>
@@ -230,17 +226,11 @@ ddtreemenu.createTree("treemenu1", true)
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/death_level.php'){ echo "class='active'"; } ?> ><a href="death_level.php">Death Rate</a></li>
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/signup.php'){ echo "class='active'"; } ?> ><a href="signup.php">SMS Signup</a></li>
 		*/ ?>
-		<li role='presentation'><button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">Maryland Counties</button></li>
+		
 		</ul>
 	</form>
 	
 	
 	
-	<ul id="demo" class="nav nav-tabs collapse">
-		<?PHP echo "$links"; ?>
-	</ul>
-	<?PHP 	/* <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Florida Counties</button>
-	<ul id="demo2" class="nav nav-tabs collapse">
-		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/county.php?state=Florida&county=PalmBeach'){ echo "class='active'"; } ?> ><a href="county.php?state=Florida&county=PalmBeach">PalmBeach</a></li>
-	</ul>
-	*/ ?>
+	
+
