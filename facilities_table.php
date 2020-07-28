@@ -87,7 +87,7 @@ while ($d = mysqli_fetch_array($r)){
 <div class="row">
 	<table border='1' cellpadding='0' cellspacing='0'>
 		<tr style='background-color:lightgrey; font-weight:bold;'>
-			<td> </td>
+			<td>Maryland Facilities</td>
 			<td>Report Count</td>
 			<td>Number of Resident Cases</td>
 			<td>Number of Staff Cases</td>
@@ -119,7 +119,8 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofStaffDeaths - $NumberofStaffDeaths2);?></td>
 		</tr>
 	</table>
-</div>		
+</div>	
+<hr>
 <div class="row">
 	<table border='1' cellpadding='0' cellspacing='0'>		
 		<tr style='background-color:lightgrey; font-weight:bold;'>
