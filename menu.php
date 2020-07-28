@@ -144,7 +144,7 @@ set_hits(); // internal page counter
 		}			
 		?>
 		</ul>
-		`</li>
+		</li>
 		
 		<li>Maryland
 		<ul>
@@ -173,7 +173,7 @@ set_hits(); // internal page counter
 		}			
 		?>
 		</ul>
-		`</li>
+		</li>
 		
 		<li>Virginia
 		<ul>
@@ -186,7 +186,7 @@ set_hits(); // internal page counter
 		}			
 		?>
 		</ul>
-		`</li>
+		</li>
 </ul>
 </li>
 </ul>
