@@ -105,7 +105,7 @@ set_hits(); // internal page counter
 <ul id="treemenu1" class="treeview">
 <li>United States
 	<ul>
-	<li>Maryland
+		<li><a href='Maryland/index.php'>Maryland</a>
 		<ul>
 		<?PHP
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' and state_of_location = 'Maryland' order by name_of_location";
@@ -116,7 +116,7 @@ set_hits(); // internal page counter
 		?>
 		</ul>
 	</li>
-	<li>Florida
+		<li><a href='Florida/index.php'>Florida</a>
 		<ul>
 		<?PHP
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Florida' and state_of_location = 'Florida' order by name_of_location";
