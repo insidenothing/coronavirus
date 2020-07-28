@@ -103,15 +103,23 @@ set_hits(); // internal page counter
 <a href="javascript:ddtreemenu.flatten('treemenu1', 'expand')">Show All</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'contact')">Hide All</a>
 
 <ul id="treemenu1" class="treeview">
-<li><a href="/facilities_table.php">COVID 19 Facilities Table</a></li>
-<li><a target='_Blank' href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
-<li><a href="/library.php">COVID 19 National API Library</a></li>
-<li><a target='_Blank' href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
-<li><a href="/index.php">COVID 19 Reopen Dashboard</a></li>
-<li><a href="/active_covid.php">Active COVID 19 Infections</a></li>
-<li><a href="/spikes.php">COVID 19 Spike Monitor</a></li>
-<li><a target='_Blank' href="http://sales.patrickmcguire.me">Buy Websites Here</a></li>
-<li><a href="/outbreak.php">COVID 19 Outbreak Monitor</a></li>
+<li>Support 	
+	<ul>
+		<li><a target='_Blank' href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
+		<li><a target='_Blank' href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
+		<li><a target='_Blank' href="http://sales.patrickmcguire.me">Buy Websites Here</a></li>
+	</ul>
+</li>	
+<li>Pages 	
+	<ul>	
+		<li><a href="/facilities_table.php">COVID 19 Facilities Table</a></li>
+		<li><a href="/library.php">COVID 19 National API Library</a></li>
+		<li><a href="/index.php">COVID 19 Reopen Dashboard</a></li>
+		<li><a href="/active_covid.php">Active COVID 19 Infections</a></li>
+		<li><a href="/spikes.php">COVID 19 Spike Monitor</a></li>
+		<li><a href="/outbreak.php">COVID 19 Outbreak Monitor</a></li>
+	</ul>
+</li>	
 <li>United States
 	<ul>
 		<li>Maryland
