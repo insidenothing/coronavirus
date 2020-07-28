@@ -287,7 +287,7 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 	}
 	$core->query($q);
 	//slack_general("$q",'covid19-sql');
-	slack_general(mysqli_error($core),'covid19-sql');
+	//slack_general(mysqli_error($core),'covid19-sql');
 
 }
 
