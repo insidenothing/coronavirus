@@ -3,7 +3,7 @@
 include_once('/var/www/secure.php'); //outside webserver
 include_once('functions.php'); //outside webserver
 
-$page_description = 'Facilities Data Table';
+$page_description = 'Maryland Facilities Data Table';
 include_once('menu.php');
 
 global $master_facility_table;
@@ -117,6 +117,14 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofStaffCases - $NumberofStaffCases2);?></td>
 			<td><?PHP echo number_format($NumberofResidentDeaths - $NumberofResidentDeaths2);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths - $NumberofStaffDeaths2);?></td>
+		</tr>
+		<tr style='background-color:orange; font-weight:bold;'>
+			<td>Daily Average</td>
+			<td><?PHP echo number_format(($ReportCount - $ReportCount2) / 7,2);?></td>
+			<td><?PHP echo number_format(($NumberofResidentCases - $NumberofResidentCases2) / 7,2);?></td>
+			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 7,2);?></td>
+			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 7,2);?></td>
+			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 7,2);?></td>
 		</tr>
 	</table>
 </div>	

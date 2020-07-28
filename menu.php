@@ -112,7 +112,6 @@ set_hits(); // internal page counter
 </li>	
 <li>Pages 	
 	<ul>	
-		<li><a href="/facilities_table.php">COVID 19 Facilities Table</a></li>
 		<li><a href="/library.php">COVID 19 National API Library</a></li>
 		<li><a href="/index.php">COVID 19 Reopen Dashboard</a></li>
 		<li><a href="/active_covid.php">Active COVID 19 Infections</a></li>
@@ -124,6 +123,7 @@ set_hits(); // internal page counter
 	<ul>
 		<li>Maryland
 		<ul>
+		<li><a href="/Maryland/facilities_table.php">Facilities Table</a></li>
 		<?PHP
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' and state_of_location = 'Maryland' order by name_of_location";
 		$r = $core->query($q);
