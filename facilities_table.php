@@ -9,6 +9,13 @@ include_once('menu.php');
 global $master_facility_table;
 $master_facility_table = '';
 
+global $ReportCount;
+global $NumberofResidentCases;
+global $NumberofStaffCases;
+global $NumberofResidentDeaths;
+global $NumberofStaffDeaths;
+
+
 // Assisted Living
 function make_chart2($range,$Facility_Name){
 	global $core;
@@ -16,6 +23,11 @@ function make_chart2($range,$Facility_Name){
 	global $zip2;
 	global $remove;
 	global $master_facility_table;
+	global $ReportCount;
+	global $NumberofResidentCases;
+	global $NumberofStaffCases;
+	global $NumberofResidentDeaths;
+	global $NumberofStaffDeaths;
   $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
   //slack_general("$q",'covid19-sql');
   $r = $core->query($q);
