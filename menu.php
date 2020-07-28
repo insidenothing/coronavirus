@@ -65,7 +65,7 @@ set_hits(); // internal page counter
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 	
 	
-<script type="text/javascript" src="simpletreemenu.js">
+<script type="text/javascript" src="/simpletreemenu.js">
 
 /***********************************************
 * Simple Tree Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
@@ -75,7 +75,7 @@ set_hits(); // internal page counter
 
 </script>
 
-<link rel="stylesheet" type="text/css" href="simpletree.css" />
+<link rel="stylesheet" type="text/css" href="/simpletree.css" />
 	
 	
 	
