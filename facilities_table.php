@@ -16,6 +16,12 @@ global $NumberofResidentDeaths;
 global $NumberofStaffDeaths;
 
 
+global $ReportCount2;
+global $NumberofResidentCases2;
+global $NumberofStaffCases2;
+global $NumberofResidentDeaths2;
+global $NumberofStaffDeaths2;
+
 // Assisted Living
 function make_chart2($range,$Facility_Name){
 	global $core;
@@ -28,6 +34,11 @@ function make_chart2($range,$Facility_Name){
 	global $NumberofStaffCases;
 	global $NumberofResidentDeaths;
 	global $NumberofStaffDeaths;
+	global $ReportCount2;
+	global $NumberofResidentCases2;
+	global $NumberofStaffCases2;
+	global $NumberofResidentDeaths2;
+	global $NumberofStaffDeaths2;
   $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
   //slack_general("$q",'covid19-sql');
   $r = $core->query($q);
@@ -50,6 +61,14 @@ function make_chart2($range,$Facility_Name){
 		$NumberofStaffCases = $NumberofStaffCases + $d['Number_of_Staff_Cases'];
 		$NumberofResidentDeaths = $NumberofResidentDeaths + $d['Number_of_Resident_Deaths'];
 		$NumberofStaffDeaths = $NumberofStaffDeaths + $d['Number_of_Staff_Deaths'];
+	  }elseif ($i == 2){
+		// highlight for delta
+		$master_facility_table .= "<tr style='background-color:lightblue;'><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+    		$ReportCount2 = $ReportCount2 + $d['report_count'];
+		$NumberofResidentCases2 = $NumberofResidentCases2 + $d['Number_of_Resident_Cases'];
+		$NumberofStaffCases2 = $NumberofStaffCases2 + $d['Number_of_Staff_Cases'];
+		$NumberofResidentDeaths2 = $NumberofResidentDeaths2 + $d['Number_of_Resident_Deaths'];
+		$NumberofStaffDeaths2 = $NumberofStaffDeaths2 + $d['Number_of_Staff_Deaths'];
 	  }else{
 		$master_facility_table .= "<tr><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";		  
 	  }
@@ -66,12 +85,12 @@ while ($d = mysqli_fetch_array($r)){
 
 
 <div class="row">
-	<table>
-		<tr style='background-color:lightgrey;'>
-			<td>Report Date</td>
-			<td>-</td>
-			<td>-</td>
-			<td>-</td>
+	<table border='1' cellpadding='0' cellspacing='0'>
+		<tr style='background-color:lightgrey; font-weight:bold;'>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
 			<td>Report Count</td>
 			<td>Number of Resident Cases</td>
 			<td>Number of Staff Cases</td>
@@ -79,17 +98,39 @@ while ($d = mysqli_fetch_array($r)){
 			<td>Number of Staff Deaths</td>
 		</tr>
 		<tr style='background-color:lightyellow;'>
-			<td>Latest Weekly Total</td>
-			<td>-</td>
-			<td>-</td>
-			<td>-</td>
-			<td><?PHP echo $ReportCount;?></td>
-			<td><?PHP echo $NumberofResidentCases;?></td>
-			<td><?PHP echo $NumberofStaffCases;?></td>
-			<td><?PHP echo $NumberofResidentDeaths;?></td>
-			<td><?PHP echo $NumberofStaffDeaths;?></td>
+			<td>Last Week Totals</td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td><?PHP echo number_format($ReportCount);?></td>
+			<td><?PHP echo number_format($NumberofResidentCases);?></td>
+			<td><?PHP echo number_format($NumberofStaffCases);?></td>
+			<td><?PHP echo number_format($NumberofResidentDeaths);?></td>
+			<td><?PHP echo number_format($NumberofStaffDeaths);?></td>
 		</tr>
-		<tr style='background-color:lightgrey;'>
+		<tr style='background-color:lightyellow;'>
+			<td>Prior Week Totals</td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td><?PHP echo number_format($ReportCount2);?></td>
+			<td><?PHP echo number_format($NumberofResidentCases2);?></td>
+			<td><?PHP echo number_format($NumberofStaffCases2);?></td>
+			<td><?PHP echo number_format($NumberofResidentDeaths2);?></td>
+			<td><?PHP echo number_format($NumberofStaffDeaths2);?></td>
+		</tr>
+		<tr style='background-color:orange; font-weight:bold;'>
+			<td>Weekly Difference</td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td><?PHP echo number_format($ReportCount - $ReportCount2);?></td>
+			<td><?PHP echo number_format($NumberofResidentCases - $NumberofResidentCases2);?></td>
+			<td><?PHP echo number_format($NumberofStaffCases - $NumberofStaffCases2);?></td>
+			<td><?PHP echo number_format($NumberofResidentDeaths - $NumberofResidentDeaths2);?></td>
+			<td><?PHP echo number_format($NumberofStaffDeaths - $NumberofStaffDeaths2);?></td>
+		</tr>
+		<tr style='background-color:lightgrey; font-weight:bold;'>
 			<td>Report Date</td>
 			<td>ZIP</td>
 			<td>Name</td>
