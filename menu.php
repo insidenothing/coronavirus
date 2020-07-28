@@ -63,6 +63,26 @@ set_hits(); // internal page counter
 </script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+	
+	
+<script type="text/javascript" src="simpletreemenu.js">
+
+/***********************************************
+* Simple Tree Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Please keep this notice intact
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="simpletree.css" />
+	
+	
+	
+	
+	
+	
+	
 	</head>
 	<body style="background-color:white">
 		<style>
@@ -93,6 +113,47 @@ while($d = mysqli_fetch_array($r)){
 	?>
 	
 <div class="container" style='width:100%;'><!--- Open Container -->
+	
+<a href="javascript:ddtreemenu.flatten('treemenu1', 'expand')">Show All</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'contact')">Hide All</a>
+
+<ul id="treemenu1" class="treeview">
+<li>Maryland</li>
+<li>Florida</li>
+<li>New York</li>
+
+	
+<li>Testing New Menu
+	<ul>
+	<li>Sub Item 1.1</li>
+	<li>Sub Item 1.2</li>
+	</ul>
+</li>
+<li>Different Main Pages</li>
+
+<li>Gonna be sub
+	<ul>
+	<li>Sub Item 2.1</li>
+	<li>Folder 2.1
+		<ul>
+		<li>Sub Item 2.1.1</li>
+		<li>Sub Item 2.1.2</li>
+		</ul>
+	</li>
+</ul>
+</li>
+
+<li>Main Page Link?</li>
+</ul>
+
+
+
+<script type="text/javascript">
+//ddtreemenu.createTree(treeid, enablepersist, opt_persist_in_days (default is 1))
+ddtreemenu.createTree("treemenu1", true)
+</script>	
+	
+	
+	
 	<?PHP
 	// pull date from last update, not assume today.
 	$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
