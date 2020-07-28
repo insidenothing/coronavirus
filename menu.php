@@ -103,6 +103,17 @@ set_hits(); // internal page counter
 <a href="javascript:ddtreemenu.flatten('treemenu1', 'expand')">Show All</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'contact')">Hide All</a>
 
 <ul id="treemenu1" class="treeview">
+	
+<?PHP if ( $_SERVER['REMOTE_ADDR'] == '69.250.28.138'){ ?>	
+<li>Hello Patrick 	
+	<ul>
+		<li><a target='_Blank' href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
+		<li><a target='_Blank' href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
+		<li><a target='_Blank' href="http://sales.patrickmcguire.me">Buy Websites Here</a></li>
+	</ul>
+</li>
+<?PHP } ?>
+	
 <li>Support 	
 	<ul>
 		<li><a target='_Blank' href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
@@ -248,7 +259,7 @@ ddtreemenu.createTree("treemenu1", true)
 	
 	
 	<div style='position:absolute; top:10px; right:10px;' class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-	<form style='position:absolute; top:10px; right:50px;' method='GET' action='zipcode.php'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success">Go to ZIP Code</button></form>
+	<form style='position:absolute; top:10px; right:100px;' method='GET' action='/zipcode.php'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success">Go to ZIP Code</button></form>
 	
 	
 		
