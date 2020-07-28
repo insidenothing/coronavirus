@@ -88,31 +88,22 @@ while ($d = mysqli_fetch_array($r)){
 	<table border='1' cellpadding='0' cellspacing='0'>
 		<tr style='background-color:lightgrey; font-weight:bold;'>
 			<td> </td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
 			<td>Report Count</td>
 			<td>Number of Resident Cases</td>
 			<td>Number of Staff Cases</td>
 			<td>Number of Resident Deaths</td>
 			<td>Number of Staff Deaths</td>
 		</tr>
-		<tr style='background-color:lightyellow;'>
-			<td>Last Week Totals</td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
+		<tr style='background-color:yellow;'>
+			<td>This Weeks Totals</td>
 			<td><?PHP echo number_format($ReportCount);?></td>
 			<td><?PHP echo number_format($NumberofResidentCases);?></td>
 			<td><?PHP echo number_format($NumberofStaffCases);?></td>
 			<td><?PHP echo number_format($NumberofResidentDeaths);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths);?></td>
 		</tr>
-		<tr style='background-color:lightyellow;'>
-			<td>Prior Week Totals</td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
+		<tr style='background-color:lightblue;'>
+			<td>Last Weeks Totals</td>
 			<td><?PHP echo number_format($ReportCount2);?></td>
 			<td><?PHP echo number_format($NumberofResidentCases2);?></td>
 			<td><?PHP echo number_format($NumberofStaffCases2);?></td>
@@ -121,15 +112,16 @@ while ($d = mysqli_fetch_array($r)){
 		</tr>
 		<tr style='background-color:orange; font-weight:bold;'>
 			<td>Weekly Difference</td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
 			<td><?PHP echo number_format($ReportCount - $ReportCount2);?></td>
 			<td><?PHP echo number_format($NumberofResidentCases - $NumberofResidentCases2);?></td>
 			<td><?PHP echo number_format($NumberofStaffCases - $NumberofStaffCases2);?></td>
 			<td><?PHP echo number_format($NumberofResidentDeaths - $NumberofResidentDeaths2);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths - $NumberofStaffDeaths2);?></td>
 		</tr>
+	</table>
+</div>		
+<div class="row">
+	<table border='1' cellpadding='0' cellspacing='0'>		
 		<tr style='background-color:lightgrey; font-weight:bold;'>
 			<td>Report Date</td>
 			<td>ZIP</td>
