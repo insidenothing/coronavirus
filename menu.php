@@ -117,32 +117,22 @@ while($d = mysqli_fetch_array($r)){
 <a href="javascript:ddtreemenu.flatten('treemenu1', 'expand')">Show All</a> | <a href="javascript:ddtreemenu.flatten('treemenu1', 'contact')">Hide All</a>
 
 <ul id="treemenu1" class="treeview">
-<li>Maryland</li>
-<li>Florida</li>
-<li>New York</li>
-
-	
-<li>Testing New Menu
+<li>United States
 	<ul>
-	<li>Sub Item 1.1</li>
-	<li>Sub Item 1.2</li>
-	</ul>
-</li>
-<li>Different Main Pages</li>
-
-<li>Gonna be sub
-	<ul>
-	<li>Sub Item 2.1</li>
-	<li>Folder 2.1
+	<li>Maryland
 		<ul>
-		<li>Sub Item 2.1.1</li>
-		<li>Sub Item 2.1.2</li>
+		<li>Baltimore City</li>
+		<li>Baltimore County</li>
+		</ul>
+	</li>
+	<li>Florida
+		<ul>
+		<li>Miami-Dade</li>
+		<li>Palm Beach</li>
 		</ul>
 	</li>
 </ul>
 </li>
-
-<li>Main Page Link?</li>
 </ul>
 
 
