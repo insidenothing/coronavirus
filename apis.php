@@ -95,6 +95,20 @@ if ($_GET['run']){
   die('done');
 }
 
+if ($_GET['refill'] && $_GET['date'] && $_GET['url']){
+  // this will debug a single api
+  $api_id = $_GET['refill'];
+  $refill_date = $_GET['date'];
+  $refill_url = $_GET['url'];
+  $raw = getPageDebug($refill_url);
+  $raw_response = $core->real_escape_string($raw);
+  $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$api_id', '$refill_date', '$raw_response' )");
+  echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
+  $core->query("update coronavirus_apis set last_updated = NOW() where id = '$api_id' ");
+  echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
+  slack_general("*$name refill*",'covid19-apis-update');
+  die('done');
+}
 
 if ($_GET['single']){
   // this will debug a single api
