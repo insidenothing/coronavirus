@@ -3,7 +3,7 @@ include_once('/var/www/secure.php'); //outside webserver
 include_once('../functions.php'); //outside webserver
 $page_description = 'Maryland Facilities Abstract Data Table';
 include_once('../menu.php');
-// to start just show the latest data raw...
+ob_start();
 $q = "select * from coronavirus_apis where run_order = '5000' "; // MD Facilities
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
@@ -15,3 +15,12 @@ while ($d = mysqli_fetch_array($r)){
   echo $d2['raw_response'];
   echo "</pre>";
 }
+$buffer=ob_get_clean();
+
+
+
+
+
+
+echo $buffer;
+include_once('../footer.php');
