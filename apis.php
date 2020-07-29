@@ -175,7 +175,7 @@ $done_list = '';
 $todo_list = '';
 $wait_list = '';
 // display what is active
-$q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by run_order DESC, last_updated DESC ";
+$q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by last_updated DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
