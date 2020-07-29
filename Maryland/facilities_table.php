@@ -76,13 +76,13 @@ function make_chart2($range,$Facility_Name){
 	  }else{
 		  $color = 'white';
 		  if ($days > 90){
-			  $color = '#FF0000;';
+			  $color = '#FF3333;'; // mid red
 		  }elseif ($days > 60){
-			  $color = '#FFcccc;';
+			  $color = '#FFcccc;'; // light red
 		  }elseif ($days > 30){
-			  $color = 'lightorange;';
+			  $color = '#FF69B4;'; // hot pink
 		  }elseif($days > 15){
-			  $color = 'lightgreen;';
+			  $color = '#F08080;'; // coral
 		  }
 		  $master_facility_table .= "<tr><td style='white-space:pre; background-color:$color'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
 	  }
