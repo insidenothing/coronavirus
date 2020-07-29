@@ -162,6 +162,15 @@ while ($d = mysqli_fetch_array($r)){
 	</table>
 </div>
 
+<div>
+	New Facilities to assign ZIP code.
+	<?PHP 
+	$r = $core->query("SELECT * FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
+  	while ($d = mysqli_fetch_array($r)){
+	  	echo '<li>$Facility_ZIP[\''.$d['Facility_Name'].'\'] = \'00000\';</li>';
+	}
+	?>
+</div>
 <?PHP 
  include_once('footer.php');
 	
