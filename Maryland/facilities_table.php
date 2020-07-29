@@ -172,5 +172,5 @@ while ($d = mysqli_fetch_array($r)){
 	?>
 </div>
 <?PHP 
- include_once('footer.php');
+ include_once('../footer.php');
 	
