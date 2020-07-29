@@ -89,15 +89,28 @@ function make_chart2($range,$Facility_Name){
     $i = $i - 1;
   }
 }
-
-$q = "SELECT distinct Facility_Name FROM coronavirus_facility order by report_count DESC";
+// <a href='?sort=count'>Sort by Count</a> | <a href='?sort=zip'>Sort by Zip Code</a> | <a href='?sort=name'>Sort by Name</a>
+if (isset($_GET['sort'])){
+	if ($_GET['sort'] == 'name'){
+		$sort = 'Facility_Name';
+		$dir = '';
+	}elseif($_GET['sort'] == 'zip'){
+		$sort = 'zip_code';
+		$dir = '';
+	}else{
+		$sort = 'report_count';
+		$dir = 'DESC';
+	}
+}else{
+	$sort = 'report_count';
+	$dir = 'DESC';
+}
+$q = "SELECT distinct Facility_Name FROM coronavirus_facility order by $sort $dir";
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
   make_chart2('90',$d['Facility_Name']);
 } 
 ?>
-
-
 <div class="row">
 	<table border='1' cellpadding='0' cellspacing='0'>
 		<tr style='background-color:lightgrey; font-weight:bold;'>
@@ -158,6 +171,8 @@ while ($d = mysqli_fetch_array($r)){
 		</tr>
 	</table>
 </div>	
+<hr>
+<a href='?sort=count'>Sort by Count</a> | <a href='?sort=zip'>Sort by Zip Code</a> | <a href='?sort=name'>Sort by Name</a>
 <hr>
 <div class="row">
 	<table border='1' cellpadding='0' cellspacing='0'>		
