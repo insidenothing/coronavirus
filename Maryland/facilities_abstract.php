@@ -310,15 +310,25 @@ while ($d = mysqli_fetch_array($r)){
   foreach ($array['features'] as $key => $value){
     	  $Facility_Name = cleanup($value['attributes']['FACILITY_NAME']);
     	  //$master_array[$Facility_Name] = $value['attributes']['FACILITY_NAME']; 
-	  $master_array[$Facility_Name][$api_name.'_DATE'] = $value['attributes']['DATE'];
-	  $master_array[$Facility_Name][$api_name.'_COUNTY'] = $value['attributes']['COUNTY'];
+	  $time = $value['attributes']['DATE'] / 1000;
+	  $date = date('Y-m-d',$time+14400);
+	  $master_array[$Facility_Name]['DATE'] = $date;
+	  $master_array[$Facility_Name]['Name'] = $Facility_Name;
+	  $master_array[$Facility_Name]['Zip'] = $Facility_ZIP[$Facility_Name];
+	  $master_array[$Facility_Name]['COUNTY'] = $value['attributes']['COUNTY'];
+	  if ($api_name == 'MDCOVID19_NumberofCasesByAffected'){
+		$master_array[$Facility_Name]['Total_Cases'] = $value['attributes']['Staff_Private']+$value['attributes']['Residents_Private']+$value['attributes']['Staff_Public']+$value['attributes']['Patients_Public']+$value['attributes']['Inmates_Public']+$value['attributes']['Youth_Public'];  	  
+	  }
+	  if ($api_name == 'MDCOVID19_NumberofDeathsByAffected'){
+		$master_array[$Facility_Name]['Total_Deaths'] = $value['attributes']['Staff_Private']+$value['attributes']['Residents_Private']+$value['attributes']['Staff_Public']+$value['attributes']['Patients_Public']+$value['attributes']['Inmates_Public']+$value['attributes']['Youth_Public'];  	  
+	  }
 	  $master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
 	  $master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
 	  $master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
 	  $master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
 	  $master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
 	  $master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
-	  echo "<li>$Facility_Name $api_name Staff_Private ".$value['attributes']['Staff_Private']."</li>";
+	  //echo "<li>$Facility_Name $api_name Staff_Private ".$value['attributes']['Staff_Private']."</li>";
     //echo "<pre>";
     //print_r($value);
     //echo "</pre>";
@@ -326,6 +336,12 @@ while ($d = mysqli_fetch_array($r)){
   
 }
 $buffer=ob_get_clean();
+
+
+foreach ($master_array as $Facility => $Data){
+	// basic
+	echo "<li>coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['DATE'],$Data['Total_Cases'],$Data['Number_of_Resident_Cases'],$Data['Number_of_Staff_Cases'],$Data['Number_of_Resident_Deaths'],$Data['Number_of_Staff_Deaths'],$Data['Resident_Type'])</li>";
+}
 
 
 
