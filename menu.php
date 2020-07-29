@@ -140,7 +140,8 @@ set_hits(); // internal page counter
 		<li>Florida
 		<ul>
 		<?PHP
-		echo "<li><a href='/Florida/index.php'>Florida Data</a></li>";
+		echo "<li><a href='/Florida/index.php'>State Data</a></li>";
+		echo "<li><a href='/Florida/active.php'>Active Case Count</a></li>";
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Florida' and state_of_location = 'Florida' order by name_of_location";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
@@ -156,7 +157,8 @@ set_hits(); // internal page counter
 		<?PHP
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' and state_of_location = 'Maryland' order by name_of_location";
 		$r = $core->query($q);
-		echo "<li><a href='/Maryland/index.php'>Maryland Data</a></li>";
+		echo "<li><a href='/Maryland/index.php'>State Data</a></li>";
+		echo "<li><a href='/Maryland/active.php'>Active Case Count</a></li>";
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
 		}			
@@ -169,7 +171,8 @@ set_hits(); // internal page counter
 		<li>New York
 		<ul>
 		<?PHP
-		echo "<li><a href='/Florida/index.php'>New York Data</a></li>";
+		echo "<li><a href='/New York/index.php'>State Data</a></li>";
+		echo "<li><a href='/New York/active.php'>Active Case Count</a></li>";
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'New York' and state_of_location = 'New York' order by name_of_location";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
@@ -183,6 +186,7 @@ set_hits(); // internal page counter
 		<ul>
 		<?PHP
 		echo "<li><a href='/Virginia/index.php'>Virginia Data</a></li>";
+		echo "<li><a href='/Virginia/active.php'>Active Case Count</a></li>";
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Virginia' and state_of_location = 'Virginia' order by name_of_location";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
