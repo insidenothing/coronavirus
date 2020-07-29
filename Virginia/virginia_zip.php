@@ -1,6 +1,10 @@
 <?PHP
 include_once('../menu.php');
 
+if(isset($_GET['global_date'])){
+	$global_date = date('Y-m-d',strtotime($_GET['global_date']));
+}
+
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
 	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
