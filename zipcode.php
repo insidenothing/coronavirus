@@ -491,8 +491,8 @@ $page_description = $active_count.' to '.$active2_count.' active cases '.$day14[
 include_once('menu.php');
 $date = $global_date;
 
-if (isset($_GET['auto'])){
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
+if (isset($_GET['auto']) && empty($_GET['state_name'])){
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
@@ -500,7 +500,15 @@ if (isset($_GET['auto'])){
 		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date\">";
 	}
 }
-
+if (isset($_GET['auto']) && isset($_GET['state_name'])){
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' and state_name = '$_GET[state_name]' order by RAND() ";
+	$r = $core->query($q);
+	$d = mysqli_fetch_array($r);
+	$left = mysqli_num_rows($r);
+	if ($left > 0){
+		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date&state_name=$_GET[state_name]\">";
+	}
+}
 // Chart 1
 
 $alert_1 		= $day7['alert'];
