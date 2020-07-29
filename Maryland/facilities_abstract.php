@@ -10,7 +10,7 @@ while ($d = mysqli_fetch_array($r)){
   $q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' order by id desc limit 0,1 ";
   $r2 = $core->query($q2);
   $d2 = mysqli_fetch_array($r2);
-  echo "<h1>$d[api_name] from $d2[cache_date_time]<h1>";
+  echo "<h1>$d[api_name] from $d2[cache_date_time]</h1>";
   $json = $d2['raw_response'];
   $array = json_decode($json, true);
   echo "<pre>";
