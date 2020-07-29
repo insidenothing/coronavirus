@@ -4,7 +4,7 @@ include_once('../functions.php'); //outside webserver
 $page_description = 'Maryland Facilities Abstract Data Table';
 include_once('../menu.php');
 // to start just show the latest data raw...
-$q = "select * from coronavirus_apis where run_level = '5000' "; // MD Facilities
+$q = "select * from coronavirus_apis where run_order = '5000' "; // MD Facilities
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
   $q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' order by id desc limit 0,1 ";
