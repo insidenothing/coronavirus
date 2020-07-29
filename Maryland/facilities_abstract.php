@@ -308,11 +308,11 @@ while ($d = mysqli_fetch_array($r)){
   $json = $d2['raw_response'];
   $array = json_decode($json, true);
   foreach ($array['features'] as $key => $value){
-    $Facility_Name = cleanup($value['attributes']['Facility_Name']);
+    $Facility_Name = cleanup($value['attributes']['FACILITY_NAME']);
     $master_array[$Facility_Name][$api_name] = $value; 
-    //echo "<pre>";
-    //print_r($value);
-    //echo "</pre>";
+    echo "<pre>";
+    print_r($value);
+    echo "</pre>";
   }
   
 }
