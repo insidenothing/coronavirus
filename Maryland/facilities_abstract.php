@@ -340,7 +340,7 @@ $buffer=ob_get_clean();
 
 foreach ($master_array as $Facility => $Data){
 	// basic
-	echo "<li>coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['DATE'],$Data['Total_Cases'],$Data['Number_of_Resident_Cases'],$Data['Number_of_Staff_Cases'],$Data['Number_of_Resident_Deaths'],$Data['Number_of_Staff_Deaths'],$Data['Resident_Type'])</li>";
+	echo "<li>coronavirus_Facility($Data[Name],$Data[Zip],$Data[DATE],$Data[Total_Cases],$Data[Number_of_Resident_Cases],$Data[Number_of_Staff_Cases],$Data[Number_of_Resident_Deaths],$Data[Number_of_Staff_Deaths],$Data[Resident_Type])</li>";
 }
 
 
