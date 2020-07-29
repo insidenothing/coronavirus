@@ -424,7 +424,9 @@ function cleanup($str){
    $str = str_replace(")",'_',$str); 
    $str = str_replace("-",'_',$str); 
    $str = str_replace("-",'_',$str); 
-   $str = str_replace(" ",'_',$str); 
+   $str = str_replace(" ",'_',$str);
+   // Normalize Facility Names
+   $str = str_replace("Future_Care",'FutureCare',$str); 
    return $str; 
 }
 
