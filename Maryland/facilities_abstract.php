@@ -408,7 +408,8 @@ $Facility_ZIP['Wilson_Health_Care_Center_at_Asbury_Methodist_Village'] = '20877'
 $Facility_ZIP['Wintergrowth_Assisted_Living'] = '21044';
 $Facility_ZIP['Worcester_County_Detention_Center'] = '21863';
 
-
+$Facility_ZIP['Fahrney_Keedy_Memorial_Home_and_Village'] = '21713';
+$Facility_ZIP['Forest_Haven_Nursing___Rehab_Center'] = '21201';
 
 function cleanup($str){
    $str = str_replace("\n",'_',$str);
