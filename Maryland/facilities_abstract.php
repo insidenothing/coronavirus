@@ -412,6 +412,7 @@ $Facility_ZIP['Fahrney_Keedy_Memorial_Home_and_Village'] = '21713';
 $Facility_ZIP['Forest_Haven_Nursing___Rehab_Center'] = '21201';
 
 function cleanup($str){
+   $str = trim($str);
    $str = str_replace("\n",'_',$str);
    $str = str_replace("'",'_',$str);
    $str = str_replace(",",'_',$str);
