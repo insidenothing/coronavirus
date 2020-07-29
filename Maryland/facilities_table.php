@@ -74,11 +74,17 @@ function make_chart2($range,$Facility_Name){
 		$NumberofResidentDeaths2 = $NumberofResidentDeaths2 + $d['Number_of_Resident_Deaths'];
 		$NumberofStaffDeaths2 = $NumberofStaffDeaths2 + $d['Number_of_Staff_Deaths'];
 	  }else{
-		$color = 'white';
+		  $color = 'white';
 		  if ($days > 90){
-			  $color = '#FFcccc';
+			  $color = '#FF0000;';
+		  }elseif ($days > 60){
+			  $color = '#FFcccc;';
+		  }elseif ($days > 30){
+			  $color = 'lightorange;';
+		  }elseif($days > 15){
+			  $color = 'lightgreen;';
 		  }
-		  $master_facility_table .= "<tr><td style='white-space:pre; background-color:$color;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
+		  $master_facility_table .= "<tr><td style='white-space:pre; background-color:$color'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
 	  }
     $i = $i - 1;
   }
