@@ -296,7 +296,7 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 
 $master_array = array();
 
-//ob_start();
+ob_start();
 $q = "select * from coronavirus_apis where run_order = '5000' "; // MD Facilities
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
@@ -310,14 +310,14 @@ while ($d = mysqli_fetch_array($r)){
   foreach ($array['features'] as $key => $value){
     	  $Facility_Name = cleanup($value['attributes']['FACILITY_NAME']);
     	  //$master_array[$Facility_Name] = $value['attributes']['FACILITY_NAME']; 
-	  //$master_array[$Facility_Name]['DATE'] = $value['attributes']['DATE'];
-	  //$master_array[$Facility_Name]['COUNTY'] = $value['attributes']['COUNTY'];
-	  //$master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
-	  //$master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
-	  //$master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
-	  //$master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
-	  //$master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
-	  //$master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
+	  $master_array[$Facility_Name][$api_name.'_DATE'] = $value['attributes']['DATE'];
+	  $master_array[$Facility_Name][$api_name.'_COUNTY'] = $value['attributes']['COUNTY'];
+	  $master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
+	  $master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
+	  $master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
+	  $master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
+	  $master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
+	  $master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
 	  echo "<li>$Facility_Name $api_name Staff_Private ".$value['attributes']['Staff_Private']."</li>";
     //echo "<pre>";
     //print_r($value);
@@ -325,16 +325,16 @@ while ($d = mysqli_fetch_array($r)){
   }
   
 }
-//$buffer=ob_get_clean();
+$buffer=ob_get_clean();
 
 
 
-//echo "<pre>";
-//print_r($master_array);
-//echo "</pre>";
+echo "<pre>";
+print_r($master_array);
+echo "</pre>";
 
 
-//echo $buffer;
+echo $buffer;
 
 
 include_once('../footer.php');
