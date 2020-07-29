@@ -184,7 +184,7 @@ while($d = mysqli_fetch_array($r)){
   $list = ''; 
   $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$d[id]' order by id DESC limit 0,1");
   $dX = mysqli_fetch_array($rX);
-  $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]'>$dX[id] ON $dX[cache_date_time]</a>]";
+  $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]&type=raw'>$dX[id] ON $dX[cache_date_time]</a>]";
   ob_start();
   $color = 'lightblue';
   if (substr($dX['cache_date_time'],0,10) == date('Y-m-d')){
