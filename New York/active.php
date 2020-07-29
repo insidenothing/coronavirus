@@ -1,6 +1,6 @@
 <?PHP
 $page_description = "Maryland COVID 19 Active Cases";
-include_once('menu.php');
+include_once('../menu.php');
 global $zipcode;
 global $global_date;
 $zipcode = array();
@@ -124,4 +124,4 @@ echo "</td>";
 echo "</tr></table>";
 
 
-include_once('footer.php');
+include_once('../footer.php');
