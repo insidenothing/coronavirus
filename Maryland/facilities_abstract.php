@@ -309,15 +309,16 @@ while ($d = mysqli_fetch_array($r)){
   $array = json_decode($json, true);
   foreach ($array['features'] as $key => $value){
     	  $Facility_Name = cleanup($value['attributes']['FACILITY_NAME']);
-    	  $master_array[$Facility_Name] = $value['attributes']['FACILITY_NAME']; 
-	  $master_array[$Facility_Name]['DATE'] = $value['attributes']['DATE'];
-	  $master_array[$Facility_Name]['COUNTY'] = $value['attributes']['COUNTY'];
-	  $master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
-	  $master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
-	  $master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
-	  $master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
-	  $master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
-	  $master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
+    	  //$master_array[$Facility_Name] = $value['attributes']['FACILITY_NAME']; 
+	  //$master_array[$Facility_Name]['DATE'] = $value['attributes']['DATE'];
+	  //$master_array[$Facility_Name]['COUNTY'] = $value['attributes']['COUNTY'];
+	  //$master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
+	  //$master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
+	  //$master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
+	  //$master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
+	  //$master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
+	  //$master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
+	  echo "<li>$Facility_Name $api_name Staff_Private ".$value['attributes']['Staff_Private']."</li>";
     //echo "<pre>";
     //print_r($value);
     //echo "</pre>";
@@ -328,9 +329,9 @@ while ($d = mysqli_fetch_array($r)){
 
 
 
-echo "<pre>";
-print_r($master_array);
-echo "</pre>";
+//echo "<pre>";
+//print_r($master_array);
+//echo "</pre>";
 
 
 //echo $buffer;
