@@ -112,6 +112,7 @@ set_hits(); // internal page counter
 		<li><a target='_Blank' href="https://www.covid19math.net/Florida/florida_zip.php?run=1&global_date=<?PHP echo date('Y-m-d');?>">Process FL ZIP Codes for <?PHP echo date('Y-m-d');?></a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/Virginia/virginia_zip.php?run=1">Process VA ZIP Codes</a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/New York/new_york_zip.php?run=1">Process NY ZIP Codes</a></li>
+		<li><a target='_Blank' href="https://www.covid19math.net/Maryland/facilities_abstract.php">Process MD Facilities Codes</a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/zipcode.php?zip=21208&auto=1">Find Active / Trend</a></li>
 	
 	</ul>
