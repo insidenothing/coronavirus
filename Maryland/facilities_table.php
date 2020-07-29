@@ -55,7 +55,11 @@ function make_chart2($range,$Facility_Name){
     $Resident_Type = $d['Resident_Type'];
 	  if ($i == 1){
 		// highlight and use as "latest data"
-		$master_facility_table .= "<tr style='background-color:yellow;'><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+		$now = time(); // or your date as well
+		$your_date = strtotime($d['report_date']);
+		$datediff = $now - $your_date;
+		$days = round($datediff / (60 * 60 * 24));
+		$master_facility_table .= "<tr style='background-color:yellow;'><td>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
     		$ReportCount = $ReportCount + $d['report_count'];
 		$NumberofResidentCases = $NumberofResidentCases + $d['Number_of_Resident_Cases'];
 		$NumberofStaffCases = $NumberofStaffCases + $d['Number_of_Staff_Cases'];
@@ -63,7 +67,11 @@ function make_chart2($range,$Facility_Name){
 		$NumberofStaffDeaths = $NumberofStaffDeaths + $d['Number_of_Staff_Deaths'];
 	  }elseif ($i == 2){
 		// highlight for delta
-		$master_facility_table .= "<tr style='background-color:lightblue;'><td>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+		$now = time(); // or your date as well
+		$your_date = strtotime($d['report_date']);
+		$datediff = $now - $your_date;
+		$days = round($datediff / (60 * 60 * 24));
+		$master_facility_table .= "<tr style='background-color:lightblue;'><td>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
     		$ReportCount2 = $ReportCount2 + $d['report_count'];
 		$NumberofResidentCases2 = $NumberofResidentCases2 + $d['Number_of_Resident_Cases'];
 		$NumberofStaffCases2 = $NumberofStaffCases2 + $d['Number_of_Staff_Cases'];
@@ -163,7 +171,6 @@ while ($d = mysqli_fetch_array($r)){
 </div>
 
 <div>
-	New Facilities to assign ZIP code.
 	<?PHP 
 	$r = $core->query("SELECT * FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
   	while ($d = mysqli_fetch_array($r)){
