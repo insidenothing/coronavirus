@@ -304,12 +304,15 @@ while ($d = mysqli_fetch_array($r)){
   $r2 = $core->query($q2);
   $d2 = mysqli_fetch_array($r2);
   echo "<h1>$d[api_name] from $d2[cache_date_time]</h1>";
+  $api_name = cleanup($d['api_name']);
   $json = $d2['raw_response'];
   $array = json_decode($json, true);
   foreach ($array['features'] as $key => $value){
-    echo "<pre>";
-    print_r($value);
-    echo "</pre>";
+    $Facility_Name = cleanup($value['attributes']['Facility_Name']);
+    $master_array[$Facility_Name][$api_name] = $value; 
+    //echo "<pre>";
+    //print_r($value);
+    //echo "</pre>";
   }
   
 }
@@ -317,7 +320,9 @@ while ($d = mysqli_fetch_array($r)){
 
 
 
-
+echo "<pre>";
+print_r($master_array);
+echo "</pre>";
 
 
 //echo $buffer;
