@@ -47,6 +47,8 @@ if ($type == 'csv'){
   header("Content-Disposition: attachment; filename=covid19mathcache".$id.".zip");
   header("Content-Transfer-Encoding: binary");
   //header("Content-Length: ".filesize($filepath.$filename)); 
+}elseif($type == 'raw'){
+  // do nothing but echo
 }else{
   // unknown type
   die('unknown type'); 
