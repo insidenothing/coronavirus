@@ -316,18 +316,45 @@ while ($d = mysqli_fetch_array($r)){
 	  $master_array[$Facility_Name]['Name'] = $Facility_Name;
 	  $master_array[$Facility_Name]['Zip'] = $Facility_ZIP[$Facility_Name];
 	  $master_array[$Facility_Name]['COUNTY'] = $value['attributes']['COUNTY'];
+	  if ($value['attributes']['Youth_Public'] > 0){
+	  	$master_array[$Facility_Name]['Resident_Type'] = 'Youth';
+	  }
+	  if ($value['attributes']['Inmates_Public'] > 0){
+	  	$master_array[$Facility_Name]['Resident_Type'] = 'Inmate';
+	  }
+	  if ($value['attributes']['Patients_Public'] > 0){
+	  	$master_array[$Facility_Name]['Resident_Type'] = 'Patient';
+	  }
+	  if ($value['attributes']['Patients_Public'] > 0){
+	  	$master_array[$Facility_Name]['Resident_Type'] = 'Patient';
+	  }
+	  
 	  if ($api_name == 'MDCOVID19_NumberofCasesByAffected'){
 		$master_array[$Facility_Name]['Total_Cases'] = $value['attributes']['Staff_Private']+$value['attributes']['Residents_Private']+$value['attributes']['Staff_Public']+$value['attributes']['Patients_Public']+$value['attributes']['Inmates_Public']+$value['attributes']['Youth_Public'];  	  
+		$master_array[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Residents_Private']+$value['attributes']['Patients_Public']+$value['attributes']['Inmates_Public']+$value['attributes']['Youth_Public'];  	  
+	  	$master_array[$Facility_Name]['Number_of_Staff_Cases'] = $value['attributes']['Staff_Private']+$value['attributes']['Staff_Public'];  	  
 	  }
 	  if ($api_name == 'MDCOVID19_NumberofDeathsByAffected'){
 		$master_array[$Facility_Name]['Total_Deaths'] = $value['attributes']['Staff_Private']+$value['attributes']['Residents_Private']+$value['attributes']['Staff_Public']+$value['attributes']['Patients_Public']+$value['attributes']['Inmates_Public']+$value['attributes']['Youth_Public'];  	  
+		$master_array[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Residents_Private']+$value['attributes']['Patients_Public']+$value['attributes']['Inmates_Public']+$value['attributes']['Youth_Public'];  	  
+	  	$master_array[$Facility_Name]['Number_of_Staff_Cases'] = $value['attributes']['Staff_Private']+$value['attributes']['Staff_Public'];  	  
 	  }
-	  $master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
-	  $master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
-	  $master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
-	  $master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
-	  $master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
-	  $master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
+	  // a
+	  //$master_array[$Facility_Name][$api_name.'_Staff_Private'] = $value['attributes']['Staff_Private'];
+	  //$master_array[$Facility_Name][$api_name.'_Residents_Private'] = $value['attributes']['Residents_Private'];
+	  //$master_array[$Facility_Name][$api_name.'_Staff_Public'] = $value['attributes']['Staff_Public'];
+	  // b
+	  //$master_array[$Facility_Name][$api_name.'_Patients_Public'] = $value['attributes']['Patients_Public'];
+	  // c
+	  //$master_array[$Facility_Name][$api_name.'_Inmates_Public'] = $value['attributes']['Inmates_Public'];
+	  // d
+	  //$master_array[$Facility_Name][$api_name.'_Youth_Public'] = $value['attributes']['Youth_Public'];
+	  
+	  
+	 
+		  
+ 	  
+		  
 	  //echo "<li>$Facility_Name $api_name Staff_Private ".$value['attributes']['Staff_Private']."</li>";
     //echo "<pre>";
     //print_r($value);
