@@ -118,13 +118,29 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofResidentDeaths - $NumberofResidentDeaths2);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths - $NumberofStaffDeaths2);?></td>
 		</tr>
-		<tr style='background-color:orange; font-weight:bold;'>
+		<tr style='font-weight:bold;'>
 			<td>Assuming Weekly Update - Daily Average</td>
 			<td><?PHP echo number_format(($ReportCount - $ReportCount2) / 7,2);?></td>
 			<td><?PHP echo number_format(($NumberofResidentCases - $NumberofResidentCases2) / 7,2);?></td>
 			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 7,2);?></td>
 			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 7,2);?></td>
 			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 7,2);?></td>
+		</tr>
+		<tr style='font-weight:bold;'>
+			<td>Assuming 2x Week Update - Daily Average</td>
+			<td><?PHP echo number_format(($ReportCount - $ReportCount2) / 14,2);?></td>
+			<td><?PHP echo number_format(($NumberofResidentCases - $NumberofResidentCases2) / 14,2);?></td>
+			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 14,2);?></td>
+			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 14,2);?></td>
+			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 14,2);?></td>
+		</tr>
+		<tr style='font-weight:bold;'>
+			<td>Assuming Monthly Update - Daily Average</td>
+			<td><?PHP echo number_format(($ReportCount - $ReportCount2) / 30,2);?></td>
+			<td><?PHP echo number_format(($NumberofResidentCases - $NumberofResidentCases2) / 30,2);?></td>
+			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 30,2);?></td>
+			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 30,2);?></td>
+			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 30,2);?></td>
 		</tr>
 	</table>
 </div>	
