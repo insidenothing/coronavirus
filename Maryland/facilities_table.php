@@ -53,24 +53,20 @@ function make_chart2($range,$Facility_Name){
   while ($d = mysqli_fetch_array($r)){
     $name = str_replace('_',' ',"$d[Facility_Name], $d[state_name]");
     $Resident_Type = $d['Resident_Type'];
-	  if ($i == 1){
+	$now = time(); // or your date as well
+	$your_date = strtotime($d['report_date']);
+	$datediff = $now - $your_date;
+	$days = round($datediff / (60 * 60 * 24));
+	  if ($i == 1 && $days < 14){
 		// highlight and use as "latest data"
-		$now = time(); // or your date as well
-		$your_date = strtotime($d['report_date']);
-		$datediff = $now - $your_date;
-		$days = round($datediff / (60 * 60 * 24));
 		$master_facility_table .= "<tr style='background-color:yellow;'><td style='white-space:pre;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";
     		$ReportCount = $ReportCount + $d['report_count'];
 		$NumberofResidentCases = $NumberofResidentCases + $d['Number_of_Resident_Cases'];
 		$NumberofStaffCases = $NumberofStaffCases + $d['Number_of_Staff_Cases'];
 		$NumberofResidentDeaths = $NumberofResidentDeaths + $d['Number_of_Resident_Deaths'];
 		$NumberofStaffDeaths = $NumberofStaffDeaths + $d['Number_of_Staff_Deaths'];
-	  }elseif ($i == 2){
+	  }elseif ($i == 2 && $days < 30){
 		// highlight for delta
-		$now = time(); // or your date as well
-		$your_date = strtotime($d['report_date']);
-		$datediff = $now - $your_date;
-		$days = round($datediff / (60 * 60 * 24));
 		$master_facility_table .= "<tr style='background-color:lightblue;'><td style='white-space:pre;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";
     		$ReportCount2 = $ReportCount2 + $d['report_count'];
 		$NumberofResidentCases2 = $NumberofResidentCases2 + $d['Number_of_Resident_Cases'];
@@ -78,7 +74,7 @@ function make_chart2($range,$Facility_Name){
 		$NumberofResidentDeaths2 = $NumberofResidentDeaths2 + $d['Number_of_Resident_Deaths'];
 		$NumberofStaffDeaths2 = $NumberofStaffDeaths2 + $d['Number_of_Staff_Deaths'];
 	  }else{
-		$master_facility_table .= "<tr><td style='white-space:pre;'>$d[report_date]</td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
+		$master_facility_table .= "<tr><td style='white-space:pre;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
 	  }
     $i = $i - 1;
   }
