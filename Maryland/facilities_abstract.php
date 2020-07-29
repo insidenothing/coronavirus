@@ -301,7 +301,7 @@ $q = "select * from coronavirus_apis where run_order = '5000' "; // MD Facilitie
 $r = $core->query($q);
 while ($d = mysqli_fetch_array($r)){
 	if ($_GET['date']){
-  		$q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' and just_date = '$_GET[date]' order by id desc limit 0,1 ";
+  		$q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' and cache_date_time like '$_GET[date] %' order by id desc limit 0,1 ";
 	}else{
 		$q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' order by id desc limit 0,1 ";
 	}
