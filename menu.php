@@ -238,7 +238,9 @@ ddtreemenu.createTree("treemenu1", true)
 		</div>
 		<?PHP 
 	} else{
-
+		$q = "SELECT distinct state_name FROM coronavirus_apis";
+		$r = $core->query($q);
+		$state_names = mysqli_num_rows($r);
 		$q = "SELECT distinct Facility_Name FROM coronavirus_facility";
 		$r = $core->query($q);
 		$processed_facility = mysqli_num_rows($r);
@@ -252,13 +254,13 @@ ddtreemenu.createTree("treemenu1", true)
 		if ($left > 0){
 			?>
 			<div class="alert alert-warning">
-				Using <?PHP echo $total_apis;?> API's we are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total. View APIs <a href='library.php'>HERE</a>. #BigData #covid19math
+				Using <?PHP echo $total_apis;?> API's for <?PHP echo $state_names;?> States we are currently Processing Zip Codes for <?PHP echo $date;?>. We have processed <?PHP echo $done;?> and have <?PHP echo $left;?> to process. <?PHP echo number_format($processed_zips); ?> Total. <?PHP echo $processed_facility;?> Living Facilities View APIs <a href='library.php'>HERE</a>. #BigData #covid19math
 			</div>
 			<?PHP 		
 		}else{
 			?>
 			<div class="alert alert-success">
-				Using <?PHP echo $total_apis;?> API's we have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! View APIs <a href='library.php'>HERE</a>. #BigData #covid19math
+				Using <?PHP echo $total_apis;?> API's for <?PHP echo $state_names;?> States we have finished processing <?PHP echo number_format($processed_zips);?> ZIP codes and <?PHP echo $processed_facility;?> Living Facilities for <?PHP echo $date;?>! View APIs <a href='library.php'>HERE</a>. #BigData #covid19math
 			</div>
 			<?PHP 		
 		}
