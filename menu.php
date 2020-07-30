@@ -65,7 +65,7 @@ set_hits(); // internal page counter
 <div id="fb-root"></div>
 	
 	
-
+<?PHP if ( empty($_GET['auto']) ){ ?>
 	<script>
 
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
@@ -137,7 +137,7 @@ set_hits(); // internal page counter
    }(document, 'script', 'facebook-jssdk'));
 </script>	
 	
-	
+<?PHP }else{ echo "<span style='background-color:orange;'>FB DISABLED for AUTO</span>"; } ?>	
 <script type="text/javascript" src="/simpletreemenu.js">
 
 /***********************************************
