@@ -125,7 +125,7 @@ set_hits(); // internal page counter
     });
       
     FB.AppEvents.logPageView();   
-	  
+    testAPI();	  
   };
 
   (function(d, s, id){
