@@ -80,10 +80,11 @@ if ($_GET['run']){
         $test1 = $old;
         $test2 = $raw;
         if ($test1 != $test2){
-              $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
+              $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response, api_flavor ) values ( '$id', NOW(), '$raw_response', '$d[api_flavor]' )");
+              $cache_id = $core->insert_id;
               $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
              slack_general("$left) done: $name - *update*",'covid19-apis-update');
-             galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$core->insert_id.'&type='.$d['api_flavor']);
+             galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
         }else{
              slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
