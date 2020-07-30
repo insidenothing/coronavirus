@@ -3,7 +3,7 @@ $page_description = "COVID 19 Spike Monitor";
 include_once('menu.php');
 ?>
 
-<h1>Community Page - Facebook Login Required</h1>
+<h1>Crowdsourcing Data - Facebook Login Required</h1>
 
 <div id='private'>
 
