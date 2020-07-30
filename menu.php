@@ -89,10 +89,10 @@ set_hits(); // internal page counter
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '{app-id}',
+      appId      : '964347477327114',
       cookie     : true,                     // Enable cookies to allow the server to access the session.
       xfbml      : true,                     // Parse social plugins on this webpage.
-      version    : '{api-version}'           // Use this Graph API version for this call.
+      version    : 'v7.0'           	     // Use this Graph API version for this call.
     });
 
 
@@ -125,7 +125,7 @@ set_hits(); // internal page counter
     });
       
     FB.AppEvents.logPageView();   
-    testAPI();	  
+    checkLoginState();	  
   };
 
   (function(d, s, id){
@@ -367,9 +367,10 @@ ddtreemenu.createTree("treemenu1", true)
 	
 	
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+
 <div id="status">
+	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>	
 </div>
 	
 	
