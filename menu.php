@@ -71,11 +71,14 @@ set_hits(); // internal page counter
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
+    var x = document.getElementById("private");
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
       testAPI();  
+      x.style.display = "block";
     } else {                                 // Not logged into your webpage or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
+      x.style.display = "none";
     }
   }
 
