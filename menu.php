@@ -65,8 +65,14 @@ set_hits(); // internal page counter
 <div id="fb-root"></div>
 	
 	
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
+
 <script>
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}	
+	
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '964347477327114',
@@ -76,7 +82,7 @@ set_hits(); // internal page counter
     });
       
     FB.AppEvents.logPageView();   
-      
+	  
   };
 
   (function(d, s, id){
@@ -317,7 +323,10 @@ ddtreemenu.createTree("treemenu1", true)
 		
 	
 	
-	
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
 	
 	
 
