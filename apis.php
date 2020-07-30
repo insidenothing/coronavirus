@@ -83,7 +83,7 @@ if ($_GET['run']){
               $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
               $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
              slack_general("$left) done: $name - *update*",'covid19-apis-update');
-             galert_mail('trigger@applet.ifttt.com',$name.' API Updated','https://www.covid19math.net/index.php');
+             galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$core->insert_id.'&type='.$d['api_flavor']);
         }else{
              slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
