@@ -67,18 +67,27 @@ set_hits(); // internal page counter
 	
 <?PHP if ( empty($_GET['auto']) ){ ?>
 	<script>
-
+	 function LogoutState() { 	
+		FB.logout(function(response) {
+		  // user is now logged out
+			statusChangeCallback(response);
+		});
+	 }
+		
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
     var x = document.getElementById("private");
+    var y = document.getElementById("public");
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
       testAPI();  
       x.style.display = "block";
+      y.style.display = "none";
     } else {                                 // Not logged into your webpage or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
       x.style.display = "none";
+      y.style.display = "block";
     }
   }
 
@@ -350,8 +359,8 @@ ddtreemenu.createTree("treemenu1", true)
 	
 	<div style='position:absolute; top:10px; right:10px;' class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 	<form style='position:absolute; top:10px; right:100px;' method='GET' action='/zipcode.php'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success" onclick='FB.AppEvents.logEvent("buttonClicked")'>Go to ZIP Code</button></form>
-	<fb:login-button style='position:absolute; top:60px; right:10px;' scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>	
-	
+	<fb:login-button id='public' style='position:absolute; top:60px; right:10px;' scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>	
+	<fb:login-button id='private' style='position:absolute; top:60px; right:10px;' scope="public_profile,email" onlogin="LogoutState();"></fb:login-button>	
 		
 		<?PHP /*
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland Status</a></li>
