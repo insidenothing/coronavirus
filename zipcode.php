@@ -501,7 +501,7 @@ if (isset($_GET['auto']) && empty($_GET['state'])){
 	}
 }
 if (isset($_GET['auto']) && isset($_GET['state'])){
-	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' and state_name = '$_GET[state]' order by RAND() ";
+	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' and state_name = '$_GET[state]' order by report_count DESC ";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
