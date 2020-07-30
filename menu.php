@@ -65,7 +65,7 @@ set_hits(); // internal page counter
 <div id="fb-root"></div>
 	
 	
-<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script> -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
