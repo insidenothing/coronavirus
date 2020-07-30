@@ -24,6 +24,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta property="og:url"           content="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" />
   <meta property="og:type"          content="website" />
+  <meta property="fb:app_id"        content="964347477327114" />
   <meta property="og:title"         content="COVID19MATH.net Digital Resources" />
   <meta property="og:description"   content="<?PHP echo $page_description;?>" />
 	
