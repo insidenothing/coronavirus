@@ -120,7 +120,7 @@ $pieces = explode($break,$raw);
 			$count = str_replace('Suppressed','_',$count); 
 			$piecesX = explode('_',$count);
 			$bits = count($piecesX) - 1;
-			$count = $piecesX[$bits];
+			$count = intval($piecesX[$bits]);
 			echo "<li>coronavirus_zip($zip,$date,$count)</li>";
 		}
 	  	/*
