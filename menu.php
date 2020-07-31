@@ -226,11 +226,29 @@ set_hits(); // internal page counter
 <li>United States
 	<ul>
 		
+		<li>Arizona
+		<ul>
+		<?PHP
+		echo "<li><a href='/Arizona/index.php'>State Data</a></li>";
+		echo "<li><a href='/Arizona/active.php'>Active Cases</a></li>";
+		echo "<li><a href='/Arizona/spikes.php'>Spikes</a></li>";
+		echo "<li><a href='/Arizona/outbreak.php'>Outbreak</a></li>";
+		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Arizona' and state_of_location = 'Arizona' order by name_of_location";
+		$r = $core->query($q);
+		while($d = mysqli_fetch_array($r)){	
+			echo "<li><a href='/county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
+		}			
+		?>
+		</ul>
+		</li>
+		
 		<li>Florida
 		<ul>
 		<?PHP
 		echo "<li><a href='/Florida/index.php'>State Data</a></li>";
-		echo "<li><a href='/Florida/active.php'>Active Case Count</a></li>";
+		echo "<li><a href='/Florida/active.php'>Active Cases</a></li>";
+		echo "<li><a href='/Florida/spikes.php'>Spikes</a></li>";
+		echo "<li><a href='/Florida/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Florida' and state_of_location = 'Florida' order by name_of_location";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
@@ -247,7 +265,9 @@ set_hits(); // internal page counter
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' and state_of_location = 'Maryland' order by name_of_location";
 		$r = $core->query($q);
 		echo "<li><a href='/Maryland/index.php'>State Data</a></li>";
-		echo "<li><a href='/Maryland/active.php'>Active Case Count</a></li>";
+		echo "<li><a href='/Maryland/active.php'>Active Cases</a></li>";
+		echo "<li><a href='/Maryland/spikes.php'>Spikes</a></li>";
+		echo "<li><a href='/Maryland/outbreak.php'>Outbreak</a></li>";
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[name_of_location]'>$d[name_of_location]</a></li>";
 		}			
@@ -261,7 +281,9 @@ set_hits(); // internal page counter
 		<ul>
 		<?PHP
 		echo "<li><a href='/New York/index.php'>State Data</a></li>";
-		echo "<li><a href='/New York/active.php'>Active Case Count</a></li>";
+		echo "<li><a href='/New York/active.php'>Active Cases</a></li>";
+		echo "<li><a href='/New York/spikes.php'>Spikes</a></li>";
+		echo "<li><a href='/New York/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'New York' and state_of_location = 'New York' order by name_of_location";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
@@ -275,7 +297,9 @@ set_hits(); // internal page counter
 		<ul>
 		<?PHP
 		echo "<li><a href='/Virginia/index.php'>Virginia Data</a></li>";
-		echo "<li><a href='/Virginia/active.php'>Active Case Count</a></li>";
+		echo "<li><a href='/Virginia/active.php'>Active Cases</a></li>";
+		echo "<li><a href='/Virginia/spikes.php'>Spikes</a></li>";
+		echo "<li><a href='/Virginia/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Virginia' and state_of_location = 'Virginia' order by name_of_location";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
