@@ -28,6 +28,10 @@ while($d = mysqli_fetch_array($r)){
 
 
 function coronavirus_zip($zip,$date,$count){
+	if ($count == 0){
+		echo "[skip - count too low $zip for $date]";
+		return 1;
+	}
 	global $core;
 	global $zipcode;
 	$town = $zipcode[$zip];
