@@ -114,7 +114,11 @@ $pieces = explode($break,$raw);
 	  	$zip = intval(substr(trim($pieces2),0,5));	
 	  	//$counter = explode($seperator,$pieces2);
 	  	//$count = intval($counter[1]);
-		$count = htmlspecialchars($pieces2);
+		//$count = htmlspecialchars($pieces2);
+	  	$count = preg_replace("/[^a-zA-Z0-9]+/", "_", $pieces2);
+	  	$count = str_replace($zip,'_',$count); 
+	 	$count = str_replace('Tribal','_',$count); 
+	  	$count = str_replace('Data Suppressed','_',$count); 
 	  	echo "<li>coronavirus_zip($zip,$date,$count)</li>";
 	  	/*
 		
