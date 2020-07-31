@@ -106,7 +106,7 @@ $break = '
 	$pieces = json_decode($d['raw_response'], true);
 	foreach ($pieces as $pieces2) {
 		$date = $global_date;
-		$zip = $pieces2['zcta'];
+		$zip = $pieces2['zip_code'];
 		$count = $pieces2['number_of_cases'];
 		$testing = $pieces2['number_of_pcr_testing'];
 		if ($count == 'Suppressed*'){
