@@ -111,7 +111,7 @@ $pieces = explode($break,$raw);
 
   foreach ($pieces as $pieces2) {
 	  	$date = $global_date;
-	  	$zip = sub_str($pieces2,0,5);	
+	  	$zip = substr($pieces2,0,5);	
 	  	$counter = explode($seperator,$pieces2);
 	  	$count = intval($counter[1]);
 		echo "<li>coronavirus_zip($zip,$date,$count)</li>";
