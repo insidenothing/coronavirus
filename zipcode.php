@@ -1220,15 +1220,15 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	}	
 }
 </script>
+<?PHP if ($sma_chart_6 != ''){ ?>
+	<div class="row">
+		<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
+	</div>
 
-<div class="row">
-	<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
-</div>
-
-<div class="row">
-	<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
-</div>
-
+	<div class="row">
+		<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
+	</div>
+<?PHP } ?>
 <div class="row">
 	<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir.' '.$day7change.'%';?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_2.' '.$dir2.' '.$day14change.'%';?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
