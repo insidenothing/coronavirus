@@ -27,10 +27,11 @@ while($d = mysqli_fetch_array($r)){
 }
 
 
-function coronavirus_zip($zip,$date,$count,$testing){
+function coronavirus_zip($zip,$date,$count){
 	global $core;
 	global $zipcode;
 	$town = $zipcode[$zip];
+	$testing=0;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $core->query($q);
 	$d = mysqli_fetch_array($r);
@@ -122,6 +123,7 @@ $pieces = explode($break,$raw);
 			$bits = count($piecesX) - 1;
 			$count = intval($piecesX[$bits]);
 			echo "<li>coronavirus_zip($zip,$date,$count)</li>";
+			coronavirus_zip($zip,$date,$count);
 		}
 	  	/*
 		
