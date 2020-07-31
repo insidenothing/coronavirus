@@ -135,7 +135,8 @@ $break = '
 
 
 
-
-die('DONE');
+$q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'virginia' ";
+$core->query($q);
+die('DONE '.$q);
 
 
