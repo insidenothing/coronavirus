@@ -96,11 +96,13 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 	// watch for microsoft characters =(
 	$d = mysqli_fetch_array($r);
 
-	echo $d['raw_response'];
-
-$break = '
-';
 	
+	$parts = explode('ConfirmedCaseCount',$d['raw_response']);
+	$subparts = explode('�',$parts[1]);
+	echo $subparts[0];
+
+$break 		= ''; // \u5
+$seperator 	= ''; // \u4	
   
   
   //$pieces = json_decode($d['raw_response'], true);
