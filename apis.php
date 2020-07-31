@@ -79,7 +79,9 @@ if ($_GET['run']){
         $raw_response = $core->real_escape_string($raw);
         $test1 = $old;
         $test2 = $raw;
-        if ($test1 != $test2){
+        if (trim($test2) == '[]'){
+          slack_general("$left) fail - empty json: $name - *bad update*",'covid19-apis');
+        }elseif ($test1 != $test2){
               $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response, api_flavor ) values ( '$id', NOW(), '$raw_response', '$d[api_flavor]' )");
               $cache_id = $core->insert_id;
               $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
@@ -132,7 +134,9 @@ if ($_GET['single']){
     $raw_response = $core->real_escape_string($raw);
     $test1 = $old;
     $test2 = $raw;
-    if ($test1 != $test2){
+    if (trim($test2) == '[]'){
+          slack_general("$left) fail - empty json: $name - *bad update*",'covid19-apis');
+    }elseif ($test1 != $test2){
           $core->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response ) values ( '$id', NOW(), '$raw_response' )");
           echo '<h1>Error Check: '.mysqli_error($core).'</h1>';
           $core->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
