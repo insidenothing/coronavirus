@@ -164,6 +164,7 @@ echo "</pre>";
 
 
 
-
-die('DONE');
+$q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'arizona' ";
+$core->query($q);
+die('DONE '.$q);
 
