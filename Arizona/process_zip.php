@@ -106,16 +106,16 @@ $break 		= ''; // \u5
 $seperator 	= ''; // \u4	
   
 $pieces = explode($break,$raw);  
-  //$pieces = json_decode($d['raw_response'], true);
-	
-  
-  
+ 
 
-  
-  /*
   foreach ($pieces as $pieces2) {
-		$date = $global_date;
-		$zip = $pieces2['zcta'];
+	  	$date = $global_date;
+	  	$zip = sub_str($pieces2,0,5);	
+	  	$counter = explode($seperator,$pieces2);
+	  	$count = intval($counter[1]);
+		echo "<li>coronavirus_zip($zip,$date,$count)</li>";
+	  	/*
+		
 		$count = $pieces2['number_of_cases'];
 		$testing = $pieces2['number_of_pcr_testing'];
 		if ($count == 'Suppressed*'){
@@ -132,13 +132,14 @@ $pieces = explode($break,$raw);
 		}
 		if ($date != '1969-12-31'){
 			echo "<li>$date - $zip - $count / $testing</li>";  
-      if (empty($_GET['run'])){
-        //die('missing run=1');
-      }
+			      if (empty($_GET['run'])){
+				//die('missing run=1');
+			      }
 			//coronavirus_zip($zip,$date,$count,$testing);
 		}
+		*/
 	}
-  */
+  
 }
 
 echo "<pre>";
