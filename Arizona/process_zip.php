@@ -100,6 +100,7 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 	$parts = explode('ConfirmedCaseCount',$d['raw_response']);
 	$subparts = explode('�',$parts[1]);
 	$raw =  $subparts[0];
+	$raw = str_replace('','',$raw); // \uc
 	//echo $raw;
 
 $break 		= ''; // \u5
