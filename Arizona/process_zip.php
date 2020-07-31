@@ -96,7 +96,7 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 	// watch for microsoft characters =(
 	$d = mysqli_fetch_array($r);
 
-	
+	$date = substr($d['cache_date_time'],0,10);
 	$parts = explode('ConfirmedCaseCount',$d['raw_response']);
 	$subparts = explode('�',$parts[1]);
 	$raw =  $subparts[0];
@@ -110,7 +110,7 @@ $pieces = explode($break,$raw);
  
 
   foreach ($pieces as $pieces2) {
-	  	$date = $global_date;
+	  	//$date = $global_date;
 	  	$zip = intval(substr(trim($pieces2),0,5));	
 	  	//$counter = explode($seperator,$pieces2);
 	  	//$count = intval($counter[1]);
