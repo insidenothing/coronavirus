@@ -117,7 +117,6 @@ if($global_date == date('Y-m-d') || isset($_GET['id']) ){
 
 
 
-
-
-die('DONE');
-
+$q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'arizona' ";
+$core->query($q);
+die('DONE '.$q);
