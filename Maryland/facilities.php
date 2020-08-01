@@ -226,6 +226,14 @@ $Facility_ZIP['St__Joseph_s_Nursing_Home'] = '21228';
 $Facility_ZIP['Wilson_Healthcare_Center'] = '20877';
 
 
+function cleanup_county($str){
+   $str = str_replace("Anne Arundel",'Anne_Arundel',$str);
+   $str = str_replace("Baltimore County",'Baltimore',$str);
+   $str = str_replace("Baltimore City",'Baltimore_City',$str);
+   $str = str_replace("Baltimore City",'Baltimore_City',$str);
+   return $str; 
+}
+
 function cleanup($str){
    $str = str_replace("\n",'_',$str);
    $str = str_replace("'",'_',$str);
@@ -276,7 +284,8 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 	}else{
 		// we reached the start of data collection.	
 	}
-	
+	$county_name = cleanup_county($county_name);
+	$county_name = $core->real_escape_string($county_name);
 	if ($d['id'] == ''){
 		echo "[insert $Resident_Type $Facility_Name $count $date]";
 		$q = "insert into coronavirus_facility (county_name,Resident_Type,zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration,Number_of_Resident_Cases,Number_of_Staff_Cases,Number_of_Resident_Deaths,Number_of_Staff_Deaths) values ('$county_name','$Resident_Type','$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration','$Number_of_Resident_Cases','$Number_of_Staff_Cases','$Number_of_Resident_Deaths','$Number_of_Staff_Deaths') ";
