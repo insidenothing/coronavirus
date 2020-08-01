@@ -66,7 +66,7 @@ function coronavirus_county($zip,$date,$count){
 	}
 	if ($d['id'] == ''){
 		echo "[insert $zip $date $count]";
-		$q = "insert into coronavirus_county (testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','Arizona','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_county (testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','maryland','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
 		$q = "update coronavirus_county set testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and report_date = '$date' ";	
