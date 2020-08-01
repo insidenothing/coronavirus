@@ -63,7 +63,7 @@ function coronavirus_zip($zip,$date,$count){
 		echo "[$date update $zip $count]";
 		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
-	$core->query($q);
+	$core->query($q) or die("SQL Error " . mysqli_error($core));
 	//slack_general("$q",'covid19-sql');
 }
 
