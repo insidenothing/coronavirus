@@ -69,7 +69,7 @@ if ($_GET['run']){
     if (substr($d2['cache_date_time'],0,10) != date('Y-m-d') || $_GET['run'] == 2){
       $wait_check='';
       $last_update_hour = date('G',strtotime($d2['cache_date_time'])); 
-      $this_hour = date('G') + 1;
+      $this_hour = date('G') + 2;
       if ($last_update_hour > $this_hour){
         slack_general("$left) *Wait* ( Last Hour $last_update_hour > $this_hour This Hour )",'covid19-apis');
       }else{
