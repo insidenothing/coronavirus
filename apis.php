@@ -215,7 +215,7 @@ while($d = mysqli_fetch_array($r)){
   echo "<li style='background-color:$color;' title='$d[api_description]'>(# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
   $last_update_hour = date('G',strtotime($dX['cache_date_time'])); 
-  $this_hour = date('G') + 1;
+  $this_hour = date('G') + 2;
   if ($last_update_hour > $this_hour){
     $wait_list .= $line;
   }elseif ($color == 'lightgreen'){
