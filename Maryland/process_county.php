@@ -102,20 +102,17 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 	$d = mysqli_fetch_array($r);
 
 	$date = substr($d['cache_date_time'],0,10);
-	$parts = explode('ConfirmedCaseCount',$d['raw_response']);
-	$subparts = explode('�',$parts[1]);
-	$raw =  $subparts[0];
-	$raw = str_replace('','',$raw); // \uc
-	//echo $raw;
-
-$break 		= ''; // \u5
-$seperator 	= ''; // \u4	
-  
-$pieces = explode($break,$raw);  
+	
+	
+$pieces = json_decode($d['raw_response'], true); 
  
 
-  foreach ($pieces as $pieces2) {
-	  	//$date = $global_date;
+  foreach ($pieces['features'] as $key => $value){
+	  	$time = $value['attributes']['DATE'] / 1000;
+		$date = date('Y-m-d',$time+14400);
+	  	echo "<li>$date </li>";
+	  	/*
+		$date = $global_date;
 	  	$zip = intval(substr(trim($pieces2),0,5));	
 	  	if ($zip != 0){
 			$count = preg_replace("/[^a-zA-Z0-9]+/", "_", $pieces2);
@@ -129,7 +126,7 @@ $pieces = explode($break,$raw);
 			echo "<li>coronavirus_county($zip,$date,$count)</li>";
 			//coronavirus_county($zip,$date,$count);
 		}
-	  	/*
+	  	
 		
 		$count = $pieces2['number_of_cases'];
 		$testing = $pieces2['number_of_pcr_testing'];
