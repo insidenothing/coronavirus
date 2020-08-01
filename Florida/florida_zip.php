@@ -28,33 +28,40 @@ function coronavirus_zip($zip,$date,$count){
 	global $core;
 	global $zipcode;
 	$town = $zipcode[$zip];
-	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
-	$r = $core->query($q);
-	$d = mysqli_fetch_array($r);
-	// look for yesterday
-	$date2 = date('Y-m-d',strtotime($date)-86400);
-	$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
-	$r2 = $core->query($q2);
-	$d2 = mysqli_fetch_array($r2);
-	if ($d2['id'] != ''){
-		// Let's Process Trend Data
-		$last_trend_direction = $d2['trend_direction'];
-		$last_trend_duration = $d2['trend_duration'];
-		$last_report_count = $d2['report_count'];
-		if ($count == $last_report_count){
-			$current_trend = 'FLAT';	
-		}elseif ($count > $last_report_count){
-			$current_trend = 'UP';	
+	$date_now = time() - 1814400;
+	$date_then = strtotime($date);
+	if ($date_then < $date_now){	
+		$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
+		$r = $core->query($q);
+		$d = mysqli_fetch_array($r);
+		// look for yesterday
+		$date2 = date('Y-m-d',strtotime($date)-86400);
+		$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
+		$r2 = $core->query($q2);
+		$d2 = mysqli_fetch_array($r2);
+		if ($d2['id'] != ''){
+			// Let's Process Trend Data
+			$last_trend_direction = $d2['trend_direction'];
+			$last_trend_duration = $d2['trend_duration'];
+			$last_report_count = $d2['report_count'];
+			if ($count == $last_report_count){
+				$current_trend = 'FLAT';	
+			}elseif ($count > $last_report_count){
+				$current_trend = 'UP';	
+			}else{
+				$current_trend = 'DOWN';
+			}
+			if ($last_trend_direction == $current_trend){
+				$current_duration = $last_trend_duration + 1;
+			}else{
+				$current_duration = 0;
+			}
 		}else{
-			$current_trend = 'DOWN';
+			// we reached the start of data collection.	
 		}
-		if ($last_trend_direction == $current_trend){
-			$current_duration = $last_trend_duration + 1;
-		}else{
-			$current_duration = 0;
-		}
+
 	}else{
-		// we reached the start of data collection.	
+		echo "[$date skip trend for archival]";
 	}
 	if ($d['id'] == ''){
 		echo "[$date insert $zip $count]";
