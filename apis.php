@@ -2,6 +2,17 @@
 include_once('/var/www/html/mdwestserve/newsbot.php');
 $page_description = "APIs and Descriptions";
 include_once('menu.php');
+
+
+
+function process_link_check($link){
+ if ($_SERVER['REMOTE_ADDR'] == '69.250.28.138'){ 
+  return $link;
+ }
+}
+
+
+
 function check_error($json,$url){
   $error429 = '{
   "error" : 
@@ -211,7 +222,7 @@ while($d = mysqli_fetch_array($r)){
   if (substr($dX['cache_date_time'],0,10) == date('Y-m-d',strtotime('-1 day'))){
     $color='lightyellow';
   }
-  echo "<li style='background-color:$color;' title='$d[api_description]'>(# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
+  echo "<li style='background-color:$color;' title='$d[api_description]'>".process_link_check("<a target='_Blank' href='$d[run_after]'>PROCESS</a>")." (# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
   $last_update_hour = date('G',strtotime($dX['cache_date_time'])); 
   $this_hour = date('G') + 2;
@@ -247,7 +258,7 @@ while($d = mysqli_fetch_array($r)){
   if (substr($dX['cache_date_time'],0,10) == date('Y-m-d',strtotime('-1 day'))){
     $color='lightyellow';
   }
-  echo "<li style='background-color:$color;' title='$d[api_description]'>(# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
+  echo "<li style='background-color:$color;' title='$d[api_description]'>".process_link_check("<a target='_Blank' href='$d[run_after]'>PROCESS</a>")." (# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
   $last_update_hour = date('G',strtotime($dX['cache_date_time'])); 
   $this_hour = date('G') + 2;
@@ -284,7 +295,7 @@ while($d = mysqli_fetch_array($r)){
   if (substr($dX['cache_date_time'],0,10) == date('Y-m-d',strtotime('-1 day'))){
     $color='lightyellow';
   }
-  echo "<li style='background-color:$color;' title='$d[api_description]'>(# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
+  echo "<li style='background-color:$color;' title='$d[api_description]'>".process_link_check("<a target='_Blank' href='$d[run_after]'>PROCESS</a>")." (# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
   $line = ob_get_clean();
   $last_update_hour = date('G',strtotime($dX['cache_date_time'])); 
   $this_hour = date('G') + 2;
