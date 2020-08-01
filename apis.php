@@ -38,7 +38,7 @@ function check_error($json,$url){
 if ($_GET['debug']){
   // this will debug a single api
   $api_id = $_GET['debug'];
-  $r = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC limit 0,30");
+  $r = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$api_id' order by id DESC");
   while($d = mysqli_fetch_array($r)){
     echo "<li>API $api_id CACHE $d[id] ON $d[cache_date_time]</li>";
   }
