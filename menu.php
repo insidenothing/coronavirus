@@ -233,7 +233,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Arizona/active.php'>Active Cases</a></li>";
 		echo "<li><a href='/Arizona/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Arizona/outbreak.php'>Outbreak</a></li>";
-		$q = "SELECT distinct county_name FROM coronavirus_county where name_of_location <> 'Arizona' and state_of_location = 'Arizona' order by county_name";
+		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Arizona' order by county_name";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
@@ -249,7 +249,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Florida/active.php'>Active Cases</a></li>";
 		echo "<li><a href='/Florida/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Florida/outbreak.php'>Outbreak</a></li>";
-		$q = "SELECT distinct county_name FROM coronavirus_county where name_of_location <> 'Florida' and state_of_location = 'Florida' order by county_name";
+		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Florida' order by county_name";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
@@ -262,7 +262,7 @@ set_hits(); // internal page counter
 		<ul>
 		<li><a href="/Maryland/facilities_table.php">Facilities Table</a></li>
 		<?PHP
-		$q = "SELECT distinct county_name FROM coronavirus_county where name_of_location <> 'Maryland' and state_of_location = 'Maryland' order by county_name";
+		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Maryland' order by county_name";
 		$r = $core->query($q);
 		echo "<li><a href='/Maryland/index.php'>State Data</a></li>";
 		echo "<li><a href='/Maryland/active.php'>Active Cases</a></li>";
@@ -284,7 +284,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/New York/active.php'>Active Cases</a></li>";
 		echo "<li><a href='/New York/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/New York/outbreak.php'>Outbreak</a></li>";
-		$q = "SELECT distinct county_name FROM coronavirus_county where name_of_location <> 'New York' and state_of_location = 'New York' order by county_name";
+		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'New York' order by county_name";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
@@ -300,7 +300,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Virginia/active.php'>Active Cases</a></li>";
 		echo "<li><a href='/Virginia/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Virginia/outbreak.php'>Outbreak</a></li>";
-		$q = "SELECT distinct county_name FROM coronavirus_county where name_of_location <> 'Virginia' and state_of_location = 'Virginia' order by county_name";
+		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Virginia' order by county_name";
 		$r = $core->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
