@@ -193,11 +193,10 @@ set_hits(); // internal page counter
 <li>Hello Patrick 	
 	<ul>
 		<li><a href="https://www.covid19math.net/apis.php">API Status</a></li>
-		<li><a target='_Blank' href="https://www.covid19math.net/Maryland/zip.php?run=1">Process MD ZIP Codes</a></li>
+
 		<li><a target='_Blank' href="https://www.covid19math.net/Florida/florida_zip.php?run=1&global_date=<?PHP echo date('Y-m-d');?>">Process FL ZIP Codes for <?PHP echo date('Y-m-d');?></a></li>
-		<li><a target='_Blank' href="https://www.covid19math.net/Virginia/virginia_zip.php?run=1">Process VA ZIP Codes</a></li>
-		<li><a target='_Blank' href="https://www.covid19math.net/New York/new_york_zip.php?run=1">Process NY ZIP Codes</a></li>
-		<li><a target='_Blank' href="https://www.covid19math.net/Maryland/facilities_abstract.php">Process MD Facilities Codes</a></li>
+	
+		<li><a target='_Blank' href="https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=arizona">Find Active / Trend AZ</a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=maryland">Find Active / Trend MD</a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=florida">Find Active / Trend FL</a></li>
 		<li><a target='_Blank' href="https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=new york">Find Active / Trend NY</a></li>
