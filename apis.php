@@ -188,6 +188,42 @@ if ($_GET['level']){
   die('done');
 }
 
+echo "<h1>County Level Data</h1>";
+$done_list = '';
+$todo_list = '';
+$wait_list = '';
+// display what is active
+$q = "SELECT * FROM coronavirus_apis where api_status = 'active' and run_order = '3000' order by last_updated DESC ";
+$r = $core->query($q);
+while($d = mysqli_fetch_array($r)){
+  //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
+  //sleep($d['run_delay']);
+
+  $list = ''; 
+  $rX = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '$d[id]' order by id DESC limit 0,1");
+  $dX = mysqli_fetch_array($rX);
+  $list .= "[<a target='_Blank' href='cache.php?id=$dX[id]&type=raw'>$dX[id] ON $dX[cache_date_time]</a>]";
+  ob_start();
+  $color = 'lightblue';
+  if (substr($dX['cache_date_time'],0,10) == date('Y-m-d')){
+    $color='lightgreen';
+  }
+  if (substr($dX['cache_date_time'],0,10) == date('Y-m-d',strtotime('-1 day'))){
+    $color='lightyellow';
+  }
+  echo "<li style='background-color:$color;' title='$d[api_description]'>(# $d[id])(lvl $d[run_order]) $d[last_updated] <u>$d[api_name]</u> $d[api_status] $list or <a target='_Blank' href='$d[api_url]'>SOURCE</a></li>";
+  $line = ob_get_clean();
+  $last_update_hour = date('G',strtotime($dX['cache_date_time'])); 
+  $this_hour = date('G') + 2;
+  if ($last_update_hour > $this_hour){
+    $wait_list .= $line;
+  }elseif ($color == 'lightgreen'){
+    $done_list .= $line;
+  }else{
+    $todo_list .= $line;
+  }
+}
+echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 echo "<h1>ZIP Code Data</h1>";
 $done_list = '';
 $todo_list = '';
