@@ -123,7 +123,7 @@ if($global_date == date('Y-m-d') || isset($_GET['id']) ){
 
 if (isset($_GET['id'])){
 	$cache_id = $_GET['id'];
-	$r = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '30' and id < '$cache_id' order by id DESC");
+	$r = $core->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '30' and id > '$cache_id' order by id limit 0,1");
    	$d = mysqli_fetch_array($r);
 	if ($d['id']){
 		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/Florida/florida_zip.php?id=".$d['id']."&run=1&from_id=$cache_id\">";
