@@ -39,7 +39,7 @@ if (isset($_GET['type_graph'])){
 include_once('county_zip_codes.php');
 global $zip;
 if(isset($_GET['county'])){
-	$zip = intval($_GET['county']);	
+	$zip = htmlspecialchars($_GET['county']);	
 }else{
   	$zip = '99999';	
 }
