@@ -321,7 +321,7 @@ while ($d = mysqli_fetch_array($r)){
 	$the_index = $trader_sma_timePeriod - 1;
 	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
 	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
-	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '90' ){
+	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '300' ){
 		
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		if ($remove2_total > 0){
@@ -349,7 +349,7 @@ while ($d = mysqli_fetch_array($r)){
 		}
 		$low_chart .=  '{ label: "'.$d['report_date'].'", y: '.$active_count_high.' }, ';
 		$high_chart .=  '{ label: "'.$d['report_date'].'", y: '.$active_count_low.' }, ';
-	}elseif( $range != '90' ){
+	}elseif( $range != '300' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
@@ -474,7 +474,7 @@ $alert = ob_get_clean();
 	$return['per'] = $per;
 	return $return;
 }
-$just_make_data = make_chart('90');
+$just_make_data = make_chart('300');
 $active_count = $just_make_data['active_count'];
 $active2_count = $just_make_data['active2_count'];
 
@@ -483,7 +483,7 @@ $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('300');
-$day90 = make_chart('90');
+$day90 = make_chart('300');
 
 
 
