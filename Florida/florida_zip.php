@@ -96,9 +96,9 @@ foreach ($array['features'] as $key => $value){
 
 print_r($return);
 */
-echo "<pre>";
-print_r($array);
-echo "</pre>";
+//echo "<pre>";
+//print_r($array);
+//echo "</pre>";
 
 if (empty($_GET['run'])){
 	die('missing &run=1');
@@ -112,7 +112,7 @@ if($global_date == date('Y-m-d') || isset($_GET['id']) ){
 		if ($count == '<5'){
 			$count = 5;
 		}
-		echo "<li>$key coronavirus_zip($zip,$date,$count)</li>";
+		echo "<li>".date('r')." $key coronavirus_zip($zip,$date,$count)</li>";
 		coronavirus_zip($zip,$date,$count);
 	}
 }	
