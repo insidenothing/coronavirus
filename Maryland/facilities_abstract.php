@@ -421,7 +421,9 @@ function cleanup_county($str){
    $str = str_replace("Anne Arundel",'Anne_Arundel',$str);
    $str = str_replace("Baltimore County",'Baltimore',$str);
    $str = str_replace("Baltimore City",'Baltimore_City',$str);
-   $str = str_replace("Baltimore City",'Baltimore_City',$str);
+   $str = str_replace("Queen Anne's",'Queen_Annes',$str);
+   $str = str_replace("St. Mary's",'St_Marys',$str);
+   $str = str_replace("Prince George's",'Prince_Georges',$str);
    return $str; 
 }
 
