@@ -95,7 +95,7 @@ if($global_date == date('Y-m-d') || isset($_GET['id'])){
 		$id = $_GET['id'];
 		$r = $core->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
 	}else{
-		$r = $core->query("select * from coronavirus_api_cache where api_id = '68' order by id desc limit 0, 1"); // always get the latest from the cache	
+		$r = $core->query("select * from coronavirus_api_cache where api_id = '20' order by id desc limit 0, 1"); // always get the latest from the cache	
 	}
 
 	// watch for microsoft characters =(
