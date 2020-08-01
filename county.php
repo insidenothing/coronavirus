@@ -497,7 +497,7 @@ if (isset($_GET['auto']) && empty($_GET['state'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['county_name']."&auto=$left&when=$date\">";
+		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/county.php?county=".$d['county_name']."&auto=$left&when=$date\">";
 	}
 }
 if (isset($_GET['auto']) && isset($_GET['state'])){
@@ -506,7 +506,7 @@ if (isset($_GET['auto']) && isset($_GET['state'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['county_name']."&auto=$left&when=$date&state=$_GET[state]\">";
+		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/county.php?county=".$d['county_name']."&auto=$left&when=$date&state=$_GET[state]\">";
 	}
 }
 // Chart 1
