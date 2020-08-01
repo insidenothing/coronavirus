@@ -83,7 +83,7 @@ if (isset($_GET['id'])){
 $d = mysqli_fetch_array($r);
 
 //echo $d['raw_response'];
-
+$date = substr($d['cache_date_time'],0,10);
 $array = json_decode($d['raw_response'], true);
 /*
 $return = array();
@@ -109,8 +109,8 @@ if($global_date == date('Y-m-d') || isset($_GET['id']) ){
 		//OBJECTID" : 642, "ZIP" : "33445", "OBJECTID_1" : 1053, "DEPCODE" : 50, "COUNTYNAME" : "Palm Beach", "FieldMatch" : "Palm Beach-33445", "POName" : "Delray Beach", "Places" : "Boca Raton, Delray Beach, Boynton Beach", "OBJECTID_12" : 798, "ZIPX" : "Palm Beach-33445", "c_places" : "Delray Beach", "Cases_1" : "221", "LabelY" : 221, "Shape__Area" : 0.00188006293865328, "Shape__Length" : 0.199578714953371 } }, 
 		$zip = $value['attributes']['ZIP'];
 		$count = $value['attributes']['Cases_1'];
-		//echo "<li>$key coronavirus_zip($zip,$_GET[global_date],$count)</li>";
-		coronavirus_zip($zip,$_GET['global_date'],$count);
+		echo "<li>$key coronavirus_zip($zip,$date,$count)</li>";
+		//coronavirus_zip($zip,$date,$count);
 	}
 }	
 	
