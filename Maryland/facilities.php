@@ -243,7 +243,7 @@ function cleanup($str){
 }
 
 
-function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Resident_Cases,$Number_of_Staff_Cases,$Number_of_Resident_Deaths,$Number_of_Staff_Deaths,$Resident_Type){
+function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Resident_Cases,$Number_of_Staff_Cases,$Number_of_Resident_Deaths,$Number_of_Staff_Deaths,$Resident_Type,$county_name){
 	global $Facility_ZIP;
 	// the order we call the function will matter...
 	global $core;
@@ -279,10 +279,10 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 	
 	if ($d['id'] == ''){
 		echo "[insert $Resident_Type $Facility_Name $count $date]";
-		$q = "insert into coronavirus_facility (Resident_Type,zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration,Number_of_Resident_Cases,Number_of_Staff_Cases,Number_of_Resident_Deaths,Number_of_Staff_Deaths) values ('$Resident_Type','$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration','$Number_of_Resident_Cases','$Number_of_Staff_Cases','$Number_of_Resident_Deaths','$Number_of_Staff_Deaths') ";
+		$q = "insert into coronavirus_facility (county_name,Resident_Type,zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration,Number_of_Resident_Cases,Number_of_Staff_Cases,Number_of_Resident_Deaths,Number_of_Staff_Deaths) values ('$county_name','$Resident_Type','$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration','$Number_of_Resident_Cases','$Number_of_Staff_Cases','$Number_of_Resident_Deaths','$Number_of_Staff_Deaths') ";
 	}else{
 		echo "[update $Resident_Type $Facility_Name $count $date]";
-		$q = "update coronavirus_facility set Resident_Type='$Resident_Type',Number_of_Resident_Cases='$Number_of_Resident_Cases', Number_of_Staff_Cases='$Number_of_Staff_Cases', Number_of_Resident_Deaths='$Number_of_Resident_Deaths',Number_of_Staff_Deaths='$Number_of_Staff_Deaths', zip_code = '$zip', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
+		$q = "update coronavirus_facility set county_name='$county_name',Resident_Type='$Resident_Type',Number_of_Resident_Cases='$Number_of_Resident_Cases', Number_of_Staff_Cases='$Number_of_Staff_Cases', Number_of_Resident_Deaths='$Number_of_Resident_Deaths',Number_of_Staff_Deaths='$Number_of_Staff_Deaths', zip_code = '$zip', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
 		
 	}
 	$core->query($q);
@@ -356,7 +356,7 @@ foreach ($array['features'] as $key => $value){
 
 foreach ($return as $Facility => $Data){
 	// basic
-	coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['Date'],$Data['Total_Cases'],$Data['Number_of_Resident_Cases'],$Data['Number_of_Staff_Cases'],$Data['Number_of_Resident_Deaths'],$Data['Number_of_Staff_Deaths'],$Data['Resident_Type']);
+	coronavirus_Facility($Data['Name'],$Data['Zip'],$Data['Date'],$Data['Total_Cases'],$Data['Number_of_Resident_Cases'],$Data['Number_of_Staff_Cases'],$Data['Number_of_Resident_Deaths'],$Data['Number_of_Staff_Deaths'],$Data['Resident_Type'],$Data['County']);
 }
 
 
