@@ -30,7 +30,7 @@ function coronavirus_zip($zip,$date,$count){
 	$town = $zipcode[$zip];
 	$date_now = time() - 1814400;
 	$date_then = strtotime($date);
-	if ($date_then < $date_now){	
+	if ($date_then > $date_now){	
 		$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 		$r = $core->query($q);
 		$d = mysqli_fetch_array($r);
