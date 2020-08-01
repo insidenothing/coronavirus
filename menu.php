@@ -84,8 +84,8 @@ set_hits(); // internal page counter
       x.style.display = "block";
       y.style.display = "none";
     } else {                                 // Not logged into your webpage or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
+      document.getElementById('status').innerHTML = 'You are not logged ' +
+        'in...';
       x.style.display = "none";
       y.style.display = "block";
     }
@@ -118,7 +118,7 @@ set_hits(); // internal page counter
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+         response.name + ', Stay Safe!';
     });
   }
 
@@ -384,7 +384,7 @@ ddtreemenu.createTree("treemenu1", true)
 	<div style='position:absolute; top:10px; right:10px;' class="fb-share-button" data-href="https://www.covid19math.net<?PHP echo $_SERVER['REQUEST_URI'];?>" data-layout="box_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.covid19math.net.com&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 	<form style='position:absolute; top:10px; right:100px;' method='GET' action='/zipcode.php'><input class="form-control input-lg" name='zip' type="number" min="00000" max="99999"><button type="submit" class="btn btn-success" onclick='FB.AppEvents.logEvent("buttonClicked")'>Go to ZIP Code</button></form>
 	<div style='position:absolute; top:60px; right:10px;' id='public'>PUBLIC: <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></div>	
-	<div style='position:absolute; top:60px; right:10px;' id='private'>PRIVATE: <fb:logout-button scope="public_profile,email" onlogout="LogoutState();"></fb:logout-button></div>	
+	<div style='position:absolute; top:60px; right:10px;' id='private'>SECURE</div>	
 		
 		<?PHP /*
 		<li role='presentation' <?PHP if($_SERVER['REQUEST_URI'] == '/phase1.php'){ echo "class='active'"; } ?> ><a href="phase1.php">Reopen Maryland Status</a></li>
