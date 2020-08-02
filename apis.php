@@ -1,6 +1,6 @@
 <?PHP
 include_once('/var/www/html/mdwestserve/newsbot.php');
-$page_description = "APIs and Descriptions";
+$page_description = "API Schedule";
 include_once('menu.php');
 
 
