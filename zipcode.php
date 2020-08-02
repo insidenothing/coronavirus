@@ -65,24 +65,26 @@ function fix_zero($int){
 
 $logo = 'off';
 global $zip_debug;
-include_once('/var/www/secure.php'); //outside webserver
-include_once('functions.php'); //outside webserver
 
+include_once('/var/www/secure.php'); 	// outside webserver
+global $covid_db; 		    	// database object
+
+include_once('functions.php'); 		// common functions
 
 global $remove;
 $remove = array();
 
 function data_points($zip,$field){
-	global $core;
+	global $covid_db;
 	$range = '7'; // one week
 	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip'";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
 	$range2= $range - 1;
 	$start = max($start, 0);
 	$q = "SELECT report_date, $field FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$chart .=  '{ label: "'.$d['report_date'].'", y: '.$d[$field].' }, ';
 	}
@@ -93,7 +95,7 @@ function data_points($zip,$field){
 
 // Assisted Living
 function make_chart2($range,$Facility_Name){
-	global $core;
+	global $covid_db;
 	global $zip;
 	global $zip2;
 	global $remove;
@@ -105,14 +107,14 @@ $time_chart2='';
 $text_div2='';
 $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
 slack_general("$q",'covid19-sql');
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
 $start = max($start, 0);
 $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
 slack_general("$q",'covid19-sql');
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $i=0;
 	$remove_total=0;
 while ($d = mysqli_fetch_array($r)){
@@ -254,7 +256,7 @@ $alert = ob_get_clean();
 /// zip code code =)
  /// 
 function make_chart($range){
-	global $core;
+	global $covid_db;
 	global $zip;
 	global $zip2;
 	global $remove;
@@ -269,13 +271,13 @@ $text_div='';
 $time_chart2='';
 $text_div2='';
 $q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
 $start = max($start, 0);
 $q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $i=0;
 	$remove_total=0;
 	$remove2_total=0;
@@ -384,11 +386,11 @@ while ($d = mysqli_fetch_array($r)){
 	$i2			= 0;
 if ($zip2 != '99999'){
 	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
 	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip2' order by report_date limit $start, $range";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$name2 = " $d[town_name], $d[state_name]";
 		$count = $d['report_count'];
@@ -493,7 +495,7 @@ $date = $global_date;
 
 if (isset($_GET['auto']) && empty($_GET['state'])){
 	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
@@ -502,7 +504,7 @@ if (isset($_GET['auto']) && empty($_GET['state'])){
 }
 if (isset($_GET['auto']) && isset($_GET['state'])){
 	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' and state_name = '$_GET[state]' order by report_count DESC ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
@@ -586,7 +588,7 @@ $testing_chart_6 	= $day90['testing_chart'];
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $d = mysqli_fetch_array($r); 
 $dir = 'same';
 if ($d['day7change_percentage'] > $per_1){
@@ -626,7 +628,7 @@ global $active_count_date_low;
 
 $q = "update coronavirus_zip set active_count_28day='$active2_count', active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
-$core->query($q);
+$covid_db->query($q);
 slack_general("$q",'covid19-sql');
 ?>
 <?PHP if ($dir == 'up' && $dir2 == 'up' && $dir3 == 'up' && $dir4 == 'up'){ ?><script>document.body.style.backgroundColor = "#FF0000";</script><?PHP } ?>
@@ -1102,7 +1104,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	chartZIP6b.render();
 	<?PHP 
 	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip' order by Facility_Name";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$i=7;
 	while ($d = mysqli_fetch_array($r)){
 		$day7 			= make_chart2('90',$d['Facility_Name']);
@@ -1259,7 +1261,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 <?PHP 
 
 $q = "SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '$zip' order by Facility_Name";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $i=7;
 while ($d = mysqli_fetch_array($r)){
 	echo '<div class="row">
@@ -1271,7 +1273,7 @@ while ($d = mysqli_fetch_array($r)){
 
 
 /* debug...
-<small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?> <?PHP print_r($remove);?></small>
+<small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($covid_db);?> <?PHP print_r($remove);?></small>
 	*/ ?>
 <?PHP include_once('footer.php'); ?>
 	
