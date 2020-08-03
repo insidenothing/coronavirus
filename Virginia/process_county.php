@@ -14,6 +14,26 @@ if (isset($_GET['delete_date'])){
 	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'virginia'");
 	die('done '.$delete);
 }
+?>
+
+<script>
+function scrolldown() {
+  setTimeout(
+    function()
+    {
+      window.scrollTo(0,document.body.scrollHeight);
+      scrolldown();
+    }, 1000
+  )
+}
+
+scrolldown();
+	
+	
+</script>
+
+
+<?PHP
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
@@ -93,7 +113,9 @@ if (count($pieces) == 0){
 	echo "<h1>USING CSV METHOD</h1>";
 	$pieces = explode($break,$d['raw_response']);
 	echo "<h3>".count($pieces)."</h3>";
+	$i=0;
 	foreach ($pieces as $key => $value){
+		$i++;
 		// 6/25/2020,51840,Winchester,Lord Fairfax,301,21,3 coronavirus_county(,2020-08-02 11:06:01,,,);
 		$parts = explode(',',$value);
 		$date = $parts[0];
@@ -102,7 +124,7 @@ if (count($pieces) == 0){
 		$hospitalizations = $parts[5];
 		$deaths = $parts[6];
 		if ($name != 'Locality' && $name != ''){
-			echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
+			echo "<li>$i coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
 			coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
 		}
 	}
