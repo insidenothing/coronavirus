@@ -323,7 +323,7 @@ while ($d = mysqli_fetch_array($r)){
 	$the_index = $trader_sma_timePeriod - 1;
 	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
 	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
-	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '300' ){
+	if ( $this_sma7 > 0 && $remove_total2 > 0 && $range == '300' ){
 		
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		if ($remove2_total > 0){
