@@ -95,7 +95,7 @@ $d = mysqli_fetch_array($r);
 $pieces = json_decode($d['raw_response'], true); 
  
 
-  foreach ($pieces['Array'] as $key => $value){
+  foreach ($pieces as $key => $value){
 	//$time = $value['attributes']['DATE'] / 1000;
 	//$date = date('Y-m-d',$time+14400);
 	//echo "<li>$date </li>";
