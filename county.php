@@ -861,7 +861,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name;?> Deaths over Time - source covid19math.net"
+			text: "<?PHP echo $name;?> Deaths over Last 30 Days - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
