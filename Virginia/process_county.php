@@ -23,6 +23,7 @@ while($d = mysqli_fetch_array($r)){
 	$zipcode[$zip] = $d['town_name'];
 }
 function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
+	$date = date('Y-m-d',strtotime($date));
 	//return "<li>coronavirus_county($zip,$date,$count)</li>";
 	if ($count == 0){
 		echo "[skip - count too low $zip for $date]";
