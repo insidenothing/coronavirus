@@ -95,11 +95,10 @@ $d = mysqli_fetch_array($r);
 $pieces = json_decode($d['raw_response'], true); 
  
 
-  foreach ($pieces['features'] as $key => $value){
+  foreach ($pieces['Array'] as $key => $value){
 	//$time = $value['attributes']['DATE'] / 1000;
 	//$date = date('Y-m-d',$time+14400);
 	//echo "<li>$date </li>";
-	  
 	$name = $value['attributes']['locality'];
 	$count = $value['attributes']['total_cases'];
 	$date = substr($value['attributes']['report_date'],0,10);
