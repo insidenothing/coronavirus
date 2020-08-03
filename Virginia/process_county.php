@@ -92,9 +92,15 @@ if (count($pieces) == 0){
 	echo "<h1>USING CSV METHOD</h1>";
 	$pieces = explode($break,$d['raw_response']);
 	foreach ($pieces as $key => $value){
+		// 6/25/2020,51840,Winchester,Lord Fairfax,301,21,3 coronavirus_county(,2020-08-02 11:06:01,,,);
+		$parts = explode(',',$value);
+		$date = $parts[0];
+		$name = $parts[2];
+		$count = $parts[4];
+		$hospitalizations = $parts[5];
+		$deaths = $parts[6];
 		//if ($name != 'A State'){
-	
-			echo "<li> $value coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
+			echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
 			//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
 		//}
 	}
