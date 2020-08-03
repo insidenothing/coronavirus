@@ -236,7 +236,7 @@ set_hits(); // internal page counter
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Arizona' order by county_name";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
-			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
+			echo "<li><a href='/county.php?county=$d[county_name]&state=arizona'>$d[county_name]</a></li>";
 		}			
 		?>
 		</ul>
@@ -252,7 +252,7 @@ set_hits(); // internal page counter
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Florida' order by county_name";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
-			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
+			echo "<li><a href='/county.php?county=$d[county_name]&state=florida'>$d[county_name]</a></li>";
 		}			
 		?>
 		</ul>
@@ -269,7 +269,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Maryland/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Maryland/outbreak.php'>Outbreak</a></li>";
 		while($d = mysqli_fetch_array($r)){	
-			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
+			echo "<li><a href='/county.php?county=$d[county_name]&state=maryland'>$d[county_name]</a></li>";
 		}			
 		?>
 		</ul>
@@ -287,7 +287,7 @@ set_hits(); // internal page counter
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'New York' order by county_name";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
-			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
+			echo "<li><a href='/county.php?county=$d[county_name]&state=new york'>$d[county_name]</a></li>";
 		}			
 		?>
 		</ul>
@@ -303,7 +303,7 @@ set_hits(); // internal page counter
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Virginia' order by county_name";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
-			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
+			echo "<li><a href='/county.php?county=$d[county_name]&state=virginia'>$d[county_name]</a></li>";
 		}			
 		?>
 		</ul>
