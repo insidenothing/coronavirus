@@ -267,6 +267,7 @@ function make_chart($range){
 $time_chart='';
 $text_div='';
 $time_chart2='';
+	$death_chart='';
 $text_div2='';
 $q = "SELECT * FROM coronavirus_county where county_name = '$zip' order by report_date";
 $r = $core->query($q);
@@ -305,6 +306,7 @@ while ($d = mysqli_fetch_array($r)){
 	
 	$rolling = $d['report_count'] - $remove_total;
 	
+	$death_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['death_count'].' }, ';
 	
 	$remove2_date = $d['report_date'];
 	$remove2_count = $remove2[$remove2_date]; 
@@ -369,7 +371,7 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$i++; // number of days in the graph
 }
-	
+	$death_chart 		= rtrim(trim($death_chart), ",");
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
 	$remove2_chart 		= rtrim(trim($remove2_chart), ",");
 	$low_chart 		= rtrim(trim($low_chart), ",");
@@ -463,6 +465,7 @@ $alert = ob_get_clean();
 	$return['new_chart'] = $new_chart;
 	$return['remove_chart'] = $remove_chart;
 	$return['remove2_chart'] = $remove2_chart;
+	$return['death_chart'] = $death_chart;
 	$return['high_chart'] = $high_chart;
 	$return['low_chart'] = $low_chart;
 	$return['sma_chart'] = $sma_chart;
@@ -583,6 +586,7 @@ $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
+$death_chart		= $day90['death_chart'];
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_county where county_name = '$zip' and report_date = '$yesterday'";
@@ -848,6 +852,48 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		}'; } ?>]
 	})
 	chartZIP3.render();	
+	
+	
+	
+	
+	var chartDeath = new CanvasJS.Chart("chartContainerDeath", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $name;?> Deaths over Time - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of Deaths",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> Total Deaths",
+		dataPoints: [
+			<?PHP echo $death_chart; ?>
+		]
+		}]
+	})
+	chartDeath.render();
+	
+	
+	
+	
 var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		theme:"light2",
 		animationEnabled: true,
@@ -1220,6 +1266,9 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	}	
 }
 </script>
+<div class="row">
+	<div class="col-sm-12"><div id="chartContainerDeath" style="height: 250px; width: 100%;"></div></div>
+</div>
 <?PHP if ($sma_chart_6 != ''){ ?>
 	<div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
@@ -1237,38 +1286,38 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
-
-
-<div class="row">
-	<table border='1' cellpadding='0' cellspacing='0'>
-		<tr>
-			<td>Report Date</td>
-			<td>Name</td>
-			<td>Resident Type</td>
-			<td>Report Count</td>
-			<td>Number of Resident Cases</td>
-			<td>Number of Staff Cases</td>
-			<td>Number of Resident Deaths</td>
-			<td>Number of Staff Deaths</td>
-		</tr>
-		<?PHP echo $master_facility_table; ?>
-	</table>
-</div>
-
-
-<?PHP 
-
-$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
-$r = $core->query($q);
-$i=7;
-while ($d = mysqli_fetch_array($r)){
-	echo '<div class="row">
-		<div class="col-sm-12"><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
+<a href='?show=1'>Show Facilities</a>
+<?PHP if (isset($_GET['show'])){ ?>
+	<div class="row">
+		<table border='1' cellpadding='0' cellspacing='0'>
+			<tr>
+				<td>Report Date</td>
+				<td>Name</td>
+				<td>Resident Type</td>
+				<td>Report Count</td>
+				<td>Number of Resident Cases</td>
+				<td>Number of Staff Cases</td>
+				<td>Number of Resident Deaths</td>
+				<td>Number of Staff Deaths</td>
+			</tr>
+			<?PHP echo $master_facility_table; ?>
+		</table>
 	</div>
-	';
- 	$i++;
-}
 
+
+	<?PHP 
+
+	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
+	$r = $core->query($q);
+	$i=7;
+	while ($d = mysqli_fetch_array($r)){
+		echo '<div class="row">
+			<div class="col-sm-12"><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
+		</div>
+		';
+		$i++;
+	}
+}
 
 /* debug...
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($core);?> <?PHP print_r($remove);?></small>
