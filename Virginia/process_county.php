@@ -27,7 +27,7 @@ while($d = mysqli_fetch_array($r)){
 }
 
 
-function coronavirus_county($zip,$date,$count,$testing,$death_count){
+function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
 	//return "<li>coronavirus_county($zip,$date,$count)</li>";
 	if ($count == 0){
 		echo "[skip - count too low $zip for $date]";
@@ -36,7 +36,7 @@ function coronavirus_county($zip,$date,$count,$testing,$death_count){
 	global $covid_db;
 	global $zipcode;
 	$town = $zipcode[$zip];
-	//$testing=0;
+	$testing=0;
 	$q = "select * from coronavirus_county where county_name = '$zip' and report_date = '$date' and state_name = 'virginia'";
 	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
@@ -67,10 +67,10 @@ function coronavirus_county($zip,$date,$count,$testing,$death_count){
 	}
 	if ($d['id'] == ''){
 		echo "[insert $zip $date $count]";
-		$q = "insert into coronavirus_county (death_count,testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$death_count','$testing','$zip','$date','$count','$town','virginia','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_county (hospitalizations,death_count,testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$hospitalizations','$death_count','$testing','$zip','$date','$count','$town','virginia','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
-		$q = "update coronavirus_county set death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_county set hospitalizations='$hospitalizations', death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and report_date = '$date' ";	
 	}
 	$covid_db->query($q) or die(mysqli_error($covid_db));
 	//slack_general("$q",'covid19-sql');
@@ -91,7 +91,7 @@ if(isset($_GET['id'])){
 	$r = $covid_db->query("select * from coronavirus_api_cache where api_id = '35' order by id desc limit 0, 1"); // always get the latest from the cache	
 }
 $d = mysqli_fetch_array($r);
-$date = substr($d['cache_date_time'],0,10);
+//$date = substr($d['cache_date_time'],0,10);
 $pieces = json_decode($d['raw_response'], true); 
  
 
@@ -99,13 +99,15 @@ $pieces = json_decode($d['raw_response'], true);
 	//$time = $value['attributes']['DATE'] / 1000;
 	//$date = date('Y-m-d',$time+14400);
 	//echo "<li>$date </li>";
-	$name = $value['attributes']['COUNTYNAME'];
-	$count = $value['attributes']['CasesAll'];
-	$testing = $value['attributes']['T_Total_Res'];
-	$deaths = $value['attributes']['Deaths'];
+	  
+	$name = $value['attributes']['locality'];
+	$count = $value['attributes']['total_cases'];
+	$date = substr($value['attributes']['report_date'],0,10);
+	$hospitalizations = $value['attributes']['hospitalizations'];
+	$deaths = $value['attributes']['deaths'];
 	if ($name != 'A State'){
-		echo "<li>coronavirus_county($name,$date,$count,$testing,$deaths);</li>";
-		//coronavirus_county($name,$date,$count,$testing,$deaths);
+		echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
+		//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
 	}
   }
   
