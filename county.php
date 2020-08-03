@@ -43,6 +43,12 @@ if(isset($_GET['county'])){
 }else{
   	$zip = '99999';	
 }
+global $state;
+if(isset($_GET['state'])){
+	$state = htmlspecialchars($_GET['state']);	
+}else{
+  	$state = 'maryland';	
+}
 global $zip2;
 $zip2 = '99999';
 $pos = strpos($zip, ',');
@@ -73,15 +79,16 @@ global $remove;
 $remove = array();
 
 function data_points($zip,$field){
+	global $state;
 	global $core;
 	$range = '7'; // one week
-	$q = "SELECT report_date, $field FROM coronavirus_county where county_name = '$zip'";
+	$q = "SELECT report_date, $field FROM coronavirus_county where county_name = '$zip' and state_name = '$state' ";
 	$r = $core->query($q);
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
 	$range2= $range - 1;
 	$start = max($start, 0);
-	$q = "SELECT report_date, $field FROM coronavirus_county where county_name = '$zip' order by report_date limit $start, $range";
+	$q = "SELECT report_date, $field FROM coronavirus_county where county_name = '$zip' and state_name = '$state' order by report_date limit $start, $range";
 	$r = $core->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$chart .=  '{ label: "'.$d['report_date'].'", y: '.$d[$field].' }, ';
@@ -93,6 +100,7 @@ function data_points($zip,$field){
 
 // Assisted Living
 function make_chart2($range,$Facility_Name){
+	global $state;
 	global $core;
 	global $zip;
 	global $zip2;
@@ -263,19 +271,20 @@ function make_chart($range){
 	global $active_count_low;
 	global $active_count_date_high;
 	global $active_count_date_low;
+	global $state;
 	
 $time_chart='';
 $text_div='';
 $time_chart2='';
 	$death_chart='';
 $text_div2='';
-$q = "SELECT * FROM coronavirus_county where county_name = '$zip' order by report_date";
+$q = "SELECT * FROM coronavirus_county where county_name = '$zip' and state_name = '$state' order by report_date";
 $r = $core->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
 $start = max($start, 0);
-$q = "SELECT * FROM coronavirus_county where county_name = '$zip' order by report_date limit $start, $range";
+$q = "SELECT * FROM coronavirus_county where county_name = '$zip' and state_name = '$state' order by report_date limit $start, $range";
 $r = $core->query($q);
 $i=0;
 	$remove_total=0;
