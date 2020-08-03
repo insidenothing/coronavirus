@@ -28,7 +28,7 @@ while($d = mysqli_fetch_array($r)){
 
 
 function coronavirus_county($zip,$date,$count){
-	return "<li>coronavirus_county($zip,$date,$count)</li>";
+	//return "<li>coronavirus_county($zip,$date,$count)</li>";
 	if ($count == 0){
 		echo "[skip - count too low $zip for $date]";
 		return 1;
@@ -107,9 +107,9 @@ $pieces = json_decode($d['raw_response'], true);
   
 
 
-//echo "<pre>";
-//print_r($pieces);
-//echo "</pre>";	
+echo "<pre>";
+print_r($pieces);
+echo "</pre>";	
 
 
 if (isset($_GET['id'])){
