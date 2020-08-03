@@ -82,7 +82,13 @@ if(isset($_GET['id'])){
 }
 $d = mysqli_fetch_array($r);
 //$date = substr($d['cache_date_time'],0,10);
+
+
+
 $pieces = json_decode($d['raw_response'], true); 
+
+echo "<h1>".count($pieces)."</h1>";
+
 foreach ($pieces as $key => $value){
 	//$time = $value['attributes']['DATE'] / 1000;
 	//$date = date('Y-m-d',$time+14400);
