@@ -105,7 +105,7 @@ if (isset($_GET['id'])){
 	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '35' and id > '$cache_id' order by id limit 0,1");
    	$d = mysqli_fetch_array($r);
 	if ($d['id']){
-		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/Virginia/process_county.php?id=".$d['id']."&run=1&from_id=$cache_id\">";
+//		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/Virginia/process_county.php?id=".$d['id']."&run=1&from_id=$cache_id\">";
 	}
 }else{
 	$q = "update coronavirus_county set change_percentage_time = '' where state_name = 'virginia' ";
