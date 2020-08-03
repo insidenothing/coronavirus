@@ -49,6 +49,7 @@ global $send_message;
 global $core;
 
 include_once('/var/www/secure.php'); //outside webserver
+global $covid_db; 
 include_once('functions.php');
 include_once('slack.php'); 
 set_hits(); // internal page counter
@@ -233,7 +234,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Arizona/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Arizona/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Arizona' order by county_name";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
 		}			
@@ -249,7 +250,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Florida/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Florida/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Florida' order by county_name";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
 		}			
@@ -262,7 +263,7 @@ set_hits(); // internal page counter
 		<li><a href="/Maryland/facilities_table.php">Facilities Table</a></li>
 		<?PHP
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Maryland' order by county_name";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		echo "<li><a href='/Maryland/index.php'>State Data</a></li>";
 		echo "<li><a href='/Maryland/active.php'>Active Cases</a></li>";
 		echo "<li><a href='/Maryland/spikes.php'>Spikes</a></li>";
@@ -284,7 +285,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/New York/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/New York/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'New York' order by county_name";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
 		}			
@@ -300,7 +301,7 @@ set_hits(); // internal page counter
 		echo "<li><a href='/Virginia/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/Virginia/outbreak.php'>Outbreak</a></li>";
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = 'Virginia' order by county_name";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
 			echo "<li><a href='/county.php?county=$d[county_name]'>$d[county_name]</a></li>";
 		}			
@@ -321,7 +322,7 @@ ddtreemenu.createTree("treemenu1", true)
 	<?PHP
 	// pull date from last update, not assume today.
 	$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	$date = $d['last_updated'];
 	//if ($date != date('Y-m-d')){
@@ -332,7 +333,7 @@ ddtreemenu.createTree("treemenu1", true)
 		$global_date = date('Y-m-d',strtotime($_GET['global_date']));
 	}
 	$q = "SELECT distinct api_url FROM coronavirus_apis";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$total_apis = mysqli_num_rows($r);
 	if ($pos === false && empty($_GET['global_date'])) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
@@ -350,16 +351,16 @@ ddtreemenu.createTree("treemenu1", true)
 		<?PHP 
 	} else{
 		$q = "SELECT distinct state_name FROM coronavirus_apis";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		$state_names = mysqli_num_rows($r);
 		$q = "SELECT distinct Facility_Name FROM coronavirus_facility";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		$processed_facility = mysqli_num_rows($r);
 		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		$done = mysqli_num_rows($r);
 		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$global_date' ";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		$left = mysqli_num_rows($r);
 		$processed_zips = $done + $left;
 		if ($left > 0){
