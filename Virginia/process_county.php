@@ -99,7 +99,10 @@ foreach ($pieces as $key => $value){
 }
 echo "<pre>";
 print_r($pieces);
-echo "</pre>";	
+echo "</pre>";
+
+echo $d['raw_response'];
+
 if (isset($_GET['id'])){
 	$cache_id = $_GET['id'];
 	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '35' and id > '$cache_id' order by id limit 0,1");
