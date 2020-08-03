@@ -27,7 +27,7 @@ while($d = mysqli_fetch_array($r)){
 }
 
 
-function coronavirus_county($zip,$date,$count,$testing){
+function coronavirus_county($zip,$date,$count,$testing,$death_count){
 	//return "<li>coronavirus_county($zip,$date,$count)</li>";
 	if ($count == 0){
 		echo "[skip - count too low $zip for $date]";
@@ -67,10 +67,10 @@ function coronavirus_county($zip,$date,$count,$testing){
 	}
 	if ($d['id'] == ''){
 		echo "[insert $zip $date $count]";
-		$q = "insert into coronavirus_county (testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','florida','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_county (death_count,testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$death_count','$testing','$zip','$date','$count','$town','florida','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
-		$q = "update coronavirus_county set testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_county set death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and report_date = '$date' ";	
 	}
 	$covid_db->query($q) or die(mysqli_error($covid_db));
 	//slack_general("$q",'covid19-sql');
@@ -102,9 +102,10 @@ $pieces = json_decode($d['raw_response'], true);
 	$name = $value['attributes']['COUNTYNAME'];
 	$count = $value['attributes']['CasesAll'];
 	$testing = $value['attributes']['T_Total_Res'];
+	$deaths = $value['attributes']['Deaths'];
 	if ($name != 'A State'){
-		echo "<li>coronavirus_county($name,$date,$count,$testing);</li>";
-		coronavirus_county($name,$date,$count,$testing);
+		echo "<li>coronavirus_county($name,$date,$count,$testing,$deaths);</li>";
+		coronavirus_county($name,$date,$count,$testing,$deaths);
 	}
   }
   
