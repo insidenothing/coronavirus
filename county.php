@@ -586,7 +586,7 @@ $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
-$death_chart		= $day90['death_chart'];
+$death_chart		= $day30['death_chart'];
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_county where county_name = '$zip' and report_date = '$yesterday'";
