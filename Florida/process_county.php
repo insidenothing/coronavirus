@@ -89,7 +89,7 @@ global $date;
 
 
 
-if($global_date == date('Y-m-d') || isset($_GET['id'])){
+//if($global_date == date('Y-m-d') || isset($_GET['id'])){
 
 	
 	if(isset($_GET['id'])){
@@ -203,7 +203,7 @@ $pieces = json_decode($d['raw_response'], true);
 		*/
 	}
   
-}
+//}
 
 echo "<pre>";
 print_r($pieces);
