@@ -101,9 +101,11 @@ $pieces = json_decode($d['raw_response'], true);
 	  	//echo "<li>$date </li>";
 	$name = $value['attributes']['COUNTYNAME'];
 	$count = $value['attributes']['CasesAll'];
-	echo "<li>coronavirus_county($name,$date,$count);</li>";
-	coronavirus_county($name,$date,$count);
-}
+	if ($name != 'A State'){
+		echo "<li>coronavirus_county($name,$date,$count);</li>";
+		coronavirus_county($name,$date,$count);
+	}
+  }
   
 
 
