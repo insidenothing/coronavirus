@@ -27,7 +27,7 @@ while($d = mysqli_fetch_array($r)){
 }
 
 
-function coronavirus_county($zip,$date,$count$testing){
+function coronavirus_county($zip,$date,$count,$testing){
 	//return "<li>coronavirus_county($zip,$date,$count)</li>";
 	if ($count == 0){
 		echo "[skip - count too low $zip for $date]";
