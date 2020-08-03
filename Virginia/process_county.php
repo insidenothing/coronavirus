@@ -83,31 +83,45 @@ if(isset($_GET['id'])){
 $d = mysqli_fetch_array($r);
 //$date = substr($d['cache_date_time'],0,10);
 
-
+$break = '
+';
 
 $pieces = json_decode($d['raw_response'], true); 
-
 echo "<h1>".count($pieces)."</h1>";
-
-foreach ($pieces as $key => $value){
-	//$time = $value['attributes']['DATE'] / 1000;
-	//$date = date('Y-m-d',$time+14400);
-	//echo "<li>$date </li>";
-	$name = $value['locality'];
-	$count = $value['total_cases'];
-	$date = substr($value['report_date'],0,10);
-	$hospitalizations = $value['hospitalizations'];
-	$deaths = $value['deaths'];
-	//if ($name != 'A State'){
-		echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
-		//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
-	//}
+if (count($pieces) == 0){
+	echo "<h1>USING CSV METHOD</h1>";
+	$pieces = explode($break,$d['raw_response']);
+	foreach ($pieces as $key => $value){
+		//if ($name != 'A State'){
+	
+			echo "<li>$value[0] $value[1] $value[2] $value[3] $value[4] $value[5] $value[6] $value[7] coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
+			//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
+		//}
+	}
+	echo $d['raw_response'];
+}else{
+	echo "<h1>USING JSON METHOD</h1>";
+	foreach ($pieces as $key => $value){
+		//$time = $value['attributes']['DATE'] / 1000;
+		//$date = date('Y-m-d',$time+14400);
+		//echo "<li>$date </li>";
+		$name = $value['locality'];
+		$count = $value['total_cases'];
+		$date = substr($value['report_date'],0,10);
+		$hospitalizations = $value['hospitalizations'];
+		$deaths = $value['deaths'];
+		//if ($name != 'A State'){
+			echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
+			//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
+		//}
+	}
+	echo "<pre>";
+	print_r($pieces);
+	echo "</pre>";
 }
-echo "<pre>";
-print_r($pieces);
-echo "</pre>";
 
-echo $d['raw_response'];
+
+
 
 if (isset($_GET['id'])){
 	$cache_id = $_GET['id'];
