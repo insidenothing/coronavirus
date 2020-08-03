@@ -99,10 +99,10 @@ if (count($pieces) == 0){
 		$count = $parts[4];
 		$hospitalizations = $parts[5];
 		$deaths = $parts[6];
-		//if ($name != 'A State'){
+		if ($name != 'Locality' && $name != ''){
 			echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
 			//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
-		//}
+		}
 	}
 	echo $d['raw_response'];
 }else{
