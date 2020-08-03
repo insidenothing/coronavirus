@@ -4,19 +4,16 @@ global $covid_db;
 if(isset($_GET['global_date'])){
 	$global_date = date('Y-m-d',strtotime($_GET['global_date']));
 }
-
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
 	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'virginia'");
 	die('done '.$delete);
 }
-
 if (isset($_GET['delete_date'])){
 	$delete = $_GET['delete_date'];
 	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'virginia'");
 	die('done '.$delete);
 }
-
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
@@ -25,8 +22,6 @@ while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
 }
-
-
 function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
 	//return "<li>coronavirus_county($zip,$date,$count)</li>";
 	if ($count == 0){
@@ -75,15 +70,10 @@ function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
 	$covid_db->query($q) or die(mysqli_error($covid_db));
 	//slack_general("$q",'covid19-sql');
 }
-
-
 global $nocases;
 global $cases;
 global $zipData;
-global $date;
-
-
-	
+global $date;	
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
 	$r = $covid_db->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
@@ -93,30 +83,23 @@ if(isset($_GET['id'])){
 $d = mysqli_fetch_array($r);
 //$date = substr($d['cache_date_time'],0,10);
 $pieces = json_decode($d['raw_response'], true); 
- 
-
-  foreach ($pieces as $key => $value){
+foreach ($pieces as $key => $value){
 	//$time = $value['attributes']['DATE'] / 1000;
 	//$date = date('Y-m-d',$time+14400);
 	//echo "<li>$date </li>";
-	$name = $value['attributes']['locality'];
-	$count = $value['attributes']['total_cases'];
-	$date = substr($value['attributes']['report_date'],0,10);
-	$hospitalizations = $value['attributes']['hospitalizations'];
-	$deaths = $value['attributes']['deaths'];
-	if ($name != 'A State'){
+	$name = $value['locality'];
+	$count = $value['total_cases'];
+	$date = substr($value['report_date'],0,10);
+	$hospitalizations = $value['hospitalizations'];
+	$deaths = $value['deaths'];
+	//if ($name != 'A State'){
 		echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
 		//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
-	}
-  }
-  
-
-
+	//}
+}
 echo "<pre>";
 print_r($pieces);
 echo "</pre>";	
-
-
 if (isset($_GET['id'])){
 	$cache_id = $_GET['id'];
 	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '35' and id > '$cache_id' order by id limit 0,1");
