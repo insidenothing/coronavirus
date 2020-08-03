@@ -101,14 +101,15 @@ $pieces = json_decode($d['raw_response'], true);
 	  	//echo "<li>$date </li>";
 	$name = $value['attributes']['COUNTYNAME'];
 	$count = $value['attributes']['CasesAll'];
-	echo "<li>coronavirus_county($name,$date,$count);</li>";	
+	echo "<li>coronavirus_county($name,$date,$count);</li>";
+	coronavirus_county($name,$date,$count);
 }
   
 
 
-echo "<pre>";
-print_r($pieces);
-echo "</pre>";	
+//echo "<pre>";
+//print_r($pieces);
+//echo "</pre>";	
 
 
 if (isset($_GET['id'])){
