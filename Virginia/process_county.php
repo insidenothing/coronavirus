@@ -94,7 +94,7 @@ if (count($pieces) == 0){
 	foreach ($pieces as $key => $value){
 		//if ($name != 'A State'){
 	
-			echo "<li>$value[0] $value[1] $value[2] $value[3] $value[4] $value[5] $value[6] $value[7] coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
+			echo "<li> $value coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
 			//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
 		//}
 	}
