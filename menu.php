@@ -314,7 +314,7 @@ set_hits(); // internal page counter
 
 <script type="text/javascript">
 //ddtreemenu.createTree(treeid, enablepersist, opt_persist_in_days (default is 1))
-ddtreemenu.createTree("treemenu1", true)
+ddtreemenu.createTree("treemenu1", false)
 </script>	
 	
 	
