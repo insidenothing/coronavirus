@@ -20,6 +20,8 @@ if (isset($_GET['sort'])){
 }
 
 
+
+
 echo "<a href='?sort=count'>Sort by Count</a><table><tr><td valign='top' width='25%'>";
 
 ob_start();
@@ -42,7 +44,14 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 $list = ob_get_clean();
 
-echo "<h1>".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
+
+echo "<div>
+<li><a target='_Blank' href='https://www.reddit.com/r/CoronavirusAZ/submit'>Post To: /r/CoronavirusAZ</a></li>
+<li>Title: ".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</li>
+</div>";
+
+
+echo "<h1>".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</h1><li>SOURCE: https://www.covid19math.net/Arizona/active.php</li> <style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 echo "</td></tr></table>";
 
