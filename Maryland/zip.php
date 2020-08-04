@@ -14,7 +14,23 @@ while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
 }
+?>
+<script>
+function scrolldown() {
+  setTimeout(
+    function()
+    {
+      window.scrollTo(0,document.body.scrollHeight);
+      scrolldown();
+    }, 1000
+  )
+}
 
+scrolldown();
+	
+	
+</script>
+<?PHP
 function coronavirus_zip($zip,$date,$count){
 	global $zipcode;
 	$town = $zipcode[$zip];
