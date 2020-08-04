@@ -86,7 +86,7 @@ if (empty($_GET['run'])){
 
 
 
-if($global_date == date('Y-m-d') || isset($_GET['id'])){
+
 
 	
 	if(isset($_GET['id'])){
@@ -126,7 +126,7 @@ $break = '
 			coronavirus_zip($zip,$date,$count,$testing);
 		}
 	}
-}
+
 
 //echo "<pre>";
 //print_r($pieces);
