@@ -103,8 +103,13 @@ if (empty($_GET['run'])){
 
 $break = '
 ';
+
+
 	$pieces = json_decode($d['raw_response'], true);
+$i = count($pieces);
+echo "<h1>$i</h1>";
 	foreach ($pieces as $pieces2) {
+		$i = $i - 1;
 		$date = $global_date;
 		$zip = $pieces2['zip_code'];
 		$count = $pieces2['number_of_cases'];
@@ -122,7 +127,7 @@ $break = '
 			$zip = '00004';
 		}
 		if ($date != '1969-12-31'){
-			echo "<li>$date - $zip - $count / $testing</li>";
+			echo "<li>$i) $date - $zip - $count / $testing</li>";
 			coronavirus_zip($zip,$date,$count,$testing);
 		}
 	}
