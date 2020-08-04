@@ -46,7 +46,7 @@ $list = ob_get_clean();
 
 
 echo "<div>
-<li><a target='_Blank' href='https://www.reddit.com/r/CoronavirusAZ/submit'>Post To: /r/CoronavirusAZ</a></li>
+<li><a target='_Blank' href='https://www.reddit.com/r/CoronavirusAZ/submit'>Post Top 100 To: /r/CoronavirusAZ</a>, use flair - TESTING UPDATES</li>
 <li>Title: ".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</li>
 </div>";
 
