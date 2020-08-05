@@ -96,7 +96,7 @@ if (empty($_GET['run'])){
 		$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache	
 	}
 
-	// watch for microsoft characters =(
+	$date = substr($d['cache_date_time'],0,10);
 	$d = mysqli_fetch_array($r);
 
 	//echo $d['raw_response'];
@@ -110,7 +110,7 @@ $i = count($pieces);
 echo "<h1>$i</h1>";
 	foreach ($pieces as $pieces2) {
 		$i = $i - 1;
-		$date = $global_date;
+		//$date = $global_date;
 		$zip = $pieces2['zip_code'];
 		$count = $pieces2['number_of_cases'];
 		$testing = $pieces2['number_of_pcr_testing'];
