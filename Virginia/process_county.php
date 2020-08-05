@@ -86,7 +86,7 @@ function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
 		$q = "insert into coronavirus_county (hospitalizations,death_count,testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$hospitalizations','$death_count','$testing','$zip','$date','$count','$town','virginia','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
-		$q = "update coronavirus_county set hospitalizations='$hospitalizations', death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_county set hospitalizations='$hospitalizations', death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and state_name='virginia' and report_date = '$date' ";	
 	}
 	$covid_db->query($q) or die(mysqli_error($covid_db));
 	//slack_general("$q",'covid19-sql');
