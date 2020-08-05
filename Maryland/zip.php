@@ -1,4 +1,5 @@
 <?PHP
+ob_get_clean();
 include_once('../menu.php');
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
@@ -125,6 +126,9 @@ foreach ($zipData as $key => $value){
 	coronavirus_zip($key,$date,$count);
 }
 slack_general("*DONE*",'covid19');
+$buffer = ob_get_clean();
+
+header('Location: https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=maryland');
 
 die('done');
 
