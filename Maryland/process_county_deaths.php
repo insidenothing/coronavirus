@@ -44,7 +44,7 @@ function coronavirus_county($zip,$date,$count){
 		//$q = "insert into coronavirus_county (testing_count,county_name,report_date,death_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','maryland','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
-		$q = "update coronavirus_county set death_count = '$count' where county_name = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_county set death_count = '$count' where county_name = '$zip' and state_name='maryland' and report_date = '$date' ";	
 	}
 	$core->query($q);
 	//slack_general("$q",'covid19-sql');
