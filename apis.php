@@ -309,14 +309,14 @@ while($d = mysqli_fetch_array($r)){
 }
 echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 
-echo "<h1>Full API Schedule<h1>";
+echo "<h1>Other API Schedule<h1>";
 
 
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
 // display what is active
-$q = "SELECT * FROM coronavirus_apis where api_status = 'active' order by last_updated DESC ";
+$q = "SELECT * FROM coronavirus_apis where api_status = 'active' and run_order <> '5000' and run_order <> '1000' and run_order <> '3000' order by last_updated DESC ";
 $r = $core->query($q);
 while($d = mysqli_fetch_array($r)){
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
