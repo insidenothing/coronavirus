@@ -1,4 +1,5 @@
 <?PHP
+ob_start();
 include_once('../menu.php');
 
 if(isset($_GET['global_date'])){
@@ -80,10 +81,6 @@ global $date;
 
 
 
-if (empty($_GET['run'])){
-	die('missing run=1');
-}
-
 
 
 
@@ -138,10 +135,15 @@ echo "<h1>$i</h1>";
 //echo "</pre>";	
 
 
+if (empty($_GET['run'])){
+	die('missing run=1');
+}
 
 
 $q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'virginia' ";
 $core->query($q);
+$buffer = ob_get_clean();
+header('Location: https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=virginia');
 die('DONE '.$q);
 
 
