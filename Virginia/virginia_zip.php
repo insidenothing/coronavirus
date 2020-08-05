@@ -146,7 +146,7 @@ if (empty($_GET['run'])){
 	echo $buffer;
 	die('missing run=1');
 }else{
-	header('Location: https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=virginia');	
+	header('Location: https://www.covid19math.net/zipcode.php?zip=23224&auto=1&state=virginia');	
 }
 
 
