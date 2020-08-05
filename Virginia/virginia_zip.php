@@ -96,9 +96,9 @@ if (empty($_GET['run'])){
 		$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache	
 	}
 
-	$date = substr($d['cache_date_time'],0,10);
+	
 	$d = mysqli_fetch_array($r);
-
+	$date = substr($d['cache_date_time'],0,10);
 	//echo $d['raw_response'];
 
 $break = '
