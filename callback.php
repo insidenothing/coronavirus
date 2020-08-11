@@ -24,7 +24,7 @@ function AB_test($host){
   //</pre>
   //<hr />Last line of the output: ' . $last_line . '
   //<hr />Return value: ' . $retval;
-  slack_bypass("Hack Back AB $host",'anti-hack');
+  slack_bypass("Hack Back AB ($retval) ($last_line)",'anti-hack');
 }
 
 
@@ -32,14 +32,14 @@ function check_WWW_80($host){
         $www = "http://$host";
         $info = get_headers($www, 1);
         foreach($info as $type => $value){
-          slack_bypass("Hack Back HTTP $type: $value",'anti-hack');
+          slack_bypass("Probe Back HTTP $type: $value",'anti-hack');
         }
 }
 function check_WWW_443($host){
         $www = "https://$host";
         $info = get_headers($www, 1);
         foreach($info as $type => $value){
-          slack_bypass("Hack Back HTTPS $type: $value",'anti-hack');
+          slack_bypass("Probe Back HTTPS $type: $value",'anti-hack');
         }
 }
 
@@ -50,9 +50,9 @@ function check_FTP($ftp_server){
 
           // try to login
           if (@ftp_login($conn_id, "anonymous", "")) {
-             slack_bypass("Connected FTP as anonymous@$ftp_server",'anti-hack');
+             slack_bypass("Probe FTP as anonymous@$ftp_server",'anti-hack');
           } else {
-             slack_bypass("Couldn't connect FTP as anonymous",'anti-hack');
+             slack_bypass("Probe failed to connect FTP as anonymous",'anti-hack');
           }
 
           // close the connection
@@ -84,10 +84,10 @@ function check_SMPT($host){
 
   if (PEAR::isError($mail)) {
     echo("<p>" . $mail->getMessage() . "</p>");
-    slack_bypass('Hack Back SMTP: '. $mail->getMessage() .'!','anti-hack'); 
+    slack_bypass('Probe Back SMTP: '. $mail->getMessage() .'!','anti-hack'); 
   } else {
     echo("<p>Message successfully sent!</p>");
-    slack_bypass('Hack Back SMTP: Message successfully sent!','anti-hack'); 
+    slack_bypass('Probe Back SMTP: Message successfully sent!','anti-hack'); 
   } 
 }
 
@@ -114,10 +114,10 @@ function check_SMPT2($host){
 
   if (PEAR::isError($mail)) {
     echo("<p>" . $mail->getMessage() . "</p>");
-    slack_bypass('Hack Back SMTP2: '. $mail->getMessage() .'!','anti-hack'); 
+    slack_bypass('Probe Back SMTP2: '. $mail->getMessage() .'!','anti-hack'); 
   } else {
     echo("<p>Message successfully sent!</p>");
-    slack_bypass('Hack Back SMTP2: Message successfully sent!','anti-hack'); 
+    slack_bypass('Probe Back SMTP2: Message successfully sent!','anti-hack'); 
   } 
 }
 
