@@ -1,21 +1,30 @@
 <?PHP
+// review get values
+if (isset($_GET)){
+   foreach ($_GET as $k => $v){
+        $pos = strpos($v, 'UNION');
+        if ($pos !== false) {
+            header('Location: callback.php?msg=UNION detected');
+        } 
+   }
+}
 // die on bot match
 if (isset($_SERVER['HTTP_USER_AGENT'])){
     
     $bot = $_SERVER['HTTP_USER_AGENT'];
     $pos = strpos($bot, 'SemrushBot');
     if ($pos !== false) {
-        die('Your Bot (SemrushBot) Has Been Blocked contact Patrick McGuire at baltimorehacker [at] gmail.com');
+        header('Location: callback.php?msg=SemrushBot detected');
     } 
     
     $pos = strpos($bot, 'AhrefsBot');
     if ($pos !== false) {
-        die('Your Bot (AhrefsBot) Has Been Blocked contact Patrick McGuire at baltimorehacker [at] gmail.com');
+        header('Location: callback.php?msg=AhrefsBot detected');
     } 
     
 }else{
     
-  die('Your Bot (MISSING HTTP_USER_AGENT) Has Been Blocked contact Patrick McGuire at baltimorehacker [at] gmail.com');  
+  header('Location: callback.php?msg=missing HTTP_USER_AGENT');
     
 }
 ?>
