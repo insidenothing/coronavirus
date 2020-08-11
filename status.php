@@ -5,6 +5,31 @@ include_once('menu.php');
 
 $array=array();
 
+function check_zip($zip,$date){
+  global $covid_db;
+  $q = "select id from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
+  $r = $covid_db->query($q);
+  $d = mysqli_fetch_array($r);
+  if ($d['id'] > 0){
+   return "<span class='found' title='$date'>☑</span>"; 
+  }else{
+   return "<span class='missing' title='$date'>☒</span>";
+  }
+}
+
+function check_county($countyDOTstate,$date){
+  global $covid_db;
+  $parts = explode('.',$countyDOTstate);
+  $q = "select id from coronavirus_county where county_name = '$parts[0]' and state_name = '$parts[0]' and report_date = '$date'";
+  $r = $covid_db->query($q);
+  $d = mysqli_fetch_array($r);
+  if ($d['id'] > 0){
+   return "<span class='found' title='$date'>☑</span>"; 
+  }else{
+   return "<span class='missing' title='$date'>☒</span>";
+  }
+}
+
 // Check Maryland Data Quality
 $array['zip'][] = '21093'; // Maryland Zip
 $array['countyState'][] = 'Baltimore.Maryland'; // Maryland County
@@ -23,7 +48,7 @@ foreach($array[zip] as $k => $v){
   echo "<tr><td>$v</td><td>";
   for($i = 45; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
-    echo "<span class='found' title='$date'>☑</span>";
+    echo check_zip($v,$date);
   }
   echo "</td><tr>";
 }
@@ -31,7 +56,7 @@ foreach($array[countyState] as $k => $v){
   echo "<tr><td>$v</td><td>";
   for($i = 45; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
-    echo "<span class='missing' title='$date'>☒</span>";
+    echo check_county($v,$date);
   }
   echo "</td><tr>";
 }
