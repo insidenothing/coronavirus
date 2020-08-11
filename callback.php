@@ -99,7 +99,7 @@ foreach ($ports as $port)
       
       if ($port == '25'){
        check_SMPT($host); 
-       check_SMPT2($host)
+       check_SMPT2($host);
       }
       
       if ($port == '80' || $port == '443'){
