@@ -34,7 +34,10 @@ scrolldown();
 <?PHP
 function coronavirus_zip($zip,$date,$count){
 	global $zipcode;
-	$town = $zipcode[$zip];
+	$town = '';
+	if (isset($zipcode[$zip])){
+		$town = $zipcode[$zip];
+	}
 	// the order we call the function will matter...
 	global $covid_db;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
