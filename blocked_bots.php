@@ -1,6 +1,6 @@
 <?PHP
 // die on bot match
-if (isset($_SERVER['HTTP_USER_AGENT'];)){
+if (isset($_SERVER['HTTP_USER_AGENT'])){
     
     $bot = $_SERVER['HTTP_USER_AGENT'];
     $pos = strpos($bot, 'SemrushBot');
