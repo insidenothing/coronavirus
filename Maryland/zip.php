@@ -1,5 +1,5 @@
 <?PHP
-ob_get_clean();
+//ob_get_clean();
 include_once('../menu.php');
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
@@ -15,6 +15,7 @@ while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
 }
+/*
 ?>
 <script>
 function scrolldown() {
@@ -32,6 +33,7 @@ scrolldown();
 	
 </script>
 <?PHP
+*/
 function coronavirus_zip($zip,$date,$count){
 	global $zipcode;
 	$town = '';
@@ -96,7 +98,7 @@ $d = mysqli_fetch_array($r);
 echo "<h1>Cache ID $d[id] from $d[cache_date_time]</h1>";
 
 
-echo $d['raw_response'];
+//echo $d['raw_response'];
 
 
 if(isset($_GET['date_formatted'])){
@@ -111,9 +113,9 @@ if(isset($_GET['date_formatted'])){
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
-
+echo "<pre>";
 print_r($zipData);
-
+echo "</pre>";
 
 if (empty($_GET['run'])){
 	die('set run=1');
@@ -133,7 +135,7 @@ foreach ($zipData as $key => $value){
 	coronavirus_zip($key,$date,$count);
 }
 slack_general("*DONE*",'covid19');
-$buffer = ob_get_clean();
+//$buffer = ob_get_clean();
 
 header('Location: https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=maryland');
 
