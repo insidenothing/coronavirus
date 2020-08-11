@@ -20,6 +20,25 @@ function check_WWW_443($host){
         }
 }
 
+function check_FTP($ftp_server){
+          //$ftp_server = "ftp.example.com";
+          $ftp_user = "foo";
+          $ftp_pass = "bar";
+
+          // set up a connection or die
+          $conn_id = ftp_connect($ftp_server) or slack_bypass("Couldn't connect FTP to $ftp_server",'anti-hack');
+
+          // try to login
+          if (@ftp_login($conn_id, $ftp_user, $ftp_pass)) {
+             slack_bypass("Connected FTP as $ftp_user@$ftp_server",'anti-hack');
+          } else {
+             slack_bypass("Couldn't connect FTP as $ftp_user",'anti-hack');
+          }
+
+          // close the connection
+          ftp_close($conn_id); 
+}
+
 
 function check_SMPT($host){
  require_once "Mail.php";
@@ -104,6 +123,10 @@ foreach ($ports as $port)
     {
         echo '<h2>' . $host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.</h2>' . "\n";
         slack_bypass('Hack Back: '.$host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
+      
+      if ($port == 21){
+       check_FTP($host); 
+      }
       
       if ($port == '25'){
        check_SMPT($host); 
