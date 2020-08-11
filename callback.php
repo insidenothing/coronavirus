@@ -5,6 +5,50 @@ if (isset($_GET['msg'])){
 }
 slack_bypass('Hack Attempt: '.$msg,'anti-hack');
 
+function check_WWW($host){
+        ob_start();
+        print_r(get_headers($url, 1));
+        $detail = ob_get_clean();
+        slack_bypass('Hack Back WWW: '.$detail,'anti-hack'); 
+}
+
+function check_SMPT($host){
+ require_once "Mail.php";
+  $from = "Web Master <webmaster@example.com>";
+  $to = "Nobody <nobody@example.com>";
+  $subject = "Test email using PHP SMTP\r\n\r\n";
+  $body = "This is a test email message";
+
+  //$host = "pop.emailsrvr.com";
+  $username = "webmaster@example.com";
+  $password = "yourPassword";
+
+  $headers = array ('From' => $from,
+    'To' => $to,
+    'Subject' => $subject);
+  $smtp = Mail::factory('smtp',
+    array ('host' => $host,
+      'auth' => true,
+      'username' => $username,
+      'password' => $password));
+
+  $mail = $smtp->send($to, $headers, $body);
+
+  if (PEAR::isError($mail)) {
+    echo("<p>" . $mail->getMessage() . "</p>");
+    slack_bypass('Hack Back SMTP: '. $mail->getMessage() .'!','anti-hack'); 
+  } else {
+    echo("<p>Message successfully sent!</p>");
+    slack_bypass('Hack Back SMTP: Message successfully sent!','anti-hack'); 
+  } 
+}
+
+
+
+
+
+
+
 if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     		$host = $_SERVER['HTTP_CLIENT_IP'];
 } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -25,11 +69,12 @@ foreach ($ports as $port)
         echo '<h2>' . $host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.</h2>' . "\n";
         slack_bypass('Hack Back: '.$host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
       
+      if ($port == '25'){
+       check_SMPT($host); 
+      }
+      
       if ($port == '80' || $port == '443'){
-        ob_start();
-        print_r(get_headers($url, 1));
-        $detail = ob_get_clean();
-        slack_bypass('Hack Back WWW: '.$detail,'anti-hack');  
+         check_WWW($host);
       }
       
       
