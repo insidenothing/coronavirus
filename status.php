@@ -10,18 +10,28 @@ $array['zip'][] = '21093'; // Maryland Zip
 $array['countyState'][] = 'Baltimore.Maryland'; // Maryland County
 
 // Check Florida Data Quality
-$array['zip'][] = '21093'; // Florida Zip
+$array['zip'][] = '33445'; // Florida Zip
 $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 
-
+// Check virginia Data Quality
+$array['zip'][] = '23462'; // virginia Zip
+$array['countyState'][] = 'Arlington.virginia'; // virginia County
 
 foreach($array[zip] as $k => $v){
-  echo "<li>$k Checking $v</li>";
+  echo "<div>$v";
+  for($i = 45; $i > 0; $i--){
+    echo "<span>".date("Y-m-d", strtotime("-$i days")).'</span>';
+  }
+  echo "</div>";
 }
 
 
 foreach($array[countyState] as $k => $v){
-  echo "<li>$k Checking $v</li>";
+  echo "<div>$v";
+  for($i = 45; $i > 0; $i--){
+    echo "<span>".date("Y-m-d", strtotime("-$i days")).'</span>';
+  }
+  echo "</div>";
 }
 
 
