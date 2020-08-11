@@ -17,25 +17,27 @@ $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 $array['zip'][] = '23462'; // virginia Zip
 $array['countyState'][] = 'Arlington.virginia'; // virginia County
 
+
+echo "<style> span { font-size: 25px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
 foreach($array[zip] as $k => $v){
-  echo "<div>$v";
+  echo "<tr><td>$v</td><td>";
   for($i = 45; $i > 0; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
-    echo "<span title='$date'>☑</span>";
+    echo "<span style='found' title='$date'>☑</span>";
   }
-  echo "</div>";
+  echo "</td><tr>";
+}
+foreach($array[zip] as $k => $v){
+  echo "<tr><td>$v</td><td>";
+  for($i = 45; $i > 0; $i--){
+    $date = date("Y-m-d", strtotime("-$i days"));
+    echo "<span style='missing' title='$date'>☒</span>";
+  }
+  echo "</td><tr>";
 }
 
 
-foreach($array[countyState] as $k => $v){
-   echo "<div>$v";
-  for($i = 45; $i > 0; $i--){
-    $date = date("Y-m-d", strtotime("-$i days"));
-    echo "<span title='$date'>☒</span>";
-  }
-  echo "</div>";
-}
-
+echo "<table>";
 
 
 include_once('footer.php');
