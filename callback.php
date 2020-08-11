@@ -149,6 +149,7 @@ foreach ($ports as $port)
       
       if ($port == '80'){
          check_WWW_80($host);
+         AB_test($host);
       }
       if ($port == '443'){
          check_WWW_443($host);
