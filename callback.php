@@ -3,7 +3,16 @@ include_once('slack.php');
 if (isset($_GET['msg'])){
   $msg = htmlspecialchars($_GET['msg']);
 }
-slack_bypass('Hack Attempt: '.$msg,'anti-hack');
+
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    		$host = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+      $host = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+      $host = $_SERVER['REMOTE_ADDR'];
+}
+
+slack_bypass("*$host Hack Attempt*: $msg",'anti-hack');
 
 function check_WWW_80($host){
         $www = "http://$host";
@@ -101,13 +110,7 @@ function check_SMPT2($host){
 
 
 
-if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    		$host = $_SERVER['HTTP_CLIENT_IP'];
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-      $host = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} else {
-      $host = $_SERVER['REMOTE_ADDR'];
-}
+
 
 //$host = 'google.com';
 $ports = array(21, 25, 80, 81, 110, 143, 443, 587, 2525, 3306);
