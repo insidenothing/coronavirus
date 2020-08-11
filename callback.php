@@ -8,8 +8,9 @@ slack_bypass('Hack Attempt: '.$msg,'anti-hack');
 function check_WWW($host){
         ob_start();
         print_r(get_headers($url, 1));
-        $detail = ob_get_clean();
-        slack_bypass('Hack Back WWW: '.$detail,'anti-hack'); 
+        $string = ob_get_clean();
+        $res = preg_replace("/[^a-zA-Z]/", "", $string);
+        slack_bypass('Hack Back WWW: '.$res,'anti-hack'); 
 }
 
 function check_SMPT($host){
