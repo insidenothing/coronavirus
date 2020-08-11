@@ -30,16 +30,19 @@ function check_county($countyDOTstate,$date){
   }
 }
 
-// Check Maryland Data Quality
+// Arizona Data Quality
+$array['zip'][] = '85283';
+
+// Maryland Data Quality
 $array['zip'][] = '21093'; // Maryland Zip
 $array['countyState'][] = 'Baltimore.Maryland'; // Maryland County
 
-// Check Florida Data Quality
+// Florida Data Quality
 $array['zip'][] = '33445'; // Old Florida Zip
 $array['zip'][] = 'Palm Beach-33445'; // New Florida Zip
 $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 
-// Check virginia Data Quality
+// virginia Data Quality
 $array['zip'][] = '23462'; // virginia Zip
 $array['countyState'][] = 'Arlington.virginia'; // virginia County
 
