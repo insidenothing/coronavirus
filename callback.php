@@ -23,7 +23,19 @@ foreach ($ports as $port)
     if (is_resource($connection))
     {
         echo '<h2>' . $host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.</h2>' . "\n";
-        slack_bypass($host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
+        slack_bypass('Hack Back: '.$host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
+      
+      if ($port == '80' || $port == '443'){
+        $info = get_headers($host);
+        $string0 = implode(' ', $info);
+        $string1 = explode('Server:', $string0);
+        //BEGIN EXTRACTING SERVER DETAILS
+        $pattern = '#^Server:#i';
+        $matches = preg_grep($pattern, $info); 
+        slack_bypass('Hack Back WWW: '.$matches,'anti-hack');
+      }
+      
+      
         fclose($connection);
     }
     else
