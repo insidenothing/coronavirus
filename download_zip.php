@@ -13,7 +13,7 @@ function mysqli_field_name($result, $field_offset)
 
 $q = "SELECT * FROM coronavirus_zip ORDER BY report_date, zip_code";
 
-$r = $core->query($q);
+$r = $covid_db->query($q);
 
 $fields = mysqli_num_fields ( $r );
 

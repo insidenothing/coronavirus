@@ -8,20 +8,20 @@ if(isset($_GET['global_date'])){
 
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
-	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
+	$covid_db->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
 	die('done '.$delete);
 }
 
 if (isset($_GET['delete_date'])){
 	$delete = $_GET['delete_date'];
-	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
+	$covid_db->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Virginia'");
 	die('done '.$delete);
 }
 
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
@@ -29,16 +29,16 @@ while($d = mysqli_fetch_array($r)){
 
 
 function coronavirus_zip($zip,$date,$count,$testing){
-	global $core;
+	global $covid_db;
 	global $zipcode;
 	$town = $zipcode[$zip];
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	// look for yesterday
 	$date2 = date('Y-m-d',strtotime($date)-86400);
 	$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
-	$r2 = $core->query($q2);
+	$r2 = $covid_db->query($q2);
 	$d2 = mysqli_fetch_array($r2);
 	if ($d2['id'] != ''){
 		// Let's Process Trend Data
@@ -67,7 +67,7 @@ function coronavirus_zip($zip,$date,$count,$testing){
 		echo "[update $zip $date $count]";
 		$q = "update coronavirus_zip set testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
-	$core->query($q);
+	$covid_db->query($q);
 	//slack_general("$q",'covid19-sql');
 }
 
@@ -88,9 +88,9 @@ global $date;
 	
 	if(isset($_GET['id'])){
 		$id = $_GET['id'];
-		$r = $core->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
+		$r = $covid_db->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
 	}else{
-		$r = $core->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache	
+		$r = $covid_db->query("select * from coronavirus_api_cache where api_id = '43' order by id desc limit 0, 1"); // always get the latest from the cache	
 	}
 
 	
@@ -138,7 +138,7 @@ echo "<h1>$i</h1>";
 
 
 $q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'virginia' ";
-$core->query($q);
+$covid_db->query($q);
 $buffer = ob_get_clean();
 
 

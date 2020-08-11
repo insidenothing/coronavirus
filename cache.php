@@ -4,9 +4,9 @@ if (isset($_GET['id'])){
 }else{
   die('no get id');
 }
-include_once('/var/www/secure.php'); // this makes $core with out credientals 
+include_once('/var/www/secure.php'); // this makes $covid_db with out credientals 
 $id = substr($id,0,10); // protect strlen
-$stmt = $core->prepare('SELECT * FROM coronavirus_api_cache WHERE id = ?');
+$stmt = $covid_db->prepare('SELECT * FROM coronavirus_api_cache WHERE id = ?');
 $stmt->bind_param('i', $id); // https://www.php.net/manual/en/mysqli-stmt.bind-param.php
 $stmt->execute();
 $result = $stmt->get_result();

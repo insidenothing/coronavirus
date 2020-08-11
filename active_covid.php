@@ -5,7 +5,7 @@ global $zipcode;
 global $global_date;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
@@ -25,7 +25,7 @@ echo "<a href='?sort=count'>Sort by Count</a><table><tr><td valign='top' width='
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Maryland'  order by $order DESC";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $total = 0;
 $total2 = 0;
 while ($d = mysqli_fetch_array($r)){
@@ -49,7 +49,7 @@ echo "</td><td valign='top' width='25%'>";
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Virginia'  order by $order DESC";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $total = 0;
 $total2 = 0;
 while ($d = mysqli_fetch_array($r)){
@@ -73,7 +73,7 @@ echo "</td><td valign='top' width='25%'>";
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'New York'  order by $order DESC";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $total = 0;
 $total2 = 0;
 while ($d = mysqli_fetch_array($r)){
@@ -98,7 +98,7 @@ echo "</td><td valign='top' width='25%'>";
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Florida'  order by $order DESC";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $total = 0;
 $total2 = 0;
 while ($d = mysqli_fetch_array($r)){

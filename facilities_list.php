@@ -23,7 +23,7 @@ $master_facility_table = '';
 
 // Assisted Living
 function make_chart2($range,$Facility_Name){
-	global $core;
+	global $covid_db;
 	global $zip;
 	global $zip2;
 	global $remove;
@@ -34,14 +34,14 @@ $time_chart2='';
 $text_div2='';
 $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
 slack_general("$q",'covid19-sql');
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
 $start = max($start, 0);
 $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
 slack_general("$q",'covid19-sql');
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $i=0;
 	$remove_total=0;
 while ($d = mysqli_fetch_array($r)){
@@ -186,7 +186,7 @@ $alert = ob_get_clean();
 window.onload = function () {
 <?PHP 
 	$q = "SELECT distinct Facility_Name FROM coronavirus_facility order by report_count DESC";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$i=1;
 	while ($d = mysqli_fetch_array($r)){
 		$day7 			= make_chart2('90',$d['Facility_Name']);
@@ -332,7 +332,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 <?PHP 
 
 $q = "SELECT distinct Facility_Name FROM coronavirus_facility order by report_count DESC";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $i=1;
 while ($d = mysqli_fetch_array($r)){
 	echo '<div class="row">

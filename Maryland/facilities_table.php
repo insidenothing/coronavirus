@@ -24,7 +24,7 @@ global $NumberofStaffDeaths2;
 
 // Assisted Living
 function make_chart2($range,$Facility_Name){
-	global $core;
+	global $covid_db;
 	global $zip;
 	global $zip2;
 	global $remove;
@@ -41,14 +41,14 @@ function make_chart2($range,$Facility_Name){
 	global $NumberofStaffDeaths2;
   $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
   //slack_general("$q",'covid19-sql');
-  $r = $core->query($q);
+  $r = $covid_db->query($q);
   $rows = mysqli_num_rows($r);
   $start = $rows - $range;
   $range2= $range - 1;
   $start = max($start, 0);
   $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
   slack_general("$q",'covid19-sql');
-  $r = $core->query($q);
+  $r = $covid_db->query($q);
   $i=$rows;
   while ($d = mysqli_fetch_array($r)){
     $name = str_replace('_',' ',"$d[Facility_Name], $d[state_name]");
@@ -106,7 +106,7 @@ if (isset($_GET['sort'])){
 	$dir = 'DESC';
 }
 $q = "SELECT distinct Facility_Name FROM coronavirus_facility order by $sort $dir";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while ($d = mysqli_fetch_array($r)){
   make_chart2('90',$d['Facility_Name']);
 } 
@@ -193,7 +193,7 @@ while ($d = mysqli_fetch_array($r)){
 
 <div>
 	<?PHP 
-	$r = $core->query("SELECT * FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
+	$r = $covid_db->query("SELECT * FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
   	while ($d = mysqli_fetch_array($r)){
 	  	echo '<li>$Facility_ZIP[\''.$d['Facility_Name'].'\'] = \'00000\';</li>';
 	}

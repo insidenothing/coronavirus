@@ -9,7 +9,7 @@ function make_florida_zip_array2($url='',$json='',$force=''){
 	global $zip2name;
 	global $debug;
 	global $arcgis_key;
-	global $core;
+	global $covid_db;
 	$return = array();
 	if ($json != ''){
 		$array = json_decode($json, true);
@@ -20,7 +20,7 @@ function make_florida_zip_array2($url='',$json='',$force=''){
 	if($force == ''){
 		$q = "select raw_response from coronavirus where url_pulled = '$url' order by id desc";
 		$debug .= "<p>USING SAVED VERSION $q</p>";
-		$r = $core->query($q);
+		$r = $covid_db->query($q);
 		$d = mysqli_fetch_array($r);
 		$json = $d['raw_response'];
 	}else{
@@ -68,7 +68,7 @@ function make_florida_zip_array($url='',$json='',$force=''){
 	global $zip2name;
 	global $debug;
 	global $arcgis_key;
-	global $core;
+	global $covid_db;
 	$return = array();
 	$return['url_pulled'] = $url;
 	if ($json == '{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}'){
@@ -112,26 +112,26 @@ function make_florida_zip_array($url='',$json='',$force=''){
 
 
 function get_hits(){
-	global $core;
+	global $covid_db;
 	$page = $_SERVER['SCRIPT_NAME'];
 	$q = "select * from coronavirus_stats where REQUEST_URI = '$page' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	$stat = "$page received $d[hit_counter] hits since $d[started_on].";
 	return $stat;
 }
 
 function set_hits(){
-	global $core;
+	global $covid_db;
 	$page = $_SERVER['SCRIPT_NAME'];
 	$q = "select * from coronavirus_stats where REQUEST_URI = '$page' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	if ($d['id'] > 0){
 		$up = $d['hit_counter'] + 1;
-		$core->query("update coronavirus_stats set hit_counter = '$up', last_hit = NOW() where REQUEST_URI = '$page' ");
+		$covid_db->query("update coronavirus_stats set hit_counter = '$up', last_hit = NOW() where REQUEST_URI = '$page' ");
 	}else{
-		$core->query("insert into coronavirus_stats ( hit_counter, REQUEST_URI, started_on  ) values ( '1', '$page', NOW() ) ");
+		$covid_db->query("insert into coronavirus_stats ( hit_counter, REQUEST_URI, started_on  ) values ( '1', '$page', NOW() ) ");
 	}
 	
 }
@@ -191,8 +191,8 @@ function sms_one($to,$message){
 function sms($msg){
     	global $send_message;
     	if ($send_message == 'on'){
-		global $core;
-		$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
+		global $covid_db;
+		$r = $covid_db->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
 		while($d = mysqli_fetch_array($r)){
 			$sms = trim($d['sms_number']);
 			$url = "https://www.mdwestserve.com/sms/message_send/$sms/COVID19_".str_replace(' ','_',$msg);
@@ -401,9 +401,9 @@ function make_maryland_array($json=''){
 	//$return['url_pulled'] = $url;
 	//$json = getPage($url);
 	
-	global $core;
+	global $covid_db;
 	$q = "SELECT * FROM `coronavirus_api_cache` where api_id = '20' order by id DESC limit 0, 1";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	$json = $d['raw_response'];
 	
@@ -508,7 +508,7 @@ function make_maryland_array3($json,$date){
 	global $zip2name;
 	global $debug;
 	global $arcgis_key;
-	global $core;
+	global $covid_db;
 	$return = array();
 	global $raw;
 	$raw = $json;
@@ -554,7 +554,7 @@ function make_maryland_array3($json,$date){
 	return $return;
 }
 function wikidata(){
-  global $core;
+  global $covid_db;
 $return = array();
 $i=1; 
 $url = "https://en.m.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Maryland";
@@ -602,7 +602,7 @@ foreach ($array as $v) {
           $chart = str_replace('<table class="wikitable sortable" style="text-align:right"><caption><sup id="cite_ref-:3_1-3" class="reference"><a href="#cite_note-:3-1"></a></sup></caption>
 <tbody>','',$chart);
           
-  $r = $core->query("SELECT html, checked_datetime FROM coronavirus_wiki order by id DESC limit 0,1");
+  $r = $covid_db->query("SELECT html, checked_datetime FROM coronavirus_wiki order by id DESC limit 0,1");
   $d = mysqli_fetch_array($r);
   $old = $d['html'];        
           
@@ -611,8 +611,8 @@ foreach ($array as $v) {
   $send_wiki_message = 'off';
 if ($test1 != $test2){
     // origional alert and insert
-    $new = $core->real_escape_string($chart);
-    $core->query("insert into coronavirus_wiki (checked_datetime, html) values (NOW(), '$new')");
+    $new = $covid_db->real_escape_string($chart);
+    $covid_db->query("insert into coronavirus_wiki (checked_datetime, html) values (NOW(), '$new')");
     $send_wiki_message = 'on';
     //$url = "https://www.mdwestserve.com/sms/message_send/4433862584/Coronavirus_Update";
     //getPage($url);
@@ -642,7 +642,7 @@ if ($test1 != $test2){
             echo "</div>";
           }
           ob_start();
-          $r = $core->query("SELECT html, checked_datetime FROM coronavirus_wiki order by id DESC limit 1,1");
+          $r = $covid_db->query("SELECT html, checked_datetime FROM coronavirus_wiki order by id DESC limit 1,1");
           $d = mysqli_fetch_array($r);
           // Whats changed
           $array4 = explode('</tr>',$d['html']);
@@ -675,8 +675,8 @@ if ($test1 != $test2){
           $messages = str_split(strip_tags($changes), 150);
           foreach ($messages as $msg) {
              if ($send_wiki_message == 'on'){
-              global $core;
-              $r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
+              global $covid_db;
+              $r = $covid_db->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
               while($d = mysqli_fetch_array($r)){
                 $sms = trim($d['sms_number']);
                 //message_send($sms,$msg);

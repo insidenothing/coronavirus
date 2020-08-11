@@ -32,7 +32,7 @@ $maryland_history = make_maryland_array();
 
 /*
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){	
 	$today[$d[name_of_location]] = 0; // count
 	$peak[$d[name_of_location]] = 0; // count
@@ -51,16 +51,16 @@ global $debug_in;
 global $debug_out;
 
 function total_count($county){
-	global $core;
+	global $covid_db;
 	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['number_of_people'];
 }
 function rate_of_infection($county){
-	global $core;
+	global $covid_db;
 	$q = "SELECT rate_of_infection FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['rate_of_infection'];	
 }
@@ -88,7 +88,7 @@ function show_on_graph($county){
 	
 }
 function make_county($county){
-        global $core;
+        global $covid_db;
         $return = '';
         $t = '0'; // days
         $dt= '1'; // change in days
@@ -114,7 +114,7 @@ function make_county($county){
 function make_county_prediction($county,$start,$count,$dt){
     global $debug_in;
     global $debug_out;
-    global $core;
+    global $covid_db;
     $return = '';
     $start = new DateTime ($start, new DateTimeZone ('UTC'));
     global $days_to_predict;

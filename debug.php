@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 }else{
   $id = '13';
 }
-$r = $core->query("select raw_response from coronavirus_api_cache where api_id = '$id' order by id desc");
+$r = $covid_db->query("select raw_response from coronavirus_api_cache where api_id = '$id' order by id desc");
 $d = mysqli_fetch_array($r);
 if (isset($_GET['date'])){
  $date_formatted = $_GET['date'];

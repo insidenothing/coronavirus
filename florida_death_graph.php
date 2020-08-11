@@ -8,7 +8,7 @@ $graph_total='';
 global $graph_total_int;
 $graph_total_int=0;
 function make_fl_deaths(){
-        global $core;
+        global $covid_db;
         global $florida_deaths;
 	global $graph_total;
 	global $graph_total_int;

@@ -23,17 +23,17 @@ global $send_message;
 $send_message = 'off';
 
 // Last Version
-$r = $core->query("SELECT html, checked_datetime FROM coronavirus order by id DESC limit 0,1");
+$r = $covid_db->query("SELECT html, checked_datetime FROM coronavirus order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
 $json = json_encode($maryland_history);
-$new = $core->real_escape_string($json);
+$new = $covid_db->real_escape_string($json);
 $test1 = $old;
 $test2 = $json;
 
 
 // Compare Most Recent to Last Change
-$r = $core->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
+$r = $covid_db->query("SELECT id, checked_datetime FROM coronavirus order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 //global $new_date;
 //$new_date = $d['checked_datetime'];
@@ -45,7 +45,7 @@ $y_time = strtotime($new_date) - 86400;
 $yesterday = date('Y-m-d',$y_time);
 
 $dropdown = "<form method='POST'><select name='checked_datetime' class='form-control' id='sel1'>";
-$r = $core->query("SELECT checked_datetime FROM coronavirus order by id DESC");
+$r = $covid_db->query("SELECT checked_datetime FROM coronavirus order by id DESC");
 while($d = mysqli_fetch_array($r)){
    $dropdown .= "<option>$d[checked_datetime]</option>"; 
 }
@@ -53,10 +53,10 @@ $dropdown .= "</select><input value='Load Date' type='submit' class='btn btn-def
 
 if (isset($_POST['checked_datetime'])){
     $date = $_POST['checked_datetime'];
-    $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime = '$date' ");
+    $r = $covid_db->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime = '$date' ");
 }else{
     // first frport from yesterday to last report of this day
-    $r = $core->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime like '$yesterday %' order by id ASC limit 1");  
+    $r = $covid_db->query("SELECT id, html, checked_datetime FROM coronavirus where checked_datetime like '$yesterday %' order by id ASC limit 1");  
 }
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
@@ -66,9 +66,9 @@ $old_date = $d['checked_datetime'];
 echo "<div class='col-sm-4'>";
 
 function total_count($county){
-	global $core;
+	global $covid_db;
 	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['number_of_people'];
 }
@@ -312,7 +312,7 @@ echo "$dropdown";
 
 
 echo "<h3>SMS Userlist</h3>";
-$rSMS = $core->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
+$rSMS = $covid_db->query("SELECT id FROM coronavirus_sms order by id desc limit 1");
 $dSMS = mysqli_fetch_array($rSMS);
 echo "<p>Registered Phones:  $dSMS[id]</p>";
 */
@@ -347,14 +347,14 @@ function do_math_location($county){
 	global $new_id;
 	global $new_date;
 	global $old_date;
-	global $core;
+	global $covid_db;
 	$today = date('Y-m-d',strtotime($new_date));
 	$aka = county_aka($county);
 	$count_today = $maryland_history[$today][$aka];
 	
 	$yesterday = date('Y-m-d',strtotime($old_date));
 	$count_yesterday = $maryland_history[$yesterday][$aka];
-	$core->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
+	$covid_db->query("update coronavirus set $countyCOVID19Cases = '$count_today' where id = '$new_id' ");
 	
 	if ($count_today == 0){
 		// failure detected
@@ -438,13 +438,13 @@ echo "$new_master_message";
 echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)</p>";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
-	global $core;
-	//$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
+	global $covid_db;
+	//$r = $covid_db->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
 	//while($d = mysqli_fetch_array($r)){
 		//$sms = trim($d['sms_number']);
 		//message_send($sms,$new_master_message);
 	//}
-	$core->query("insert into coronavirus_msg (msg,msg_made_datetime) values ('$new_master_message',NOW() ) ");
+	$covid_db->query("insert into coronavirus_msg (msg,msg_made_datetime) values ('$new_master_message',NOW() ) ");
 }  
 echo "</div>";
 	

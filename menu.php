@@ -46,7 +46,7 @@
   <?PHP } ?>
 <?PHP
 global $send_message;
-global $core;
+global $covid_db;
 
 include_once('/var/www/secure.php'); //outside webserver
 global $covid_db; 

@@ -18,14 +18,14 @@ function case_count($county){
 }
 function total_count($county){
 	// pouplation
-	global $core;
+	global $covid_db;
 	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['number_of_people'];	
 }
 function infection_levelMD($county){
-	global $core;
+	global $covid_db;
 	global $state_level;
 	$cases = case_count($county);
 	$total = total_count($county);
@@ -36,11 +36,11 @@ function infection_levelMD($county){
 	$d = $c * 100;
 	$state_level = $d;
 	$e = number_format($d, 5, '.', '');
-	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
+	$covid_db->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
 	echo "<div class='col-sm-6' style='background-color:lightblue; height:150px;'><h3>$county</h3><p><b>Cases</b> $cases : $total <b>Population</b></p><p><b>Reduced</b> $a : $b</p><p><b>Infected Percent of the Population</b> $e%</p></div><div class='col-sm-6' style='background-color:lightblue; height:150px;'><p><img src='img/Infection_rate_formula.jpg' class='img-rounded'></p></div>";
 }
 function infection_level($county){
-	global $core;
+	global $covid_db;
 	global $state_level;
 	$cases = case_count($county);
 	$total = total_count($county);
@@ -57,7 +57,7 @@ function infection_level($county){
 	}else{
 		echo "<div class='col-sm-2' style='background-color:#ffbaba;'><h4>HOT <a href='county.php?county=$county'>$county</a></h4><p>$cases : $total</p><p>$a : $b</p><p><b>$e%</b></p></div>";	
 	}
-	$core->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
+	$covid_db->query("update coronavirus_populations set rate_of_infection = '$e' where name_of_location = '$county' ");
 }
 ?>
 

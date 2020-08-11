@@ -50,7 +50,7 @@ $maryland_history = make_maryland_array();
 
 
 $q = "SELECT distinct name_of_location FROM coronavirus_populations ";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){	
 	$today[$d[name_of_location]] = 0; // count
 	$peak[$d[name_of_location]] = 0; // count
@@ -69,16 +69,16 @@ global $debug_in;
 global $debug_out;
 
 function total_count($county){
-	global $core;
+	global $covid_db;
 	$q = "SELECT number_of_people FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['number_of_people'];
 }
 function rate_of_infection($county){
-	global $core;
+	global $covid_db;
 	$q = "SELECT rate_of_infection FROM coronavirus_populations where name_of_location = '$county' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	return $d['rate_of_infection'];	
 }
@@ -106,7 +106,7 @@ function show_on_graph($county){
 	
 }
 function make_county($county){
-        global $core;
+        global $covid_db;
         $return = '';
         $t = '0'; // days
         $dt= '1'; // change in days
@@ -130,7 +130,7 @@ function make_county($county){
 function make_county_prediction($county,$start,$count,$dt){
     global $debug_in;
     global $debug_out;
-    global $core;
+    global $covid_db;
     $return = '';
     $start = new DateTime ($start, new DateTimeZone ('UTC'));
     global $days_to_predict;
@@ -501,12 +501,12 @@ function toggleDataSeries(e) {
 			<h3>Today ( Click to View Details )</h3>
 			<?PHP
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			$d = mysqli_fetch_array($r);	
 			$r_int = number_format($today[$d[name_of_location]], 0, '.', ',');
 			echo "<p><a href='county.php?county=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at $r_int</p>";
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland' ";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			while($d = mysqli_fetch_array($r)){	
 				echo "<p><a href='graphs.php?show=".$d['name_of_location']."'>".$d['name_of_location']."</a> on ".date('Y-m-d')." at ".$today[$d[name_of_location]]."</p>";
 			}
@@ -516,11 +516,11 @@ function toggleDataSeries(e) {
 			<h3>Peak Dates</h3>
 			<?PHP
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			$d = mysqli_fetch_array($r);
 			echo $peak_str[$d[name_of_location]];
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland'  ";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			while($d = mysqli_fetch_array($r)){	
 				echo $peak_str[$d[name_of_location]];
 			}
@@ -530,7 +530,7 @@ function toggleDataSeries(e) {
 			<h3>Recovery Dates</h3>
 			<?PHP
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations ";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			while($d = mysqli_fetch_array($r)){
 				if($today[$d[name_of_location]] < 20){
 					$normal[$d[name_of_location]] = '<p>Too few cases to predict (under 20) '.$d['name_of_location'].'.</p>'; // string
@@ -540,11 +540,11 @@ function toggleDataSeries(e) {
 				}
 			}
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location = 'Maryland'";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			$d = mysqli_fetch_array($r);
 			echo $normal[$d[name_of_location]];
 			$q = "SELECT distinct name_of_location FROM coronavirus_populations where name_of_location <> 'Maryland'  ";
-			$r = $core->query($q);
+			$r = $covid_db->query($q);
 			while($d = mysqli_fetch_array($r)){	
 				echo $normal[$d[name_of_location]];
 			}

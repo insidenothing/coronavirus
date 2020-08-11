@@ -17,17 +17,17 @@ $send_message = 'off';
 // Last Version
 $url_pulled = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_COVID_19_CasesByCounty/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
 //$url_pulled = $maryland_history['url_pulled'];
-$r = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
+$r = $covid_db->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
 $json = json_encode($maryland_history);
-$new = $core->real_escape_string($json);
+$new = $covid_db->real_escape_string($json);
 global $raw;
-$raw_response = $core->real_escape_string($raw);
+$raw_response = $covid_db->real_escape_string($raw);
 $test1 = $old;
 $test2 = $json;
 if ($test1 != $test2){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new','$url_pulled','$raw_response')");
+    	$covid_db->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new','$url_pulled','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"daily update");
 }
@@ -38,17 +38,17 @@ if ($test1 != $test2){
 global $maryland_history2;
 $maryland_history2 = make_maryland_array2();
 $url_pulled2 = $maryland_history2['url_pulled'];
-$r2 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled2' order by id DESC limit 0,1");
+$r2 = $covid_db->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled2' order by id DESC limit 0,1");
 $d2 = mysqli_fetch_array($r2);
 $old2 = $d2['html'];
 $json2 = json_encode($maryland_history2);
-$new2 = $core->real_escape_string($json2);
+$new2 = $covid_db->real_escape_string($json2);
 global $raw;
-$raw_response = $core->real_escape_string($raw);
+$raw_response = $covid_db->real_escape_string($raw);
 $test12 = $old2;
 $test22 = $json2;
 if ($test12 != $test22){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new2','$url_pulled2','$raw_response')");
+    	$covid_db->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new2','$url_pulled2','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"attributes updated");
 }
@@ -57,17 +57,17 @@ if ($test12 != $test22){
 global $maryland_history3;
 $maryland_history3 = make_maryland_array3('','','force');
 $url_pulled3 = $maryland_history3['url_pulled'];
-$r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
+$r3 = $covid_db->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
 $d3 = mysqli_fetch_array($r3);
 $old3 = $d3['html'];
 $json3 = json_encode($maryland_history3);
-$new3 = $core->real_escape_string($json3);
+$new3 = $covid_db->real_escape_string($json3);
 global $raw;
-$raw_response = $core->real_escape_string($raw);
+$raw_response = $covid_db->real_escape_string($raw);
 $test13 = $old3;
 $test23 = $json3;
 if ($test13 != $test23){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
+    	$covid_db->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"maryland zip codes updated");
 }
@@ -77,17 +77,17 @@ global $florida;
 $url = 'https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/ArcGIS/rest/services/COVID_19_Cases_in_Florida_by_Zip_Code/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=';
 $florida = make_florida_zip_array($url,'','force');
 $url_pulled3 = $florida['url_pulled'];
-$r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
+$r3 = $covid_db->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
 $d3 = mysqli_fetch_array($r3);
 $old3 = $d3['html'];
 $json3 = json_encode($florida);
-$new3 = $core->real_escape_string($json3);
+$new3 = $covid_db->real_escape_string($json3);
 global $raw;
-$raw_response = $core->real_escape_string($raw);
+$raw_response = $covid_db->real_escape_string($raw);
 $test13 = $old3;
 $test23 = $json3;
 if ($test13 != $test23){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
+    	$covid_db->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"florida zip codes updated");
 }
@@ -98,17 +98,17 @@ global $florida;
 $url = 'https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/ArcGIS/rest/services/Florida_COVID_19_Deaths_by_Day/FeatureServer/0/query?where=1%3D1&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=';
 $florida = make_florida_zip_array2($url,'','force');
 $url_pulled3 = $florida['url_pulled'];
-$r3 = $core->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
+$r3 = $covid_db->query("SELECT html, checked_datetime FROM coronavirus where url_pulled = '$url_pulled3' order by id DESC limit 0,1");
 $d3 = mysqli_fetch_array($r3);
 $old3 = $d3['html'];
 $json3 = json_encode($florida);
-$new3 = $core->real_escape_string($json3);
+$new3 = $covid_db->real_escape_string($json3);
 global $raw;
-$raw_response = $core->real_escape_string($raw);
+$raw_response = $covid_db->real_escape_string($raw);
 $test13 = $old3;
 $test23 = $json3;
 if ($test13 != $test23){
-    	$core->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
+    	$covid_db->query("insert into coronavirus (checked_datetime,just_date, html, url_pulled,raw_response) values (NOW(),NOW(), '$new3','$url_pulled3','$raw_response')");
     	//$send_message = 'on';
 	message_send('4433862584',"florida deaths updated");
 }
@@ -117,7 +117,7 @@ if ($test13 != $test23){
 
 
 // Compare Most Recent to Last Change
-$r = $core->query("SELECT id, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
+$r = $covid_db->query("SELECT id, checked_datetime FROM coronavirus where url_pulled = '$url_pulled' order by id DESC limit 0,1");
 $d = mysqli_fetch_array($r);
 //global $new_date;
 //$new_date = $d['checked_datetime'];
@@ -129,7 +129,7 @@ $new_id = $d['id'];
 $y_time = strtotime($new_date) - 86400;
 $yesterday = date('Y-m-d',$y_time);
 
-$r = $core->query("SELECT id, html, checked_datetime FROM coronavirus url_pulled = '$url_pulled' order by id DESC limit 1, 1");  
+$r = $covid_db->query("SELECT id, html, checked_datetime FROM coronavirus url_pulled = '$url_pulled' order by id DESC limit 1, 1");  
 $d = mysqli_fetch_array($r);
 $old = $d['html'];
 global $maryland_history_last;
@@ -149,7 +149,7 @@ function do_math_location($county){
 	global $new_id;
 	global $new_date;
 	global $old_date;
-	global $core;
+	global $covid_db;
 	$today = date('Y-m-d',strtotime($new_date));
 	$yesterday = date('Y-m-d',strtotime($old_date));
 	$aka = county_aka($county);
@@ -164,7 +164,7 @@ function do_math_location($county){
 		$count_yesterday = $count_yesterdayB;
 	}
 	$field = $county.'COVID19Cases';
-	$core->query("update coronavirus set $field = '$count_today' where id = '$new_id' ");
+	$covid_db->query("update coronavirus set $field = '$count_today' where id = '$new_id' ");
 	$count_delta = $count_today - $count_yesterday;
 	$dir = 'up';
 	if ( $count_today < $count_yesterday){
@@ -236,8 +236,8 @@ echo "<p>Update String Legenth: ".strlen($new_master_message)." ($send_message)<
 echo "<a href='?forcesms=1'><img class='img-responsive' src='img/send.jpg'></a>";
 echo "</div>";
 if ($send_message == 'on' || isset($_GET['forcesms'])){
-	global $core;
-	$r = $core->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
+	global $covid_db;
+	$r = $covid_db->query("SELECT sms_number FROM coronavirus_sms where sms_status = 'confirmed' ");
 	while($d = mysqli_fetch_array($r)){
 		$sms = trim($d['sms_number']);
 		//message_send($sms,$new_master_message);

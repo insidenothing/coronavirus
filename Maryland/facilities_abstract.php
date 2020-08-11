@@ -450,15 +450,15 @@ function cleanup($str){
 function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Resident_Cases,$Number_of_Staff_Cases,$Number_of_Resident_Deaths,$Number_of_Staff_Deaths,$Resident_Type,$county_name){
 	global $Facility_ZIP;
 	// the order we call the function will matter...
-	global $core;
+	global $covid_db;
 	$Facility_Name = cleanup($Facility_Name);
 	$q = "select * from coronavirus_facility where Facility_Name = '$Facility_Name' and report_date = '$date'";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	// look for yesterday
 	$date2 = date('Y-m-d',strtotime($date)-86400);
 	$q2 = "select * from coronavirus_facility where Facility_Name = '$Facility_Name' and report_date = '$date2'";
-	$r2 = $core->query($q2);
+	$r2 = $covid_db->query($q2);
 	$d2 = mysqli_fetch_array($r2);
 	if ($d2['id'] != ''){
 		// Let's Process Trend Data
@@ -481,7 +481,7 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 		// we reached the start of data collection.	
 	}
 	$county_name = cleanup_county($county_name);
-	$county_name = $core->real_escape_string($county_name);
+	$county_name = $covid_db->real_escape_string($county_name);
 	if ($d['id'] == ''){
 		echo "[insert $Resident_Type $Facility_Name $count $date]";
 		$q = "insert into coronavirus_facility (county_name,Resident_Type,zip_code,Facility_Name,report_date,report_count,state_name,trend_direction,trend_duration,Number_of_Resident_Cases,Number_of_Staff_Cases,Number_of_Resident_Deaths,Number_of_Staff_Deaths) values ('$county_name','$Resident_Type','$zip','$Facility_Name','$date','$count','Maryland','$current_trend','$current_duration','$Number_of_Resident_Cases','$Number_of_Staff_Cases','$Number_of_Resident_Deaths','$Number_of_Staff_Deaths') ";
@@ -490,9 +490,9 @@ function coronavirus_Facility($Facility_Name,$zip,$date,$count,$Number_of_Reside
 		$q = "update coronavirus_facility set county_name='$county_name',Resident_Type='$Resident_Type',Number_of_Resident_Cases='$Number_of_Resident_Cases', Number_of_Staff_Cases='$Number_of_Staff_Cases', Number_of_Resident_Deaths='$Number_of_Resident_Deaths',Number_of_Staff_Deaths='$Number_of_Staff_Deaths', zip_code = '$zip', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where Facility_Name = '$Facility_Name' and report_date = '$date' ";
 		
 	}
-	$core->query($q);
+	$covid_db->query($q);
 	//slack_general("$q",'covid19-sql');
-	//slack_general(mysqli_error($core),'covid19-sql');
+	//slack_general(mysqli_error($covid_db),'covid19-sql');
 
 }
 
@@ -501,7 +501,7 @@ $master_array = array();
 
 ob_start();
 $q = "select * from coronavirus_apis where run_order = '5000' "; // MD Facilities
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while ($d = mysqli_fetch_array($r)){
 	if ($_GET['date']){
   		$q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' and cache_date_time like '$_GET[date] %' order by id desc limit 0,1 ";
@@ -509,7 +509,7 @@ while ($d = mysqli_fetch_array($r)){
 		$q2 = "select * from coronavirus_api_cache where api_id = '$d[id]' order by id desc limit 0,1 ";
 	}
 	echo "<h3>$q2</h3>";
-  $r2 = $core->query($q2);
+  $r2 = $covid_db->query($q2);
   $d2 = mysqli_fetch_array($r2);
   echo "<h1>$d[api_name] from $d2[cache_date_time]</h1>";
   $api_name = cleanup($d['api_name']);

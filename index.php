@@ -6,7 +6,7 @@ global $date;
 $date = $global_date;
 // move inside function?
 $q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = 'Maryland'";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 $total_zip = $r->num_rows;
 $flat = 23;
 $down = 0;
@@ -46,19 +46,19 @@ $new_down=0;
 
 
 function make_reopen($state){
-        global $core;
+        global $covid_db;
         $return1 = ''; 
 	$return2 = ''; 
 	$range = '30';
 	$q = "SELECT * FROM coronavirus_reopen where state = '$state' ";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$rows = mysqli_num_rows($r);
 	$start = $rows - $range;
 	$test1 = $start;
 	$range2= $range - 1;
 	$start = max($start, 0);
         $q = "SELECT * FROM coronavirus_reopen where state = '$state' limit $start, $range";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$test1 = $test1 + 1; 
 	if ($test1 < 0){
 		foreach(range($test1,0) as $days){
@@ -243,7 +243,7 @@ function toggleDataSeries(e) {
 <?PHP
 
 function state_data($state){
-	global $core;
+	global $covid_db;
 	ob_start();
 	$total_up=0;
 	$total_flat=0;
@@ -258,7 +258,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 and trend_direction <> 'up' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 		$color='orange';
 		    if ($d['trend_direction'] == 'FLAT'){
@@ -274,7 +274,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and report_count <> 0 and trend_direction = 'up' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 		$color='orange';
 		    if ($d['trend_direction'] == 'FLAT'){
@@ -292,7 +292,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration <> '0' and state_name = '$state' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 		echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</a></li>"; 
 		$total_up++;
@@ -305,7 +305,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> '0' and trend_duration <> 0 and state_name = '$state' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 	      echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</a></li>"; 
 	      $total_flat++;
@@ -318,7 +318,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration <> '0' and state_name = '$state' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 	      echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count] for $d[trend_duration] days</a></li>"; 
 	      $total_down++;
@@ -333,7 +333,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'UP' and trend_duration = '0' and state_name = '$state' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 		echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</a></li>"; 
 		$new_up++;
@@ -346,7 +346,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'FLAT' and report_count <> 0 and trend_duration = '0' and state_name = '$state' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 	       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</a></li>"; 
 	       $new_flat++;
@@ -359,7 +359,7 @@ function state_data($state){
 	    <ol>
 	    <?PHP
 	    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_direction = 'DOWN' and trend_duration = '0' and state_name = '$state' order by trend_duration DESC";
-	    $r = $core->query($q);
+	    $r = $covid_db->query($q);
 	    while($d = mysqli_fetch_array($r)){
 	       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[town_name] $d[zip_code] $d[trend_direction] at $d[report_count]</a></li>"; 
 	       $new_down++;
@@ -394,7 +394,7 @@ $total_up	= $return['total_up'];
 echo $buffer;
 
 function count_open_zips($state){
-	global $core;
+	global $covid_db;
 	global $global_date;
 	$date = $global_date;
 	$zip_open=0;
@@ -405,7 +405,7 @@ function count_open_zips($state){
 		  <h1>Phase One Reopen <?PHP echo $date.' '.$state;?></h1><p>The following zip codes are flat or down for over 2 weeks and ready to look at how to begin phase one.</p>
 		    <?PHP
 		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and (trend_direction = 'DOWN' or trend_direction = 'FLAT' ) order by report_count desc";
-		    $r = $core->query($q);
+		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 		       $zip_open++;
 		       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
@@ -418,13 +418,13 @@ function count_open_zips($state){
 		  <h1>Not Phase One <?PHP echo $date.' '.$state;?></h1>
 		    <?PHP
 		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and state_name = '$state' and trend_direction = 'UP' order by report_count desc ";
-		    $r = $core->query($q);
+		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
 		       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
 		    }
 		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and state_name = '$state' order by report_count desc";
-		    $r = $core->query($q);
+		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
 		       echo "[ <a href='zipcode.php?zip=$d[zip_code]'>$d[zip_code] at $d[report_count]</a> ]"; 
@@ -434,14 +434,14 @@ function count_open_zips($state){
 	</div>
 	<?PHP
 	$q = "select * from coronavirus_reopen where the_date = '$date' and state = '$state'";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	if ($d['id'] == ''){
 		$q = "insert into coronavirus_reopen (zip_closed,zip_open,the_date,state) values ('$zip_closed','$zip_open','$date','$state') ";	
 	}else{
 		$q = "update coronavirus_reopen set zip_closed = '$zip_closed', zip_open = '$zip_open' where the_date = '$date' and state = '$state' ";		
 	}
-	$core->query($q);
+	$covid_db->query($q);
 	slack_general("$q",'covid19-sql');
 }
 

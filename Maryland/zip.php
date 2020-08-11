@@ -3,14 +3,14 @@ ob_get_clean();
 include_once('../menu.php');
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
-	$core->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Maryland'");
+	$covid_db->query(" delete from coronavirus_zip where report_date = '$delete' and state_name = 'Maryland'");
 	die('done');
 }
 
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
 	$zip = $d['zip_code'];
 	$zipcode[$zip] = $d['town_name'];
@@ -36,14 +36,14 @@ function coronavirus_zip($zip,$date,$count){
 	global $zipcode;
 	$town = $zipcode[$zip];
 	// the order we call the function will matter...
-	global $core;
+	global $covid_db;
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
-	$r = $core->query($q);
+	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	// look for yesterday
 	$date2 = date('Y-m-d',strtotime($date)-86400);
 	$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
-	$r2 = $core->query($q2);
+	$r2 = $covid_db->query($q2);
 	$d2 = mysqli_fetch_array($r2);
 	if ($d2['id'] != ''){
 		// Let's Process Trend Data
@@ -72,7 +72,7 @@ function coronavirus_zip($zip,$date,$count){
 		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date' ";
 		
 	}
-	$core->query($q);
+	$covid_db->query($q);
 	slack_general("$q",'covid19-sql');
 
 }
@@ -83,7 +83,7 @@ global $zipData;
 global $date;
 
 $q = "select * from coronavirus_api_cache where api_id = '13' order by id desc";
-$r = $core->query($q);
+$r = $covid_db->query($q);
 echo "<h1>$q</h1>";
 $d = mysqli_fetch_array($r);
 echo "<h1>Cache ID $d[id] from $d[cache_date_time]</h1>";
