@@ -14,6 +14,20 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 
 slack_bypass("*$host Hack Attempt*: $msg",'anti-hack');
 
+
+function AB_test($host){
+  $command = "ab -n 10 -H \"Host: example.com\" http://$host/ "; 
+  //echo '<pre>';
+  $last_line = system($command, $retval);
+  // Printing additional info
+  //echo '
+  //</pre>
+  //<hr />Last line of the output: ' . $last_line . '
+  //<hr />Return value: ' . $retval;
+  slack_bypass("Hack Back AB $host",'anti-hack');
+}
+
+
 function check_WWW_80($host){
         $www = "http://$host";
         $info = get_headers($www, 1);
