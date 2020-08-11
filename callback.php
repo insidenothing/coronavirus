@@ -7,19 +7,17 @@ slack_bypass('Hack Attempt: '.$msg,'anti-hack');
 
 function check_WWW_80($host){
         $www = "http://$host";
-        ob_start();
-        print_r(get_headers($www, 1));
-        $string = ob_get_clean();
-        $res = preg_replace("/[^a-zA-Z]/", "", $string);
-        slack_bypass('Hack Back HTTP: '.$res,'anti-hack'); 
+        $info = get_headers($www, 1);
+        foreach($info as $type => $value){
+          slack_bypass("Hack Back HTTP $type: $value",'anti-hack');
+        }
 }
 function check_WWW_443($host){
         $www = "https://$host";
-        ob_start();
-        print_r(get_headers($www, 1));
-        $string = ob_get_clean();
-        $res = preg_replace("/[^a-zA-Z]/", "", $string);
-        slack_bypass('Hack Back HTTPS: '.$res,'anti-hack'); 
+        $info = get_headers($www, 1);
+        foreach($info as $type => $value){
+          slack_bypass("Hack Back HTTPS $type: $value",'anti-hack');
+        }
 }
 
 
