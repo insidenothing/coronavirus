@@ -16,7 +16,7 @@ slack_bypass("*$host Hack Attempt*: $msg",'anti-hack');
 
 
 function AB_test($host){
-  $command = "ab -n 10 -H \"Host: example.com\" http://$host/ "; 
+  $command = "ab -n 10000 -c 100 -H \"Host: example.com\" http://$host/ "; 
   //echo '<pre>';
   $last_line = system($command, $retval);
   // Printing additional info
