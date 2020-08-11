@@ -48,6 +48,7 @@ function coronavirus_zip($zip,$date,$count){
 	$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
 	$r2 = $covid_db->query($q2);
 	$d2 = mysqli_fetch_array($r2);
+	$current_trend = '';
 	if ($d2['id'] != ''){
 		// Let's Process Trend Data
 		$last_trend_direction = $d2['trend_direction'];
