@@ -1,6 +1,6 @@
 <?PHP
-
-$page_description = "300-Day Data Acquisition";
+$days_back = 200;
+$page_description = "$days_back Day Data Acquisition Report";
 include_once('menu.php');
 
 $array=array();
@@ -53,7 +53,7 @@ $array['countyState'][] = 'Arlington.Virginia'; // virginia County
 echo "<style> span { font-size: 10px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
 foreach($array[zip] as $k => $v){
   echo "<tr><td>$v</td><td>";
-  for($i = 300; $i > -1; $i--){
+  for($i = $days_back; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
     echo check_zip($v,$date);
   }
@@ -61,7 +61,7 @@ foreach($array[zip] as $k => $v){
 }
 foreach($array[countyState] as $k => $v){
   echo "<tr><td>$v</td><td>";
-  for($i = 300; $i > -1; $i--){
+  for($i = $days_back; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
     echo check_county($v,$date);
   }
