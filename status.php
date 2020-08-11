@@ -38,7 +38,7 @@ $array['zip'][] = '21093'; // Maryland Zip
 $array['countyState'][] = 'Baltimore.Maryland'; // Maryland County
 
 // Florida Data Quality
-$array['zip'][] = '33445'; // Old Florida Zip
+//$array['zip'][] = '33445'; // Old Florida Zip
 $array['zip'][] = 'Palm Beach-33445'; // New Florida Zip
 $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 
