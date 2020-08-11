@@ -1,5 +1,7 @@
 <?PHP
 include_once('slack.php'); 
-$msg = htmlspecialchars($_GET['msg']);
-slack_bypass('hack detected: '.$msg,'anti-hack');
+if (isset($_GET['msg'])){
+  $msg = htmlspecialchars($_GET['msg']);
+}
+slack_bypass('Hack Detected: '.$msg,'anti-hack');
 ?>
