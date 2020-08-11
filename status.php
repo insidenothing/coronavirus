@@ -30,6 +30,9 @@ function check_county($countyDOTstate,$date){
   }
 }
 
+// NYC
+$array['zip'][]  = '11368';
+
 // Arizona Data Quality
 $array['zip'][] = '85283';
 
