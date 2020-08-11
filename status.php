@@ -23,15 +23,15 @@ foreach($array[zip] as $k => $v){
   echo "<tr><td>$v</td><td>";
   for($i = 45; $i > 0; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
-    echo "<span style='found' title='$date'>☑</span>";
+    echo "<span class='found' title='$date'>☑</span>";
   }
   echo "</td><tr>";
 }
-foreach($array[zip] as $k => $v){
+foreach($array[countyState] as $k => $v){
   echo "<tr><td>$v</td><td>";
   for($i = 45; $i > 0; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
-    echo "<span style='missing' title='$date'>☒</span>";
+    echo "<span class='missing' title='$date'>☒</span>";
   }
   echo "</td><tr>";
 }
