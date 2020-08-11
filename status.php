@@ -20,7 +20,7 @@ function check_zip($zip,$date){
 function check_county($countyDOTstate,$date){
   global $covid_db;
   $parts = explode('.',$countyDOTstate);
-  $q = "select id from coronavirus_county where county_name = '$parts[0]' and state_name = '$parts[0]' and report_date = '$date'";
+  $q = "select id from coronavirus_county where county_name = '$parts[0]' and state_name = '$parts[1]' and report_date = '$date'";
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
