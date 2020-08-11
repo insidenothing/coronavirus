@@ -1,30 +1,40 @@
 <?PHP
+
 // review get values
 if (isset($_GET)){
    foreach ($_GET as $k => $v){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
-            header('Location: callback.php?msg=UNION detected');
+           $msg = 'UNION detected';
+           include_once('callback.php');
+           die();
         } 
    }
 }
+
 // die on bot match
 if (isset($_SERVER['HTTP_USER_AGENT'])){
     
     $bot = $_SERVER['HTTP_USER_AGENT'];
     $pos = strpos($bot, 'SemrushBot');
     if ($pos !== false) {
-        header('Location: callback.php?msg=SemrushBot detected');
+        $msg = 'SemrushBot detected';
+           include_once('callback.php');
+           die();
     } 
     
     $pos = strpos($bot, 'AhrefsBot');
     if ($pos !== false) {
-        header('Location: callback.php?msg=AhrefsBot detected');
+        $msg = 'AhrefsBot detected';
+           include_once('callback.php');
+           die();
     } 
     
 }else{
     
-  header('Location: callback.php?msg=missing HTTP_USER_AGENT');
+   $msg = 'missing HTTP_USER_AGENT';
+   include_once('callback.php');
+   die();
     
 }
 ?>
