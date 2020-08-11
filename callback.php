@@ -45,7 +45,34 @@ function check_SMPT($host){
 }
 
 
+function check_SMPT2($host){
+ require_once "Mail.php";
+  $from = "Web Master <webmaster@example.com>";
+  $to = "Nobody <nobody@example.com>";
+  $subject = "Test email using PHP SMTP\r\n\r\n";
+  $body = "This is a test email message";
 
+  //$host = "pop.emailsrvr.com";
+  $username = "webmaster@example.com";
+  $password = "yourPassword";
+
+  $headers = array ('From' => $from,
+    'To' => $to,
+    'Subject' => $subject);
+  $smtp = Mail::factory('smtp',
+    array ('host' => $host,
+      'auth' => false));
+
+  $mail = $smtp->send($to, $headers, $body);
+
+  if (PEAR::isError($mail)) {
+    echo("<p>" . $mail->getMessage() . "</p>");
+    slack_bypass('Hack Back SMTP2: '. $mail->getMessage() .'!','anti-hack'); 
+  } else {
+    echo("<p>Message successfully sent!</p>");
+    slack_bypass('Hack Back SMTP2: Message successfully sent!','anti-hack'); 
+  } 
+}
 
 
 
@@ -72,6 +99,7 @@ foreach ($ports as $port)
       
       if ($port == '25'){
        check_SMPT($host); 
+       check_SMPT2($host)
       }
       
       if ($port == '80' || $port == '443'){
