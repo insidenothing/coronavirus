@@ -21,7 +21,7 @@ $array['countyState'][] = 'Arlington.virginia'; // virginia County
 echo "<style> span { font-size: 25px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
 foreach($array[zip] as $k => $v){
   echo "<tr><td>$v</td><td>";
-  for($i = 45; $i > 0; $i--){
+  for($i = 45; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
     echo "<span class='found' title='$date'>☑</span>";
   }
@@ -29,7 +29,7 @@ foreach($array[zip] as $k => $v){
 }
 foreach($array[countyState] as $k => $v){
   echo "<tr><td>$v</td><td>";
-  for($i = 45; $i > 0; $i--){
+  for($i = 45; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
     echo "<span class='missing' title='$date'>☒</span>";
   }
