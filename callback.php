@@ -122,7 +122,7 @@ foreach ($ports as $port)
     if (is_resource($connection))
     {
         echo '<h2>' . $host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.</h2>' . "\n";
-        slack_bypass('Hack Back: '.$host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
+        slack_bypass('Probe: '.$host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
       
       if ($port == 21){
        check_FTP($host); 
