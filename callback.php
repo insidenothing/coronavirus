@@ -27,12 +27,10 @@ foreach ($ports as $port)
       
       if ($port == '80' || $port == '443'){
         $info = get_headers($host);
-        $string0 = implode(' ', $info);
-        $string1 = explode('Server:', $string0);
-        //BEGIN EXTRACTING SERVER DETAILS
-        $pattern = '#^Server:#i';
-        $matches = preg_grep($pattern, $info); 
-        slack_bypass('Hack Back WWW: '.$matches,'anti-hack');
+        foreach($info as $k => $v){
+          slack_bypass('Hack Back WWW: '.$v,'anti-hack');  
+        }
+        
       }
       
       
