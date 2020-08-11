@@ -13,7 +13,11 @@ function slack_general($msg,$room){
 	$room = str_replace("'",'-',strtolower(str_replace(' ','-',$room)));
 	$thisroom = $room;
 	if ($ip != '69.250.28.138'){
-		$add = "[".$ip."][".$_SERVER['HTTP_USER_AGENT']."][".$_SERVER['PHP_SELF']."] ";
+		if (isset($_SERVER['HTTP_USER_AGENT'])){
+			$add = "[".$ip."][".$_SERVER['HTTP_USER_AGENT']."][".$_SERVER['PHP_SELF']."] ";
+		}else{
+			$add = "[".$ip."][Missing 'HTTP_USER_AGENT'][".$_SERVER['PHP_SELF']."] ";
+		}
 		$msg = $add.$msg;	
 	}
 	
