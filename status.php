@@ -20,7 +20,7 @@ $array['countyState'][] = 'Arlington.virginia'; // virginia County
 foreach($array[zip] as $k => $v){
   echo "<div>$v";
   for($i = 45; $i > 0; $i--){
-    $date = date("Y-m-d", strtotime("-$i days"))
+    $date = date("Y-m-d", strtotime("-$i days"));
     echo "<span title='$date'>☑</span>";
   }
   echo "</div>";
@@ -30,7 +30,7 @@ foreach($array[zip] as $k => $v){
 foreach($array[countyState] as $k => $v){
    echo "<div>$v";
   for($i = 45; $i > 0; $i--){
-    $date = date("Y-m-d", strtotime("-$i days"))
+    $date = date("Y-m-d", strtotime("-$i days"));
     echo "<span title='$date'>☒</span>";
   }
   echo "</div>";
