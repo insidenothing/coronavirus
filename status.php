@@ -44,7 +44,7 @@ $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 
 // virginia Data Quality
 $array['zip'][] = '23462'; // virginia Zip
-$array['countyState'][] = 'Arlington.virginia'; // virginia County
+$array['countyState'][] = 'Arlington.Virginia'; // virginia County
 
 
 echo "<style> span { font-size: 25px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
