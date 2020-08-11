@@ -144,7 +144,7 @@ if (count($pieces) == 0){
 		$deaths = $value['deaths'];
 		//if ($name != 'A State'){
 			echo "<li>coronavirus_county($name,$date,$count,$deaths,$hospitalizations);</li>";
-			//coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
+			coronavirus_county($name,$date,$count,$deaths,$hospitalizations);
 		//}
 	}
 	echo "<pre>";
