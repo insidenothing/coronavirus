@@ -67,13 +67,15 @@ function coronavirus_zip($zip,$date,$count){
 	}
 	
 	if ($d['id'] == ''){
+		echo "[insert $zip $count]";
 		$q = "insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Maryland','$current_trend','$current_duration') ";
 	}else{
+		echo "[update $zip $count]";
 		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration'  where zip_code = '$zip' and report_date = '$date' ";
 		
 	}
 	$covid_db->query($q);
-	slack_general("$q",'covid19-sql');
+	//slack_general("$q",'covid19-sql');
 
 }
 
@@ -112,10 +114,10 @@ if (empty($_GET['run'])){
 	die('set run=1');
 }
 
-$i=0;
+$i=count($zipData);
 foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
-	$i++;
+	$i = $i - 1;
 	echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value);
 	if ($count == 0){
