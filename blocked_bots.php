@@ -19,14 +19,14 @@ if (isset($_SERVER['HTTP_USER_AGENT'])){
     $pos = strpos($bot, 'SemrushBot');
     if ($pos !== false) {
         $msg = 'SemrushBot detected';
-           include_once('callback.php');
+           //include_once('callback.php');
            die();
     } 
     
     $pos = strpos($bot, 'AhrefsBot');
     if ($pos !== false) {
         $msg = 'AhrefsBot detected';
-           include_once('callback.php');
+           //include_once('callback.php');
            die();
     } 
     
