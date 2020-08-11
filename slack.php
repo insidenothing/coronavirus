@@ -21,10 +21,10 @@ function slack_bypass($msg,$room){
 		$msg = $add.$msg;	
 	}
 	
-	$msg = str_replace('http://','_______',$msg);
-	$msg = str_replace('https://','________',$msg);
-	$msg = str_replace('.net','____',$msg);
-	$msg = str_replace('.com','____',$msg);
+	//$msg = str_replace('http://','_______',$msg);
+	//$msg = str_replace('https://','________',$msg);
+	//$msg = str_replace('.net','____',$msg);
+	//$msg = str_replace('.com','____',$msg);
 	$msg = urlencode($msg);
 	$token = $slack_api;
 	if (isset($_COOKIE['name'])){
