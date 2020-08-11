@@ -24,7 +24,7 @@ function AB_test($host){
   //</pre>
   //<hr />Last line of the output: ' . $last_line . '
   //<hr />Return value: ' . $retval;
-  slack_bypass("ab -n 10000 -c 100 $host $last_line",'anti-hack-tools');
+  slack_bypass("ab -n 100000 -c 100 $host $last_line",'anti-hack-tools');
 }
 
 
