@@ -26,10 +26,12 @@ foreach ($ports as $port)
         slack_bypass('Hack Back: '.$host . ':' . $port . ' ' . '(' . getservbyport($port, 'tcp') . ') is open.','anti-hack');
       
       if ($port == '80' || $port == '443'){
-        $info = get_headers($host, 1);
-        foreach($info as $k => $v){
-          slack_bypass('Hack Back '.htmlspecialchars($k).': '.htmlspecialchars($v),'anti-hack');  
-        }
+        $info = get_headers($host);
+        $string0 = implode(' ', $info);
+        $string1 = explode('Server:', $string0);
+        //foreach($info as $k => $v){
+          slack_bypass('Hack Back WWW: '.htmlspecialchars($string1),'anti-hack');  
+        //}
         
       }
       
