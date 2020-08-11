@@ -5,13 +5,23 @@ if (isset($_GET['msg'])){
 }
 slack_bypass('Hack Attempt: '.$msg,'anti-hack');
 
-function check_WWW($host){
+function check_WWW_80($host){
+        $www = "http://$host";
         ob_start();
-        print_r(get_headers($url, 1));
+        print_r(get_headers($www, 1));
         $string = ob_get_clean();
         $res = preg_replace("/[^a-zA-Z]/", "", $string);
-        slack_bypass('Hack Back WWW: '.$res,'anti-hack'); 
+        slack_bypass('Hack Back HTTP: '.$res,'anti-hack'); 
 }
+function check_WWW_443($host){
+        $www = "https://$host";
+        ob_start();
+        print_r(get_headers($www, 1));
+        $string = ob_get_clean();
+        $res = preg_replace("/[^a-zA-Z]/", "", $string);
+        slack_bypass('Hack Back HTTPS: '.$res,'anti-hack'); 
+}
+
 
 function check_SMPT($host){
  require_once "Mail.php";
@@ -102,8 +112,11 @@ foreach ($ports as $port)
        check_SMPT2($host);
       }
       
-      if ($port == '80' || $port == '443'){
-         check_WWW($host);
+      if ($port == '80'){
+         check_WWW_80($host);
+      }
+      if ($port == '443'){
+         check_WWW_443($host);
       }
       
       
