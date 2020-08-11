@@ -16,7 +16,7 @@ function slack_general($msg,$room){
 		if (isset($_SERVER['HTTP_USER_AGENT'])){
 			$add = "[".$ip."][".$_SERVER['HTTP_USER_AGENT']."][".$_SERVER['PHP_SELF']."] ";
 		}else{
-			$add = "[".$ip."][Missing 'HTTP_USER_AGENT'][".$_SERVER['PHP_SELF']."] ";
+			header('Location: callback.php?msg=Missing HTTP_USER_AGENT');
 		}
 		$msg = $add.$msg;	
 	}
