@@ -6,14 +6,15 @@ if(isset($_GET['global_date'])){
 }
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
-	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'virginia'");
+	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'Virginia'");
 	die('done '.$delete);
 }
 if (isset($_GET['delete_date'])){
 	$delete = $_GET['delete_date'];
-	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'virginia'");
+	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'Virginia'");
 	die('done '.$delete);
 }
+/*
 ?>
 
 <script>
@@ -34,6 +35,7 @@ scrolldown();
 
 
 <?PHP
+*/
 global $zipcode;
 $zipcode = array();
 $q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
@@ -53,12 +55,12 @@ function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
 	global $zipcode;
 	$town = $zipcode[$zip];
 	$testing=0;
-	$q = "select * from coronavirus_county where county_name = '$zip' and report_date = '$date' and state_name = 'virginia'";
+	$q = "select * from coronavirus_county where county_name = '$zip' and report_date = '$date' and state_name = 'Virginia'";
 	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	// look for yesterday
 	$date2 = date('Y-m-d',strtotime($date)-86400);
-	$q2 = "select * from coronavirus_county where county_name = '$zip' and report_date = '$date2' and state_name = 'virginia'";
+	$q2 = "select * from coronavirus_county where county_name = '$zip' and report_date = '$date2' and state_name = 'Virginia'";
 	$r2 = $covid_db->query($q2);
 	$d2 = mysqli_fetch_array($r2);
 	if ($d2['id'] != ''){
@@ -83,10 +85,10 @@ function coronavirus_county($zip,$date,$count,$death_count,$hospitalizations){
 	}
 	if ($d['id'] == ''){
 		echo "[insert $zip $date $count]";
-		$q = "insert into coronavirus_county (hospitalizations,death_count,testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$hospitalizations','$death_count','$testing','$zip','$date','$count','$town','virginia','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_county (hospitalizations,death_count,testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$hospitalizations','$death_count','$testing','$zip','$date','$count','$town','Virginia','$current_trend','$current_duration') ";
 	}else{
 		echo "[update $zip $date $count]";
-		$q = "update coronavirus_county set hospitalizations='$hospitalizations', death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and state_name='virginia' and report_date = '$date' ";	
+		$q = "update coronavirus_county set hospitalizations='$hospitalizations', death_count='$death_count',testing_count = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and state_name='Virginia' and report_date = '$date' ";	
 	}
 	$covid_db->query($q) or die(mysqli_error($covid_db));
 	//slack_general("$q",'covid19-sql');
