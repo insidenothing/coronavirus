@@ -1,5 +1,6 @@
 <?PHP
 $days_back = 200;
+$px = '5px';
 $page_description = "$days_back Day Data Acquisition Report";
 include_once('menu.php');
 
@@ -50,7 +51,7 @@ $array['zip'][] = '23462'; // virginia Zip
 $array['countyState'][] = 'Arlington.Virginia'; // virginia County
 
 
-echo "<style> span { font-size: 10px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
+echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
 foreach($array[zip] as $k => $v){
   echo "<tr><td>$v</td><td>";
   for($i = $days_back; $i > -1; $i--){
