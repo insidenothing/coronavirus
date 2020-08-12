@@ -1,6 +1,6 @@
 <?PHP
 // preprocess data using zip.php (reviews all zip codes over known time)
-$page_description = "Today's COVID 19 Data";
+$page_description = "Today's COVID 19 Data ".date('m/d/y');
 include_once('menu.php');
 	$date = date('Y-m-d');
 	$zip_open=0;
