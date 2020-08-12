@@ -522,7 +522,7 @@ include_once('menu.php');
 $date = $global_date;
 $state='';
 if (isset($_GET['state'])){
-	$state=$_GET['state'];
+	$state=htmlspecialchars($_GET['state']);
 }
 if (isset($_GET['auto']) && empty($_GET['state'])){
 	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
