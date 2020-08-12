@@ -520,7 +520,10 @@ $trend = $day90['trend_setter_duration'].' days '.$day90['trend_setter_direction
 $page_description = $trend.' '.$active_count.' to '.$active2_count.' active cases '.$day14['page_description'];
 include_once('menu.php');
 $date = $global_date;
-
+$state='';
+if (isset($_GET['state'])){
+	$state=$_GET['state'];
+}
 if (isset($_GET['auto']) && empty($_GET['state'])){
 	$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
 	$r = $covid_db->query($q);
