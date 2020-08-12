@@ -281,7 +281,33 @@ $r = $covid_db->query($q);
 $i=0;
 	$remove_total=0;
 	$remove2_total=0;
+	
+$trend_setter_direction = 'FLAT';	
+$trend_setter_duration = 0;
+$trend_setter_memory_count = 0;
+$trend_setter_memory_direction = '';
+	
 while ($d = mysqli_fetch_array($r)){
+	
+	if (intval($d['report_count']) = $trend_setter_memory_count){
+		$trend_setter_direction = 'FLAT';
+	}elseif(intval($d['report_count']) > $trend_setter_memory_count){
+		$trend_setter_direction = 'UP';
+	}elseif(intval($d['report_count']) < $trend_setter_memory_count){
+		$trend_setter_direction = 'DOWN';
+	}
+	
+	if ($trend_setter_memory_direction == $trend_setter_direction){
+		$trend_setter_duration++;
+	}else{
+		$trend_setter_duration = 0;
+	}
+	
+	
+	// Save current values for next loop
+	$trend_setter_memory_direction = $trend_setter_direction;
+	$trend_setter_memory_count = intval($d['report_count']);
+	
 	if ($d['town_name'] != ''){
 		$name = "$d[town_name], $d[state_name]";
 	}else{
@@ -362,7 +388,7 @@ while ($d = mysqli_fetch_array($r)){
 	}
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
-	$last_count = $d[report_count];
+	$last_count = $d['report_count'];
 	if($i == 0){
 		$start_value = fix_zero($d['report_count']);
 	}
@@ -457,6 +483,8 @@ $per = abs($per); // fix -%
 $page_description = $per."% change $page_description";
 $alert = ob_get_clean();
 	$return = array();
+	$return['trend_setter_duration'] = $trend_setter_duration;
+	$return['trend_setter_direction'] = $trend_setter_direction;
 	$return['alert'] = $alert;
 	$return['page_description'] = $page_description;
 	$return['time_chart'] = $time_chart;
@@ -487,9 +515,9 @@ $day30 = make_chart('30');
 $day45 = make_chart('45');
 $day90 = make_chart('90');
 
+$trend = $day90['trend_setter_duration'].' days '.$day90['trend_setter_direction'];
 
-
-$page_description = $active_count.' to '.$active2_count.' active cases '.$day14['page_description'];
+$page_description = $trend.' '.$active_count.' to '.$active2_count.' active cases '.$day14['page_description'];
 include_once('menu.php');
 $date = $global_date;
 
@@ -586,6 +614,12 @@ $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
 
+$trend_setter_duration 		= $day90['trend_setter_duration'];
+$trend_setter_direction 	= $day90['trend_setter_direction'];
+
+
+
+
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_zip where zip_code = '$zip' and report_date = '$yesterday'";
 $r = $covid_db->query($q);
@@ -626,7 +660,7 @@ global $active_count_date_high;
 global $active_count_date_low;
 */
 
-$q = "update coronavirus_zip set active_count_28day='$active2_count', active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+$q = "update coronavirus_zip set trend_duration='$trend_setter_duration', trend_direction='$trend_setter_direction', active_count_28day='$active2_count', active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
 $debug_query = $q;
 $covid_db->query($q);
 slack_general("$q",'covid19-sql');
