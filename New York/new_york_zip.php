@@ -53,38 +53,13 @@ function coronavirus_zip($zip,$date,$count,$testing,$positivity,$town){
 	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
 	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
-	// look for yesterday
-	$date2 = date('Y-m-d',strtotime($date)-86400);
-	$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
-	$r2 = $covid_db->query($q2);
-	$d2 = mysqli_fetch_array($r2);
-	if ($d2['id'] != ''){
-		// Let's Process Trend Data
-		$last_trend_direction = $d2['trend_direction'];
-		$last_trend_duration = $d2['trend_duration'];
-		$last_report_count = $d2['report_count'];
-		if ($count == $last_report_count){
-			$current_trend = 'FLAT';	
-		}elseif ($count > $last_report_count){
-			$current_trend = 'UP';	
-		}else{
-			$current_trend = 'DOWN';
-		}
-		if ($last_trend_direction == $current_trend){
-			$current_duration = $last_trend_duration + 1;
-		}else{
-			$current_duration = 0;
-		}
-	}else{
-		// we reached the start of data collection.	
-	}
 	$town = $covid_db->real_escape_string($town);
 	if ($d['id'] == ''){
 		echo "[insert $town $zip $date $count]";
-		$q = "insert into coronavirus_zip (positivity_rate,testing_count,zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$positivity','$testing','$zip','$date','$count','$town','$state','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_zip (positivity_rate,testing_count,zip_code,report_date,report_count,town_name,state_name) values ('$positivity','$testing','$zip','$date','$count','$town','$state') ";
 	}else{
 		echo "[update $town $zip $date $count]";
-		$q = "update coronavirus_zip set positivity_rate='$positivity', testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_zip set positivity_rate='$positivity', testing = '$testing', report_count = '$count', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
 	$covid_db->query($q);
 	//slack_general("$q",'covid19-sql');
