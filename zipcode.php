@@ -289,7 +289,7 @@ $trend_setter_memory_direction = '';
 	
 while ($d = mysqli_fetch_array($r)){
 	
-	if (intval($d['report_count']) = $trend_setter_memory_count){
+	if (intval($d['report_count']) == $trend_setter_memory_count){
 		$trend_setter_direction = 'FLAT';
 	}elseif(intval($d['report_count']) > $trend_setter_memory_count){
 		$trend_setter_direction = 'UP';
