@@ -663,7 +663,10 @@ global $active_count_date_high;
 global $active_count_date_low;
 */
 
-$q = "update coronavirus_zip set trend_duration='$trend_setter_duration', trend_direction='$trend_setter_direction', active_count_28day='$active2_count', active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$date'";
+
+
+$update_date = date('Y-m-d');
+$q = "update coronavirus_zip set trend_duration='$trend_setter_duration', trend_direction='$trend_setter_direction', active_count_28day='$active2_count', active_count_date_low='$active_count_date_low', active_count_date_high='$active_count_date_high', active_count_low='$active_count_low', active_count_high='$active_count_high', active_count = '$active_count', percentage_direction='$dir', percentage_direction14='$dir2', percentage_direction30='$dir3', percentage_direction45='$dir4', change_percentage_time= NOW(), day7change_percentage = '$per_1', day14change_percentage = '$per_2', day30change_percentage = '$per_3', day45change_percentage = '$per_4' where zip_code = '$zip' and report_date = '$update_date'";
 $debug_query = $q;
 $covid_db->query($q);
 slack_general("$q",'covid19-sql');
