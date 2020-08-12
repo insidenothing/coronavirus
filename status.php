@@ -1,6 +1,6 @@
 <?PHP
-$days_back = 200;
-$px = '5px';
+$days_back = 150;
+$px = '7px';
 $page_description = "$days_back Day Data Acquisition Report";
 include_once('menu.php');
 
