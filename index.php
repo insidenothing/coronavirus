@@ -22,7 +22,11 @@ include_once('menu.php');
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 		       $zip_open++;
-		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $d[trend_duration] days $d[trend_direction] at $d[report_count]</a></li>"; 
+			    $count = $d['trend_duration'];
+			    if ($count > 30){
+				$count = '+30';    
+			    }
+		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
 		    ?>
 		  </ol>
@@ -36,19 +40,31 @@ include_once('menu.php');
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
-		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $d[trend_duration] days $d[trend_direction] at $d[report_count]</a></li>"; 
+			     $count = $d['trend_duration'];
+			    if ($count > 30){
+				$count = '+30';    
+			    }
+		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
 		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration = '13' and change_percentage_time <> '00:00:00' order by $sort desc";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
-		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $d[trend_duration] days $d[trend_direction] at $d[report_count]</a></li>"; 
+			     $count = $d['trend_duration'];
+			    if ($count > 30){
+				$count = '+30';    
+			    }
+		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
 		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and change_percentage_time <> '00:00:00' order by $sort desc";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
-		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $d[trend_duration] days $d[trend_direction] at $d[report_count]</a></li>"; 
+			     $count = $d['trend_duration'];
+			    if ($count > 30){
+				$count = '+30';    
+			    }
+		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
 		    ?>
 		  </ol> 
@@ -60,7 +76,11 @@ include_once('menu.php');
 		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and change_percentage_time = '00:00:00' order by $sort desc ";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
-		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $d[trend_duration] days $d[trend_direction] at $d[report_count]</a></li>"; 
+			     $count = $d['trend_duration'];
+			    if ($count > 30){
+				$count = '+30';    
+			    }
+		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
 		    ?>
 		  </ol> 
