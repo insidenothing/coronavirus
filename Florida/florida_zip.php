@@ -30,45 +30,15 @@ function coronavirus_zip($zip,$date,$count){
 	$town = $zipcode[$zip];
 	$date_now = time() - 1814400;
 	$date_then = strtotime($date);
-	if ($date_then > $date_now){	
-		$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
-		$r = $covid_db->query($q);
-		$d = mysqli_fetch_array($r);
-		// look for yesterday
-		$date2 = date('Y-m-d',strtotime($date)-86400);
-		$q2 = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date2'";
-		$r2 = $covid_db->query($q2);
-		$d2 = mysqli_fetch_array($r2);
-		if ($d2['id'] != ''){
-			// Let's Process Trend Data
-			$last_trend_direction = $d2['trend_direction'];
-			$last_trend_duration = $d2['trend_duration'];
-			$last_report_count = $d2['report_count'];
-			if ($count == $last_report_count){
-				$current_trend = 'FLAT';	
-			}elseif ($count > $last_report_count){
-				$current_trend = 'UP';	
-			}else{
-				$current_trend = 'DOWN';
-			}
-			if ($last_trend_direction == $current_trend){
-				$current_duration = $last_trend_duration + 1;
-			}else{
-				$current_duration = 0;
-			}
-		}else{
-			// we reached the start of data collection.	
-		}
-
-	}else{
-		echo "[$date skip trend for archival]";
-	}
+	$q = "select * from coronavirus_zip where zip_code = '$zip' and report_date = '$date'";
+	$r = $covid_db->query($q);
+	$d = mysqli_fetch_array($r);
 	if ($d['id'] == ''){
 		echo "[$date insert $zip $count]";
-		$q = "insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$zip','$date','$count','$town','Florida','$current_trend','$current_duration') ";
+		$q = "insert into coronavirus_zip (zip_code,report_date,report_count,town_name,state_name) values ('$zip','$date','$count','$town','Florida') ";
 	}else{
 		echo "[$date update $zip $count]";
-		$q = "update coronavirus_zip set report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
+		$q = "update coronavirus_zip set report_count = '$count', town_name = '$town'  where zip_code = '$zip' and report_date = '$date' ";	
 	}
 	$covid_db->query($q) or die("SQL Error " . mysqli_error($covid_db));
 	//slack_general("$q",'covid19-sql');
