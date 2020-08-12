@@ -36,7 +36,7 @@ include_once('menu.php');
 		  <h1>Not Phase One</h1>
 		  <ol> 
 		    <?PHP
-		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration > '13' and trend_direction = 'UP' and change_percentage_time <> '00:00:00' order by $sort desc ";
+		    $q = "SELECT * FROM coronavirus_zip where zip_code <> '' and report_date = '$date' and trend_duration > '13' and trend_direction = 'UP' and change_percentage_time <> '00:00:00' order by $sort desc ";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
@@ -46,7 +46,7 @@ include_once('menu.php');
 			    }
 		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
-		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration = '13' and change_percentage_time <> '00:00:00' order by $sort desc";
+		    $q = "SELECT * FROM coronavirus_zip where zip_code <> '' and report_date = '$date' and trend_duration = '13' and change_percentage_time <> '00:00:00' order by $sort desc";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
@@ -56,7 +56,7 @@ include_once('menu.php');
 			    }
 		       echo "<li><a href='zipcode.php?zip=$d[zip_code]'>$d[state_name] $d[zip_code] $count days $d[trend_direction] at $d[report_count]</a></li>"; 
 		    }
-		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and trend_duration < '13' and change_percentage_time <> '00:00:00' order by $sort desc";
+		    $q = "SELECT * FROM coronavirus_zip where zip_code <> '' and report_date = '$date' and trend_duration < '13' and change_percentage_time <> '00:00:00' order by $sort desc";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			    $zip_closed++;
@@ -73,7 +73,7 @@ include_once('menu.php');
 		  <h1>Phase Check Queue</h1>
 		  <ol> 
 		    <?PHP
-		    $q = "SELECT * FROM coronavirus_zip where report_date = '$date' and change_percentage_time = '00:00:00' order by $sort desc ";
+		    $q = "SELECT * FROM coronavirus_zip where zip_code <> '' and report_date = '$date' and change_percentage_time = '00:00:00' order by $sort desc ";
 		    $r = $covid_db->query($q);
 		    while($d = mysqli_fetch_array($r)){
 			     $count = $d['trend_duration'];
