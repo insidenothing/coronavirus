@@ -356,10 +356,10 @@ ddtreemenu.createTree("treemenu1", false)
 		$q = "SELECT distinct Facility_Name FROM coronavirus_facility";
 		$r = $covid_db->query($q);
 		$processed_facility = mysqli_num_rows($r);
-		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
+		$q = "SELECT zip_code FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$global_date' ";
 		$r = $covid_db->query($q);
 		$done = mysqli_num_rows($r);
-		$q = "SELECT zip_code FROM coronavirus_zip where report_count <> '0' and report_count <> '7' and change_percentage_time = '00:00:00' and report_date = '$global_date' ";
+		$q = "SELECT zip_code FROM coronavirus_zip where change_percentage_time = '00:00:00' and report_date = '$global_date' ";
 		$r = $covid_db->query($q);
 		$left = mysqli_num_rows($r);
 		$processed_zips = $done + $left;
