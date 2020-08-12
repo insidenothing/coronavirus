@@ -1,9 +1,7 @@
 <?PHP
-include_once('/var/www/html/mdwestserve/newsbot.php');
-$page_description = date('r')." Schedule";
+$page_description = date('r');
 include_once('menu.php');
-
-
+include_once('/var/www/html/mdwestserve/newsbot.php');
 
 function process_link_check($link,$status){
  if ($_SERVER['REMOTE_ADDR'] == '69.250.28.138' && $link != '' && $status == 'lightgreen'){ 
@@ -199,7 +197,7 @@ if ($_GET['level']){
   die('done');
 }
 
-echo "<h1>County Level Data</h1>";
+echo "<h1>County Level Data $page_description</h1>";
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -235,7 +233,7 @@ while($d = mysqli_fetch_array($r)){
   }
 }
 echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
-echo "<h1>ZIP Code Data</h1>";
+echo "<h1>ZIP Code Data $page_description</h1>";
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -272,7 +270,7 @@ while($d = mysqli_fetch_array($r)){
 }
 echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 
-echo "<h1>Facilities Data</h1>";
+echo "<h1>Facilities Data $page_description</h1>";
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -309,7 +307,7 @@ while($d = mysqli_fetch_array($r)){
 }
 echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 
-echo "<h1>Other API Schedule<h1>";
+echo "<h1>Other API Schedule $page_description<h1>";
 
 
 $done_list = '';
@@ -347,6 +345,6 @@ while($d = mysqli_fetch_array($r)){
   }
 }
 echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
-
+echo '<meta http-equiv="refresh" content="60">';
 include_once('footer.php');
 ?>
