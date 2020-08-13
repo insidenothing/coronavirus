@@ -55,7 +55,7 @@ $break = '
  
 $pieces = explode($break,$d['raw_response']);
 
-//coronavirus_state($state,$date,$count)
+
 
 
 $types = array();
@@ -85,6 +85,7 @@ foreach($pieces as $row => $csv){
 
 foreach($new_array as $date => $data){
 	echo "<li>coronavirus_state($date,$data[death_count],$data[report_count],$data[testing_count])</li>";
+	coronavirus_state($date,$data['death_count'],$data['report_count'],$data['testing_count']);
 }
 
 
