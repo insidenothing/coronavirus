@@ -417,6 +417,62 @@ $Facility_ZIP['Forest_Haven_Nursing___Rehab_Center'] = '21201';
 
 
 
+
+$Facility_ZIP['Amazing_Grace_Assisted_Living'] = '21014';
+$Facility_ZIP['Asbury_Solomons_Nursing_Facility'] = '20688';
+$Facility_ZIP['Aspenwood_Senior_Living'] = '20906';
+$Facility_ZIP['Blue_Point_Nursing_and_Rehab'] = '21215';
+$Facility_ZIP['Brightview_Mays_Chapel_Ridge'] = '21093';
+$Facility_ZIP['Brookdale_Assisted_Living_Pikesville'] = '21208';
+$Facility_ZIP['Brookdale_Potomac_Senior_Living'] = '20854';
+$Facility_ZIP['Candlelight_Cove'] = '21601';
+$Facility_ZIP['Caritas_House_Assisted_Living'] = '21227';
+$Facility_ZIP['Citizens_Care_and_Rehabilitation_Center'] = '21702';
+$Facility_ZIP['Coffman_Nursing_Home'] = '21742';
+$Facility_ZIP['College_Manor'] = '21093';
+$Facility_ZIP['Commonwealth_Assisted_Living_at_Belair'] = '21014';
+$Facility_ZIP['Devlin_Manor_Nursing_and_Rehabilitation_Center'] = '21502';
+$Facility_ZIP['Elkton_Nursing_and_Rehabilitation_Center'] = '21921';
+$Facility_ZIP['Forrest_Hill_Health___Rehab'] = '21050';
+$Facility_ZIP['Friends_Nursing_Home'] = '20860';
+$Facility_ZIP['Harrison_Senior_Living'] = '21863';
+$Facility_ZIP['Heartlands_Assisted_Living_at_Severna_Park'] = '21146';
+$Facility_ZIP['Julia_Manor'] = '21740';
+$Facility_ZIP['Kensington_Nursing_and_Rehab'] = '20895';
+$Facility_ZIP['Kindley_Asisted_Living_at_Asbury_Methodist_Village'] = '20877';
+$Facility_ZIP['Lakeside_at_Mallard_Landing'] = '21804';
+$Facility_ZIP['Lorien_Bel_Air'] = '21015';
+$Facility_ZIP['Lutheran_Village_Millers_Grant'] = '21042';
+$Facility_ZIP['Manokin_Center_for_Rehab___Healthcare'] = '21853';
+$Facility_ZIP['ManorCare_Bethesda'] = '20817';
+$Facility_ZIP['ManorCare_Health_Services___Rossville'] = '21237';
+$Facility_ZIP['Maugansville_Mennonite_Home'] = '21740';
+$Facility_ZIP['Moran_Nursing___Rehabilitation_Center'] = '21562';
+$Facility_ZIP['Morningside_House_Laurel'] = '20707';
+$Facility_ZIP['Morningside_House_of_St__Charles'] = '20602';
+$Facility_ZIP['Northwest_Hospital_Center___Subacute_Rehab_Facility'] = '21133';
+$Facility_ZIP['Peak_Healthcare_at_Hartley'] = '21851';
+$Facility_ZIP['Peak_Healthcare__The_Pines'] = '21601';
+$Facility_ZIP['Peak_Healthcare___Sligo_Creek'] = '20912';
+$Facility_ZIP['Raphael_House'] = '20854';
+$Facility_ZIP['Regional_Institute_for_Children_and_Adolescents___Baltimore'] = '21229';
+$Facility_ZIP['Rolling_Meadows_Catonsville'] = '21228';
+$Facility_ZIP['South_River_Healthcare'] = '21037';
+$Facility_ZIP['Springhouse_of_Pikesville_Assisted_Living'] = '21208';
+$Facility_ZIP['Spring_Grove_Hospital_Center'] = '21228';
+$Facility_ZIP['Sterling_Care_Assisted_Living___Pikesville'] = '21208';
+$Facility_ZIP['Sunrise_at_Fox_Hill'] = '20817';
+$Facility_ZIP['Sunrise_of_Annapolis'] = '21401';
+$Facility_ZIP['Sunrise_of_Silver_Spring'] = '20904';
+$Facility_ZIP['The_Lion_Center'] = '21502';
+$Facility_ZIP['Weinberg_Park'] = '21215';
+$Facility_ZIP['Well_Homed_Inc___Singerly_House'] = '21921';
+$Facility_ZIP['Westminster_Healthcare'] = '21157';
+$Facility_ZIP['Woodland_Assisted_Living'] = '21220';
+
+
+
+
 function cleanup_county($str){
    $str = str_replace("Anne Arundel",'Anne_Arundel',$str);
    $str = str_replace("Baltimore County",'Baltimore',$str);
