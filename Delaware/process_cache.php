@@ -106,8 +106,9 @@ foreach($pieces as $row => $csv){
 	$types[] = $data[2];
 }
 
+$result = array_unique($types);
 echo "<pre>";
-print_r($types);
+print_r($result);
 echo "</pre>";	
 
 
