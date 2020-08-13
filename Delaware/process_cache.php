@@ -100,16 +100,35 @@ $pieces = explode($break,$d['raw_response']);
 
 $types = array();
 
+$new_array = array();
 
 foreach($pieces as $row => $csv){
 	$data = explode(',',$csv);
-	$types[] = $data[2];
+	$Statistic = $data[2];
+	$date = $data[4].'-'.$data[4].'-'.$data[5]; // year - month - day
+	$value = $data[3];
+	$types[] = $Statistic; // for unique display
+	if ($Statistic == 'Positive Cases'){
+		$new_array[$date]['cases'] = $data[2];
+	}
+	if ($Statistic == 'Deaths'){
+		$new_array[$date]['deaths'] = $data[2];
+	}
+	
 }
+
+
+echo "<pre>";
+print_r($new_array);
+echo "</pre>";	
+
 
 $result = array_unique($types);
 echo "<pre>";
 print_r($result);
 echo "</pre>";	
+
+
 
 
 echo "<pre>";
