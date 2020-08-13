@@ -83,7 +83,7 @@ foreach($pieces as $row => $csv){
 	$Statistic = $data[2];
 	$date = $data[4].'-'.$data[5].'-'.$data[6]; // year - month - day
 	$value = $data[3];
-	$types[] = $Statistic; // for unique display
+	$types[] = $Statistic.'-'.$data[9]; // for unique display
 	if ($Statistic == 'Positive Cases'){
 		$new_array[$date]['cases'] = $value;
 	}
