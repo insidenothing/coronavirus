@@ -250,7 +250,7 @@ set_hits(); // internal page counter
 		</ul>
 		</li>
 		
-			<?	
+			<?PHP	
 		}
 		?>
 		
