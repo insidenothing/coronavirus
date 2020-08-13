@@ -2,6 +2,7 @@
 $state = 'Virginia';
 $page_description = "$state COVID 19 Data Collection";
 include_once('../menu.php');
+$state = 'Virginia';
 ?>
 <h1><?PHP echo $state;?></h1>
 
