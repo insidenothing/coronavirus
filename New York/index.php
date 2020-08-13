@@ -1,7 +1,8 @@
 <?PHP
-$state = 'Alabama';
+$state = 'New York';
 $page_description = "$state COVID 19 Data Collection";
 include_once('../menu.php');
+$state = 'New York';
 ?>
 <h1><?PHP echo $state;?></h1>
 
