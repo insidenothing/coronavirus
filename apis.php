@@ -90,12 +90,14 @@ if ($_GET['run']){
         $test2 = $raw;
        
         $pos = strpos($test2, 'Page not found');
-       
+        $pos2 = strpos($test2, '504 Gateway Time-out');
        
         if (trim($test2) == '[]'){
               slack_general("$left) fail - empty json: $name - *bad update*",'covid19-apis');
         }elseif ($pos !== false){
               slack_general("$left) fail - found 'Page not found': $name - *bad update*",'covid19-apis');
+        }elseif ($pos2 !== false){
+              slack_general("$left) fail - found '504 Gateway Time-out': $name - *bad update*",'covid19-apis');
         }elseif ($test1 != $test2){
               $covid_db->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response, api_flavor ) values ( '$id', NOW(), '$raw_response', '$d[api_flavor]' )");
               $cache_id = $covid_db->insert_id;
