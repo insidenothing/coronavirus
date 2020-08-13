@@ -143,7 +143,7 @@ function toggleDataSeries(e) {
 }
 </script>
 
-<script src="canvasjs.min.js"></script>
+<script src="../canvasjs.min.js"></script>
 
 <h1><?PHP echo $state;?> Deaths</h1>
 
