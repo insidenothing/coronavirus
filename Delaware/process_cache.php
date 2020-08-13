@@ -85,10 +85,10 @@ foreach($pieces as $row => $csv){
 	$value = $data[3];
 	$types[] = $Statistic; // for unique display
 	if ($Statistic == 'Positive Cases'){
-		$new_array[$date]['cases'] = $data[2];
+		$new_array[$date]['cases'] = $value;
 	}
 	if ($Statistic == 'Deaths'){
-		$new_array[$date]['deaths'] = $data[2];
+		$new_array[$date]['deaths'] = $value;
 	}
 	
 }
