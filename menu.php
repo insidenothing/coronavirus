@@ -230,8 +230,9 @@ set_hits(); // internal page counter
 		$qWW = "SELECT distinct state_name FROM coronavirus_state order by state_name";
 		$rWW = $covid_db->query($qWW);
 		while($dWW = mysqli_fetch_array($rWW)){	
-			$state = ucwords(strtolower($d[state_name]));
+			$state = ucwords(strtolower($dWW['state_name']));
 			?>
+		
 		<li><?PHP echo $state; ?>
 		<ul>
 		<?PHP
