@@ -82,7 +82,7 @@ foreach($pieces as $row => $csv){
 	$csv = str_replace('"rate per 10,000 people"','rate',$csv);
 	$data = explode(',',$csv);
 	$Statistic = $data[2];
-	$date = $data[4].'-'.$data[5].'-'.$data[6]; // year - month - day
+	$date = date('Y-m-d',strtotime($data[4].'-'.$data[5].'-'.$data[6])); // year - month - day
 	$value = $data[3];
 	$types[] = $Statistic.'-'.$data[7]; // for unique display
 	if ($Statistic == 'Cumulative Number of Positive Cases' && $data[7] == 'people'){
