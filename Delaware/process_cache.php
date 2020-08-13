@@ -79,6 +79,7 @@ $types = array();
 $new_array = array();
 
 foreach($pieces as $row => $csv){
+	$csv = str_replace('"rate per 10,000 people"','rate',$csv);
 	$data = explode(',',$csv);
 	$Statistic = $data[2];
 	$date = $data[4].'-'.$data[5].'-'.$data[6]; // year - month - day
