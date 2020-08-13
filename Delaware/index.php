@@ -145,11 +145,11 @@ function toggleDataSeries(e) {
 
 <script src="../canvasjs.min.js"></script>
 
-<div id="chartContainerDeaths" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
+<div id="chartContainerDeaths" style="height: 370px; margin: 0px auto;"></div>
 
-<div id="chartContainerCases" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
+<div id="chartContainerCases" style="height: 370px; margin: 0px auto;"></div>
 
-<div id="chartContainerTesting" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
+<div id="chartContainerTesting" style="height: 370px; margin: 0px auto;"></div>
 
 <h1><?PHP echo $state;?> Counties</h1>
 <?PHP
