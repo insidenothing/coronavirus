@@ -236,11 +236,12 @@ set_hits(); // internal page counter
 		<li><?PHP echo $state; ?>
 		<ul>
 		<?PHP
-		echo "<li><a href='/$state/facilities_table.php'>Facilities Table</a></li>";
-		echo "<li><a href='/$state/index.php'>State Data</a></li>";
+		
+		echo "<li><a href='/$state/index.php'><b>State Data</b></a></li>";
 		echo "<li><a href='/$state/active.php'>Active Cases</a></li>";
 		echo "<li><a href='/$state/spikes.php'>Spikes</a></li>";
 		echo "<li><a href='/$state/outbreak.php'>Outbreak</a></li>";
+		echo "<li><a href='/$state/facilities_table.php'>Facilities</a></li>";
 		$q = "SELECT distinct county_name FROM coronavirus_county where state_name = '$state' order by county_name";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
