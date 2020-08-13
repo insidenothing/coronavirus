@@ -122,7 +122,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td>Number of Staff Deaths</td>
 		</tr>
 		<tr style='background-color:yellow;'>
-			<td>Most Recent Total</td>
+			<td>Most Recent Update: Total</td>
 			<td><?PHP echo number_format($ReportCount);?></td>
 			<td><?PHP echo number_format($NumberofResidentCases);?></td>
 			<td><?PHP echo number_format($NumberofStaffCases);?></td>
@@ -130,7 +130,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofStaffDeaths);?></td>
 		</tr>
 		<tr style='background-color:lightblue;'>
-			<td>Prior Update's Totals</td>
+			<td>Prior Update: Totals</td>
 			<td><?PHP echo number_format($ReportCount2);?></td>
 			<td><?PHP echo number_format($NumberofResidentCases2);?></td>
 			<td><?PHP echo number_format($NumberofStaffCases2);?></td>
