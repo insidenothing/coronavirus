@@ -46,7 +46,7 @@ var chartDeaths = new CanvasJS.Chart("chartContainerDeaths", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "Deaths",
+		name: "Total Deaths",
 		dataPoints: [
 			<?PHP echo $deaths; ?>
 		]
@@ -81,7 +81,7 @@ chartDeaths.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "age 0 to 9",
+		name: "Total Cases",
 		dataPoints: [
 			<?PHP echo $cases; ?>
 		]
@@ -116,7 +116,7 @@ chartCases.render();
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "age 0 to 9",
+		name: "Total Testing",
 		dataPoints: [
 			<?PHP echo $testing; ?>
 		]
