@@ -31,7 +31,7 @@ $q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = '$state' 
 $q = "SELECT * FROM coronavirus_apis where state_name = '$state'";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
-			echo "<li><a href='$d[api_url]'>$d[last_updated] $d[api_url]</a></li>";
+			echo "<li><a href='$d[api_url]'><small>$d[api_url]</small></a></li>";
 		}
 ?>
 </ol>
