@@ -524,7 +524,10 @@ while ($d = mysqli_fetch_array($r)){
 	  $master_array[$Facility_Name]['Name'] = $Facility_Name;
 	  $master_array[$Facility_Name]['Zip'] = $Facility_ZIP[$Facility_Name];
 	  $master_array[$Facility_Name]['COUNTY'] = $value['attributes']['County'];
-	  $master_array[$Facility_Name]['Resident_Type'] = $value['attributes']['Resident_Type'];
+	  $master_array[$Facility_Name]['Resident_Type'] = 'Assisted';
+	  if ($value['attributes']['Resident_Type'] != ''){
+	  	$master_array[$Facility_Name]['Resident_Type'] = $value['attributes']['Resident_Type'];
+	  }
 	  $master_array[$Facility_Name]['Total_Cases'] =  $value['attributes']['Total_Cases'];
 	  $master_array[$Facility_Name]['Number_of_Resident_Cases'] = $value['attributes']['Number_of_Resident_Cases'];
 	  $master_array[$Facility_Name]['Number_of_Staff_Cases'] = $value['attributes']['Number_of_Staff_Cases'];
