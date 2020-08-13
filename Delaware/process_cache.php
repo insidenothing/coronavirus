@@ -86,11 +86,15 @@ foreach($pieces as $row => $csv){
 	$value = $data[3];
 	$types[] = $Statistic.'-'.$data[7]; // for unique display
 	if ($Statistic == 'Cumulative Number of Positive Cases' && $data[7] == 'people'){
-		$new_array[$date]['cases'] = $value;
+		$new_array[$date]['report_count'] = $value;
 	}
 	if ($Statistic == 'Deaths' && $data[7] == 'people'){
-		$new_array[$date]['deaths'] = $value;
+		$new_array[$date]['death_count'] = $value;
 	}
+	if ($Statistic == 'Total Persons Tested' && $data[7] == 'people'){
+		$new_array[$date]['testing_count'] = $value;
+	}
+	
 	
 }
 
