@@ -1,10 +1,6 @@
 <?PHP
 include_once('../menu.php');
 
-if(isset($_GET['global_date'])){
-	$global_date = date('Y-m-d',strtotime($_GET['global_date']));
-}
-
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
 	$covid_db->query(" delete from coronavirus_state where report_date = '$delete' and state_name = 'Delaware'");
@@ -17,35 +13,23 @@ if (isset($_GET['delete_date'])){
 	die('done '.$delete);
 }
 
-global $zipcode;
-$zipcode = array();
-$q = "select distinct zip_code, town_name from coronavirus_zip where town_name <> ''";
-$r = $covid_db->query($q);
-while($d = mysqli_fetch_array($r)){
-	$zip = $d['zip_code'];
-	$zipcode[$zip] = $d['town_name'];
-}
 
 
-function coronavirus_state($state,$date,$count){
-	if ($count == 0){
-		echo "[skip - count too low $zip for $date]";
-		return 1;
-	}
+
+function coronavirus_state($date,$death_count,$report_count,$testing_count){
+	
 	global $covid_db;
-	global $zipcode;
-	$town = $zipcode[$zip];
-	$testing=0;
+	
 	$q = "select * from coronavirus_state where report_date = '$date' and state_name = 'Delaware'";
 	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	
 	if ($d['id'] == ''){
 		echo "[insert $date $count]";
-		$q = "insert into coronavirus_state (testing_count,county_name,report_date,report_count,town_name,state_name) values ('$testing','$zip','$date','$count','$town','Delaware') ";
+		$q = "insert into coronavirus_state (testing_count,death_count,report_date,report_count,state_name) values ('$testing_count','$death_count','$date','$report_count','Delaware') ";
 	}else{
 		echo "[update $date $count]";
-		$q = "update coronavirus_state set testing = '$testing', report_count = '$count' where state_name='Delaware' and report_date = '$date' ";	
+		$q = "update coronavirus_state set death_count='$death_count', testing_count = '$testing_count', report_count = '$report_count' where state_name='Delaware' and report_date = '$date' ";	
 	}
 	$covid_db->query($q);
 	//slack_general("$q",'covid19-sql');
