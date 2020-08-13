@@ -101,7 +101,8 @@ if ($_GET['run']){
               $cache_id = $covid_db->insert_id;
               $covid_db->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
               if ($d['send_alert'] == 'yes'){
-                  slack_general("$left) done: $name - *update* https://www.covid19math.net/apis.php",'covid19-apis-update');
+               
+                  slack_bypass("$left): *$name* $d['run_after']",'covid19-apis-update');
               }
               galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
         }else{
