@@ -98,6 +98,18 @@ $pieces = explode($break,$d['raw_response']);
 //coronavirus_state($state,$date,$count)
 
 
+$types = array();
+
+
+foreach($pieces as $row => $csv){
+	$data = explode(',',$csv);
+	$types[] = $data[2];
+}
+
+echo "<pre>";
+print_r($types);
+echo "</pre>";	
+
 
 echo "<pre>";
 print_r($pieces);
