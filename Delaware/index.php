@@ -3,31 +3,159 @@ $state = 'Delaware';
 $page_description = "$state COVID 19 Data Collection";
 include_once('../menu.php');
 $state = 'Delaware';
+$deaths = '';
+$cases = '';
+$testing = '';
+$q = "SELECT * FROM coronavirus_state where state_name = '$state' order by report_date ";
+$r = $covid_db->query($q);
+while($d = mysqli_fetch_array($r)){
+	$deaths .= '{ label: "'.$d['report_date'].'", y: '.intval($d['death_count']).' }, ';
+	$cases .= '{ label: "'.$d['report_date'].'", y: '.intval($d['report_count']).' }, ';
+	$testing .= '{ label: "'.$d['report_date'].'", y: '.intval($d['testing_count']).' }, ';
+}
+$deaths = rtrim(trim($deaths), ",");
+$cases = rtrim(trim($cases), ",");
+$testing = rtrim(trim($testing), ",");
 ?>
 
 
+<script>
+window.onload = function () {
+
+var chartDeaths = new CanvasJS.Chart("chartContainerDeaths", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $state;?> Deaths covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "People",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Deaths",
+		dataPoints: [
+			<?PHP echo $deaths; ?>
+		]
+	}]
+}
+			      
+			      
+			      );
+chartDeaths.render();
+
+	var chartCases = new CanvasJS.Chart("chartContainerCases", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $state;?> Cases covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "People",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "age 0 to 9",
+		dataPoints: [
+			<?PHP echo $cases; ?>
+		]
+	}]
+}
+			      
+			      
+			      );
+chartCases.render();
+	
+	var chartTesting = new CanvasJS.Chart("chartContainerTesting", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $state;?> Testing covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "People",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "age 0 to 9",
+		dataPoints: [
+			<?PHP echo $testing; ?>
+		]
+	}]
+}
+			      
+			      
+			      );
+chartTesting.render();
+	
+	
+	
+	
+	
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+</script>
+
+<script src="canvasjs.min.js"></script>
+
 <h1><?PHP echo $state;?> Deaths</h1>
 
-
-[graph]
-
-
-
+<div id="chartContainerDeaths" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 
 <h1><?PHP echo $state;?> Cases</h1>
 
-
-
-
-[graph]
-
+<div id="chartContainerCases" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 
 <h1><?PHP echo $state;?> Testing</h1>
 
-
-
-
-[graph]
+<div id="chartContainerTesting" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 
 
 
