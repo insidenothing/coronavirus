@@ -84,11 +84,11 @@ foreach($pieces as $row => $csv){
 	$Statistic = $data[2];
 	$date = $data[4].'-'.$data[5].'-'.$data[6]; // year - month - day
 	$value = $data[3];
-	$types[] = $Statistic.'-'.$data[8]; // for unique display
-	if ($Statistic == 'Cumulative Number of Confirmed Positive Cases' && $data[8] == 'People'){
+	$types[] = $Statistic.'-'.$data[7]; // for unique display
+	if ($Statistic == 'Cumulative Number of Confirmed Positive Cases' && $data[7] == 'People'){
 		$new_array[$date]['cases'] = $value;
 	}
-	if ($Statistic == 'Confirmed Deaths' && $data[8] == 'People'){
+	if ($Statistic == 'Confirmed Deaths' && $data[7] == 'People'){
 		$new_array[$date]['deaths'] = $value;
 	}
 	
