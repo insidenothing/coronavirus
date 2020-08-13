@@ -50,6 +50,7 @@ $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 $array['zip'][] = '23462'; // virginia Zip
 $array['countyState'][] = 'Arlington.Virginia'; // virginia County
 
+echo "<h1>Data Aquired for ZIP Code</h1>";
 
 echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
 foreach($array[zip] as $k => $v){
@@ -60,6 +61,9 @@ foreach($array[zip] as $k => $v){
   }
   echo "</td><tr>";
 }
+
+echo "</table><h1>Data Aquired for County.State</h1><table>";
+
 foreach($array[countyState] as $k => $v){
   echo "<tr><td>$v</td><td>";
   for($i = $days_back; $i > -1; $i--){
@@ -70,7 +74,7 @@ foreach($array[countyState] as $k => $v){
 }
 
 
-echo "<table>";
+echo "</table>";
 
 
 include_once('footer.php');
