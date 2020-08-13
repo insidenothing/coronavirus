@@ -31,6 +31,21 @@ function check_county($countyDOTstate,$date){
   }
 }
 
+function check_state($state,$date){
+  global $covid_db;
+  $q = "select id from coronavirus_state where state_name = '$state' and report_date = '$date'";
+  $r = $covid_db->query($q);
+  $d = mysqli_fetch_array($r);
+  if ($d['id'] > 0){
+   return "<span class='found' title='$date'>☑</span>"; 
+  }else{
+   return "<span class='missing' title='$date'>☒</span>";
+  }
+}
+
+// Deleware
+$array['state'][]  = 'Delaware';
+
 // NYC
 $array['zip'][]  = '11368';
 
@@ -69,6 +84,17 @@ foreach($array[countyState] as $k => $v){
   for($i = $days_back; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
     echo check_county($v,$date);
+  }
+  echo "</td><tr>";
+}
+
+echo "</table><h1>Data Aquired for State</h1><table>";
+
+foreach($array[state] as $k => $v){
+  echo "<tr><td>$v</td><td>";
+  for($i = $days_back; $i > -1; $i--){
+    $date = date("Y-m-d", strtotime("-$i days"));
+    echo check_state($v,$date);
   }
   echo "</td><tr>";
 }
