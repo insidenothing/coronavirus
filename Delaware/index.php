@@ -145,22 +145,11 @@ function toggleDataSeries(e) {
 
 <script src="../canvasjs.min.js"></script>
 
-<h1><?PHP echo $state;?> Deaths</h1>
-
 <div id="chartContainerDeaths" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
-
-<h1><?PHP echo $state;?> Cases</h1>
 
 <div id="chartContainerCases" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
 
-<h1><?PHP echo $state;?> Testing</h1>
-
 <div id="chartContainerTesting" style="height: 370px; max-width: 1020px; margin: 0px auto;"></div>
-
-
-
-
-
 
 <h1><?PHP echo $state;?> Counties</h1>
 <?PHP
@@ -171,8 +160,6 @@ $q = "SELECT distinct county_name FROM coronavirus_county where state_name = '$s
 		}
 ?>
 
-
-
 <h1><?PHP echo $state;?> ZIP Codes</h1>
 <?PHP
 $q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = '$state' order by zip_code";
@@ -181,7 +168,6 @@ $q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = '$state' 
 			echo "<span><a href='/zip.php?zip=$d[zip_code]'>$d[zip_code]</a>, </span>";
 		}
 ?>
-
 
 <h1><?PHP echo $state;?> Data Sources</h1>
 <ol>
