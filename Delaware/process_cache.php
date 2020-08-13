@@ -7,13 +7,13 @@ if(isset($_GET['global_date'])){
 
 if (isset($_GET['delete'])){
 	$delete = date('Y-m-d');
-	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'maryland'");
+	$covid_db->query(" delete from coronavirus_state where report_date = '$delete' and state_name = 'Delaware'");
 	die('done '.$delete);
 }
 
 if (isset($_GET['delete_date'])){
 	$delete = $_GET['delete_date'];
-	$covid_db->query(" delete from coronavirus_county where report_date = '$delete' and state_name = 'maryland'");
+	$covid_db->query(" delete from coronavirus_state where report_date = '$delete' and state_name = 'Delaware'");
 	die('done '.$delete);
 }
 
@@ -36,40 +36,16 @@ function coronavirus_state($state,$date,$count){
 	global $zipcode;
 	$town = $zipcode[$zip];
 	$testing=0;
-	$q = "select * from coronavirus_state where county_name = '$zip' and report_date = '$date' and state_name = 'maryland'";
+	$q = "select * from coronavirus_state where report_date = '$date' and state_name = 'Delaware'";
 	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
-	// look for yesterday
-	$date2 = date('Y-m-d',strtotime($date)-86400);
-	$q2 = "select * from coronavirus_state where county_name = '$zip' and report_date = '$date2' and state_name = 'maryland'";
-	$r2 = $covid_db->query($q2);
-	$d2 = mysqli_fetch_array($r2);
-	if ($d2['id'] != ''){
-		// Let's Process Trend Data
-		$last_trend_direction = $d2['trend_direction'];
-		$last_trend_duration = $d2['trend_duration'];
-		$last_report_count = $d2['report_count'];
-		if ($count == $last_report_count){
-			$current_trend = 'FLAT';	
-		}elseif ($count > $last_report_count){
-			$current_trend = 'UP';	
-		}else{
-			$current_trend = 'DOWN';
-		}
-		if ($last_trend_direction == $current_trend){
-			$current_duration = $last_trend_duration + 1;
-		}else{
-			$current_duration = 0;
-		}
-	}else{
-		// we reached the start of data collection.	
-	}
+	
 	if ($d['id'] == ''){
-		echo "[insert $zip $date $count]";
-		$q = "insert into coronavirus_state (testing_count,county_name,report_date,report_count,town_name,state_name,trend_direction,trend_duration) values ('$testing','$zip','$date','$count','$town','maryland','$current_trend','$current_duration') ";
+		echo "[insert $date $count]";
+		$q = "insert into coronavirus_state (testing_count,county_name,report_date,report_count,town_name,state_name) values ('$testing','$zip','$date','$count','$town','Delaware') ";
 	}else{
-		echo "[update $zip $date $count]";
-		$q = "update coronavirus_state set testing = '$testing', report_count = '$count', trend_direction = '$current_trend', trend_duration = '$current_duration', town_name = '$town'  where county_name = '$zip' and state_name='maryland' and report_date = '$date' ";	
+		echo "[update $date $count]";
+		$q = "update coronavirus_state set testing = '$testing', report_count = '$count' where state_name='Delaware' and report_date = '$date' ";	
 	}
 	$covid_db->query($q);
 	//slack_general("$q",'covid19-sql');
@@ -105,7 +81,7 @@ $new_array = array();
 foreach($pieces as $row => $csv){
 	$data = explode(',',$csv);
 	$Statistic = $data[2];
-	$date = $data[4].'-'.$data[4].'-'.$data[5]; // year - month - day
+	$date = $data[4].'-'.$data[5].'-'.$data[6]; // year - month - day
 	$value = $data[3];
 	$types[] = $Statistic; // for unique display
 	if ($Statistic == 'Positive Cases'){
