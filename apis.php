@@ -88,16 +88,24 @@ if ($_GET['run']){
         $raw_response = $covid_db->real_escape_string($raw);
         $test1 = $old;
         $test2 = $raw;
+       
+        $pos = strpos($test2, 'Page not found');
+       
+       
         if (trim($test2) == '[]'){
-          slack_general("$left) fail - empty json: $name - *bad update*",'covid19-apis');
+              slack_general("$left) fail - empty json: $name - *bad update*",'covid19-apis');
+        }elseif ($pos !== false){
+              slack_general("$left) fail - found 'Page not found': $name - *bad update*",'covid19-apis');
         }elseif ($test1 != $test2){
               $covid_db->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response, api_flavor ) values ( '$id', NOW(), '$raw_response', '$d[api_flavor]' )");
               $cache_id = $covid_db->insert_id;
               $covid_db->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
-             slack_general("$left) done: $name - *update* https://www.covid19math.net/apis.php",'covid19-apis-update');
-             galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
+              if ($d['send_alert'] == 'yes'){
+                  slack_general("$left) done: $name - *update* https://www.covid19math.net/apis.php",'covid19-apis-update');
+              }
+              galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
         }else{
-             slack_general("$left) done: $name - *no change*",'covid19-apis');
+              slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
       }
     }else{
