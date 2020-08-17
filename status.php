@@ -1,5 +1,5 @@
 <?PHP
-$days_back = 90;
+$days_back = 45;
 $px = '20px';
 $page_description = "$days_back Day Data Acquisition Report";
 include_once('menu.php');
