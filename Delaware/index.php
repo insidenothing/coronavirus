@@ -16,7 +16,7 @@ while($d = mysqli_fetch_array($r)){
 $deaths = rtrim(trim($deaths), ",");
 $cases = rtrim(trim($cases), ",");
 $testing = rtrim(trim($testing), ",");
-$range = '30'; // one month
+$range = '14'; // one month
 $deaths30 = '';
 $cases30 = '';
 $testing30 = '';
@@ -150,7 +150,7 @@ chartTesting.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $state;?> Deaths 30 Day covid19math.net"
+		text: "<?PHP echo $state;?> Deaths <?PHP echo $range;?> Day covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
@@ -185,7 +185,7 @@ chartDeaths30.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $state;?> Cases 30 Day covid19math.net"
+		text: "<?PHP echo $state;?> Cases <?PHP echo $range;?> Day covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
@@ -220,7 +220,7 @@ chartCasesB.render();
 	animationEnabled: true,
 	exportEnabled: true,
 	title:{
-		text: "<?PHP echo $state;?> Testing 30 Day covid19math.net"
+		text: "<?PHP echo $state;?> Testing <?PHP echo $range;?> Day covid19math.net"
 	},
 	axisY :{
 		includeZero: false,
