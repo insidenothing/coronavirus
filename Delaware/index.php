@@ -17,9 +17,9 @@ $deaths = rtrim(trim($deaths), ",");
 $cases = rtrim(trim($cases), ",");
 $testing = rtrim(trim($testing), ",");
 $range = '30'; // one month
-$deaths_30 = '';
-$cases_30 = '';
-$testing_30 = '';
+$deaths30 = '';
+$cases30 = '';
+$testing30 = '';
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
@@ -27,13 +27,13 @@ $start = max($start, 0);
 $q = "SELECT * FROM coronavirus_state where state_name = '$state' order by report_date limit $start, $range";
 $r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
-	$deaths_30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['death_count']).' }, ';
-	$cases_30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['report_count']).' }, ';
-	$testing_30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['testing_count']).' }, ';
+	$deaths30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['death_count']).' }, ';
+	$cases30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['report_count']).' }, ';
+	$testing30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['testing_count']).' }, ';
 }
-$deaths_30 = rtrim(trim($deaths_30), ",");
-$cases_30 = rtrim(trim($cases_30), ",");
-$testing_30 = rtrim(trim($testing_30), ",");
+$deaths30 = rtrim(trim($deaths30), ",");
+$cases30 = rtrim(trim($cases30), ",");
+$testing30 = rtrim(trim($testing30), ",");
 ?>
 
 
@@ -145,7 +145,7 @@ chartCases.render();
 			      );
 chartTesting.render();
 	
-	var chartDeaths_30 = new CanvasJS.Chart("chartContainerDeaths_30", {
+	var chartDeaths30 = new CanvasJS.Chart("chartContainerDeaths30", {
 	theme:"light2",
 	animationEnabled: true,
 	exportEnabled: true,
@@ -171,16 +171,16 @@ chartTesting.render();
 		yValueFormatString: "#####",
 		name: "Total Deaths",
 		dataPoints: [
-			<?PHP echo $deaths_30; ?>
+			<?PHP echo $deaths30; ?>
 		]
 	}]
 }
 			      
 			      
 			      );
-chartDeaths_30.render();
+chartDeaths30.render();
 
-	var chartCases_30 = new CanvasJS.Chart("chartContainerCases_30", {
+	var chartCases30 = new CanvasJS.Chart("chartContainerCases30", {
 	theme:"light2",
 	animationEnabled: true,
 	exportEnabled: true,
@@ -206,16 +206,16 @@ chartDeaths_30.render();
 		yValueFormatString: "#####",
 		name: "Total Cases",
 		dataPoints: [
-			<?PHP echo $cases_30; ?>
+			<?PHP echo $cases30; ?>
 		]
 	}]
 }
 			      
 			      
 			      );
-chartCases_30.render();
+chartCases30.render();
 	
-	var chartTesting_30 = new CanvasJS.Chart("chartContainerTesting_30", {
+	var chartTesting30 = new CanvasJS.Chart("chartContainerTesting30", {
 	theme:"light2",
 	animationEnabled: true,
 	exportEnabled: true,
@@ -241,14 +241,14 @@ chartCases_30.render();
 		yValueFormatString: "#####",
 		name: "Total Testing",
 		dataPoints: [
-			<?PHP echo $testing_30; ?>
+			<?PHP echo $testing30; ?>
 		]
 	}]
 }
 			      
 			      
 			      );
-chartTesting_30.render();
+chartTesting30.render();
 	
 	
 	
@@ -266,13 +266,17 @@ function toggleDataSeries(e) {
 
 <script src="../canvasjs.min.js"></script>
 
-<table><tr>
+<table>
+	<tr>
 	
-	<td><div id="chartContainerDeaths_30" style="height: 370px; margin: 0px auto;"></div></td>
-	<td><div id="chartContainerCases_30" style="height: 370px; margin: 0px auto;"></div></td>
-	<td><div id="chartContainerTesting_30" style="height: 370px; margin: 0px auto;"></div></td>
+		<td> <div id="chartContainerDeaths30" style="height: 370px; margin: 0px auto;"></div> </td>
 	
-	</tr></table>
+		<td> <div id="chartContainerCases30" style="height: 370px; margin: 0px auto;"></div> </td>
+	
+		<td> <div id="chartContainerTesting30" style="height: 370px; margin: 0px auto;"></div> </td>
+	
+	</tr>
+</table>
 
 
 <div id="chartContainerDeaths" style="height: 370px; margin: 0px auto;"></div>
