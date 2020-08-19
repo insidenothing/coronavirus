@@ -180,7 +180,7 @@ chartTesting.render();
 			      );
 chartDeaths30.render();
 
-	var chartCases30 = new CanvasJS.Chart("chartContainerCases30", {
+	var chartCasesB = new CanvasJS.Chart("chartContainerCasesB", {
 	theme:"light2",
 	animationEnabled: true,
 	exportEnabled: true,
@@ -213,7 +213,7 @@ chartDeaths30.render();
 			      
 			      
 			      );
-chartCases30.render();
+chartCasesB.render();
 	
 	var chartTesting30 = new CanvasJS.Chart("chartContainerTesting30", {
 	theme:"light2",
@@ -271,7 +271,7 @@ function toggleDataSeries(e) {
 	
 		<td> <div id="chartContainerDeaths30" style="height: 370px; margin: 0px auto;"></div> </td>
 	
-		<td> <div id="chartContainerCases30" style="height: 370px; margin: 0px auto;"></div> </td>
+		<td> <div id="chartContainerCasesB" style="height: 370px; margin: 0px auto;"></div> </td>
 	
 		<td> <div id="chartContainerTesting30" style="height: 370px; margin: 0px auto;"></div> </td>
 	
