@@ -208,7 +208,7 @@ if ($_GET['level']){
   die('done');
 }
 
-echo "<h1>State Level Data (7000) $page_description</h1>";
+
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -243,10 +243,10 @@ while($d = mysqli_fetch_array($r)){
     $todo_list .= $line;
   }
 }
-echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
+echo "<table><tr><td colspan='3'><h1>State Level Data (7000) $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr>";
 
 
-echo "<h1>County Level Data (3000) $page_description</h1>";
+
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -281,10 +281,10 @@ while($d = mysqli_fetch_array($r)){
     $todo_list .= $line;
   }
 }
-echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
+echo "<tr><td colspan='3'><h1>County Level Data (3000) $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr>";
 
 
-echo "<h1>ZIP Code Data (1000) $page_description</h1>";
+
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -319,9 +319,9 @@ while($d = mysqli_fetch_array($r)){
     $todo_list .= $line;
   }
 }
-echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
+echo "<tr><td colspan='3'><h1>ZIP Code Data (1000) $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr>";
 
-echo "<h1>Facilities Data (5000) $page_description</h1>";
+
 $done_list = '';
 $todo_list = '';
 $wait_list = '';
@@ -356,9 +356,9 @@ while($d = mysqli_fetch_array($r)){
     $todo_list .= $line;
   }
 }
-echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
+echo "<tr><td colspan='3'><h1>Facilities Data (5000) $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr>";
 
-echo "<h1>Other API Schedule $page_description<h1>";
+
 
 
 $done_list = '';
@@ -395,7 +395,7 @@ while($d = mysqli_fetch_array($r)){
     $todo_list .= $line;
   }
 }
-echo "<table><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
+echo "<tr><td colspan='3'><h1>Other API Schedule $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr></table>";
 echo '<meta http-equiv="refresh" content="60">';
 include_once('footer.php');
 ?>
