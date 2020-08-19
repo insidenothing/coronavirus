@@ -16,6 +16,24 @@ while($d = mysqli_fetch_array($r)){
 $deaths = rtrim(trim($deaths), ",");
 $cases = rtrim(trim($cases), ",");
 $testing = rtrim(trim($testing), ",");
+$range = '30'; // one month
+$deaths_30 = '';
+$cases_30 = '';
+$testing_30 = '';
+$rows = mysqli_num_rows($r);
+$start = $rows - $range;
+$range2= $range - 1;
+$start = max($start, 0);
+$q = "SELECT * FROM coronavirus_state where state_name = '$state' order by report_date limit $start, $range";
+$r = $covid_db->query($q);
+while($d = mysqli_fetch_array($r)){
+	$deaths_30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['death_count']).' }, ';
+	$cases_30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['report_count']).' }, ';
+	$testing_30 .= '{ label: "'.$d['report_date'].'", y: '.intval($d['testing_count']).' }, ';
+}
+$deaths_30 = rtrim(trim($deaths_30), ",");
+$cases_30 = rtrim(trim($cases_30), ",");
+$testing_30 = rtrim(trim($testing_30), ",");
 ?>
 
 
@@ -127,7 +145,110 @@ chartCases.render();
 			      );
 chartTesting.render();
 	
+	var chartDeaths_30 = new CanvasJS.Chart("chartContainerDeaths_30", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $state;?> Deaths 30 Day covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "People",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Total Deaths",
+		dataPoints: [
+			<?PHP echo $deaths_30; ?>
+		]
+	}]
+}
+			      
+			      
+			      );
+chartDeaths_30.render();
+
+	var chartCases_30 = new CanvasJS.Chart("chartContainerCases_30", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $state;?> Cases 30 Day covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "People",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Total Cases",
+		dataPoints: [
+			<?PHP echo $cases_30; ?>
+		]
+	}]
+}
+			      
+			      
+			      );
+chartCases_30.render();
 	
+	var chartTesting_30 = new CanvasJS.Chart("chartContainerTesting_30", {
+	theme:"light2",
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "<?PHP echo $state;?> Testing 30 Day covid19math.net"
+	},
+	axisY :{
+		includeZero: false,
+		title: "People",
+		suffix: ""
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "Total Testing",
+		dataPoints: [
+			<?PHP echo $testing_30; ?>
+		]
+	}]
+}
+			      
+			      
+			      );
+chartTesting_30.render();
 	
 	
 	
@@ -144,6 +265,15 @@ function toggleDataSeries(e) {
 </script>
 
 <script src="../canvasjs.min.js"></script>
+
+<table><tr>
+	
+	<td><div id="chartContainerDeaths_30" style="height: 370px; margin: 0px auto;"></div></td>
+	<td><div id="chartContainerCases_30" style="height: 370px; margin: 0px auto;"></div></td>
+	<td><div id="chartContainerTesting_30" style="height: 370px; margin: 0px auto;"></div></td>
+	
+	</tr></table>
+
 
 <div id="chartContainerDeaths" style="height: 370px; margin: 0px auto;"></div>
 
