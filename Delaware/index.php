@@ -269,11 +269,11 @@ function toggleDataSeries(e) {
 <table width="100%">
 	<tr>
 	
-		<td>1 <div id="chartContainerDeaths30" style="height: 300px;"></div> </td>
+		<td> <div id="chartContainerDeaths30" style="height: 300px;">1</div> </td>
 	
-		<td>2 <div id="chartContainerCasesB"  style="height: 300px;"></div> </td>
+		<td> <div id="chartContainerCasesB"  style="height: 300px;">2</div> </td>
 	
-		<td>3 <div id="chartContainerTesting30"  style="height: 300px;"></div> </td>
+		<td> <div id="chartContainerTesting30"  style="height: 300px;">3</div> </td>
 	
 	</tr>
 </table>
