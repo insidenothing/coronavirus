@@ -65,7 +65,7 @@ $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 $array['zip'][] = '23462'; // virginia Zip
 $array['countyState'][] = 'Arlington.Virginia'; // virginia County
 echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
-echo "<tr><td colspan='2'><h1>Data Loaded ( x may be Aquired in cache ) for ZIP Code</h1></td></tr>";
+echo "<tr><td colspan='2'><h1>Data Loaded ( ☒ may be Aquired in cache ) for ZIP Code</h1></td></tr>";
 
 
 foreach($array[zip] as $k => $v){
@@ -77,7 +77,7 @@ foreach($array[zip] as $k => $v){
   echo "</td><tr>";
 }
 
-echo "<tr><td colspan='2'><h1>Data Loaded ( x may be Aquired in cache ) for County.State</h1></td></tr>";
+echo "<tr><td colspan='2'><h1>Data Loaded ( ☒ may be Aquired in cache ) for County.State</h1></td></tr>";
 
 foreach($array[countyState] as $k => $v){
   echo "<tr><td>$v</td><td>";
@@ -88,7 +88,7 @@ foreach($array[countyState] as $k => $v){
   echo "</td><tr>";
 }
 
-echo "<tr><td colspan='2'><h1>Data Loaded ( x may be Aquired in cache ) for State</h1></td></tr>";
+echo "<tr><td colspan='2'><h1>Data Loaded ( ☒ may be Aquired in cache ) for State</h1></td></tr>";
 
 foreach($array[state] as $k => $v){
   echo "<tr><td>$v</td><td>";
