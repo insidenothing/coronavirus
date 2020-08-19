@@ -266,14 +266,14 @@ function toggleDataSeries(e) {
 
 <script src="../canvasjs.min.js"></script>
 
-<table>
+<table width="100%">
 	<tr>
 	
-		<td>chartContainerDeaths30 <div id="chartContainerDeaths30" style="height: 200px;"></div> </td>
+		<td>1 <div id="chartContainerDeaths30" style="height: 300px;"></div> </td>
 	
-		<td>chartContainerCasesB <div id="chartContainerCasesB"  style="height: 200px;"></div> </td>
+		<td>2 <div id="chartContainerCasesB"  style="height: 300px;"></div> </td>
 	
-		<td>chartContainerTesting30 <div id="chartContainerTesting30"  style="height: 200px;"></div> </td>
+		<td>3 <div id="chartContainerTesting30"  style="height: 300px;"></div> </td>
 	
 	</tr>
 </table>
