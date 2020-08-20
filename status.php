@@ -1,7 +1,7 @@
 <?PHP
 $days_back = 45;
 $px = '20px';
-$spanWidth = '22px';
+$spanWidth = '25px';
 $page_description = "$days_back Day Data Acquisition Report";
 include_once('menu.php');
 $array=array();
@@ -11,7 +11,7 @@ function check_zip($zip,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$date'>🎯</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
    $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
@@ -24,7 +24,7 @@ function check_county($countyDOTstate,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$date'>🎯</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
    $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
@@ -36,7 +36,7 @@ function check_state($state,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$date'>🎯</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
    $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
@@ -48,7 +48,7 @@ function check_facility($name,$state,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$date'>🎯</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
    $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
@@ -67,7 +67,7 @@ function check_cache($input_html,$date,$id){
 }
 echo "<style> span { font-size: $px; font-weight:bold; width: $spanWidth; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style>";
 
-echo "<h3><span class='found' title='found'>🎯</span> Data Loaded, <span class='cache' title='cache'>☑</span> Data Cached, <span class='missing' title='missing'>☒</span> Missing Data </h3>";
+echo "<h3><span class='found' title='found'>☑</span> Data Loaded, <span class='cache' title='cache'>☑</span> Data Cached, <span class='missing' title='missing'>☒</span> Missing Data </h3>";
 
 echo "<table>";
 echo "<tr><td colspan='4'><h1>Data 'Cache and Load' Status</h1></td></tr>";
