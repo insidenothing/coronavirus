@@ -63,7 +63,17 @@ global $cases;
 global $zipData;
 global $date;
 
-$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc";
+//$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc";
+
+
+	if(isset($_GET['id'])){
+		$id = $_GET['id'];
+		$r = $covid_db->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
+	}else{
+		$r = $covid_db->query("select * from coronavirus_api_cache where api_id = '13' order by id desc limit 0, 1"); // always get the latest from the cache	
+	}
+
+
 $r = $covid_db->query($q);
 echo "<h1>$q</h1>";
 $d = mysqli_fetch_array($r);
@@ -81,7 +91,9 @@ if(isset($_GET['date_formatted'])){
 	$date = date('Y-m-d');
 }
 
-
+if(isset($_GET['id'])){
+	$date = date('Y-m-d',strtotime($d['cache_date_time']));
+}
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
@@ -109,7 +121,23 @@ foreach ($zipData as $key => $value){
 slack_general("*DONE*",'covid19');
 //$buffer = ob_get_clean();
 
-header('Location: https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=maryland');
+
+
+if (isset($_GET['id'])){
+	$cache_id = $_GET['id'];
+	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '13' and id > '$cache_id' order by id limit 0,1");
+   	$d = mysqli_fetch_array($r);
+	if ($d['id']){
+		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/Maryland/zip.php?id=".$d['id']."&run=1&from_id=$cache_id\">";
+	}
+}else{
+	$q = "update coronavirus_county set change_percentage_time = '' where state_name = 'maryland' ";
+	$covid_db->query($q);	
+}
+
+
+
+//header('Location: https://www.covid19math.net/zipcode.php?zip=21208&auto=1&state=maryland');
 
 die('done');
 
