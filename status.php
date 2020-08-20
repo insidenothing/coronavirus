@@ -65,7 +65,7 @@ while ($d = mysqli_fetch_array($r)){
     }elseif($d['data_type'] == 'state'){
       echo check_state($d['data_to_check'],$date,$d['api_id']);
     }elseif($d['data_type'] == 'facility'){
-     check_facility($d['data_to_check'],$d['state_name'],$date,$d['api_id']); 
+      echo check_facility($d['data_to_check'],$d['state_name'],$date,$d['api_id']); 
     }
   }
   echo "</td><tr>";
