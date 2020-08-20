@@ -64,7 +64,11 @@ function check_cache($input_html,$date,$id){
    return $input_html; 
   }   
 }
-echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style><table>";
+echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style>";
+
+echo "<h3><span class='found' title='found'>☑</span> Data Loaded, <span class='cache' title='cache'>☑</span> Data Cached, <span class='missing' title='missing'>☒</span> Missing Data </h3>";
+
+echo "<table>";
 echo "<tr><td colspan='4'><h1>Data 'Cache and Load' Status</h1></td></tr>";
 $q = "SELECT * FROM coronavirus_api_qc order by state_name, data_type ";
 $r = $covid_db->query($q);
