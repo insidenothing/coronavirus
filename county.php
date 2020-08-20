@@ -1156,6 +1156,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	})
 	chartZIP6b.render();
 	<?PHP 
+	if (isset($_GET['show'])){
 	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
 	$r = $covid_db->query($q);
 	$i=7;
@@ -1262,6 +1263,10 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 
 	<?PHP 
 	$i++;
+	}
+		
+		
+		
 	} 
 	?>
 	
@@ -1295,7 +1300,7 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
-<a href='?show=1'>Show Facilities</a>
+<a href='?<?PHP echo $_SERVER['QUERY_STRING'];?>&show=1'>Show Facilities</a>
 <?PHP if (isset($_GET['show'])){ ?>
 	<div class="row">
 		<table border='1' cellpadding='0' cellspacing='0'>
