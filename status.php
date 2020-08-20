@@ -1,6 +1,7 @@
 <?PHP
 $days_back = 45;
 $px = '20px';
+$spanWidth = '22px';
 $page_description = "$days_back Day Data Acquisition Report";
 include_once('menu.php');
 $array=array();
@@ -64,7 +65,7 @@ function check_cache($input_html,$date,$id){
    return $input_html; 
   }   
 }
-echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style>";
+echo "<style> span { font-size: $px; font-weight:bold; width: $spanWidth; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style>";
 
 echo "<h3><span class='found' title='found'>🎯</span> Data Loaded, <span class='cache' title='cache'>☑</span> Data Cached, <span class='missing' title='missing'>☒</span> Missing Data </h3>";
 
