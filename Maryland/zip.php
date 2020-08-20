@@ -66,12 +66,12 @@ global $date;
 //$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc";
 
 
-	if(isset($_GET['id'])){
-		$id = $_GET['id'];
-		$q = "select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"; // always get the latest from the cache
-	}else{
-		$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc limit 0, 1"; // always get the latest from the cache	
-	}
+if(isset($_GET['id'])){
+	$id = $_GET['id'];
+	$q = "select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"; // always get the latest from the cache
+}else{
+	$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc limit 0, 1"; // always get the latest from the cache	
+}
 
 
 $r = $covid_db->query($q);
@@ -82,18 +82,17 @@ echo "<h1>Cache ID $d[id] from $d[cache_date_time]</h1>";
 
 //echo $d['raw_response'];
 
-
-if(isset($_GET['date_formatted'])){
-	$zipData = make_maryland_array3($d['raw_response'],$_GET['date_formatted']);
-	$date = $_GET['date'];
-}else{
-	$zipData = make_maryland_array3($d['raw_response'],'');
-	$date = date('Y-m-d');
-}
-
 if(isset($_GET['id'])){
 	$date = date('Y-m-d',strtotime($d['cache_date_time']));
+	$date_formated = 'total'.$date_formated = date('m_d_Y',strtotime($date));
+	$zipData = make_maryland_array3($d['raw_response'],$date_formated);
+}else{
+	$zipData = make_maryland_array3($d['raw_response'],'');
 }
+
+
+
+
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
