@@ -326,7 +326,7 @@ $done_list = '';
 $todo_list = '';
 $wait_list = '';
 // display what is active
-$q = "SELECT * FROM coronavirus_apis where api_status = 'active' and run_order = '5000' order by last_updated DESC ";
+$q = "SELECT * FROM coronavirus_apis where api_status = 'active' and (run_order = '5000' or run_order = '5001') order by last_updated DESC ";
 $r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
@@ -356,7 +356,7 @@ while($d = mysqli_fetch_array($r)){
     $todo_list .= $line;
   }
 }
-echo "<tr><td colspan='3'><h1>Facilities Data (5000) $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr>";
+echo "<tr><td colspan='3'><h1>Facilities Data (5000,5001) $page_description</h1></td></tr><tr><td>No Update Today - Wait</td><td>No Update Today - Check</td><td>Update Confirmed - Skip</td></tr><tr><td valign='top'><ol>$wait_list</ol></td><td valign='top'><ol>$todo_list</ol></td><td valign='top'><ol>$done_list</ol></td></tr>";
 
 
 
@@ -365,7 +365,7 @@ $done_list = '';
 $todo_list = '';
 $wait_list = '';
 // display what is active
-$q = "SELECT * FROM coronavirus_apis where api_status = 'active' and run_order <> '5000' and run_order <> '1000' and run_order <> '3000' and run_order <> '7000' order by last_updated DESC ";
+$q = "SELECT * FROM coronavirus_apis where api_status = 'active' and run_order <> '5000' and run_order <> '5001' and run_order <> '1000' and run_order <> '3000' and run_order <> '7000' order by last_updated DESC ";
 $r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
   //slack_general("$d[run_delay] second delay to check $d[api_name]",'covid19-apis');
