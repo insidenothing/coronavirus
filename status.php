@@ -10,9 +10,9 @@ function check_zip($zip,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$q'>☑</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
-   $miss = "<span class='missing' title='$q'>☒</span>";
+   $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
   }
 }
@@ -23,9 +23,9 @@ function check_county($countyDOTstate,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$q'>☑</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
-   $miss = "<span class='missing' title='$q'>☒</span>";
+   $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
   }
 }
@@ -35,9 +35,9 @@ function check_state($state,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$q'>☑</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
-   $miss = "<span class='missing' title='$q'>☒</span>";
+   $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
   }
 }
@@ -47,9 +47,9 @@ function check_facility($name,$state,$date,$api_id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='found' title='$q'>☑</span>"; 
+   return "<span class='found' title='$date'>☑</span>"; 
   }else{
-   $miss = "<span class='missing' title='$q'>☒</span>";
+   $miss = "<span class='missing' title='$date'>☒</span>";
    return check_cache($miss,$date,$api_id);
   } 
 }
@@ -59,7 +59,7 @@ function check_cache($input_html,$date,$id){
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
-   return "<span class='cache' title='$q'>☑</span>"; 
+   return "<span class='cache' title='$date'>☑</span>"; 
   }else{
    return $input_html; 
   }   
