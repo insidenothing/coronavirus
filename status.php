@@ -72,7 +72,7 @@ $array['countyState'][] = 'Arlington.Virginia'; // virginia County
 
 
 echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style><table>";
-echo "<tr><td colspan='2'><h1>Data 'Cache and Load' Status</h1></td></tr>";
+echo "<tr><td colspan='4'><h1>Data 'Cache and Load' Status</h1></td></tr>";
 
 
 
