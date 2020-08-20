@@ -68,9 +68,9 @@ global $date;
 
 	if(isset($_GET['id'])){
 		$id = $_GET['id'];
-		$r = $covid_db->query("select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"); // always get the latest from the cache
+		$q = "select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"; // always get the latest from the cache
 	}else{
-		$r = $covid_db->query("select * from coronavirus_api_cache where api_id = '13' order by id desc limit 0, 1"); // always get the latest from the cache	
+		$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc limit 0, 1"; // always get the latest from the cache	
 	}
 
 
