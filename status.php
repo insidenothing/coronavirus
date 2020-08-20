@@ -40,7 +40,7 @@ function check_state($state,$date,$api_id){
 }
 function check_facility($name,$state,$date,$api_id){
   global $covid_db;
-  $q = "select id from coronavirus_facility where Facility_Name = '$name' and state_name = '$state' and report_date = '$date'";
+  $q = "select id from coronavirus_facility where Facility_Name like '%$name%' and state_name = '$state' and report_date = '$date'";
   $r = $covid_db->query($q);
   $d = mysqli_fetch_array($r);
   if ($d['id'] > 0){
