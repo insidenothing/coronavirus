@@ -43,6 +43,7 @@ function check_state($state,$date){
   }
 }
 
+/*
 // Deleware
 $array['state'][]  = 'Delaware';
 
@@ -64,44 +65,34 @@ $array['countyState'][] = 'Palm Beach.Florida'; // Florida County
 // virginia Data Quality
 $array['zip'][] = '23462'; // virginia Zip
 $array['countyState'][] = 'Arlington.Virginia'; // virginia County
-echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } </style><table>";
-echo "<tr><td colspan='2'><h1>Data Loaded ( ☒ may be Aquired in cache ) for ZIP Code</h1></td></tr>";
+
+*/
 
 
-foreach($array[zip] as $k => $v){
-  echo "<tr><td>$v</td><td>";
+
+
+echo "<style> span { font-size: $px; font-weight:bold; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style><table>";
+echo "<tr><td colspan='2'><h1>Data 'Cache and Load' Status</h1></td></tr>";
+
+
+
+$q = "SELECT * FROM coronavirus_api_qc order by state_name, data_type ";
+$r = $covid_db->query($q);
+while ($d = mysqli_fetch_array($r)){
+  echo "<tr><td>$d[state_name]</td><td>$d[data_type]</td><td>$d[data_to_check]</td><td>";
   for($i = $days_back; $i > -1; $i--){
     $date = date("Y-m-d", strtotime("-$i days"));
-    echo check_zip($v,$date);
+    if ($d['data_type'] == 'zip'){
+      echo check_zip($d['data_to_check'],$date);
+    }elseif($d['data_type'] == 'county'){
+      echo check_county($d['data_to_check'].'.'.$d['state_name'],$date);
+    }elseif($d['data_type'] == 'state'){
+      echo check_state($d['data_to_check'],$date);
+    }
   }
   echo "</td><tr>";
 }
-
-echo "<tr><td colspan='2'><h1>Data Loaded ( ☒ may be Aquired in cache ) for County.State</h1></td></tr>";
-
-foreach($array[countyState] as $k => $v){
-  echo "<tr><td>$v</td><td>";
-  for($i = $days_back; $i > -1; $i--){
-    $date = date("Y-m-d", strtotime("-$i days"));
-    echo check_county($v,$date);
-  }
-  echo "</td><tr>";
-}
-
-echo "<tr><td colspan='2'><h1>Data Loaded ( ☒ may be Aquired in cache ) for State</h1></td></tr>";
-
-foreach($array[state] as $k => $v){
-  echo "<tr><td>$v</td><td>";
-  for($i = $days_back; $i > -1; $i--){
-    $date = date("Y-m-d", strtotime("-$i days"));
-    echo check_state($v,$date);
-  }
-  echo "</td><tr>";
-}
-
-
 echo "</table>";
-
 
 include_once('footer.php');
 ?>
