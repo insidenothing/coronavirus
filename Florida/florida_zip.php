@@ -117,7 +117,7 @@ if($global_date == date('Y-m-d') || isset($_GET['id']) ){
 }	
 	
 
-
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '30' ");
 
 
 if (isset($_GET['id'])){
