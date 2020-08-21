@@ -5,9 +5,9 @@ include_once('/var/www/html/mdwestserve/newsbot.php');
 
 function process_link_check($link,$status,$last_run_date){
  if ($_SERVER['REMOTE_ADDR'] == '69.250.28.138' && $link != '' && $status == 'lightgreen' && $last_run_date != date('Y-m-d') ){ 
-  return "<a target='_Blank' href='$link'>PROCESS - $last_run_date</a>";
+  return "<a target='_Blank' href='$link'><h3>LOAD - $last_run_date : ".date('Y-m-d')."</h3></a>";
  }elseif ($_SERVER['REMOTE_ADDR'] == '69.250.28.138' && $link != '' && $status == 'lightgreen' && $last_run_date == date('Y-m-d') ){
-  return "<a>DONE - $last_run_date</a>";
+  return "<a>LOADED</a>";
  }
 }
 
