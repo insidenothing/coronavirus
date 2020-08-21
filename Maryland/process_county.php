@@ -209,6 +209,7 @@ print_r($pieces);
 echo "</pre>";	
 
 
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '20' ");
 
 
 $q = "update coronavirus_county set change_percentage_time = '' where state_name = 'maryland' ";
