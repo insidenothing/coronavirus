@@ -20,7 +20,7 @@ $q = "SELECT distinct county_name FROM coronavirus_county where state_name = '$s
 $q = "SELECT distinct zip_code FROM coronavirus_zip where state_name = '$state' order by zip_code";
 		$r = $covid_db->query($q);
 		while($d = mysqli_fetch_array($r)){	
-			echo "<span><a href='/zip.php?zip=$d[zip_code]'>$d[zip_code]</a>, </span>";
+			echo "<span><a href='/zipcode.php?zip=$d[zip_code]'>$d[zip_code]</a>, </span>";
 		}
 ?>
 
