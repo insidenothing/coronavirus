@@ -131,7 +131,7 @@ $break = '
 print_r($pieces);
 	
 
-
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '62' ");
 
 
 
