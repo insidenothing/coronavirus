@@ -166,4 +166,5 @@ if (isset($_GET['id'])){
 	$q = "update coronavirus_county set change_percentage_time = '' where state_name = 'virginia' ";
 	$covid_db->query($q);	
 }
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '35' ");
 die('DONE '.$q);
