@@ -122,6 +122,8 @@ slack_general("*DONE*",'covid19');
 
 
 
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '13' ");
+
 if (isset($_GET['id'])){
 	$cache_id = $_GET['id'];
 	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '13' and id > '$cache_id' order by id limit 0,1");
