@@ -110,7 +110,7 @@ echo "<h1>$i</h1>";
 //echo "</pre>";	
 
 
-
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '43' ");
 
 $q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'virginia' ";
 $covid_db->query($q);
