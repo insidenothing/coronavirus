@@ -108,7 +108,7 @@ echo "</pre>";
 
 
 
-
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '48' ");
 
 
 die('DONE');
