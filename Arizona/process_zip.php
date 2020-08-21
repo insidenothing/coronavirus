@@ -136,7 +136,7 @@ echo "<pre>";
 print_r($pieces);
 echo "</pre>";	
 
-
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '68' ");
 
 
 $q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'arizona' ";
