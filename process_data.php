@@ -4,7 +4,7 @@ include_once('menu.php');
 include_once('/var/www/html/mdwestserve/newsbot.php');
 function runLink($url){
     $curl = curl_init();
-    curl_setopt ($curl, CURLOPT_URL, $url);
+    curl_setopt ($curl, CURLOPT_URL, urlencode($url));
     curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire Coronavirus Monitor covid19math.net /%d.0",rand(4,50)));
     curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, 0);
