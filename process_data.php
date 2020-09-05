@@ -19,7 +19,8 @@ $r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
   echo "<li><a target='_Blank' href='$d[run_after]'>(lvl $d[run_after_priority] x $d[run_order]) $d[run_after]</a></li>";
   if (isset($_GET['run'])){
-        echo runLink($d['run_after']);
+        $output = runLink($d['run_after']);
+        echo htmlspecialchars($output);
         sleep($d['run_delay']);
   }
 }
