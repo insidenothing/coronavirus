@@ -2,7 +2,6 @@
 $page_description = date('r');
 include_once('menu.php');
 include_once('/var/www/html/mdwestserve/newsbot.php');
-
 function runLink($url){
     $curl = curl_init();
     curl_setopt ($curl, CURLOPT_URL, $url);
@@ -13,15 +12,14 @@ function runLink($url){
     curl_close ($curl);
     return $html;
 }
-
 // figure out what can run and if there are any dependencies 
 echo "<h1>Run Now</h1>";
-
 $q = "SELECT * FROM coronavirus_apis where run_after <> '' and api_status = 'active' and last_run_date <> '".date('Y-m-d')."' and last_updated like '".date('Y-m-d')." %' order by run_after_priority DESC, run_order DESC ";
 $r = $covid_db->query($q);
 while($d = mysqli_fetch_array($r)){
-
   echo "<li><a target='_Blank' href='$d[run_after]'>(lvl $d[run_after_priority] x $d[run_order]) $d[run_after]</a></li>";
-  // echo runLink($d[run_after]);
- 
+  if (isset($_GET['run'])){
+        echo runLink($d['run_after']);
+        sleep($d['run_delay']);
+  }
 }
