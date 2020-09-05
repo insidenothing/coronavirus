@@ -209,7 +209,6 @@ set_hits(); // internal page counter
 	
 <li>Support 	
 	<ul>
-		<li><a target='_Blank' href="https://www.etsy.com/shop/PatricksPPE">Buy PPE Here</a></li>
 		<li><a target='_Blank' href="https://github.com/sponsors/insidenothing">Sponsor This Website</a></li>
 		<li><a target='_Blank' href="http://sales.patrickmcguire.me">Buy Websites Here</a></li>
 	</ul>
@@ -230,7 +229,7 @@ set_hits(); // internal page counter
 		$qWW = "SELECT distinct state_name FROM coronavirus_state order by state_name";
 		$rWW = $covid_db->query($qWW);
 		while($dWW = mysqli_fetch_array($rWW)){	
-			$state = ucwords(strtolower($dWW['state_name']));
+			$state = str_replace(' ','',ucwords(strtolower($dWW['state_name'])));
 			?>
 		
 		<li><?PHP echo $state; ?>
