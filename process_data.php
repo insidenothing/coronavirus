@@ -20,7 +20,7 @@ while($d = mysqli_fetch_array($r)){
   echo "<li><a target='_Blank' href='$d[run_after]'>(lvl $d[run_after_priority] x $d[run_order]) $d[run_after]</a></li>";
   if (isset($_GET['run'])){
         $output = runLink($d['run_after']);
-        $name = $d['api_name']
+        $name = $d['api_name'];
         echo htmlspecialchars($output);
           if ($d['internal_page']){
             galert_mail('trigger@applet.ifttt.com',$name.' Update',$d['internal_page']);   
