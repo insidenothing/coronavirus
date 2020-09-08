@@ -10,6 +10,9 @@ if (isset($_GET['id'])){
   die('no get id');
 }
 include_once('/var/www/secure.php'); // this makes $covid_db with out credientals 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $id = substr($id,0,10); // protect strlen
 $id2 = substr($id2,0,10); // protect strlen
 $stmt = $covid_db->prepare('SELECT * FROM coronavirus_api_cache WHERE id = ?');
