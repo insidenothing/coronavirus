@@ -65,7 +65,7 @@ function check_cache($input_html,$date,$id){
    return $input_html; 
   }   
 }
-echo "<style> span { font-size: $px; font-weight:bold; width: $spanWidth; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; } </style>";
+echo "<style> span { font-size: $px; font-weight:bold; width: $spanWidth; } .found { background-color: green; } .missing { background-color: red; } .cache { background-color: orange; .nocache { background-color: grey; } </style>";
 
 echo "<h3><span class='found' title='found'>☑</span> Data Loaded, <span class='cache' title='cache'>☑</span> Data Cached, <span class='missing' title='missing'>☒</span> Missing Data </h3>";
 
@@ -86,7 +86,7 @@ while ($d = mysqli_fetch_array($r)){
     }elseif($d['data_type'] == 'facility'){
       echo check_facility($d['data_to_check'],$d['state_name'],$date,$d['api_id']); 
     }elseif($d['data_type'] == 'cache'){
-      $miss = "<span class='missing' title='$d[data_to_check]'>☒</span>";
+      $miss = "<span class='nocache' title='$d[data_to_check]'>☒</span>";
       echo check_cache($miss,$date,$d['api_id']); 
     }
   }
