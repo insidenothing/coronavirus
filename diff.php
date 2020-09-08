@@ -31,7 +31,7 @@ $cache2 = $result->fetch_assoc();
 if ($cache['id'] < 1){
  die('id2 less than 1'); 
 }
-$diff = xdiff_string_diff($cache, $cache2, 1);
+$diff = xdiff_string_diff($cache['raw_response'], $cache2['raw_response'], 1);
 if (is_string($diff)) {
     echo "Differences:\n";
     echo $diff;
