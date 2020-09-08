@@ -85,6 +85,9 @@ while ($d = mysqli_fetch_array($r)){
       echo check_state($d['data_to_check'],$date,$d['api_id']);
     }elseif($d['data_type'] == 'facility'){
       echo check_facility($d['data_to_check'],$d['state_name'],$date,$d['api_id']); 
+    }elseif($d['data_type'] == 'cache'){
+      $miss = "<span class='missing' title='$d[data_to_check]'>☒</span>";
+      echo check_cache($miss,$date,$d['api_id']); 
     }
   }
   echo "</td><tr>";
