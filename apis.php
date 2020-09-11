@@ -101,14 +101,18 @@ if ($_GET['run']){
         }elseif ($pos2 !== false){
               slack_general("$left) fail - found '504 Gateway Time-out': $name - *bad update*",'covid19-apis');
         }elseif ($test1 != $test2){
+              $diff = xdiff_string_diff($test1, $test2, 1);
+              if (is_string($diff)) {
+                  //echo "Differences:\n";
+                  //echo $diff;
+              }
               $covid_db->query("insert into coronavirus_api_cache ( api_id, cache_date_time, raw_response, api_flavor ) values ( '$id', NOW(), '$raw_response', '$d[api_flavor]' )");
               $cache_id = $covid_db->insert_id;
               $covid_db->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
               if ($d['send_alert'] == 'yes'){
-               
-                  slack_bypass("$left): *$name* $d[run_after]",'covid19-apis-update');
+                  slack_bypass("$left): *$name* $diff",'covid19-apis-update');
               }
-              galert_mail('trigger@applet.ifttt.com',$name.' API Cache Updated','https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
+              galert_mail('trigger@applet.ifttt.com',$name.' '.$diff,'https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
         }else{
               slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
