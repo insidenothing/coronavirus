@@ -113,7 +113,7 @@ if ($_GET['run']){
                   $result_diff = preg_replace("/[^a-zA-Z0-9]+/", " ", $diff);
                   slack_bypass("$left): *$name* (( $result_diff ))",'covid19-apis-update');
               }
-              galert_mail('trigger@applet.ifttt.com',$name.' '.substr($result_diff,0,50).'...more','https://www.covid19math.net/diff.php?id='.$cache_id.'&id2='.$d2['id']);
+              galert_mail('trigger@applet.ifttt.com',$name.' '.substr($result_diff,0,25).'...view full diff here','https://www.covid19math.net/diff.php?id='.$cache_id.'&id2='.$d2['id']);
         }else{
               slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
