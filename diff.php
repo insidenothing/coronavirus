@@ -9,9 +9,11 @@ if (isset($_GET['id'])){
 }else{
   die('no get id');
 }
-include_once('/var/www/secure.php'); // this makes $covid_db with out credientals 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+$page_description = date('r');
+include_once('menu.php');
+include_once('/var/www/html/mdwestserve/newsbot.php');
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $id = substr($id,0,10); // protect strlen
 $id2 = substr($id2,0,10); // protect strlen
@@ -36,3 +38,4 @@ if (is_string($diff)) {
     echo "Differences:\n";
     echo $diff;
 }
+include_once('footer.php');
