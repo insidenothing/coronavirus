@@ -74,7 +74,7 @@ if ($_GET['run']){
     $left = $left - 1;
     $url = $d['api_url'];
     $id = $d['id'];
-    $r2 = $covid_db->query("SELECT raw_response, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
+    $r2 = $covid_db->query("SELECT id, raw_response, cache_date_time FROM coronavirus_api_cache where api_id = '$id' order by id DESC limit 0,1");
     $d2 = mysqli_fetch_array($r2);
     $old = $d2['raw_response'];
     if (substr($d2['cache_date_time'],0,10) != date('Y-m-d') || $_GET['run'] == 2){
