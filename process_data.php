@@ -21,6 +21,7 @@ while($d = mysqli_fetch_array($r)){
   if (isset($_GET['run'])){
         $output = runLink($d['run_after']);
         $name = $d['api_name'];
+        slack_bypass("*$name* processed",'covid19-apis-update');
         echo htmlspecialchars($output);
           if ($d['internal_page']){
             galert_mail('trigger@applet.ifttt.com',$name.' Update',$d['internal_page']);   
