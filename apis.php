@@ -110,9 +110,10 @@ if ($_GET['run']){
               $cache_id = $covid_db->insert_id;
               $covid_db->query("update coronavirus_apis set last_updated = NOW() where id = '$id' ");
               if ($d['send_alert'] == 'yes'){
-                  slack_bypass("$left): *$name* $diff",'covid19-apis-update');
+                  $result_diff = preg_replace("/[^a-zA-Z0-9]+/", "", $diff);
+                  slack_bypass("$left): *$name* (( $result_diff ))",'covid19-apis-update');
               }
-              galert_mail('trigger@applet.ifttt.com',$name.' '.$diff,'https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
+              galert_mail('trigger@applet.ifttt.com',$name.' '.$result_diff,'https://www.covid19math.net/cache.php?id='.$cache_id.'&type='.$d['api_flavor']);
         }else{
               slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
