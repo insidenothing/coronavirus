@@ -35,7 +35,7 @@ if ($cache['id'] < 1){
 }
 $diff = xdiff_string_diff($cache['raw_response'], $cache2['raw_response'], 1);
 if (is_string($diff)) {
-    echo "Differences:\n";
-    echo $diff;
+    echo "Differences:\n<pre>";
+    echo $diff.'</pre>';
 }
 include_once('footer.php');
