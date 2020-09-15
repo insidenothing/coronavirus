@@ -631,8 +631,9 @@ while ($d = mysqli_fetch_array($r)){
    // echo "<pre>";
    // print_r($value);
   //  echo "</pre>";
+	 
   }
-  
+   $covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '$d[id]' ");
 }
 $buffer=ob_get_clean();
 
@@ -651,6 +652,9 @@ echo "</pre>";
 
 
 echo $buffer;
+
+
+
 
 
 include_once('../footer.php');
