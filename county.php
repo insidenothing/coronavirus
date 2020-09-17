@@ -99,161 +99,23 @@ function data_points($zip,$field){
 
 
 // Assisted Living
-function make_chart2($range,$Facility_Name){
-	global $state;
-	global $covid_db;
-	global $zip;
-	global $zip2;
-	global $remove;
+function facility_table($range,$Facility_Name){
 	global $master_facility_table;
 	$color = get_color();
-$time_chart='';
-$text_div='';
-$time_chart2='';
-$text_div2='';
-$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
-slack_general("$q",'covid19-sql');
-$r = $covid_db->query($q);
-$rows = mysqli_num_rows($r);
-$start = $rows - $range;
-$range2= $range - 1;
-$start = max($start, 0);
-$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
-slack_general("$q",'covid19-sql');
-$r = $covid_db->query($q);
-$i=0;
-	$remove_total=0;
-while ($d = mysqli_fetch_array($r)){
-	$name = "$d[Facility_Name], $d[state_name]";
-	$Resident_Type = $d['Resident_Type'];
-	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
-	if ($i == 0){
-		$me = 0;
-		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
-		$remove[$in_14_days] = $remove_base; //difference to remove
-	}else{
-		$me = intval($d['report_count'] - $last);
-		$remove[$in_14_days] = $me; //difference to remove
+	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
+	slack_general("$q",'covid19-sql');
+	$r = $covid_db->query($q);
+	$rows = mysqli_num_rows($r);
+	$start = $rows - $range;
+	$range2= $range - 1;
+	$start = max($start, 0);
+	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
+	$r = $covid_db->query($q);
+	while ($d = mysqli_fetch_array($r)){
+		$name = "$d[Facility_Name], $d[state_name]";
+		$Resident_Type = $d['Resident_Type'];
+		$master_facility_table .= "<tr style='background-color:$color;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
 	}
-
-	$remove_date = $d['report_date'];
-	$remove_count = $remove[$remove_date]; 
-	$remove_total = $remove_total + $remove_count;
-	
-	$rolling = $d['report_count'] - $remove_total;
-
-	$trader_sma_real[] = intval($d['report_count']);
-	$trader_sma_timePeriod++;
-	$trader_sma_7 = trader_sma($trader_sma_real,7);
-	$trader_sma_3 = trader_sma($trader_sma_real,3);
-	//print_r($trader_sma);
-	$the_index = $trader_sma_timePeriod - 1;
-	$this_sma7 = $trader_sma_7[$the_index]; // should be last value
-	$this_sma3 = $trader_sma_3[$the_index]; // should be last value
-	if ( $this_sma7 > 0 && $remove_total > 0 && $range == '60' ){
-		// start making the charts when SMA and rolling have a value for the 60 day chart
-		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-		
-		
-		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
-		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
-		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
-		$time_chartd .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Deaths']).' }, ';
-		
-		
-		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
-		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
-		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
-		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
-	}elseif( $range != '60' ){
-		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
-		
-		$time_charta .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Cases']).' }, ';
-		$time_chartb .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Cases']).' }, ';
-		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
-		$time_chartd .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Deaths']).' }, ';
-		
-		
-		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
-		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
-		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
-		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
-	}
-	
-	$master_facility_table .= "<tr style='background-color:$color;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
-	
-	
-	
-	$last = $d['report_count'];
-	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
-	$last_count = $d[report_count];
-	if($i == 0){
-		$start_value = fix_zero($d['report_count']);
-	}
-	if($i == $range2){
-		$end_value = fix_zero($d['report_count']);
-	}
-	$i++; // number of days in the graph
-}
-$remove_chart 		= rtrim(trim($remove_chart), ",");
-$sma_chart 		= rtrim(trim($sma_chart), ",");
-$sma_chart3 		= rtrim(trim($sma_chart3), ",");
-$time_chart 		= rtrim(trim($time_chart), ",");
-	
-	$time_charta 		= rtrim(trim($time_charta), ",");
-	$time_chartb 		= rtrim(trim($time_chartb), ",");
-	$time_chartc 		= rtrim(trim($time_chartc), ",");
-	$time_chartd 		= rtrim(trim($time_chartd), ",");
-	
-	
-$new_chart 		= rtrim(trim($new_chart), ",");
-$page_description 	= "$date $name at $last_count Cases";
-$name2			= '';
-$i2			= 0;
-
-$name = $name.$name2;
-
-ob_start();
-?>
-<div class="row">
-	<?PHP 
-	$per = round( ( ( fix_zero($end_value) - fix_zero($start_value) ) / fix_zero($start_value) ) * 100); 
-	if ($per == '0'){
-		$color = 'lightgreen';	
-	}elseif($per < '10'){
-		$color = 'lightyellow';
-	}else{
-		$color = '#fed8b1'; // light orange
-	}
-	?>
-	
-	<p style='text-align:center; background-color:<?PHP echo $color;?>;'>
-		<b>From <?PHP echo fix_zero($start_value);?> cases to <?PHP echo fix_zero($end_value);?> cases is a <?PHP echo $per;?>% change in <?PHP echo $range;?> days.</b>
-	</p>
-	
-</div>
-<?PHP 
-$page_description = $per."% change $page_description";
-$alert = ob_get_clean();
-	$return = array();
-	$return['alert'] = $alert;
-	$return['page_description'] = $page_description;
-	$return['time_chart'] = $time_chart;
-	$return['time_charta'] = $time_charta;
-	$return['time_chartb'] = $time_chartb;
-	$return['time_chartc'] = $time_chartc;
-	$return['time_chartd'] = $time_chartd;
-	$return['time_chart2'] = $time_chart2;
-	$return['new_chart'] = $new_chart;
-	$return['remove_chart'] = $remove_chart;
-	$return['sma_chart'] = $sma_chart;
-	$return['sma3_chart'] = $sma_chart3;
-	$return['range'] = $range;
-	$return['active_count'] = $rolling;
-	$return['name'] = $name;
-	$return['per'] = $per;
-	$return['Resident_Type'] = $Resident_Type;
-	return $return;
 }
 
 
@@ -1214,7 +1076,7 @@ $q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name 
 $r = $covid_db->query($q);
 $i=7;
 while ($d = mysqli_fetch_array($r)){
-	$day7 			= make_chart2('90',$d['Facility_Name']);
+$day7 			= facility_table('180',$d['Facility_Name']);
 }
 ?>
 
