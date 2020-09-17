@@ -28,8 +28,7 @@ $active_count_low = 999999999999999999999;
 global $active_count_date_high;
 global $active_count_date_low;
 
-global $master_facility_table;
-$master_facility_table = '';
+
 
 
 $type_graph='column';
@@ -99,16 +98,29 @@ function data_points($zip,$field){
 
 
 // Assisted Living
+global $recent_facility_table;
+$recent_facility_table = '';
+global $master_facility_table;
+$master_facility_table = '';
 function facility_table($range,$Facility_Name){
 	global $covid_db;
 	global $master_facility_table;
+	global $recent_facility_table;
 	$color = get_color();
 	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
 	$r = $covid_db->query($q);
+	$i=1;
 	while ($d = mysqli_fetch_array($r)){
 		$name = "$d[Facility_Name], $d[state_name]";
 		$Resident_Type = $d['Resident_Type'];
 		$master_facility_table .= "<tr style='background-color:$color;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+		if ($i == 1){
+			$recent_facility_table .= "<tr style='background-color:yellow;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+		}
+		if ($i == 2){
+			$recent_facility_table .= "<tr style='background-color:lightblue;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
+		}
+		$i++;
 	}
 }
 
@@ -1073,7 +1085,26 @@ while ($d = mysqli_fetch_array($r)){
 $day7 			= facility_table('180',$d['Facility_Name']);
 }
 ?>
+<h1>Last 2 Updates</h1>
+	<div class="row">
+		<table border='1' cellpadding='0' cellspacing='0'>
+			<tr>
+				<td>Report Date</td>
+				<td>Name</td>
+				<td>Resident Type</td>
+				<td>Report Count</td>
+				<td>Number of Resident Cases</td>
+				<td>Number of Staff Cases</td>
+				<td>Number of Resident Deaths</td>
+				<td>Number of Staff Deaths</td>
+			</tr>
+			<?PHP echo $recent_facility_table; ?>
+		</table>
+	</div>
 
+
+
+<h1>Full Report</h1>
 	<div class="row">
 		<table border='1' cellpadding='0' cellspacing='0'>
 			<tr>
