@@ -119,7 +119,7 @@ while ($d = mysqli_fetch_array($r)){
 ?>
 <div class="row">
 	<h3>Maryland Facilities Update:</h3>
-	<p>Resident Deaths <?PHP echo number_format($NumberofResidentDeaths);?>, Staff Deaths <?PHP echo number_format($NumberofStaffDeaths);?>, Resident Cases <?PHP echo number_format($NumberofResidentCases);?>, Staff Cases <?PHP echo number_format($NumberofStaffCases);?>. SOURCE: https://www.covid19math.net/Maryland/facilities_table.php</p>
+	<p><?PHP echo number_format($FacilitiesCount - $FacilitiesCount2);?> Facilities Listed: Resident Deaths <?PHP echo number_format($NumberofResidentDeaths);?>, Staff Deaths <?PHP echo number_format($NumberofStaffDeaths);?>, Resident Cases <?PHP echo number_format($NumberofResidentCases);?>, Staff Cases <?PHP echo number_format($NumberofStaffCases);?>. SOURCE: https://www.covid19math.net/Maryland/facilities_table.php</p>
 </div>
 <div class="row">
 	<table border='1' cellpadding='0' cellspacing='0'>
