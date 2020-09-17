@@ -816,7 +816,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> New Facility Deaths",
+		name: "<?PHP echo $zip;?> Facility Deaths",
 		dataPoints: [
 			<?PHP echo $death_chart_facilities; ?>
 		]
