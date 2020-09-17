@@ -134,7 +134,11 @@ function facility_table($range,$Facility_Name){
 	}
 }
 
-
+$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
+$r = $covid_db->query($q);
+while ($d = mysqli_fetch_array($r)){
+ facility_table('180',$d['Facility_Name']);
+}
 
 
 /// zip code code =)
@@ -169,6 +173,7 @@ $r = $covid_db->query($q);
 $i=0;
 	$remove_total=0;
 	$remove2_total=0;
+	$last_death_facilities = 0;
 while ($d = mysqli_fetch_array($r)){
 	if ($d['town_name'] != ''){
 		$name = "$d[town_name], $d[state_name]";
@@ -201,8 +206,13 @@ while ($d = mysqli_fetch_array($r)){
 	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.$death_new.' }, ';
 	
 	$death_facilities = $death_array[$remove_date];
+	if ($death_facilities == 0){
+		$death_facilities = $last_death_facilities;
+	}
 	$death_chart_facilities .=  '{ label: "'.$d['report_date'].'", y: '.intval($death_facilities).' }, ';
-	
+	if ($death_facilities != 0){
+		$last_death_facilities = intval($death_facilities);
+	}
 	$remove2_date = $d['report_date'];
 	$remove2_count = $remove2[$remove2_date]; 
 	$remove2_total = $remove2_total + $remove2_count;
@@ -802,7 +812,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		]
 		},
 		{
-		type: "column",
+		type: "line",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -1103,14 +1113,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </div>
 
 
-<?PHP
-$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
-$r = $covid_db->query($q);
-$i=7;
-while ($d = mysqli_fetch_array($r)){
-$day7 			= facility_table('180',$d['Facility_Name']);
-}
-?>
+
 <h1>Last 2 Updates</h1>
 	<div class="row">
 		<table border='1' cellpadding='0' cellspacing='0'>
