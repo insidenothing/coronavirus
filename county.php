@@ -269,6 +269,7 @@ while ($d = mysqli_fetch_array($r)){
 }
 	$death_chart 		= rtrim(trim($death_chart), ",");
 	$death_chart_new 	= rtrim(trim($death_chart_new), ",");
+	$death_chart_facilities 	= rtrim(trim($death_chart_facilities), ",");
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
 	$remove2_chart 		= rtrim(trim($remove2_chart), ",");
 	$low_chart 		= rtrim(trim($low_chart), ",");
@@ -364,6 +365,7 @@ $alert = ob_get_clean();
 	$return['remove2_chart'] = $remove2_chart;
 	$return['death_chart'] = $death_chart;
 	$return['death_chart_new'] = $death_chart_new;
+	$return['death_chart_facilities'] = $death_chart_facilities;
 	$return['high_chart'] = $high_chart;
 	$return['low_chart'] = $low_chart;
 	$return['sma_chart'] = $sma_chart;
@@ -487,7 +489,8 @@ $testing_chart_6 	= $day90['testing_chart'];
 
 $death_chart		= $day60['death_chart'];
 $death_chart_new	= $day60['death_chart_new'];
-
+$death_chart_facilities = $day60['death_chart_facilities'];
+	
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_county where county_name = '$zip' and report_date = '$yesterday'";
 $r = $covid_db->query($q);
@@ -796,6 +799,16 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		name: "<?PHP echo $zip;?> New Deaths",
 		dataPoints: [
 			<?PHP echo $death_chart_new; ?>
+		]
+		},
+		{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Facility Deaths",
+		dataPoints: [
+			<?PHP echo $death_chart_facilities; ?>
 		]
 		}]
 	})
