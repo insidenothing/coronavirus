@@ -395,7 +395,7 @@ $active2_count = $just_make_data['active2_count'];
 $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
-$day60 = make_chart('60');
+$day60 = make_chart('100');
 $day45 = make_chart('300');
 $day90 = make_chart('300');
 
@@ -774,7 +774,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo ucwords(strtolower($name_2));?> Deaths over Last 60 Days - source covid19math.net"
+			text: "<?PHP echo ucwords(strtolower($name_2));?> Deaths over Last 100 Days - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
