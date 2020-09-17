@@ -107,7 +107,7 @@ function facility_table($range,$Facility_Name){
 	global $master_facility_table;
 	global $recent_facility_table;
 	$color = get_color();
-	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
+	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date DESC";
 	$r = $covid_db->query($q);
 	$i=1;
 	while ($d = mysqli_fetch_array($r)){
