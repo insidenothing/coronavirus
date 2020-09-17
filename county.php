@@ -1209,6 +1209,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </div>
 
 
+<?PHP
+$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
+$r = $covid_db->query($q);
+$i=7;
+while ($d = mysqli_fetch_array($r)){
+	$day7 			= make_chart2('90',$d['Facility_Name']);
+}
+?>
+
 	<div class="row">
 		<table border='1' cellpadding='0' cellspacing='0'>
 			<tr>
