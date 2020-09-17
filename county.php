@@ -98,6 +98,9 @@ function data_points($zip,$field){
 
 
 // Assisted Living
+global $death_array;
+$death_array = array();
+
 global $recent_facility_table;
 $recent_facility_table = '';
 global $master_facility_table;
@@ -106,6 +109,7 @@ function facility_table($range,$Facility_Name){
 	global $covid_db;
 	global $master_facility_table;
 	global $recent_facility_table;
+	global $death_array;
 	$color = get_color();
 	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date DESC";
 	$r = $covid_db->query($q);
@@ -113,6 +117,12 @@ function facility_table($range,$Facility_Name){
 	while ($d = mysqli_fetch_array($r)){
 		$name = "$d[Facility_Name], $d[state_name]";
 		$Resident_Type = $d['Resident_Type'];
+		$date = $d['report_date'];
+		if (isset($death_array[$date])){
+			$death_array[$date] = $death_array[$date] + $d['Number_of_Resident_Deaths'] + $d['Number_of_Staff_Deaths'];
+		}else{
+			$death_array[$date] = $d['Number_of_Resident_Deaths'] + $d['Number_of_Staff_Deaths'];
+		}
 		$master_facility_table .= "<tr style='background-color:$color;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
 		if ($i == 1){
 			$recent_facility_table .= "<tr style='background-color:yellow;'><td style='white-space:pre;'>$d[report_date]</td><td>".str_replace('_',' ',$name)."</td><td>$Resident_Type</td><td>$d[report_count]</td><td>$d[Number_of_Resident_Cases]</td><td>$d[Number_of_Staff_Cases]</td><td>$d[Number_of_Resident_Deaths]</td><td>$d[Number_of_Staff_Deaths]</td></tr>";
@@ -130,6 +140,7 @@ function facility_table($range,$Facility_Name){
 /// zip code code =)
  /// 
 function make_chart($range){
+	global $death_array;
 	global $covid_db;
 	global $zip;
 	global $zip2;
@@ -189,6 +200,8 @@ while ($d = mysqli_fetch_array($r)){
 	$death_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['death_count'].' }, ';
 	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.$death_new.' }, ';
 	
+	$death_facilities = $death_array[$remove_date];
+	$death_chart_facilities .=  '{ label: "'.$d['report_date'].'", y: '.$death_facilities.' }, ';
 	
 	$remove2_date = $d['report_date'];
 	$remove2_count = $remove2[$remove2_date]; 
@@ -1121,8 +1134,10 @@ $day7 			= facility_table('180',$d['Facility_Name']);
 		</table>
 	</div>
 
+<pre><?PHP print_r($death_array); ?></pre>
 
 	<?PHP 
+
 
 	
 
