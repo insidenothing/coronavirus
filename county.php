@@ -502,6 +502,7 @@ $active2_count = $just_make_data['active2_count'];
 $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
+$day60 = make_chart('60');
 $day45 = make_chart('300');
 $day90 = make_chart('300');
 
@@ -603,8 +604,8 @@ $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
-$death_chart		= $day30['death_chart'];
-$death_chart_new	= $day30['death_chart_new'];
+$death_chart		= $day60['death_chart'];
+$death_chart_new	= $day60['death_chart_new'];
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_county where county_name = '$zip' and report_date = '$yesterday'";
@@ -879,7 +880,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo ucwords(strtolower($name_2));?> Deaths over Last 30 Days - source covid19math.net"
+			text: "<?PHP echo ucwords(strtolower($name_2));?> Deaths over Last 60 Days - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -1174,120 +1175,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		}]
 	})
 	chartZIP6b.render();
-	<?PHP 
-	if (isset($_GET['show'])){
-	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
-	$r = $covid_db->query($q);
-	$i=7;
-	while ($d = mysqli_fetch_array($r)){
-		$day7 			= make_chart2('90',$d['Facility_Name']);
-		$alert_1 		= $day7['alert'];
-		$time_chart_1 		= $day7['time_chart'];
-		$time_chart_1a 		= $day7['time_charta'];
-		$time_chart_1b 		= $day7['time_chartb'];
-		$time_chart_1c 		= $day7['time_chartc'];
-		$time_chart_1d 		= $day7['time_chartd'];
-		$time_chart2_1 		= $day7['time_chart2'];
-		$new_chart_1 		= $day7['new_chart'];
-		$remove_chart_1 	= $day7['remove_chart'];
-		$sma_chart_1 		= $day7['sma_chart'];
-		$sma3_chart_1 		= $day7['sma3_chart'];
-		$range_1 		= $day7['range'];
-		$name_1 		= $day7['name'];
-		$per_1 			= $day7['per'];
-		$Resident_Type_1 	= $day7['Resident_Type'];
-	?>
-	
-var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $i;?>", {
-		theme:"light2",
-		animationEnabled: true,
-		exportEnabled: true,
-		title:{
-			text: "<?PHP echo str_replace('_',' ',$d['Facility_Name']);?> - <?PHP echo $Resident_Type_1;?> - covid19math.net"
-		},
-		axisY :{
-			includeZero: false,
-			title: "Number of Infections",
-			suffix: "",
-			scaleBreaks: {
-				autoCalculate: true
-			}
-		},
-		toolTip: {
-			shared: "true"
-		},
-		legend:{
-			cursor:"pointer",
-			itemclick : toggleDataSeries
-		},
-		data: [{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Total Cases",
-		dataPoints: [
-			<?PHP echo $time_chart_1; ?>
-		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Resident Cases",
-		dataPoints: [
-			<?PHP echo $time_chart_1a; ?>
-		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Staff Cases",
-		dataPoints: [
-			<?PHP echo $time_chart_1b; ?>
-		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Resident Deaths",
-		dataPoints: [
-			<?PHP echo $time_chart_1c; ?>
-		]
-		},{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "Staff Deaths",
-		dataPoints: [
-			<?PHP echo $time_chart_1d; ?>
-		]
-		},{
-		type: "column",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "New Count",
-		dataPoints: [
-			<?PHP echo $new_chart_1; ?>
-		]
-		}]
-	})
-	chartZIP<?PHP echo $i;?>.render();
-  
-	
 
-	<?PHP 
-	$i++;
-	}
-		
-		
-		
-	} 
-	?>
 	
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
@@ -1319,8 +1207,8 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
-<a href='?<?PHP echo $_SERVER['QUERY_STRING'];?>&show=1'>Show Facilities</a>
-<?PHP if (isset($_GET['show'])){ ?>
+
+
 	<div class="row">
 		<table border='1' cellpadding='0' cellspacing='0'>
 			<tr>
@@ -1340,17 +1228,8 @@ var chartZIP<?PHP echo $i;?> = new CanvasJS.Chart("chartContainerZIP<?PHP echo $
 
 	<?PHP 
 
-	$q = "SELECT distinct Facility_Name FROM coronavirus_facility where county_name = '$zip' order by Facility_Name";
-	$r = $covid_db->query($q);
-	$i=7;
-	while ($d = mysqli_fetch_array($r)){
-		echo '<div class="row">
-			<div class="col-sm-12"><div id="chartContainerZIP'.$i.'" style="height: 250px; width: 100%;"></div></div>
-		</div>
-		';
-		$i++;
-	}
-}
+	
+
 
 /* debug...
 <small><?PHP echo $yesterday;?> & <?PHP echo $date;?>  <?PHP echo mysqli_error($covid_db);?> <?PHP print_r($remove);?></small>
