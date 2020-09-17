@@ -104,13 +104,6 @@ function facility_table($range,$Facility_Name){
 	global $master_facility_table;
 	$color = get_color();
 	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
-	slack_general("$q",'covid19-sql');
-	$r = $covid_db->query($q);
-	$rows = mysqli_num_rows($r);
-	$start = $rows - $range;
-	$range2= $range - 1;
-	$start = max($start, 0);
-	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date limit $start, $range";
 	$r = $covid_db->query($q);
 	while ($d = mysqli_fetch_array($r)){
 		$name = "$d[Facility_Name], $d[state_name]";
