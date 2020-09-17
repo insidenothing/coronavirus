@@ -22,6 +22,8 @@ global $NumberofStaffCases2;
 global $NumberofResidentDeaths2;
 global $NumberofStaffDeaths2;
 
+global $FacilitiesCount;
+global $FacilitiesCount2;
 // Assisted Living
 function make_chart2($range,$Facility_Name){
 	global $covid_db;
@@ -39,6 +41,8 @@ function make_chart2($range,$Facility_Name){
 	global $NumberofStaffCases2;
 	global $NumberofResidentDeaths2;
 	global $NumberofStaffDeaths2;
+	global $FacilitiesCount;
+	global $FacilitiesCount2;
   $q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
   //slack_general("$q",'covid19-sql');
   $r = $covid_db->query($q);
@@ -59,6 +63,7 @@ function make_chart2($range,$Facility_Name){
 	$days = round($datediff / (60 * 60 * 24));
 	  if ($i == 1 && $days < 20){
 		// highlight and use as "latest data"
+		$FacilitiesCount = $FacilitiesCount + 1;
 		$master_facility_table .= "<tr style='background-color:yellow;'><td style='white-space:pre;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";
     		$ReportCount = $ReportCount + $d['report_count'];
 		$NumberofResidentCases = $NumberofResidentCases + $d['Number_of_Resident_Cases'];
@@ -67,6 +72,7 @@ function make_chart2($range,$Facility_Name){
 		$NumberofStaffDeaths = $NumberofStaffDeaths + $d['Number_of_Staff_Deaths'];
 	  }elseif ($i == 2 && $days < 40){
 		// highlight for delta
+		$FacilitiesCount2 = $FacilitiesCount2 + 1;
 		$master_facility_table .= "<tr style='background-color:lightblue;'><td style='white-space:pre;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";
     		$ReportCount2 = $ReportCount2 + $d['report_count'];
 		$NumberofResidentCases2 = $NumberofResidentCases2 + $d['Number_of_Resident_Cases'];
@@ -84,7 +90,7 @@ function make_chart2($range,$Facility_Name){
 		  }elseif($days > 15){
 			  $color = '#F08080;'; // coral
 		  }
-		  $master_facility_table .= "<tr><td style='white-space:pre; background-color:$color'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
+		  $master_facility_table .= "<tr style='background-color:$color'><td style='white-space:pre;'>$d[report_date] <b>$days days ago</b></td><td>$d[zip_code]</td><td>$name</td><td>$Resident_Type</td><td title='Total'>$d[report_count]</td><td title='Number_of_Resident_Cases'>$d[Number_of_Resident_Cases]</td><td title='Number_of_Staff_Cases'>$d[Number_of_Staff_Cases]</td><td title='Number_of_Resident_Deaths'>$d[Number_of_Resident_Deaths]</td><td title='Number_of_Staff_Deaths'>$d[Number_of_Staff_Deaths]</td></tr>";		  
 	  }
     $i = $i - 1;
   }
@@ -124,6 +130,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td>Number of Staff Cases</td>
 			<td>Number of Resident Deaths</td>
 			<td>Number of Staff Deaths</td>
+			<td>Facilities Count</td>
 		</tr>
 		<tr style='background-color:yellow;'>
 			<td>Most Recent Update: Total</td>
@@ -132,6 +139,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofStaffCases);?></td>
 			<td><?PHP echo number_format($NumberofResidentDeaths);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths);?></td>
+			<td><?PHP echo number_format($FacilitiesCount);?></td>
 		</tr>
 		<tr style='background-color:lightblue;'>
 			<td>Prior Update: Totals</td>
@@ -140,6 +148,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofStaffCases2);?></td>
 			<td><?PHP echo number_format($NumberofResidentDeaths2);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths2);?></td>
+			<td><?PHP echo number_format($FacilitiesCount2);?></td>
 		</tr>
 		<tr style='background-color:orange; font-weight:bold;'>
 			<td>Difference</td>
@@ -148,6 +157,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format($NumberofStaffCases - $NumberofStaffCases2);?></td>
 			<td><?PHP echo number_format($NumberofResidentDeaths - $NumberofResidentDeaths2);?></td>
 			<td><?PHP echo number_format($NumberofStaffDeaths - $NumberofStaffDeaths2);?></td>
+			<td><?PHP echo number_format($FacilitiesCount - $FacilitiesCount2);?></td>
 		</tr>
 		<tr style='font-weight:bold;'>
 			<td>Assuming Weekly Update - Daily Average</td>
@@ -156,6 +166,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 7,2);?></td>
 			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 7,2);?></td>
 			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 7,2);?></td>
+			<td>.</td>
 		</tr>
 		<tr style='font-weight:bold;'>
 			<td>Assuming 2x Week Update - Daily Average</td>
@@ -164,6 +175,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 14,2);?></td>
 			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 14,2);?></td>
 			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 14,2);?></td>
+			<td>.</td>
 		</tr>
 		<tr style='font-weight:bold;'>
 			<td>Assuming Monthly Update - Daily Average</td>
@@ -172,6 +184,7 @@ while ($d = mysqli_fetch_array($r)){
 			<td><?PHP echo number_format(($NumberofStaffCases - $NumberofStaffCases2) / 30,2);?></td>
 			<td><?PHP echo number_format(($NumberofResidentDeaths - $NumberofResidentDeaths2) / 30,2);?></td>
 			<td><?PHP echo number_format(($NumberofStaffDeaths - $NumberofStaffDeaths2) / 30,2);?></td>
+			<td>.</td>
 		</tr>
 	</table>
 </div>	
