@@ -211,9 +211,9 @@ while ($d = mysqli_fetch_array($r)){
 <div>
 	<ol>
 	<?PHP 
-	$r = $covid_db->query("SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
+	$r = $covid_db->query("SELECT Facility_Name, county_name FROM coronavirus_facility where zip_code = '0' group by Facility_Name");
   	while ($d = mysqli_fetch_array($r)){
-	  	echo '<li>$Facility_ZIP[\''.$d['Facility_Name'].'\'] = \'00000\';</li>';
+	  	echo '<li>$Facility_ZIP[\''.$d['Facility_Name'].'\'] = \'00000\'; // '.str_replace('_',' ',$d['Facility_Name']).' '.$d['county_name'].'</li>';
 	}
 	?>
 	</ol>
