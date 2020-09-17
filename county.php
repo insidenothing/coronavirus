@@ -277,6 +277,7 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 	$death_chart='';
+	$death_chart_new='';
 $text_div2='';
 $q = "SELECT * FROM coronavirus_county where county_name = '$zip' and state_name = '$state' order by report_date";
 $r = $covid_db->query($q);
@@ -299,12 +300,14 @@ while ($d = mysqli_fetch_array($r)){
 	$in_28_days = date('Y-m-d',strtotime($d['report_date'])+2419200); // date + 28 days
 	if ($i == 0){
 		$me = 0;
+		$death_new = 0;
 		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
 		$remove[$in_14_days] = $remove_base; //difference to remove
 		$remove2_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
 		$remove2[$in_28_days] = $remove_base; //difference to remove
 	}else{
 		$me = intval($d['report_count'] - $last);
+		$death_new = intval($d['death_count'] - $death_last);
 		$remove[$in_14_days] = $me; //difference to remove
 		$remove2[$in_28_days] = $me; //difference to remove
 	}
@@ -316,6 +319,8 @@ while ($d = mysqli_fetch_array($r)){
 	$rolling = $d['report_count'] - $remove_total;
 	
 	$death_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['death_count'].' }, ';
+	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.$death_new.' }, ';
+	
 	
 	$remove2_date = $d['report_date'];
 	$remove2_count = $remove2[$remove2_date]; 
@@ -370,6 +375,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 	}
 	$last = $d['report_count'];
+	$death_last = $d['death_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
 	if($i == 0){
@@ -381,6 +387,7 @@ while ($d = mysqli_fetch_array($r)){
 	$i++; // number of days in the graph
 }
 	$death_chart 		= rtrim(trim($death_chart), ",");
+	$death_chart_new 	= rtrim(trim($death_chart_new), ",");
 	$remove_chart 		= rtrim(trim($remove_chart), ",");
 	$remove2_chart 		= rtrim(trim($remove2_chart), ",");
 	$low_chart 		= rtrim(trim($low_chart), ",");
@@ -475,6 +482,7 @@ $alert = ob_get_clean();
 	$return['remove_chart'] = $remove_chart;
 	$return['remove2_chart'] = $remove2_chart;
 	$return['death_chart'] = $death_chart;
+	$return['death_chart_new'] = $death_chart_new;
 	$return['high_chart'] = $high_chart;
 	$return['low_chart'] = $low_chart;
 	$return['sma_chart'] = $sma_chart;
@@ -596,6 +604,7 @@ $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
 $death_chart		= $day30['death_chart'];
+$death_chart_new	= $day30['death_chart_new'];
 
 $yesterday = date('Y-m-d',strtotime($date) - 86400);
 $q = "select day7change_percentage, day14change_percentage, day30change_percentage, day45change_percentage from coronavirus_county where county_name = '$zip' and report_date = '$yesterday'";
@@ -895,6 +904,16 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		name: "<?PHP echo $zip;?> Total Deaths",
 		dataPoints: [
 			<?PHP echo $death_chart; ?>
+		]
+		},
+		{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Deaths",
+		dataPoints: [
+			<?PHP echo $death_chart_new; ?>
 		]
 		}]
 	})
