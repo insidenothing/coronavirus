@@ -209,12 +209,14 @@ while ($d = mysqli_fetch_array($r)){
 </div>
 
 <div>
+	<ol>
 	<?PHP 
-	$r = $covid_db->query("SELECT * FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
+	$r = $covid_db->query("SELECT distinct Facility_Name FROM coronavirus_facility where zip_code = '0' order by Facility_Name");
   	while ($d = mysqli_fetch_array($r)){
 	  	echo '<li>$Facility_ZIP[\''.$d['Facility_Name'].'\'] = \'00000\';</li>';
 	}
 	?>
+	</ol>
 </div>
 <?PHP 
  include_once('../footer.php');
