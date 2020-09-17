@@ -100,6 +100,7 @@ function data_points($zip,$field){
 
 // Assisted Living
 function facility_table($range,$Facility_Name){
+	global $covid_db;
 	global $master_facility_table;
 	$color = get_color();
 	$q = "SELECT * FROM coronavirus_facility where Facility_Name = '$Facility_Name' order by report_date";
