@@ -201,7 +201,7 @@ while ($d = mysqli_fetch_array($r)){
 	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.$death_new.' }, ';
 	
 	$death_facilities = $death_array[$remove_date];
-	$death_chart_facilities .=  '{ label: "'.$d['report_date'].'", y: '.$death_facilities.' }, ';
+	$death_chart_facilities .=  '{ label: "'.$d['report_date'].'", y: '.intval($death_facilities).' }, ';
 	
 	$remove2_date = $d['report_date'];
 	$remove2_count = $remove2[$remove2_date]; 
