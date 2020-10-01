@@ -1,6 +1,5 @@
-SITE OFFLINE UNTIL SPONSORED @ https://github.com/sponsors/insidenothing
 <?PHP
-die();
+//die('SITE OFFLINE UNTIL SPONSORED @ https://github.com/sponsors/insidenothing');
 
 // preprocess data using zip.php (reviews all zip codes over known time)
 $page_description = "Today's COVID 19 Data ".date('m/d/y');
