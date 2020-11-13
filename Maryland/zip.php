@@ -118,9 +118,9 @@ foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
 	$i = $i - 1;
 	//total11_03_2020
-	echo "<li>$key ";
-	print_r($value);
-	echo "</li>";
+	echo "<li>$key ".$value['attributes']['ZIP_CODE'];
+	//print_r($value);
+	echo $value['attributes']['total11_03_2020']."</li>";
 	//echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value);
 	if ($count == 0){
