@@ -102,9 +102,9 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 
 
-echo "<pre>";
-print_r($zipData);
-echo "</pre>";
+//echo "<pre>";
+//print_r($zipData);
+//echo "</pre>";
 
 //die('dev hold');
 
@@ -118,9 +118,11 @@ foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
 	$i = $i - 1;
 	//total11_03_2020
-	echo "<li>$key ".$value['attributes']['ZIP_CODE'];
+	echo "<li>$key ".$value['attributes']['ZIP_CODE'].' at ';
 	//print_r($value);
-	echo $value['attributes']['total11_03_2020']."</li>";
+	$date = date('m_d_Y');
+	$part = 'total'.$date;
+	echo $value['attributes'][$part]."</li>";
 	//echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value);
 	if ($count == 0){
