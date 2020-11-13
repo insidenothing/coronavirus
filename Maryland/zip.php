@@ -110,7 +110,7 @@ echo "</pre>";
 
 
 if (empty($_GET['run'])){
-	//die('set run=1');
+	die('set run=1');
 }
 
 $i=count($zipData);
@@ -125,13 +125,13 @@ foreach ($zipData as $key => $value){
 	$part = 'total'.$date;
 	echo ' '.$part.' '.$value['attributes'][$part]."</li>";
 	//echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
-	$count = intval($value);
+	$count = intval($value['attributes'][$part]);
 	if ($count == 0){
 		$count = 7; 
 		// since we get data starting at 8- but only zips with cases are in the data set, 
 		// so let's fix all the data and start with 1 less than the first number we get, 7
 	}
-	//coronavirus_zip($value['attributes']['ZIP_CODE'],$date2,$value['attributes'][$part]);
+	coronavirus_zip($value['attributes']['ZIP_CODE'],$date2,$count);
 }
 slack_general("*DONE*",'covid19');
 //$buffer = ob_get_clean();
