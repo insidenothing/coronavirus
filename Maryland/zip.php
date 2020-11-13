@@ -82,6 +82,8 @@ echo "<h1>Cache ID $d[id] from $d[cache_date_time]</h1>";
 
 //echo $d['raw_response'];
 
+
+/*
 if(isset($_GET['id'])){
 	$date = date('Y-m-d',strtotime($d['cache_date_time']));
 	$date_formated = 'total'.$date_formated = date('m_d_Y',strtotime($date));
@@ -89,8 +91,8 @@ if(isset($_GET['id'])){
 }else{
 	$zipData = make_maryland_array3($d['raw_response'],'');
 }
-
-
+*/
+$zipData = json_decode($d['raw_response'], true);
 
 
 
@@ -99,6 +101,9 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 echo "<pre>";
 print_r($zipData);
 echo "</pre>";
+
+die('dev hold');
+
 
 if (empty($_GET['run'])){
 	die('set run=1');
