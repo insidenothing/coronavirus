@@ -102,9 +102,9 @@ asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
 
 
 
-//echo "<pre>";
-//print_r($zipData);
-//echo "</pre>";
+echo "<pre>";
+print_r($zipData);
+echo "</pre>";
 
 //die('dev hold');
 
@@ -118,11 +118,12 @@ foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
 	$i = $i - 1;
 	//total11_03_2020
-	echo "<li>$key ".$value['attributes']['ZIP_CODE'].' at ';
+	echo "<li>$key ".$value['attributes']['ZIP_CODE'].' ';
 	//print_r($value);
 	$date = date('m_d_Y');
+	$date2 = date('Y-m-d');
 	$part = 'total'.$date;
-	echo $value['attributes'][$part]."</li>";
+	echo ' '.$part.' '.$value['attributes'][$part]."</li>";
 	//echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value);
 	if ($count == 0){
@@ -130,7 +131,7 @@ foreach ($zipData as $key => $value){
 		// since we get data starting at 8- but only zips with cases are in the data set, 
 		// so let's fix all the data and start with 1 less than the first number we get, 7
 	}
-	//coronavirus_zip($key,$date,$count);
+	//coronavirus_zip($value['attributes']['ZIP_CODE'],$date2,$value['attributes'][$part]);
 }
 slack_general("*DONE*",'covid19');
 //$buffer = ob_get_clean();
