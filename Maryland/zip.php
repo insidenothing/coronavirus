@@ -137,7 +137,7 @@ slack_general("*DONE*",'covid19');
 //$buffer = ob_get_clean();
 
 
-die('dev hold');	
+//die('dev hold');	
 
 $covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '13' ");
 
