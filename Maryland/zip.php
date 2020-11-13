@@ -94,7 +94,7 @@ if(isset($_GET['id'])){
 */
 $array = json_decode($d['raw_response'], true);
 
-$zipData = $array['features'][0]['attributes'];
+$zipData = $array['features'][0];
 
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
