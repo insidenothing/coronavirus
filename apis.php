@@ -161,6 +161,7 @@ if ($_GET['single']){
     $raw_response = $covid_db->real_escape_string($raw);
     $test1 = $old;
     $test2 = $raw;
+    slack_general("Begin Tests",'covid19-apis');
     if (trim($test2) == '[]'){
           slack_general("$left) fail - empty json: $name - *bad update*",'covid19-apis');
     }elseif ($test1 != $test2){
@@ -173,7 +174,8 @@ if ($_GET['single']){
     }else{
          slack_general("no change in $name",'covid19-apis');
     }
-        echo "<table><tr><td>test1</td><td>test2</td></tr><tr><td>$test1</td><td>$test2</td></tr></table>"; 
+   slack_general(mysqli_error($covid_db),'covid19-apis-update');   
+   echo "<table><tr><td>test1</td><td>test2</td></tr><tr><td>$test1</td><td>$test2</td></tr></table>"; 
     
   }
   die('done');
