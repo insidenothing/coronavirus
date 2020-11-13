@@ -113,6 +113,13 @@ if (empty($_GET['run'])){
 	die('set run=1');
 }
 
+
+if (isset($_GET['date'])){
+	$date = $_GET['date'];
+}else{
+	$date = date('Y-m-d');	
+}
+
 $i=count($zipData);
 foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
@@ -120,9 +127,9 @@ foreach ($zipData as $key => $value){
 	//total11_03_2020
 	echo "<li>$key ".$value['attributes']['ZIP_CODE'].' ';
 	//print_r($value);
-	$date = date('m_d_Y');
-	$date2 = date('Y-m-d');
-	$part = 'total'.$date;
+	$date1 = date('m_d_Y', strtotime($date));
+	$date2 = date('Y-m-d', strtotime($date));
+	$part = 'total'.$date1;
 	echo ' '.$part.' '.$value['attributes'][$part]."</li>";
 	//echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value['attributes'][$part]);
