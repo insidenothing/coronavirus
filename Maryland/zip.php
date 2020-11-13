@@ -92,8 +92,9 @@ if(isset($_GET['id'])){
 	$zipData = make_maryland_array3($d['raw_response'],'');
 }
 */
-$zipData = json_decode($d['raw_response'], true);
+$array = json_decode($d['raw_response'], true);
 
+$zipData = $array['attributes'];
 
 
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
