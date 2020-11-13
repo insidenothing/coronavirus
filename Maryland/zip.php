@@ -97,36 +97,42 @@ $array = json_decode($d['raw_response'], true);
 $zipData = $array['features'];
 
 
+
 asort($zipData); // Sort Array (Ascending Order), According to Value - asort()
+
+
 
 echo "<pre>";
 print_r($zipData);
 echo "</pre>";
 
-die('dev hold');
+//die('dev hold');
 
 
 if (empty($_GET['run'])){
-	die('set run=1');
+	//die('set run=1');
 }
 
 $i=count($zipData);
 foreach ($zipData as $key => $value){
   // coronavirus_zip($zip,$date,$count);
 	$i = $i - 1;
-	echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
+	//total11_03_2020
+	echo "<li>$key $value</li>";
+	//echo "<h1>$i : ".$zipcode[$key]." $key $date ".intval($value)." </h1>";
 	$count = intval($value);
 	if ($count == 0){
 		$count = 7; 
 		// since we get data starting at 8- but only zips with cases are in the data set, 
 		// so let's fix all the data and start with 1 less than the first number we get, 7
 	}
-	coronavirus_zip($key,$date,$count);
+	//coronavirus_zip($key,$date,$count);
 }
 slack_general("*DONE*",'covid19');
 //$buffer = ob_get_clean();
 
 
+die('dev hold');	
 
 $covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '13' ");
 
