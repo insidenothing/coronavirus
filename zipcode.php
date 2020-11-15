@@ -164,8 +164,11 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chartc .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Resident_Deaths']).' }, ';
 		$time_chartd .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Deaths']).' }, ';
 		
-		
-		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		if ($d['report_date'] == '2020-07-04'){
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "Fourth of July", indexLabelFontColor: "#C24642" }, ';
+		}else{
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		}
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
 		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.$new_sma_7.' }, ';
