@@ -401,8 +401,15 @@ while ($d = mysqli_fetch_array($r)){
 	}elseif( $range != '90' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
-		if ($d['report_date'] == '2020-07-04'){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "Fourth of July", indexLabelFontColor: "#C24642" }, ';
+		
+		$holidays['2020-04-12'] = 'Easter';
+		$holidays['2020-05-25'] = 'Memorial Day';
+		$holidays['2020-07-04'] = 'Fourth of July';
+		$holidays['2020-09-07'] = 'Labor Day';
+		$holidays['2020-10-31'] = 'Halloween';
+		
+		if ($holidays[$d[report_date]] != ''){
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#C24642" }, ';
 		}else{
 			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
