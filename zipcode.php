@@ -289,6 +289,7 @@ $trend_setter_duration = 0;
 $trend_setter_memory_count = 0;
 $trend_setter_memory_direction = '';
 	
+	$new_sma_timePeriod=0;
 while ($d = mysqli_fetch_array($r)){
 	
 	if (intval($d['report_count']) == $trend_setter_memory_count){
@@ -367,7 +368,10 @@ while ($d = mysqli_fetch_array($r)){
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
-		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.$new_sma_7.' }, ';
+		$new_sma_timePeriod++;
+		$the_new_index = $new_sma_timePeriod - 1;
+		$this_new_sma7 = $new_sma_7[$the_new_index]; // should be last value
+		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_new_sma7).' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		//$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
@@ -388,7 +392,10 @@ while ($d = mysqli_fetch_array($r)){
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
-		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.$new_sma_7.' }, ';
+		$new_sma_timePeriod++;
+		$the_new_index = $new_sma_timePeriod - 1;
+		$this_new_sma7 = $new_sma_7[$the_new_index]; // should be last value
+		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_new_sma7).' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
