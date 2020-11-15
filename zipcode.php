@@ -261,6 +261,16 @@ $alert = ob_get_clean();
 /// zip code code =)
  /// 
 function make_chart($range){
+	
+
+$holidays['2020-04-12'] = 'Easter';
+$holidays['2020-05-25'] = 'Memorial Day';
+$holidays['2020-07-04'] = 'Fourth of July';
+$holidays['2020-09-07'] = 'Labor Day';
+$holidays['2020-10-31'] = 'Halloween';
+	
+	
+	
 	global $covid_db;
 	global $zip;
 	global $zip2;
@@ -369,8 +379,8 @@ while ($d = mysqli_fetch_array($r)){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
-		if ($d['report_date'] == '2020-07-04'){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "Fourth of July", indexLabelFontColor: "#C24642" }, ';
+		if ($holidays[$d[report_date]] != ''){
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#C24642" }, ';
 		}else{
 			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
@@ -401,13 +411,6 @@ while ($d = mysqli_fetch_array($r)){
 	}elseif( $range != '90' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
-		
-		$holidays['2020-04-12'] = 'Easter';
-		$holidays['2020-05-25'] = 'Memorial Day';
-		$holidays['2020-07-04'] = 'Fourth of July';
-		$holidays['2020-09-07'] = 'Labor Day';
-		$holidays['2020-10-31'] = 'Halloween';
-		
 		if ($holidays[$d[report_date]] != ''){
 			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#C24642" }, ';
 		}else{
