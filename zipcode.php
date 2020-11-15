@@ -1204,7 +1204,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 			<?PHP echo $new_chart_6; ?>
 		]
 		},{
-		type: "line",
+		type: "spline",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -1213,7 +1213,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 			<?PHP echo $new_chart_sma_6; ?>
 		]
 		},{
-		type: "line",
+		type: "spline",
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
@@ -1238,11 +1238,12 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </script>
 <?PHP if ($sma_chart_6 != ''){ ?>
 	<div class="row">
-		<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
+		<div class="col-sm-12"><div id="chartContainerZIP7" style="height: 500px; width: 100%;"></div></div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12"><div id="chartContainerZIP7" style="height: 250px; width: 100%;"></div></div>
+		<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
 	</div>
+	
 	<div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
 	</div>
