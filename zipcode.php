@@ -380,7 +380,7 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#C24642" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
 		}else{
 			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
@@ -412,7 +412,7 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#C24642" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
 		}else{
 			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
