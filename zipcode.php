@@ -401,7 +401,11 @@ while ($d = mysqli_fetch_array($r)){
 	}elseif( $range != '90' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
-		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		if ($d['report_date'] == '2020-07-04'){
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "Fourth of July", indexLabelFontColor: "#C24642" }, ';
+		}else{
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+		}
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
 		$new_sma_30 = trader_sma($new_sma_real,30);
