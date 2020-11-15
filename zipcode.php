@@ -268,6 +268,7 @@ function make_chart($range){
 	global $active_count_date_high;
 	global $active_count_date_low;
 	$new_chart_sma = '';
+	$new_chart_sma_30 = '';
 $time_chart='';
 $text_div='';
 $time_chart2='';
@@ -368,10 +369,13 @@ while ($d = mysqli_fetch_array($r)){
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
+		$new_sma_30 = trader_sma($new_sma_real,30);
 		$new_sma_timePeriod++;
 		$the_new_index = $new_sma_timePeriod - 1;
 		$this_new_sma7 = $new_sma_7[$the_new_index]; // should be last value
+		$this_new_sma30 = $new_sma_30[$the_new_index]; // should be last value
 		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_new_sma7).' }, ';
+		$new_chart_sma_30 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_new_sma30).' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		//$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
@@ -392,10 +396,13 @@ while ($d = mysqli_fetch_array($r)){
 		$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
+		$new_sma_30 = trader_sma($new_sma_real,30);
 		$new_sma_timePeriod++;
 		$the_new_index = $new_sma_timePeriod - 1;
 		$this_new_sma7 = $new_sma_7[$the_new_index]; // should be last value
+		$this_new_sma30 = $new_sma_30[$the_new_index]; // should be last value
 		$new_chart_sma .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_new_sma7).' }, ';
+		$new_chart_sma_30 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_new_sma30).' }, ';
 		$sma_chart .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma7).' }, ';
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
@@ -423,6 +430,7 @@ while ($d = mysqli_fetch_array($r)){
 	$time_chart 		= rtrim(trim($time_chart), ",");
 	$new_chart 		= rtrim(trim($new_chart), ",");
 	$new_chart_sma 		= rtrim(trim($new_chart_sma), ",");
+	$new_chart_sma_30 	= rtrim(trim($new_chart_sma_30), ",");
 	$page_description 	= "$date $name at $last_count Cases ($active_count_low to $active_count_high) ";
 	$name2			= '';
 	$i2			= 0;
@@ -508,6 +516,7 @@ $alert = ob_get_clean();
 	$return['testing_chart'] = $testing_chart;
 	$return['new_chart'] = $new_chart;
 	$return['new_chart_sma'] = $new_chart_sma;
+	$return['new_chart_sma_30'] = $new_chart_sma_30;
 	$return['remove_chart'] = $remove_chart;
 	$return['remove2_chart'] = $remove2_chart;
 	$return['high_chart'] = $high_chart;
@@ -623,6 +632,7 @@ $time_chart_6 		= $day90['time_chart'];
 $time_chart2_6 		= $day90['time_chart2'];
 $new_chart_6 		= $day90['new_chart'];
 $new_chart_sma_6 	= $day90['new_chart_sma'];
+$new_chart_sma_30_6 	= $day90['new_chart_sma_30'];
 $remove_chart_6 	= $day90['remove_chart'];
 $remove2_chart_6 	= $day90['remove2_chart'];
 $high_chart_6 		= $day90['high_chart'];
@@ -1198,9 +1208,18 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		visible: true,
 		showInLegend: true,
 		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> 7 Day Average",
+		name: "<?PHP echo $zip;?> 7 Day New Cases Average",
 		dataPoints: [
 			<?PHP echo $new_chart_sma_6; ?>
+		]
+		},{
+		type: "line",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 30 Day New Cases Average",
+		dataPoints: [
+			<?PHP echo $new_chart_sma_30_6; ?>
 		]
 		}]
 	})
