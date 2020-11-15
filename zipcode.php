@@ -165,7 +165,7 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chartd .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['Number_of_Staff_Deaths']).' }, ';
 		
 		if ($d['report_date'] == '2020-07-04'){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "Fourth of July", indexLabelFontColor: "#C24642" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "Fourth of July", indexLabelFontColor: "#000000" }, ';
 		}else{
 			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
