@@ -1138,6 +1138,42 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	chartZIP6b.render();
 
 	
+		var chartZIP7 = new CanvasJS.Chart("chartContainerZIP7", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $name_6;?> COVID-19 New Cases - source covid19math.net"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of New Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Cases",
+		dataPoints: [
+			<?PHP echo $new_chart_6; ?>
+		]
+		}]
+	})
+	chartZIP7.render();
+	
+	
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 			e.dataSeries.visible = false;
@@ -1152,7 +1188,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	<div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
 	</div>
-
+	<div class="row">
+		<div class="col-sm-12"><div id="chartContainerZIP7" style="height: 250px; width: 100%;"></div></div>
+	</div>
 	<div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP6" style="height: 250px; width: 100%;"></div></div>
 	</div>
