@@ -411,11 +411,8 @@ while ($d = mysqli_fetch_array($r)){
 		$mey = $d['report_count'];
 		if($me < 0 || $me > 50){
 			slack_general99("Attempting to graph $me testing $last2 / $last / $mey ",'covid19');
-			$meX = intval($last2); // this is within a band, incomplete data to ignore
-		}else{
-			$meX = $me; 
+			$me = intval($last2); // this is within a band, incomplete data to ignore
 		}
-		
 		$remove[$in_14_days] = $me; //difference to remove
 		$remove2[$in_28_days] = $me; //difference to remove
 	}
