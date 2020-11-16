@@ -181,6 +181,7 @@ while ($d = mysqli_fetch_array($r)){
 	$name = "$d[Facility_Name], $d[state_name]";
 	$Resident_Type = $d['Resident_Type'];
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
+	$last2 = $last;
 	if ($i == 0){
 		$me = 0;
 		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
@@ -371,7 +372,7 @@ $trend_setter_memory_direction = '';
 	
 	$new_sma_timePeriod=0;
 while ($d = mysqli_fetch_array($r)){
-	
+	$last2 = $last;
 	if (intval($d['report_count']) == $trend_setter_memory_count){
 		$trend_setter_direction = 'FLAT';
 	}elseif(intval($d['report_count']) > $trend_setter_memory_count){
@@ -409,7 +410,7 @@ while ($d = mysqli_fetch_array($r)){
 		$me = intval($d['report_count'] - $last);
 		$mey = $d['report_count'];
 		if($me < 0 || $me > 50){
-			slack_general99("Attempting to graph $me using $last maybe $mey ",'covid19');
+			slack_general99("Attempting to graph $me testing $last2 not $last or $mey ",'covid19');
 			$meX = intval($last); // this is within a band, incomplete data to ignore
 		}else{
 			$meX = $me; 
