@@ -181,7 +181,7 @@ while ($d = mysqli_fetch_array($r)){
 	$name = "$d[Facility_Name], $d[state_name]";
 	$Resident_Type = $d['Resident_Type'];
 	$in_14_days = date('Y-m-d',strtotime($d['report_date'])+1209600); // date + 14 days
-	$last2 = $last;
+	
 	if ($i == 0){
 		$me = 0;
 		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
@@ -372,7 +372,7 @@ $trend_setter_memory_direction = '';
 	
 	$new_sma_timePeriod=0;
 while ($d = mysqli_fetch_array($r)){
-	$last2 = $last;
+	
 	if (intval($d['report_count']) == $trend_setter_memory_count){
 		$trend_setter_direction = 'FLAT';
 	}elseif(intval($d['report_count']) > $trend_setter_memory_count){
@@ -506,6 +506,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 	}
+	$last2 = $last;
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d['report_count'];
