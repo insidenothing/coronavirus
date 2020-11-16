@@ -411,7 +411,7 @@ while ($d = mysqli_fetch_array($r)){
 		$mey = $d['report_count'];
 		if($me < 0 || $me > 50){
 			slack_general99("Attempting to graph $me testing $last2 / $last / $mey ",'covid19');
-			$meX = intval($last); // this is within a band, incomplete data to ignore
+			$meX = intval($last2); // this is within a band, incomplete data to ignore
 		}else{
 			$meX = $me; 
 		}
