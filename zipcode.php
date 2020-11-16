@@ -410,7 +410,7 @@ while ($d = mysqli_fetch_array($r)){
 		$me = intval($d['report_count'] - $last);
 		$mey = $d['report_count'];
 		if($me < 0 || $me > 50){
-			slack_general99("Attempting to graph $me testing $last2 not $last or $mey ",'covid19');
+			slack_general99("Attempting to graph $me testing $last3 not $last2 or last or $mey ",'covid19');
 			$meX = intval($last); // this is within a band, incomplete data to ignore
 		}else{
 			$meX = $me; 
@@ -506,6 +506,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 	}
+	$last3 = $last2;
 	$last2 = $last;
 	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
