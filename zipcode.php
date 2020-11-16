@@ -340,7 +340,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove2[$in_28_days] = $remove_base; //difference to remove
 	}else{
 		$me = intval($d['report_count'] - $last);
-		if($me < 0 || $me > 100){
+		if($me < 0 || $me > 50){
 			$me = intval($last); // this is within a band, incomplete data to ignore
 		}		
 		$remove[$in_14_days] = $me; //difference to remove
