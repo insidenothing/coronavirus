@@ -175,6 +175,12 @@ $i=0;
 	$remove2_total=0;
 	$last_death_facilities = 0;
 while ($d = mysqli_fetch_array($r)){
+	if ($d['death_count'] == '7'){
+		$death_count = $last_death_count; // dropping to 7 screws up the graph
+	}else{
+		$death_count = $d['death_count'];
+		$last_death_count = $d['death_count'];
+	}
 	if ($d['town_name'] != ''){
 		$name = "$d[town_name], $d[state_name]";
 	}else{
@@ -191,7 +197,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove2[$in_28_days] = $remove_base; //difference to remove
 	}else{
 		$me = intval($d['report_count'] - $last);
-		$death_new = intval($d['death_count'] - $death_last);
+		$death_new = intval($death_count - $death_last);
 		$remove[$in_14_days] = $me; //difference to remove
 		$remove2[$in_28_days] = $me; //difference to remove
 	}
@@ -202,7 +208,7 @@ while ($d = mysqli_fetch_array($r)){
 	
 	$rolling = $d['report_count'] - $remove_total;
 	
-	$death_chart .=  '{ label: "'.$d['report_date'].'", y: '.$d['death_count'].' }, ';
+	$death_chart .=  '{ label: "'.$d['report_date'].'", y: '.$death_count.' }, ';
 	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.$death_new.' }, ';
 	
 	$death_facilities = $death_array[$remove_date];
@@ -266,7 +272,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 	}
 	$last = $d['report_count'];
-	$death_last = $d['death_count'];
+	$death_last = $death_count;
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d[report_count];
 	if($i == 0){
