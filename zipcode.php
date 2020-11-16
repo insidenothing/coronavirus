@@ -341,8 +341,11 @@ while ($d = mysqli_fetch_array($r)){
 	}else{
 		$me = intval($d['report_count'] - $last);
 		if($me < 0 || $me > 50){
-			$me = intval($last); // this is within a band, incomplete data to ignore
-		}		
+			$meX = intval($last); // this is within a band, incomplete data to ignore
+		}else{
+			$meX = $me; 
+		}
+		
 		$remove[$in_14_days] = $me; //difference to remove
 		$remove2[$in_28_days] = $me; //difference to remove
 	}
@@ -383,9 +386,9 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
 		}else{
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.' }, ';
 		}
 		//$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
@@ -415,9 +418,9 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
 		}else{
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.' }, ';
 		}
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
@@ -433,7 +436,7 @@ while ($d = mysqli_fetch_array($r)){
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
 	}
-	$last = $me;
+	$last = $d['report_count'];
 	$text_div .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
 	$last_count = $d['report_count'];
 	if($i == 0){
