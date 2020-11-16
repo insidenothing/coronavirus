@@ -395,7 +395,7 @@ $active2_count = $just_make_data['active2_count'];
 $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
-$day60 = make_chart('100');
+$day60 = make_chart('365');
 $day45 = make_chart('300');
 $day90 = make_chart('300');
 
@@ -774,7 +774,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo ucwords(strtolower($name_2));?> Deaths over Last 100 Days - source covid19math.net"
+			text: "<?PHP echo ucwords(strtolower($name_2));?> Deaths over Last 365 Days - source covid19math.net"
 		},
 		axisY :{
 			includeZero: false,
@@ -791,16 +791,7 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 			cursor:"pointer",
 			itemclick : toggleDataSeries
 		},
-		data: [{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Total Deaths",
-		dataPoints: [
-			<?PHP echo $death_chart; ?>
-		]
-		},
+		data: [
 		{
 		type: "column",
 		visible: true,
@@ -809,16 +800,6 @@ var chartZIP3 = new CanvasJS.Chart("chartContainerZIP3", {
 		name: "<?PHP echo $zip;?> New Deaths",
 		dataPoints: [
 			<?PHP echo $death_chart_new; ?>
-		]
-		},
-		{
-		type: "line",
-		visible: true,
-		showInLegend: true,
-		yValueFormatString: "#####",
-		name: "<?PHP echo $zip;?> Facility Deaths",
-		dataPoints: [
-			<?PHP echo $death_chart_facilities; ?>
 		]
 		}]
 	})
