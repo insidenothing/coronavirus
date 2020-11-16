@@ -434,7 +434,7 @@ while ($d = mysqli_fetch_array($r)){
 	$report_date = $d['report_date'];
 	if ($holidays[$report_date] != ''){
 		if ($me == 0){
-			slack_general99("Attempting to graph "'.$holidays[$report_date].'" on a day with $me fails",'covid19');
+			slack_general99("Attempting to graph ".$holidays[$report_date]." on a day with $me fails",'covid19');
 		}
 		$new_chart .=  '{ label: "'.$report_date.'", y: '.$me.', indexLabel: "'.$holidays[$report_date].'", indexLabelFontColor: "#000000" }, ';
 	}else{
