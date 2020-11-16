@@ -175,12 +175,12 @@ $i=0;
 	$remove2_total=0;
 	$last_death_facilities = 0;
 while ($d = mysqli_fetch_array($r)){
-	if ($d['death_count'] == '7'){
-		$death_count = $last_death_count; // dropping to 7 screws up the graph
-	}else{
+	//if ($d['death_count'] == '7'){
+		//$death_count = $last_death_count; // dropping to 7 screws up the graph
+	//}else{
 		$death_count = $d['death_count'];
-		$last_death_count = $d['death_count'];
-	}
+		//$last_death_count = $d['death_count'];
+	//}
 	if ($d['town_name'] != ''){
 		$name = "$d[town_name], $d[state_name]";
 	}else{
@@ -209,7 +209,9 @@ while ($d = mysqli_fetch_array($r)){
 	$rolling = $d['report_count'] - $remove_total;
 	
 	$death_chart .=  '{ label: "'.$d['report_date'].'", y: '.$death_count.' }, ';
-	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.$death_new.' }, ';
+	
+	
+	$death_chart_new .=  '{ label: "'.$d['report_date'].'", y: '.abs($death_new).' }, ';
 	
 	$death_facilities = $death_array[$remove_date];
 	if ($death_facilities == 0){
