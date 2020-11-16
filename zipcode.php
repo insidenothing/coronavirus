@@ -401,7 +401,6 @@ while ($d = mysqli_fetch_array($r)){
 	$in_28_days = date('Y-m-d',strtotime($d['report_date'])+2419200); // date + 28 days
 	if ($i == 0){
 		$me = 0;
-		$meX = 0;
 		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
 		$remove[$in_14_days] = $remove_base; //difference to remove
 		$remove2_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
@@ -453,9 +452,9 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
 		}else{
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.' }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
 		//$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
@@ -485,9 +484,9 @@ while ($d = mysqli_fetch_array($r)){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
 		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
 		}else{
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$meX.' }, ';
+			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		}
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
