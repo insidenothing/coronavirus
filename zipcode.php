@@ -1,5 +1,12 @@
 <?PHP
 
+
+include_once('/var/www/secure.php'); 	// outside webserver
+global $covid_db; 		    	// database object
+
+include_once('functions.php'); 		// common functions
+
+
 function slack_general99($msg,$room){
 	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     		$ip = $_SERVER['HTTP_CLIENT_IP'];
