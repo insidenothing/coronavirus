@@ -334,6 +334,7 @@ while ($d = mysqli_fetch_array($r)){
 	$in_28_days = date('Y-m-d',strtotime($d['report_date'])+2419200); // date + 28 days
 	if ($i == 0){
 		$me = 0;
+		$meX = 0;
 		$remove_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
 		$remove[$in_14_days] = $remove_base; //difference to remove
 		$remove2_base=$d['report_count']; // we can only assume all prior cases were reported on the first day of the graph
