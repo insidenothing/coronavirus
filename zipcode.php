@@ -332,7 +332,7 @@ function make_chart($range){
 
 $holidays['2020-04-12'] = 'Easter';
 $holidays['2020-05-25'] = 'Memorial Day';
-$holidays['2020-07-04'] = 'Fourth of July';
+$holidays['2020-07-04'] = '4th of July';
 $holidays['2020-09-07'] = 'Labor Day';
 $holidays['2020-10-31'] = 'Halloween';
 	
@@ -430,6 +430,18 @@ while ($d = mysqli_fetch_array($r)){
 	$rolling2 = $d['report_count'] - $remove2_total;
 	
 
+
+	$report_date = $d['report_date'];
+	if ($holidays[$report_date] != ''){
+		if ($me == 0){
+			slack_general99("Attempting to graph "'.$holidays[$report_date].'" on a day with $me fails",'covid19');
+		}
+		$new_chart .=  '{ label: "'.$report_date.'", y: '.$me.', indexLabel: "'.$holidays[$report_date].'", indexLabelFontColor: "#000000" }, ';
+	}else{
+		$new_chart .=  '{ label: "'.$report_date.'", y: '.$me.' }, ';
+	}
+	
+	
 	$trader_sma_real[] = intval($d['report_count']);
 	$trader_sma_timePeriod++;
 	$trader_sma_7 = trader_sma($trader_sma_real,7);
@@ -451,11 +463,9 @@ while ($d = mysqli_fetch_array($r)){
 		// start making the charts when SMA and rolling have a value for the 60 day chart
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
-		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
-		}else{
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
-		}
+		
+
+		
 		//$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
@@ -483,11 +493,7 @@ while ($d = mysqli_fetch_array($r)){
 	}elseif( $range != '90' ){
 		$time_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['report_count']).' }, ';
 		$testing_chart .=  '{ label: "'.$d['report_date'].'", y: '.fix_zero($d['testing_count']).' }, ';
-		if ($holidays[$d[report_date]] != ''){
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.', indexLabel: "'.$holidays[$d[report_date]].'", indexLabelFontColor: "#000000" }, ';
-		}else{
-			$new_chart .=  '{ label: "'.$d['report_date'].'", y: '.$me.' }, ';
-		}
+
 		$new_sma_real[] = intval($me);
 		$new_sma_7 = trader_sma($new_sma_real,7);
 		$new_sma_30 = trader_sma($new_sma_real,30);
@@ -530,33 +536,13 @@ while ($d = mysqli_fetch_array($r)){
 	$page_description 	= "$date $name at $last_count Cases ($active_count_low to $active_count_high) ";
 	$name2			= '';
 	$i2			= 0;
-if ($zip2 != '99999'){
-	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
-	$r = $covid_db->query($q);
-	$rows = mysqli_num_rows($r);
-	$start = $rows - $range;
-	$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip2' order by report_date limit $start, $range";
-	$r = $covid_db->query($q);
-	while ($d = mysqli_fetch_array($r)){
-		$name2 = " $d[town_name], $d[state_name]";
-		$count = $d['report_count'];
-		if ($count == 0){
-			if ($last_count2 > 0){
-				$count = $last_count2; // patch missing data with yesterday	
-			}
-		}
-		$time_chart2 .=  '{ label: "'.$d['report_date'].'", y: '.$count.' }, ';
-		$text_div2 .= "<li>$d[report_date] $d[report_count] $d[trend_direction] $d[trend_duration]</li>";
-		$last_count2 = $count;
-		$i2++; // number of days in second graph
-	}
-	$time_chart2 = rtrim(trim($time_chart2), ",");
-	$page_description = "$date $name at $last_count, $name2 at $last_count2 Cases";
-}
+
+	
 if ($name == ''){
 	$name = $state;
 }
 $name = $zip.' '.$name.$name2;
+
 if ($zip2 != '99999'){
 	if ($i > $i2){
 		$time_chart2_pre='';
