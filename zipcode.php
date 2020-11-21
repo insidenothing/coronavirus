@@ -654,7 +654,7 @@ if (isset($_GET['auto']) && isset($_GET['state'])){
 }
 if (isset($_GET['auto'])){
 	if ($left == 0){
-		$q = "SELECT zip_code FROM coronavirus_zip where active_count > '100' and report_date = '$date' and zip_code <> '$zip' and state_name = '$_GET[state]' order by RAND() ";
+		$q = "SELECT zip_code FROM coronavirus_zip where active_count > '100' and report_date = '$date' and zip_code <> '' order by RAND() ";
 		$r = $covid_db->query($q);
 		$d = mysqli_fetch_array($r);
 		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=1\">";
