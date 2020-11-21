@@ -1,7 +1,7 @@
 <?PHP
 $page_description = "Maryland COVID 19 Outbreak Monitor";
 include_once('menu.php');
-echo "<body>";
+echo '<body onLoad="pageScroll()">';
 global $zipcode;
 global $global_date;
 $zipcode = array();
@@ -36,11 +36,17 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 include_once('footer.php');?>
 <script>
-var scrollToBottom = function() {
-  window.scrollTo(0, document.body.scrollHeight);
+
+function pageScroll() {
+    	window.scrollBy(0,10); // horizontal and vertical scroll increments
+    	scrolldelay = setTimeout('pageScroll()',1000); // scrolls every 100 milliseconds
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        		scrolldelay = setTimeout('PageUp()',2000);
+    		}
+
 }
-var delay = 2000;
-var intervalID = setInterval(scroll, delay);
-</script>
-x
+
+function PageUp() {
+	window.scrollTo(0, 0);
+}
 </body>
