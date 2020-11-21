@@ -640,7 +640,7 @@ if (isset($_GET['auto']) && empty($_GET['state'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date\">";
+		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date\">";
 	}
 }
 if (isset($_GET['auto']) && isset($_GET['state'])){
@@ -649,9 +649,15 @@ if (isset($_GET['auto']) && isset($_GET['state'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date&state=$_GET[state]\">";
+		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date&state=$_GET[state]\">";
 	}
 }
+if (isset($_GET['auto'])){
+	if ($left == 0){
+		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/outbreak.php\">";
+	}
+}
+
 // Chart 1
 
 $alert_1 		= $day7['alert'];
