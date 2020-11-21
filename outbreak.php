@@ -1,6 +1,7 @@
 <?PHP
 $page_description = "Maryland COVID 19 Outbreak Monitor";
 include_once('menu.php');
+echo "<body>";
 global $zipcode;
 global $global_date;
 $zipcode = array();
@@ -33,4 +34,13 @@ while ($d = mysqli_fetch_array($r)){
   echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name, ".$d['state_name']." ".$d['active_count']." to ".$d['active_count_28day']."  active infections</li>";
 }
 echo "</ol>";
-include_once('footer.php');
+include_once('footer.php');?>
+<script>
+var scrollToBottom = function() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+var delay = 2000;
+var intervalID = setInterval(scroll, delay);
+</script>
+x
+</body>
