@@ -12,9 +12,10 @@ while($d = mysqli_fetch_array($r)){
 	$zipcode[$zip] = $d['town_name'];
 }
 $date = $global_date;
+if (empty($_GET['list'])){
 echo "<h1>Outbreak Monitor for $date</h1>";
 echo "<h3>This table of ZIP codes are seeing a percentage increase in cases at 7, 14, 30, and 45 days.</h3><table width='100%' border='1' cellpadding='10' cellspacing='0'>";
-$q = "SELECT * FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' order by active_count DESC";
+$q = "SELECT * FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' and active_count > '100' order by active_count DESC";
 $r = $covid_db->query($q);
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
@@ -24,9 +25,10 @@ while ($d = mysqli_fetch_array($r)){
   ".$d['day30change_percentage']."%</td><td>45 Days ".$d['day45change_percentage']."%</td><td>".$d['report_count']." infections</td><td>".$d['active_count']." to ".$d['active_count_28day']." active</td></tr>";
 }
 echo "</table>";
+}else{
 echo "<h1>Outbreak Monitor for $date</h1>";
 echo "<h3>This list of ZIP codes are seeing a percentage increase in cases at 7, 14, 30, and 45 days.</h3><ol>";
-$q = "SELECT * FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' order by active_count DESC";
+$q = "SELECT * FROM coronavirus_zip where change_percentage_time <> '00:00:00' and report_date = '$date' and percentage_direction = 'up' and percentage_direction14 = 'up' and percentage_direction30 = 'up' and percentage_direction45 = 'up' and active_count > '100' order by active_count DESC";
 $r = $covid_db->query($q);
 while ($d = mysqli_fetch_array($r)){
   $zip_c = $d['zip_code'];
@@ -34,6 +36,7 @@ while ($d = mysqli_fetch_array($r)){
   echo "<li><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name, ".$d['state_name']." ".$d['active_count']." to ".$d['active_count_28day']."  active infections</li>";
 }
 echo "</ol>";
+}
 include_once('footer.php');?>
 <script>
 
