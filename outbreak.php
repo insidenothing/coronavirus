@@ -49,4 +49,7 @@ function pageScroll() {
 function PageUp() {
 	window.scrollTo(0, 0);
 }
-</body>
+	
+	pageScroll();
+</script>
+
