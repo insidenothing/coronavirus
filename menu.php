@@ -381,7 +381,7 @@ ddtreemenu.createTree("treemenu1", false)
 	
 
 
-<div id="status">Checking Login Status...</div>
+<div id="status">.</div>
 	
 	
 
