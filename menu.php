@@ -268,10 +268,18 @@ ddtreemenu.createTree("treemenu1", false)
 	
 	<?PHP
 	// pull date from last update, not assume today.
-	$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
-	$r = $covid_db->query($q);
-	$d = mysqli_fetch_array($r);
-	$date = $d['last_updated'];
+	if(empty($_GET['zip'])){
+		$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
+		$r = $covid_db->query($q);
+		$d = mysqli_fetch_array($r);
+		$date = $d['last_updated'];
+	}else{
+		$q = "select report_date from coronavirus_zip where zip_code = '$_GET[zip]' order by id desc limit 1";	
+		$r = $covid_db->query($q);
+		$d = mysqli_fetch_array($r);
+		$date = $d['report_date'];
+	}
+	
 	//if ($date != date('Y-m-d')){
 	$pos = strpos($date, date('Y-m-d'));
 	global $global_date;
@@ -282,12 +290,22 @@ ddtreemenu.createTree("treemenu1", false)
 	$q = "SELECT distinct api_url FROM coronavirus_apis";
 	$r = $covid_db->query($q);
 	$total_apis = mysqli_num_rows($r);
+	
+	
+	if ($pos === false)) {	
+		?>
+		<div class="alert alert-danger">
+			We have not received the <?PHP echo date('Y-m-d');?> update yet. Last Update was <?PHP echo $date;?>. #covid19math
+		</div>
+		<?PHP 
+	} 
+	
+	
+	
 	if ($pos === false && empty($_GET['global_date'])) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
 		?>
-		<div class="alert alert-danger">
-			We have not received the <?PHP echo date('Y-m-d');?> zip code update from the Maryland Department of Health yet. It is expected at 11:05 AM. Last Update was <?PHP echo $date;?>. View APIs <a href='library.php'>HERE</a>. #BigData #covid19math
-		</div>
+		<!-- this once did something -->
 		<?PHP 
 	} elseif ($pos === false && isset($_GET['global_date'])) {	
 		//$global_date = date('Y-m-d',strtotime('-1 day'));
