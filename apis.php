@@ -1,7 +1,7 @@
 <?PHP
 $page_description = date('r');
 include_once('menu.php');
-include_once('/var/www/html/mdwestserve/newsbot.php');
+//include_once('/var/www/html/mdwestserve/newsbot.php');
 
 function process_link_check($link,$status,$last_run_date){
  if ($_SERVER['REMOTE_ADDR'] == '69.250.28.138' && $link != '' && $status == 'lightgreen' && $last_run_date != date('Y-m-d') ){ 
@@ -113,7 +113,7 @@ if ($_GET['run']){
                   $result_diff = preg_replace("/[^a-zA-Z0-9]+/", " ", $diff);
                   slack_bypass("$left): *$name* ".'https://www.covid19math.net/diff.php?id='.$cache_id.'&id2='.$d2['id'],'covid19-apis-update');
               }
-              galert_mail('trigger@applet.ifttt.com',$name.' '.substr($result_diff,0,25).'...view full diff here','https://www.covid19math.net/diff.php?id='.$cache_id.'&id2='.$d2['id']);
+              //galert_mail('trigger@applet.ifttt.com',$name.' '.substr($result_diff,0,25).'...view full diff here','https://www.covid19math.net/diff.php?id='.$cache_id.'&id2='.$d2['id']);
         }else{
               slack_general("$left) done: $name - *no change*",'covid19-apis');
         }
