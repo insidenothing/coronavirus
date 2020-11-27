@@ -92,3 +92,4 @@ include_once('menu.php');
 <?PHP
 include_once('footer.php');
 ?>
+<meta http-equiv="refresh" content="60">
