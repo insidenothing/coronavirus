@@ -298,9 +298,15 @@ ddtreemenu.createTree("treemenu1", false)
 			We have not received the <?PHP echo date('Y-m-d');?> update yet. Last Update was <?PHP echo $date;?>. #covid19math
 		</div>
 		<?PHP 
-	} 
+	} elseif (isset($_GET['zip'])){
+		?>
+		<div class="alert alert-success">
+			Working with today's numbers for <?PHP echo $_GET['zip'].' '.date('Y-m-d');?>. #covid19math
+		</div>
+		<?PHP 
+		
 	
-	
+	}
 	
 	if ($pos === false && empty($_GET['global_date'])) {	
 		$global_date = date('Y-m-d',strtotime('-1 day'));
