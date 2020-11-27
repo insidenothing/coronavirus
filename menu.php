@@ -292,7 +292,7 @@ ddtreemenu.createTree("treemenu1", false)
 	$total_apis = mysqli_num_rows($r);
 	
 	
-	if ($pos === false)) {	
+	if ($pos === false) {	
 		?>
 		<div class="alert alert-danger">
 			We have not received the <?PHP echo date('Y-m-d');?> update yet. Last Update was <?PHP echo $date;?>. #covid19math
