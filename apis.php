@@ -43,7 +43,7 @@ if ($_GET['debug']){
     echo "<li>API $api_id CACHE $d[id] ON $d[cache_date_time] <b>Size: ".strlen($d['raw_response'])."</b></li>";
   }
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
-  slack_general("$q",'covid19-apis');
+  //slack_general("$q",'covid19-apis');
   $r = $covid_db->query($q);
   echo '<h1>Error Check: '.mysqli_error($covid_db).'</h1>';
   while($d = mysqli_fetch_array($r)){
@@ -144,7 +144,7 @@ if ($_GET['single']){
   // this will debug a single api
   $api_id = $_GET['single'];
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and id = '$api_id' order by run_order DESC ";
-  slack_general("$q",'covid19-apis');
+  //slack_general("$q",'covid19-apis');
   $r = $covid_db->query($q);
   echo '<h1>Error Check: '.mysqli_error($covid_db).'</h1>';
   while($d = mysqli_fetch_array($r)){
@@ -185,7 +185,7 @@ if ($_GET['level']){
   // this will debug a single api
   $api_id = $_GET['level'];
   $q = "SELECT * FROM coronavirus_apis where api_status = 'active' and run_order = '$api_id' order by run_order DESC ";
-  slack_general("$q",'covid19-apis');
+  //slack_general("$q",'covid19-apis');
   $r = $covid_db->query($q);
   echo '<h1>Error Check: '.mysqli_error($covid_db).'</h1>';
   while($d = mysqli_fetch_array($r)){
