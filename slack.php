@@ -32,6 +32,7 @@ function slack_general($msg,$room){
     	global $slack_api;
 	$room = str_replace("'",'-',strtolower(str_replace(' ','-',$room)));
 	$thisroom = $room;
+	/*
 	if ($ip != '69.250.28.138'){
 		if (isset($_SERVER['HTTP_USER_AGENT'])){
 			$add = "[".$ip."][".$_SERVER['HTTP_USER_AGENT']."][".$_SERVER['PHP_SELF']."] ";
@@ -40,7 +41,7 @@ function slack_general($msg,$room){
 		}
 		$msg = $add.$msg;	
 	}
-	
+	*/
 	$msg = str_replace('http://','_______',$msg);
 	$msg = str_replace('https://','________',$msg);
 	$msg = str_replace('.net','____',$msg);
