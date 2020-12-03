@@ -335,6 +335,7 @@ $holidays['2020-05-25'] = 'Memorial Day';
 $holidays['2020-07-04'] = '4th of July';
 $holidays['2020-09-07'] = 'Labor Day';
 $holidays['2020-10-31'] = 'Halloween';
+$holidays['2020-11-27'] = 'Thanksgiving';
 	
 	
 	
