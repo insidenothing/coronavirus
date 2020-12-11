@@ -68,9 +68,9 @@ while ($d = mysqli_fetch_array($r)){
 echo "</ol>";
 $list = ob_get_clean();
 if ($total2 != 0){
-	$covid_db->query("insert into covid_active (State, active_count, date_reported) values ( 'Virginia','$total2','".date('Y-m-d')."')");
+	$covid_db->query("insert into covid_active (State, active_count, date_reported) values ( 'Virginia','$total','".date('Y-m-d')."')");
 }
-echo "<h1>".number_format($total)." to ".number_format($total2)." Virginia Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
+echo "<h1>".number_format($total2)." to ".number_format($total)." Virginia Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 echo "</td><td valign='top' width='25%'>";
 
