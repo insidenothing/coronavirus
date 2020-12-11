@@ -615,7 +615,7 @@ $alert = ob_get_clean();
 	$return['per'] = $per;
 	return $return;
 }
-$just_make_data = make_chart('90');
+$just_make_data = make_chart('62');
 $active_count = $just_make_data['active_count'];
 $active2_count = $just_make_data['active2_count'];
 
