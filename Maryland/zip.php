@@ -156,7 +156,7 @@ if (isset($_GET['id'])){
 		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/Maryland/zip.php?id=".$d['id']."&run=1&from_id=$cache_id\">";
 	}
 }else{
-	$q = "update coronavirus_county set change_percentage_time = '' where state_name = 'maryland' ";
+	$q = "update coronavirus_zip set change_percentage_time = '' where state_name = 'maryland' ";
 	$covid_db->query($q);	
 }
 
