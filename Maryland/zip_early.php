@@ -70,7 +70,7 @@ if(isset($_GET['id'])){
 	$id = $_GET['id'];
 	$q = "select * from coronavirus_api_cache where id = '$id' order by id desc limit 0, 1"; // always get the latest from the cache
 }else{
-	$q = "select * from coronavirus_api_cache where api_id = '13' order by id desc limit 0, 1"; // always get the latest from the cache	
+	$q = "select * from coronavirus_api_cache where api_id = '83' order by id desc limit 0, 1"; // always get the latest from the cache	
 }
 
 
@@ -146,11 +146,11 @@ slack_general("*DONE*",'covid19');
 
 //die('dev hold');	
 
-$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '13' ");
+$covid_db->query("update coronavirus_apis set last_run_date = NOW() where id = '83' ");
 
 if (isset($_GET['id'])){
 	$cache_id = $_GET['id'];
-	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '13' and id > '$cache_id' order by id limit 0,1");
+	$r = $covid_db->query("SELECT id, cache_date_time FROM coronavirus_api_cache where api_id = '83' and id > '$cache_id' order by id limit 0,1");
    	$d = mysqli_fetch_array($r);
 	if ($d['id']){
 		echo "<meta http-equiv=\"refresh\" content=\"1; url=https://www.covid19math.net/Maryland/zip.php?id=".$d['id']."&run=1&from_id=$cache_id\">";
