@@ -67,13 +67,14 @@ while ($d = mysqli_fetch_array($r)){
 }
 echo "</ol>";
 $list = ob_get_clean();
-if ($total2 != 0){
+if ($total != 0){
 	$covid_db->query("insert into covid_active (State, active_count, date_reported) values ( 'Virginia','$total','".date('Y-m-d')."')");
 }
 echo "<h1>".number_format($total)." to ".number_format($total2)." Virginia Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 echo "</td><td valign='top' width='25%'>";
 
+/*
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'New York'  order by $order DESC";
@@ -98,6 +99,7 @@ echo "<h1>".number_format($total)." to ".number_format($total2)." New York City 
 
 
 echo "</td><td valign='top' width='25%'>";
+*/
 
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
@@ -118,7 +120,9 @@ while ($d = mysqli_fetch_array($r)){
 }
 echo "</ol>";
 $list = ob_get_clean();
-
+if ($total != 0){
+	$covid_db->query("insert into covid_active (State, active_count, date_reported) values ( 'Florida','$total','".date('Y-m-d')."')");
+}
 echo "<h1>".number_format($total)." to ".number_format($total2)." Florida Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 
