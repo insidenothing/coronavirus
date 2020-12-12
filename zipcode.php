@@ -1341,8 +1341,8 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		<div class="col-sm-12"><div id="chartContainerZIP7" style="height: 500px; width: 100%;"></div></div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir.' '.$day7change.'%';?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
 		<div class="col-sm-6"><?PHP echo $alert_2.' '.$dir2.' '.$day14change.'%';?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
+		<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP6b" style="height: 250px; width: 100%;"></div></div>
@@ -1354,10 +1354,6 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 <?PHP } ?>
 <div class="row">
 	<div class="col-sm-6"><?PHP echo $alert_1.' '.$dir.' '.$day7change.'%';?><div id="chartContainerZIP1" style="height: 250px; width: 100%;"></div></div>
-	<div class="col-sm-6"><?PHP echo $alert_2.' '.$dir2.' '.$day14change.'%';?><div id="chartContainerZIP2" style="height: 250px; width: 100%;"></div></div>
-</div>
-<div class="row">
-	<div class="col-sm-6"><?PHP echo $alert_3.' '.$dir3.' '.$day30change.'%';?><div id="chartContainerZIP3" style="height: 250px; width: 100%;"></div></div>
 	<div class="col-sm-6"><?PHP echo $alert_4.' '.$dir4.' '.$day45change.'%';?><div id="chartContainerZIP4" style="height: 250px; width: 100%;"></div></div>
 </div>
 
