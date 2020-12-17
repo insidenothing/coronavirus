@@ -269,7 +269,7 @@ ddtreemenu.createTree("treemenu1", false)
 	<?PHP
 	// pull date from last update, not assume today.
 	if(empty($_GET['zip'])){
-		$q = "select last_updated from coronavirus_apis where id = '13' order by id desc limit 1";
+		$q = "select last_updated from coronavirus_apis where id = '83' order by id desc limit 1";
 		$r = $covid_db->query($q);
 		$d = mysqli_fetch_array($r);
 		$date = $d['last_updated'];
