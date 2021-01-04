@@ -1,9 +1,19 @@
 <?PHP
-// Known Infected IP Addresses 
 $block_list    = array();
-$block_list[]  = '91.240.84.154';   // Probe Back HTTP WWW-Authenticate: Basic realm="sib service"
-$block_list[]  = '212.109.219.74';  // Probe Back HTTP WWW-Authenticate: Basic realm="sib service"
-
+////   
+////// Add IP addresses and User Agents Below
+////
+$block_list[]  = '91.240.84.154';   
+$block_list[]  = '212.109.219.74';  
+$block_list[]  = 'AhrefsBot';
+$block_list[]  = 'SemrushBot';
+$block_list[]  = 'J12bot';
+$block_list[]  = 'Seznambot';
+$block_list[]  = 'PetalBot';
+////   
+////// Do not edit below here
+////
+// IP Addresses to Block 
 if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
    $host = $_SERVER['HTTP_CLIENT_IP'];
 } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -13,36 +23,29 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 }
 if (in_array($host, $block_list)) {
     die();
-}
-// review get values
+} 
+// $_GET Values
 if (isset($_GET)){
    foreach ($_GET as $k => $v){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
-           $msg = 'UNION detected';
-           //include_once('callback.php');
-           die();
+           $msg = 'UNION blocked';
+           die($msg);
         } 
    }
 }
-// die on bot match
+// User Agents
 if (isset($_SERVER['HTTP_USER_AGENT'])){
-    $bot = $_SERVER['HTTP_USER_AGENT'];
-    $pos = strpos($bot, 'SemrushBot');
-    if ($pos !== false) {
-        $msg = 'SemrushBot detected';
-           //include_once('callback.php');
-           die();
-    } 
-    $pos = strpos($bot, 'AhrefsBot');
-    if ($pos !== false) {
-        $msg = 'AhrefsBot detected';
-           //include_once('callback.php');
-           die();
-    } 
+    foreach ($block_list as $blocked){
+       $bot = $_SERVER['HTTP_USER_AGENT'];
+       $pos = strpos($bot, $blocked);
+       if ($pos !== false) {
+           $msg = $blocked.' blocked.';
+           die($msg);
+       } 
+    }   
 }else{
-   $msg = 'missing HTTP_USER_AGENT';
-   //include_once('callback.php');
-   die();
+   $msg = 'Missing HTTP_USER_AGENT';
+   die($msg);
 }
 ?>
