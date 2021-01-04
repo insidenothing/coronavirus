@@ -20,7 +20,7 @@ if (isset($_GET)){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
            $msg = 'UNION detected';
-           include_once('callback.php');
+           //include_once('callback.php');
            die();
         } 
    }
@@ -42,7 +42,7 @@ if (isset($_SERVER['HTTP_USER_AGENT'])){
     } 
 }else{
    $msg = 'missing HTTP_USER_AGENT';
-   include_once('callback.php');
+   //include_once('callback.php');
    die();
 }
 ?>
