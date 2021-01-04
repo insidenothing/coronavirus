@@ -354,7 +354,7 @@ ddtreemenu.createTree("treemenu1", false)
 			<?PHP 		
 		}
 	}
-	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING]",'covid19');
+	slack_general("$global_date $_SERVER[SCRIPT_NAME] $_SERVER[QUERY_STRING] $_SERVER[HTTP_USER_AGENT]",'covid19');
 	?>
 	
 	
