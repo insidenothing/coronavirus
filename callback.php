@@ -1,4 +1,7 @@
 <?PHP
+
+die();
+
 include_once('slack.php'); 
 if (isset($_GET['msg'])){
   $msg = htmlspecialchars($_GET['msg']);
