@@ -1,5 +1,5 @@
 <?PHP
-
+include_once('blocked_bots.php'); 	
 
 include_once('/var/www/secure.php'); 	// outside webserver
 global $covid_db; 		    	// database object
