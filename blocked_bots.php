@@ -1,4 +1,5 @@
 <?PHP
+header('HTTP/1.0 403 Forbidden');
 $block_list    = array();
 ////   
 ////// Add IP addresses and User Agents Below
@@ -10,6 +11,8 @@ $block_list[]  = 'SemrushBot';
 $block_list[]  = 'J12bot';
 $block_list[]  = 'Seznambot';
 $block_list[]  = 'PetalBot';
+$block_list[]  = 'bingbot';
+   
 ////   
 ////// Do not edit below here
 ////
