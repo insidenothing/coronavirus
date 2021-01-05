@@ -1,6 +1,7 @@
 <?PHP
-header('HTTP/1.0 403 Forbidden');
+//header('HTTP/1.0 403 Forbidden');
 $block_list    = array();
+$youtube_promote_link = 'https://www.youtube.com/channel/UCPatyRpy7cwh5wrZBMV5DJQ';
 ////   
 ////// Add IP addresses and User Agents Below
 ////
@@ -12,6 +13,7 @@ $block_list[]  = 'J12bot';
 $block_list[]  = 'Seznambot';
 $block_list[]  = 'PetalBot';
 $block_list[]  = 'bingbot';
+$block_list[]  = 'ArcGIS';
    
 ////   
 ////// Do not edit below here
@@ -32,10 +34,25 @@ if (isset($_GET)){
    foreach ($_GET as $k => $v){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
-           $msg = 'UNION blocked';
-           die($msg);
+           $reason_blocked_message = 'UNION blocked';
+           error_log($reason_blocked_message, 0);
+           header('Location: '.$youtube_promote_link);
+           die();
         } 
    }
+}
+// Keyword Blocking URL
+if (isset($_SERVER['REQUEST_URI'])){
+foreach ($block_list as $blocked){
+       $page = $_SERVER['REQUEST_URI'];
+       $pos = strpos($page, $blocked);
+       if ($pos !== false) {
+           $reason_blocked_message = $blocked.' blocked.';
+           error_log($reason_blocked_message, 0);
+           header('Location: '.$youtube_promote_link);
+           die();
+       } 
+    } 
 }
 // User Agents
 if (isset($_SERVER['HTTP_USER_AGENT'])){
@@ -43,12 +60,16 @@ if (isset($_SERVER['HTTP_USER_AGENT'])){
        $bot = $_SERVER['HTTP_USER_AGENT'];
        $pos = strpos($bot, $blocked);
        if ($pos !== false) {
-           $msg = $blocked.' blocked.';
-           die($msg);
+           $reason_blocked_message = $blocked.' blocked.';
+           error_log($reason_blocked_message, 0);
+           header('Location: '.$youtube_promote_link);
+           die();
        } 
     }   
 }else{
-   $msg = 'Missing HTTP_USER_AGENT';
-   die($msg);
+   $reason_blocked_message = 'Missing HTTP_USER_AGENT';
+   error_log($reason_blocked_message, 0);
+   header('Location: '.$youtube_promote_link);
+   die();
 }
 ?>
