@@ -29,7 +29,7 @@ $block_list[]  = 'crawler';
 ////
 // Pick a random channel
 $top_link_index = count($youtube_promote_links) - 1;
-$link_rand_index = rand(0,$top);
+$link_rand_index = rand(0,$top_link_index);
 $youtube_promote_link = $youtube_promote_links[$link_rand_index];
 // IP Addresses to Block 
 if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
