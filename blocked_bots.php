@@ -14,7 +14,8 @@ $block_list[]  = 'Seznambot';
 $block_list[]  = 'PetalBot';
 $block_list[]  = 'bingbot';
 $block_list[]  = 'ArcGIS';
-$block_list[]  = 'AI';   
+$block_list[]  = 'AI'; 
+$block_list[]  = 'crawler';
 ////   
 ////// Do not edit below here
 ////
@@ -27,7 +28,10 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
    $host = $_SERVER['REMOTE_ADDR'];
 }
 if (in_array($host, $block_list)) {
-    die();
+   $reason_blocked_message = 'IP blocked';
+   error_log($reason_blocked_message.' '.$ip.'\n', 3, "/var/tmp/blocked_bots.log");
+   header('Location: '.$youtube_promote_link);
+   die();
 } 
 // $_GET Values
 if (isset($_GET)){
@@ -35,7 +39,7 @@ if (isset($_GET)){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
            $reason_blocked_message = 'UNION blocked';
-           error_log($reason_blocked_message.' '.$v, 3, "/var/tmp/blocked_bots.log");
+           error_log($reason_blocked_message.' '.$v.'\n', 3, "/var/tmp/blocked_bots.log");
            header('Location: '.$youtube_promote_link);
            die();
         } 
@@ -48,7 +52,7 @@ foreach ($block_list as $blocked){
        $pos = strpos($page, $blocked);
        if ($pos !== false) {
            $reason_blocked_message = $blocked.' blocked.';
-           error_log($reason_blocked_message.' '.$page, 3, "/var/tmp/blocked_bots.log");
+           error_log($reason_blocked_message.' '.$page.'\n', 3, "/var/tmp/blocked_bots.log");
            header('Location: '.$youtube_promote_link);
            die();
        } 
@@ -61,14 +65,14 @@ if (isset($_SERVER['HTTP_USER_AGENT'])){
        $pos = strpos($bot, $blocked);
        if ($pos !== false) {
            $reason_blocked_message = $blocked.' blocked.';
-           error_log($reason_blocked_message.' '.$bot, 3, "/var/tmp/blocked_bots.log");
+           error_log($reason_blocked_message.' '.$bot.'\n', 3, "/var/tmp/blocked_bots.log");
            header('Location: '.$youtube_promote_link);
            die();
        } 
     }   
 }else{
    $reason_blocked_message = 'Missing HTTP_USER_AGENT';
-   error_log($reason_blocked_message, 3, "/var/tmp/blocked_bots.log");
+   error_log($reason_blocked_message.'\n', 3, "/var/tmp/blocked_bots.log");
    header('Location: '.$youtube_promote_link);
    die();
 }
