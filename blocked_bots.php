@@ -35,7 +35,7 @@ if (isset($_GET)){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
            $reason_blocked_message = 'UNION blocked';
-           error_log($reason_blocked_message.' '.$v, 0);
+           error_log($reason_blocked_message.' '.$v, 3, "/var/tmp/blocked_bots.log");
            header('Location: '.$youtube_promote_link);
            die();
         } 
@@ -48,7 +48,7 @@ foreach ($block_list as $blocked){
        $pos = strpos($page, $blocked);
        if ($pos !== false) {
            $reason_blocked_message = $blocked.' blocked.';
-           error_log($reason_blocked_message.' '.$page, 0);
+           error_log($reason_blocked_message.' '.$page, 3, "/var/tmp/blocked_bots.log");
            header('Location: '.$youtube_promote_link);
            die();
        } 
@@ -61,14 +61,14 @@ if (isset($_SERVER['HTTP_USER_AGENT'])){
        $pos = strpos($bot, $blocked);
        if ($pos !== false) {
            $reason_blocked_message = $blocked.' blocked.';
-           error_log($reason_blocked_message.' '.$bot, 0);
+           error_log($reason_blocked_message.' '.$bot, 3, "/var/tmp/blocked_bots.log");
            header('Location: '.$youtube_promote_link);
            die();
        } 
     }   
 }else{
    $reason_blocked_message = 'Missing HTTP_USER_AGENT';
-   error_log($reason_blocked_message, 0);
+   error_log($reason_blocked_message, 3, "/var/tmp/blocked_bots.log");
    header('Location: '.$youtube_promote_link);
    die();
 }
