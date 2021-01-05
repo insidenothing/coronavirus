@@ -14,7 +14,7 @@ $block_list[]  = 'Seznambot';
 $block_list[]  = 'PetalBot';
 $block_list[]  = 'bingbot';
 $block_list[]  = 'ArcGIS';
-   
+$block_list[]  = 'AI';   
 ////   
 ////// Do not edit below here
 ////
@@ -35,7 +35,7 @@ if (isset($_GET)){
         $pos = strpos($v, 'UNION');
         if ($pos !== false) {
            $reason_blocked_message = 'UNION blocked';
-           error_log($reason_blocked_message, 0);
+           error_log($reason_blocked_message.' '.$v, 0);
            header('Location: '.$youtube_promote_link);
            die();
         } 
@@ -48,7 +48,7 @@ foreach ($block_list as $blocked){
        $pos = strpos($page, $blocked);
        if ($pos !== false) {
            $reason_blocked_message = $blocked.' blocked.';
-           error_log($reason_blocked_message, 0);
+           error_log($reason_blocked_message.' '.$page, 0);
            header('Location: '.$youtube_promote_link);
            die();
        } 
@@ -61,7 +61,7 @@ if (isset($_SERVER['HTTP_USER_AGENT'])){
        $pos = strpos($bot, $blocked);
        if ($pos !== false) {
            $reason_blocked_message = $blocked.' blocked.';
-           error_log($reason_blocked_message, 0);
+           error_log($reason_blocked_message.' '.$bot, 0);
            header('Location: '.$youtube_promote_link);
            die();
        } 
