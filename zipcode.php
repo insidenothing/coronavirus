@@ -649,12 +649,13 @@ if (isset($_GET['auto'])){
 	}
 }
 if (isset($_GET['auto']) && empty($_GET['state'])){
+	die('only state by state processing');
 	$q = "SELECT zip_code FROM coronavirus_zip where change_percentage_time = '00:00:00' and report_date = '$date' and zip_code <> '$zip' order by RAND() ";
 	$r = $covid_db->query($q);
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"3; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date\">";
+		//echo "<meta http-equiv=\"refresh\" content=\"3; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date\">";
 	}
 }
 if (isset($_GET['auto']) && isset($_GET['state'])){
