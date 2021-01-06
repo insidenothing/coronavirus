@@ -336,8 +336,8 @@ $holidays['2020-07-04'] = '4th of July';
 $holidays['2020-09-07'] = 'Labor Day';
 $holidays['2020-10-31'] = 'Halloween';
 $holidays['2020-11-27'] = 'Thanksgiving';
-	
-	
+$holidays['2020-12-25'] = 'Christmass';	
+$holidays['2021-01-01'] = 'New Years';		
 	
 	global $covid_db;
 	global $zip;
@@ -512,6 +512,16 @@ while ($d = mysqli_fetch_array($r)){
 		$sma_chart3 .=  '{ label: "'.$d['report_date'].'", y: '.intval($this_sma3).' }, ';
 		$remove_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling.' }, ';
 		$remove2_chart .=  '{ label: "'.$d['report_date'].'", y: '.$rolling2.' }, ';
+		if ( $this_sma7 > 0 ){
+			if ($rolling > $active_count_high){
+				$active_count_high 	= $rolling;	
+				$active_count_date_high = $d['report_date'];
+			}
+			if ($active_count_low > $rolling){
+				$active_count_low 	= $rolling;	
+				$active_count_date_low 	= $d['report_date'];
+			}	
+		}
 	}
 
 	$last2 = $me;
