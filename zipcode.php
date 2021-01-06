@@ -336,7 +336,7 @@ $holidays['2020-07-04'] = '4th of July';
 $holidays['2020-09-07'] = 'Labor Day';
 $holidays['2020-10-31'] = 'Halloween';
 $holidays['2020-11-27'] = 'Thanksgiving';
-$holidays['2020-12-25'] = 'Christmass';	
+$holidays['2020-12-25'] = 'Christmas';	
 $holidays['2021-01-01'] = 'New Years';		
 	
 	global $covid_db;
