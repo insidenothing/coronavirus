@@ -2,9 +2,13 @@
 if (isset($_GET['reload'])){
 	$seconds = intval($_GET['reload']);
 	echo "<meta http-equiv='refresh' content='$seconds'>";	
+	ob_start();
 }
 $page_description = "Maryland COVID 19 Active Cases";
 include_once('menu.php');
+if (isset($_GET['reload'])){
+	$null = ob_get_clean();
+}
 global $zipcode;
 global $global_date;
 $zipcode = array();
