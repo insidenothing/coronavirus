@@ -28,7 +28,7 @@ if (isset($_GET['sort'])){
 }
 
 
-echo "<style> li { font-size:25px; } </style><a href='?sort=count'>Sort by Count</a><table><tr><td valign='top' width='33%'>";
+echo "<style> li { font-size:25px; } </style><a href='?sort=count'>Sort by Count</a><table><tr><td valign='top'>";
 
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
@@ -55,7 +55,7 @@ if ($total != 0){
 if ( empty($_GET['state']) || $_GET['state'] == 'Maryland'){
 	echo "<h1>".number_format($total)." to ".number_format($total2)." Maryland Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 }
-echo "</td><td valign='top' width='25%'>";
+echo "</td><td valign='top'>";
 
 ob_start();
 echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
@@ -82,7 +82,7 @@ if ($total != 0){
 if ( empty($_GET['state']) || $_GET['state'] == 'Virginia'){
 	echo "<h1>".number_format($total)." to ".number_format($total2)." Virginia Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 }
-echo "</td><td valign='top' width='25%'>";
+echo "</td><td valign='top'>";
 
 /*
 ob_start();
