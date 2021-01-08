@@ -33,7 +33,7 @@ if (isset($_GET['sort'])){
 echo "<a href='?sort=count'>Sort by Count</a><table><tr><td valign='top' width='25%'>";
 
 ob_start();
-echo "<h3>Cases are removed after 14 days and 28 days, sorted by $order.</h3><ol>";
+echo "<ol>";
 $q = "SELECT * FROM coronavirus_zip where active_count > '0' and report_date = '$date' and state_name = 'Arizona'  order by $order DESC";
 $r = $covid_db->query($q);
 $total = 0;
@@ -53,13 +53,8 @@ echo "</ol>";
 $list = ob_get_clean();
 
 
-echo "<div>
-<li><a target='_Blank' href='https://www.reddit.com/r/CoronavirusAZ/submit'>Post Top 100 To: /r/CoronavirusAZ</a>, use flair - TESTING UPDATES</li>
-<li>Title: ".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</li>
-</div>";
 
-
-echo "<h1>".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</h1><li>SOURCE: https://www.covid19math.net/Arizona/active.php</li> <style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
+echo "<h1>".number_format($total)." to ".number_format($total2)." Arizona<br> Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 echo "</td></tr></table>";
 
