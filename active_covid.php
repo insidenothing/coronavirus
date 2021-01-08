@@ -1,4 +1,8 @@
 <?PHP
+if (isset($_GET['reload'])){
+	$seconds = intval($_GET['reload']);
+	echo "<meta http-equiv='refresh' content='$seconds'>";	
+}
 $page_description = "Maryland COVID 19 Active Cases";
 include_once('menu.php');
 global $zipcode;
