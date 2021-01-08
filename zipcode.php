@@ -645,7 +645,12 @@ $active2_count = $day90['active2_count'];
 $trend = $day90['trend_setter_duration'].' days '.$day90['trend_setter_direction'];
 
 $page_description = $trend.' '.$active_count.' to '.$active2_count.' active cases '.$day14['page_description'];
+ob_start();
 include_once('menu.php');
+$menu = ob_get_clean();
+if (empty($_GET['auto'])){
+	echo $menu;
+}
 $date = $global_date;
 $state='';
 if (isset($_GET['state'])){
