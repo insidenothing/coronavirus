@@ -660,7 +660,7 @@ global $auto_message;
 $auto_message='';
 if (isset($_GET['auto'])){
 	if ($_GET['auto'] == 1){
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=https://www.covid19math.net/active_covid.php?sort=count\">";
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=https://www.covid19math.net/".$_GET['state']."/active.php?sort=count\">";
 	}
 }
 if (isset($_GET['auto']) && empty($_GET['state'])){
