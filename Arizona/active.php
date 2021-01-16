@@ -66,11 +66,15 @@ function scrolldown() {
   setTimeout(
     function()
     {
-      window.scrollTo(0,document.body.scrollHeight);
+      //window.scrollTo(0,document.body.scrollHeight);
+      window.scrollByLines(1)
       scrolldown();
     }, 1000
   )
 }
+	
+	
+	
 scrolldown();
 	
 	
