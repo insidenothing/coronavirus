@@ -67,7 +67,7 @@ function scrolldown() {
     function()
     {
       //window.scrollTo(0,document.body.scrollHeight);
-      window.scrollByLines(1)
+      window.scrollBy(0, 50);
       scrolldown();
     }, 1000
   )
