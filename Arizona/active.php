@@ -61,14 +61,16 @@ echo "<h1>".number_format($total)." to ".number_format($total2)." Arizona Active
 
 echo "</td></tr></table>";
 ?>
-
 <script>
+function scrolldown() {
+  setTimeout(
+    function()
+    {
       window.scrollTo(0,document.body.scrollHeight);
       scrolldown();
     }, 1000
   )
 }
-
 scrolldown();
 	
 	
