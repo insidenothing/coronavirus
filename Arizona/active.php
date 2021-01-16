@@ -50,7 +50,7 @@ while ($d = mysqli_fetch_array($r)){
 	if ($d['active_count_28day'] > 0){
 	 $to = "to ".$d['active_count_28day'];	
 	}
-  echo "<li style='font-size:20px;' class='".$d['percentage_direction']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction']."</li>";
+  echo "<li style='font-size:30px;' class='".$d['percentage_direction']."'><a href='zipcode.php?zip=".$d['zip_code']."'>".$d['zip_code']." $name ".$d['active_count']." $to infections. 7 Day Change ".$d['day7change_percentage']."% ".$d['percentage_direction']."</li>";
 }
 echo "</ol>";
 $list = ob_get_clean();
