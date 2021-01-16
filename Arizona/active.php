@@ -60,6 +60,8 @@ $list = ob_get_clean();
 echo "<h1>".number_format($total)." to ".number_format($total2)." Arizona Active COVID-19 Cases $date</h1><style> .up { background-color: yellow; font-weight:bold; } </style>".$list;
 
 echo "</td></tr></table>";
+
+if (isset($_GET['sort'])){
 ?>
 <script>
 function scrolldown() {
@@ -81,5 +83,5 @@ scrolldown();
 </script>
 
 <?PHP
-
+}
 include_once('../footer.php');
