@@ -1,17 +1,6 @@
 <?php
 require_once('/var/www/secure.php');
 
-//https://mdvax.info/
-function getPage($url){
-    $curl = curl_init();
-    curl_setopt ($curl, CURLOPT_URL, $url);
-    curl_setopt ($curl, CURLOPT_USERAGENT, sprintf("McGuire Coronavirus Monitor covid19math.net /%d.0",rand(4,50)));
-    curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, 0);
-    $html = curl_exec ($curl);
-    curl_close ($curl);
-    return $html;
-}
 // Step 1: Register an Application
 //TwittterAPIkey
 //TwitterAPIsecretkey 
