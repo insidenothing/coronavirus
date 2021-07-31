@@ -327,7 +327,7 @@ $alert = ob_get_clean();
 
 /// zip code code =)
  /// 
-function make_chart($range,$year='2021'){
+function make_chart($range,$year=''){
 	
 
 $holidays['2020-04-12'] = 'Easter';
@@ -354,14 +354,27 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 $text_div2='';
-$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' ";
-$r = $covid_db->query($q);
-$rows = mysqli_num_rows($r);
-$start = $rows - $range;
-$range2= $range - 1;
-$start = max($start, 0);
-$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' limit $start, $range";
-$r = $covid_db->query($q);
+	if ($year == ''){
+		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date ";
+		$r = $covid_db->query($q);
+		$rows = mysqli_num_rows($r);
+		$start = $rows - $range;
+		$range2= $range - 1;
+		$start = max($start, 0);
+		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
+		$r = $covid_db->query($q);
+		
+	}else{
+		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' ";
+		$r = $covid_db->query($q);
+		$rows = mysqli_num_rows($r);
+		$start = $rows - $range;
+		$range2= $range - 1;
+		$start = max($start, 0);
+		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' limit $start, $range";
+		$r = $covid_db->query($q);
+		
+	}
 $i=0;
 	$remove_total=0;
 	$remove2_total=0;
