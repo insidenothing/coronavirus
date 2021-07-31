@@ -327,7 +327,7 @@ $alert = ob_get_clean();
 
 /// zip code code =)
  /// 
-function make_chart($range){
+function make_chart($range,$year='2021'){
 	
 
 $holidays['2020-04-12'] = 'Easter';
@@ -354,13 +354,13 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 $text_div2='';
-$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date";
+$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' ";
 $r = $covid_db->query($q);
 $rows = mysqli_num_rows($r);
 $start = $rows - $range;
 $range2= $range - 1;
 $start = max($start, 0);
-$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date limit $start, $range";
+$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' limit $start, $range";
 $r = $covid_db->query($q);
 $i=0;
 	$remove_total=0;
@@ -635,7 +635,9 @@ $day7 = make_chart('7');
 $day14 = make_chart('14');
 $day30 = make_chart('30');
 $day45 = make_chart('45');
+$day45 = make_chart('45');
 $day90 = make_chart('365');
+$day90_2020 = make_chart('365',2020);
 
 $active_count = $day90['active_count'];
 $active2_count = $day90['active2_count'];
@@ -768,6 +770,9 @@ $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
+
+$new_chart_2020		= $day90_2020['new_chart'];
+$new_chart_2021		= $day90['new_chart'];
 
 $trend_setter_duration 		= $day90['trend_setter_duration'];
 $trend_setter_direction 	= $day90['trend_setter_direction'];
@@ -1349,7 +1354,49 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 	})
 	chartZIP7.render();
 	
-	
+	var chartZIPvs2020 = new CanvasJS.Chart("chartContainerZIPvs2020", {
+		theme:"light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title:{
+			text: "<?PHP echo $name_6;?> Peak <?PHP echo $active_count_high;?> on <?PHP echo $active_count_date_high;?> Now <?PHP echo $active_count;?> Active Cases - source covid19math.net<?PHP echo $auto_message;?>"
+		},
+		axisY :{
+			includeZero: false,
+			title: "Number of New Infections",
+			suffix: "",
+			scaleBreaks: {
+				autoCalculate: true
+			}
+		},
+		toolTip: {
+			shared: "true"
+		},
+		legend:{
+			cursor:"pointer",
+			itemclick : toggleDataSeries
+		},
+		data: [{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Cases 2020",
+		dataPoints: [
+			<?PHP echo $new_chart_2020; ?>
+		]
+		},{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Cases 2021",
+		dataPoints: [
+			<?PHP echo $new_chart_2021; ?>
+		]
+		}]
+	})
+	chartZIPvs2020.render();
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 			e.dataSeries.visible = false;
@@ -1362,6 +1409,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </script>
 <?PHP if ($sma_chart_6 != ''){ ?>
 	<div class="row">
+		<div class="col-sm-12"><div id="chartContainerZIP2020" style="height: 500px; width: 100%;"></div></div>
+	</div>
+        <div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP7" style="height: 500px; width: 100%;"></div></div>
 	</div>
 	<div class="row">
