@@ -327,7 +327,7 @@ $alert = ob_get_clean();
 
 /// zip code code =)
  /// 
-function make_chart($range,$year=''){
+function make_chart($range,$from='',$to=''){
 	
 
 $holidays['2020-04-12'] = 'Easter';
@@ -354,7 +354,7 @@ $time_chart='';
 $text_div='';
 $time_chart2='';
 $text_div2='';
-	if ($year == ''){
+	if ($from == ''){
 		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date ";
 		$r = $covid_db->query($q);
 		$rows = mysqli_num_rows($r);
@@ -365,13 +365,7 @@ $text_div2='';
 		$r = $covid_db->query($q);
 		
 	}else{
-		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' ";
-		$r = $covid_db->query($q);
-		$rows = mysqli_num_rows($r);
-		$start = $rows - $range;
-		$range2= $range - 1;
-		$start = max($start, 0);
-		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where report_date like '$year%' limit $start, $range";
+		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where  report_date < '$from' and report_date > '$to' ";
 		$r = $covid_db->query($q);
 		
 	}
@@ -650,7 +644,7 @@ $day30 = make_chart('30');
 $day45 = make_chart('45');
 $day45 = make_chart('45');
 $day90 = make_chart('365');
-$day90_2020 = make_chart('365',2020);
+
 
 $active_count = $day90['active_count'];
 $active2_count = $day90['active2_count'];
@@ -783,7 +777,9 @@ $name_6 		= $day90['name'];
 $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
-
+// from/to
+$compare_last_45_2021 = make_chart('45',date('Y-m-d',strtotime('-45 days')),date('Y-m-d'));
+$compare_last_45_2020 = make_chart('45',date('Y-m-d',strtotime('-1 year'))-3888000,date('Y-m-d',strtotime('-1 year')));
 $new_chart_2020		= $day90_2020['new_chart'];
 $new_chart_2021		= $day90['new_chart'];
 
@@ -1396,7 +1392,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2020",
 		dataPoints: [
-			<?PHP echo $new_chart_2020; ?>
+			<?PHP echo $compare_last_45_2020; ?>
 		]
 		},{
 		type: "column",
@@ -1405,7 +1401,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2021",
 		dataPoints: [
-			<?PHP echo $new_chart_2021; ?>
+			<?PHP echo $compare_last_45_2021; ?>
 		]
 		}]
 	})
