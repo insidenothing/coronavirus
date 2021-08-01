@@ -3,8 +3,8 @@ $color_2020 = '#3b4d61';
 $color_2020_dot = '#3b4d61';
 $color_2020_line = '#3b4d61';
 $color_2021 = '#6b7b8c';
-$color_2021_dot = '#ef9d10f';
-$color_2021_line = '#ef9d10f';
+$color_2021_dot = 'blue';
+$color_2021_line = 'red';
 
 include_once('blocked_bots.php'); 	
 
