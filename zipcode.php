@@ -1,6 +1,6 @@
 <?PHP
-$color_2020 = '#000000';
-$color_2021 = '#f3ca20';
+$color_2020 = '#3b4d61';
+$color_2021 = '#6b7b8c';
 
 include_once('blocked_bots.php'); 	
 
