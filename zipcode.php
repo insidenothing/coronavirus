@@ -1,8 +1,10 @@
 <?PHP
 $color_2020 = '#3b4d61';
 $color_2020_dot = 'red';
+$color_2020_line = '#3b4d61';
 $color_2021 = '#6b7b8c';
 $color_2021_dot = 'red';
+$color_2021_line = '#ef9d10f';
 
 include_once('blocked_bots.php'); 	
 
@@ -1414,9 +1416,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "spline",
 		visible: true,
 		showInLegend: true,
-		legendMarkerColor: "<?PHP echo $color_2020;?>",
+		legendMarkerColor: "<?PHP echo $color_2020_line;?>",
 		markerColor: "<?PHP echo $color_2020_dot;?>",
-		color: "<?PHP echo $color_2020;?>",
+		color: "<?PHP echo $color_2020_line;?>",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2020",
 		dataPoints: [
@@ -1438,9 +1440,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "spline",
 		visible: true,
 		showInLegend: true,
-		legendMarkerColor: "<?PHP echo $color_2021;?>",
+		legendMarkerColor: "<?PHP echo $color_2021_line;?>",
 		markerColor: "<?PHP echo $color_2021_dot;?>",
-		color: "<?PHP echo $color_2021;?>",
+		color: "<?PHP echo $color_2021_line;?>",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2021",
 		dataPoints: [
