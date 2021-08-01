@@ -366,6 +366,7 @@ $text_div2='';
 		
 	}else{
 		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' order by report_date where  report_date < '$from' and report_date > '$to' ";
+		slack_general("$q",'covid19-sql');
 		$r = $covid_db->query($q);
 		
 	}
