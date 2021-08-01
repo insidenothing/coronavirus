@@ -1374,7 +1374,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name_6;?> Peak <?PHP echo $active_count_high;?> on <?PHP echo $active_count_date_high;?> Now <?PHP echo $active_count;?> Active CasesCompare 2020 to 2021 - source covid19math.net<?PHP echo $auto_message;?>"
+			text: "<?PHP echo $name_6;?> New Cases Last 45 Days - Compare 2020 to 2021 - source covid19math.net<?PHP echo $auto_message;?>"
 		},
 		axisY :{
 			includeZero: false,
@@ -1424,7 +1424,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 </script>
 <?PHP if ($sma_chart_6 != ''){ ?>
 	<div class="row">
-		<div class="col-sm-12"><div id="chartContainerZIP2020" style="height: 500px; width: 100%;"></div></div>
+		<div class="col-sm-12"><div id="chartContainerZIPvs2020" style="height: 500px; width: 100%;"></div></div>
 	</div>
         <div class="row">
 		<div class="col-sm-12"><div id="chartContainerZIP7" style="height: 500px; width: 100%;"></div></div>
