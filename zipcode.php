@@ -1399,6 +1399,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		showInLegend: true,
 		legendMarkerColor: "red",
 		markerColor: "red",
+		color: "red",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2020",
 		dataPoints: [
@@ -1410,6 +1411,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		showInLegend: true,
 		legendMarkerColor: "red",
 		markerColor: "red",
+		color: "red",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2020",
 		dataPoints: [
@@ -1421,6 +1423,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		showInLegend: true,
 		legendMarkerColor: "green",
 		markerColor: "green",
+		color: "green",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2021",
 		dataPoints: [
@@ -1432,6 +1435,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		showInLegend: true,
 		legendMarkerColor: "green",
 		markerColor: "green",
+		color: "green",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2021",
 		dataPoints: [
