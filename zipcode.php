@@ -779,10 +779,14 @@ $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
 // from/to
-$compare_last_45_2021 = make_chart('45',date('Y-m-d',strtotime('-45 days')),date('Y-m-d'));
-$compare_last_45_2020 = make_chart('45',date('Y-m-d',strtotime('-1 year'))-3888000,date('Y-m-d',strtotime('-1 year')));
-$new_chart_2020		= $day90_2020['new_chart'];
-$new_chart_2021		= $day90['new_chart'];
+	$compare_last_45_2021 = make_chart('45',date('Y-m-d',strtotime('-45 days')),date('Y-m-d'));
+
+	$from = date('Y-m-d',strtotime('-1 year')-3888000); // 45 days in seconds
+	$to = date('Y-m-d',strtotime('-1 year'));
+	$compare_last_45_2020 = make_chart('45',$from,$to);
+
+$new_chart_2020		= $compare_last_45_2020['new_chart'];
+$new_chart_2021		= $compare_last_45_2021['new_chart'];
 
 $trend_setter_duration 		= $day90['trend_setter_duration'];
 $trend_setter_direction 	= $day90['trend_setter_direction'];
