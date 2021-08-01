@@ -787,7 +787,9 @@ $testing_chart_6 	= $day90['testing_chart'];
 	$compare_last_45_2020 = make_chart('45',$from,$to);
 
 $new_chart_2020		= $compare_last_45_2020['new_chart'];
+$new_chart_2020_7day		= $compare_last_45_2020['new_chart_sma'];
 $new_chart_2021		= $compare_last_45_2021['new_chart'];
+$new_chart_2021_7day		= $compare_last_45_2021['new_chart_sma'];
 
 $trend_setter_duration 		= $day90['trend_setter_duration'];
 $trend_setter_direction 	= $day90['trend_setter_direction'];
@@ -1401,6 +1403,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 			<?PHP echo $new_chart_2020; ?>
 		]
 		},{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2020",
+		dataPoints: [
+			<?PHP echo $new_chart_2020_7day; ?>
+		]
+		},{
 		type: "column",
 		visible: true,
 		showInLegend: true,
@@ -1408,6 +1419,15 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> New Cases 2021",
 		dataPoints: [
 			<?PHP echo $new_chart_2021; ?>
+		]
+		},{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2021",
+		dataPoints: [
+			<?PHP echo $new_chart_2021_7day; ?>
 		]
 		}]
 	})
