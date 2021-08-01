@@ -1391,7 +1391,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		},
 		legend:{
 			cursor:"pointer",
-			itemclick : toggleDataSeries
+			itemclick : toggleDataSeriesVS
 		},
 		data: [{
 		type: "column",
@@ -1444,6 +1444,20 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		}
 		chart.render();
 	}	
+	
+	
+	
+	function toggleDataSeriesVS(e) {
+		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+			e.dataSeries.visible = false;
+		} else {
+			e.dataSeries.visible = true;
+		}
+		chartZIPvs2020.render();
+	}	
+	
+	
+	
 }
 </script>
 <?PHP if ($sma_chart_6 != ''){ ?>
