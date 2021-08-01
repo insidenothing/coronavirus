@@ -1,4 +1,7 @@
 <?PHP
+$color_2020 = '#000000';
+$color_2021 = '#f3ca20';
+
 include_once('blocked_bots.php'); 	
 
 include_once('/var/www/secure.php'); 	// outside webserver
@@ -1397,9 +1400,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "column",
 		visible: true,
 		showInLegend: true,
-		legendMarkerColor: "orange",
-		markerColor: "orange",
-		color: "orange",
+		legendMarkerColor: "<?PHP echo $color_2020;?>",
+		markerColor: "<?PHP echo $color_2020;?>",
+		color: "<?PHP echo $color_2020;?>",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2020",
 		dataPoints: [
@@ -1409,9 +1412,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "spline",
 		visible: true,
 		showInLegend: true,
-		legendMarkerColor: "orange",
-		markerColor: "orange",
-		color: "orange",
+		legendMarkerColor: "<?PHP echo $color_2020;?>",
+		markerColor: "<?PHP echo $color_2020;?>",
+		color: "<?PHP echo $color_2020;?>",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2020",
 		dataPoints: [
@@ -1421,9 +1424,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "column",
 		visible: true,
 		showInLegend: true,
-		legendMarkerColor: "blue",
-		markerColor: "blue",
-		color: "blue",
+		legendMarkerColor: "<?PHP echo $color_2021;?>",
+		markerColor: "<?PHP echo $color_2021;?>",
+		color: "<?PHP echo $color_2021;?>",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2021",
 		dataPoints: [
@@ -1433,9 +1436,9 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		type: "spline",
 		visible: true,
 		showInLegend: true,
-		legendMarkerColor: "blue",
-		markerColor: "blue",
-		color: "blue",
+		legendMarkerColor: "<?PHP echo $color_2021;?>",
+		markerColor: "<?PHP echo $color_2021;?>",
+		color: "<?PHP echo $color_2021;?>",
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2021",
 		dataPoints: [
