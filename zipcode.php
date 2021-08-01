@@ -366,7 +366,7 @@ $text_div2='';
 		
 	}else{
 		$q = "SELECT * FROM coronavirus_zip where zip_code = '$zip' and report_date > '$from' and report_date < '$to' order by report_date ";
-		echo "<h1>DEVELOPER DEBUGGING: $q</h1>";
+		//echo "<h1>DEVELOPER DEBUGGING: $q</h1>";
 		//slack_general("$q",'covid19-sql');
 		$r = $covid_db->query($q);
 		
@@ -1398,7 +1398,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2020",
 		dataPoints: [
-			<?PHP echo $compare_last_45_2020; ?>
+			<?PHP echo $new_chart_2020; ?>
 		]
 		},{
 		type: "column",
@@ -1407,7 +1407,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		yValueFormatString: "#####",
 		name: "<?PHP echo $zip;?> New Cases 2021",
 		dataPoints: [
-			<?PHP echo $compare_last_45_2021; ?>
+			<?PHP echo $new_chart_2021; ?>
 		]
 		}]
 	})
