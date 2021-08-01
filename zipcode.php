@@ -678,7 +678,7 @@ global $auto_message;
 $auto_message='';
 if (isset($_GET['auto'])){
 	if ($_GET['auto'] == 1){
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=https://www.covid19math.net/".$_GET['state']."/active.php?sort=count\">";
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=http://www.covid19math.net/".$_GET['state']."/active.php?sort=count\">";
 	}
 }
 if (isset($_GET['auto']) && empty($_GET['state'])){
@@ -697,7 +697,7 @@ if (isset($_GET['auto']) && isset($_GET['state'])){
 	$d = mysqli_fetch_array($r);
 	$left = mysqli_num_rows($r);
 	if ($left > 0){
-		echo "<meta http-equiv=\"refresh\" content=\"5; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date&state=$_GET[state]\">";
+		echo "<meta http-equiv=\"refresh\" content=\"5; url=http://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=$left&when=$date&state=$_GET[state]\">";
 	}
 	$auto_message=" ($left to left to scan)";
 }
@@ -706,7 +706,7 @@ if (isset($_GET['auto'])){
 		$q = "SELECT zip_code FROM coronavirus_zip where active_count > '100' and report_date = '$date' and zip_code <> '' order by RAND() ";
 		$r = $covid_db->query($q);
 		$d = mysqli_fetch_array($r);
-		echo "<meta http-equiv=\"refresh\" content=\"10; url=https://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=1\">";
+		echo "<meta http-equiv=\"refresh\" content=\"10; url=http://www.covid19math.net/zipcode.php?zip=".$d['zip_code']."&auto=1\">";
 	}
 }
 
