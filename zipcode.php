@@ -1,10 +1,15 @@
 <?PHP
-$color_2020 = '#3b4d61';
-$color_2020_dot = '#3b4d61';
-$color_2020_line = '#3b4d61';
-$color_2021 = '#6b7b8c';
-$color_2021_dot = 'blue';
-$color_2021_line = 'red';
+$color_2020 = 'black';
+$color_2020_dot = 'black';
+$color_2020_line = 'black';
+
+$color_2021 = '#3b4d61';
+$color_2021_dot = '#3b4d61';
+$color_2021_line = '#3b4d61';
+
+$color_2022 = '#6b7b8c';
+$color_2022_dot = 'blue';
+$color_2022_line = 'red';
 
 include_once('blocked_bots.php'); 	
 
@@ -787,16 +792,24 @@ $per_6 			= $day90['per'];
 $testing_chart_6 	= $day90['testing_chart'];
 
 // from/to
-	$compare_last_45_2021 = make_chart('45',date('Y-m-d',strtotime('-45 days')),date('Y-m-d'));
-
+	//$compare_last_45_2021 = make_chart('45',date('Y-m-d',strtotime('-45 days')),date('Y-m-d'));
+	$compare_last_45_2022 = make_chart('45',date('Y-m-d',strtotime('-45 days')),date('Y-m-d'));
+	
 	$from = date('Y-m-d',strtotime('-1 year')-3888000); // 45 days in seconds
 	$to = date('Y-m-d',strtotime('-1 year'));
+	$compare_last_45_2021 = make_chart('45',$from,$to);
+	
+	$from = date('Y-m-d',strtotime('-2 year')-3888000); // 45 days in seconds
+	$to = date('Y-m-d',strtotime('-2 year'));
 	$compare_last_45_2020 = make_chart('45',$from,$to);
+
 
 $new_chart_2020		= $compare_last_45_2020['new_chart'];
 $new_chart_2020_7day		= $compare_last_45_2020['new_chart_sma'];
 $new_chart_2021		= $compare_last_45_2021['new_chart'];
 $new_chart_2021_7day		= $compare_last_45_2021['new_chart_sma'];
+$new_chart_2022		= $compare_last_45_2022['new_chart'];
+$new_chart_2022_7day		= $compare_last_45_2022['new_chart_sma'];
 
 $trend_setter_duration 		= $day90['trend_setter_duration'];
 $trend_setter_direction 	= $day90['trend_setter_direction'];
@@ -1383,7 +1396,7 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		animationEnabled: true,
 		exportEnabled: true,
 		title:{
-			text: "<?PHP echo $name_6;?> New Cases Last 45 Days - Compare 2020 to 2021 - source covid19math.net<?PHP echo $auto_message;?>"
+			text: "<?PHP echo $name_6;?> New Cases Last 45 Days - Compare 2020 through 2022 - source covid19math.net<?PHP echo $auto_message;?>"
 		},
 		axisY :{
 			includeZero: false,
@@ -1447,6 +1460,30 @@ var chartZIP4 = new CanvasJS.Chart("chartContainerZIP4", {
 		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2021",
 		dataPoints: [
 			<?PHP echo $new_chart_2021_7day; ?>
+		]
+		},{
+		type: "column",
+		visible: true,
+		showInLegend: true,
+		legendMarkerColor: "<?PHP echo $color_2022;?>",
+		markerColor: "<?PHP echo $color_2022;?>",
+		color: "<?PHP echo $color_2022;?>",
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> New Cases 2022",
+		dataPoints: [
+			<?PHP echo $new_chart_2022; ?>
+		]
+		},{
+		type: "spline",
+		visible: true,
+		showInLegend: true,
+		legendMarkerColor: "<?PHP echo $color_2022_line;?>",
+		markerColor: "<?PHP echo $color_2022_dot;?>",
+		color: "<?PHP echo $color_2022_line;?>",
+		yValueFormatString: "#####",
+		name: "<?PHP echo $zip;?> 7 Day New Cases Average 2022",
+		dataPoints: [
+			<?PHP echo $new_chart_2022_7day; ?>
 		]
 		}]
 	})
