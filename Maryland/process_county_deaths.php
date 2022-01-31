@@ -34,7 +34,7 @@ function coronavirus_county($zip,$date,$count){
 	}
 	global $covid_db;
 	global $zipcode;
-	$town = $zipcode[$zip];
+	//$town = $zipcode[$zip];
 	$testing=0;
 	$q = "select * from coronavirus_county where county_name = '$zip' and report_date = '$date' and state_name = 'maryland'";
 	$r = $covid_db->query($q);
