@@ -2,11 +2,6 @@
 <html>
 <head>
 	<?PHP 
-	if (empty($logo)){
-		$logo == 'on';
-	}
-	
-	
 	if(isset($page_description)){
 		echo "<title>$page_description</title>";
 	}elseif (isset($_POST['checked_datetime'])){ 
